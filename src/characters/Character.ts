@@ -160,13 +160,24 @@ export class Character {
     const frameW = CHARACTER_FRAME_SIZE;
     const frameH = CHARACTER_FRAME_SIZE;
 
+    // Step 1: Slice generated texture into spritesheet frames.
+    // generateTexture creates a single __BASE frame; we add named sub-frames.
+    const tex = this.scene.textures.get(this.key);
+    if (!tex.has('f0')) {
+      for (let dir = 0; dir < DIRECTIONS; dir++) {
+        for (let f = 0; f < WALK_FRAMES; f++) {
+          tex.add(`f${dir * WALK_FRAMES + f}`, 0, f * frameW, dir * frameH, frameW, frameH);
+        }
+      }
+    }
+
+    // Step 2: Create animations referencing the named frames.
     for (let dir = 0; dir < DIRECTIONS; dir++) {
-      // Walk animation (4 frames)
       const walkFrames: Phaser.Types.Animations.AnimationFrame[] = [];
       for (let f = 0; f < WALK_FRAMES; f++) {
         walkFrames.push({
           key: this.key,
-          frame: dir * WALK_FRAMES + f,
+          frame: `f${dir * WALK_FRAMES + f}`,
         });
       }
       this.scene.anims.create({
@@ -176,30 +187,12 @@ export class Character {
         repeat: -1,
       });
 
-      // Idle (first frame of direction)
       this.scene.anims.create({
         key: `${this.key}-idle-${dir}`,
-        frames: [{ key: this.key, frame: dir * WALK_FRAMES }],
+        frames: [{ key: this.key, frame: `f${dir * WALK_FRAMES}` }],
         frameRate: 1,
         repeat: 0,
       });
-    }
-
-    // Spritesheet frame config — tell Phaser how to slice the texture
-    if (!this.scene.textures.get(this.key).has('0')) {
-      const tex = this.scene.textures.get(this.key);
-      for (let dir = 0; dir < DIRECTIONS; dir++) {
-        for (let f = 0; f < WALK_FRAMES; f++) {
-          tex.add(
-            String(dir * WALK_FRAMES + f),
-            0,
-            f * frameW,
-            dir * frameH,
-            frameW,
-            frameH,
-          );
-        }
-      }
     }
   }
 }

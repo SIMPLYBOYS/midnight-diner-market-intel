@@ -39,8 +39,8 @@ export class LightingManager {
     const steps = 8;
     for (let i = steps; i >= 0; i--) {
       const ratio = i / steps;
-      const alpha = (1 - ratio) * 0.3; // edges darker
-      const radius = maxR * (0.4 + ratio * 0.6);
+      const alpha = (1 - ratio) * 0.15; // subtle edge darkening
+      const radius = maxR * (0.5 + ratio * 0.5);
       this.vignette.fillStyle(0x000000, alpha);
       this.vignette.fillCircle(cx, cy, radius);
     }
