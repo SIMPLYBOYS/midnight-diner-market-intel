@@ -1,8 +1,6 @@
 import Phaser from 'phaser';
-import { TILE_SIZE } from '../constants';
-import { DINER_MAP, COLLISION_TILES } from '../tilemap/DinerMapData';
+import { GAME_WIDTH, GAME_HEIGHT } from '../constants';
 import { Character } from '../characters/Character';
-import { LightingManager } from '../lighting/LightingManager';
 import { DialogueManager } from '../dialogue/DialogueManager';
 import { TimelinePlayer } from '../engine/TimelinePlayer';
 import { JsonDataSource } from '../datasource/JsonDataSource';
@@ -19,13 +17,13 @@ export class DinerScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.buildTilemap();
+    // Background image (replaces tilemap for high-quality visuals)
+    const bg = this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'diner-bg');
+    bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    bg.setDepth(0);
 
     this.timelinePlayer = new TimelinePlayer(this);
     this.dialogueManager = new DialogueManager(this);
-
-    // Lighting overlay
-    new LightingManager(this);
 
     // Load and play the first episode
     const dataSource = new JsonDataSource([EPISODE_01]);
@@ -41,40 +39,15 @@ export class DinerScene extends Phaser.Scene {
     this.dialogueManager.update();
   }
 
-  /** Look up a character by key. */
   getCharacter(key: string): Character | undefined {
     return this.characterMap.get(key);
   }
 
-  /** Spawn a character into the scene and register it. */
   spawnCharacter(config: CharacterConfig): Character {
     const existing = this.characterMap.get(config.key);
     if (existing) return existing;
     const char = new Character(this, config);
     this.characterMap.set(config.key, char);
     return char;
-  }
-
-  private buildTilemap(): void {
-    const map = this.make.tilemap({
-      data: DINER_MAP,
-      tileWidth: TILE_SIZE,
-      tileHeight: TILE_SIZE,
-    });
-
-    const tileset = map.addTilesetImage(
-      'diner-tileset',
-      'diner-tileset',
-      TILE_SIZE,
-      TILE_SIZE,
-    );
-
-    if (!tileset) return;
-
-    const layer = map.createLayer(0, tileset, 0, 0);
-    if (!layer) return;
-
-    layer.setDepth(0);
-    layer.setCollision(COLLISION_TILES);
   }
 }

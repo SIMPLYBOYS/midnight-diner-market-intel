@@ -3,14 +3,12 @@ import { Direction } from '../../characters/types';
 
 /**
  * Episode 01 — First Customer.
- * Map is 16×12 (32px tiles). Key positions:
- *   Chef kitchen: row 1, cols 0-4
- *   Counter: row 2
- *   Stools: row 4 (cols 0,2,4)
- *   Table group 1: rows 5-6, cols 8-9 (seats at 7,10)
- *   Table group 2: rows 7-8, col 13 (seats at 12,14)
- *   Door: row 11, cols 7-8
- *   Entrance: row 10, cols 6-9
+ * Positions are in tile coordinates (32px grid on 512×384 canvas).
+ * Background layout reference:
+ *   Kitchen: top-left (cols 0-5, rows 0-3)
+ *   Counter stools: row 5-6, cols 1-5
+ *   Dining tables: right side (cols 8-13, rows 5-9)
+ *   Door/entrance: bottom-center (cols 6-9, row 11)
  */
 export const EPISODE_01: Episode = {
   id: 'ep-01',
@@ -25,13 +23,8 @@ export const EPISODE_01: Episode = {
     {
       type: 'enter',
       character: 'chef',
-      toTile: { x: 3, y: 1 },
+      toTile: { x: 4, y: 3 },
       facing: Direction.DOWN,
-    },
-    {
-      type: 'move',
-      character: 'chef',
-      toTile: { x: 3, y: 2 },
     },
     {
       type: 'wait',
@@ -50,12 +43,12 @@ export const EPISODE_01: Episode = {
     {
       type: 'move',
       character: 'customer-a',
-      toTile: { x: 7, y: 5 },
+      toTile: { x: 3, y: 6 },
     },
     {
       type: 'sit',
       character: 'customer-a',
-      facing: Direction.RIGHT,
+      facing: Direction.UP,
     },
     {
       type: 'dialogue',
@@ -95,17 +88,17 @@ export const EPISODE_01: Episode = {
     {
       type: 'enter',
       character: 'customer-b',
-      toTile: { x: 8, y: 7 },
+      toTile: { x: 7, y: 7 },
     },
     {
       type: 'move',
       character: 'customer-b',
-      toTile: { x: 12, y: 7 },
+      toTile: { x: 10, y: 6 },
     },
     {
       type: 'sit',
       character: 'customer-b',
-      facing: Direction.LEFT,
+      facing: Direction.UP,
     },
     {
       type: 'dialogue',

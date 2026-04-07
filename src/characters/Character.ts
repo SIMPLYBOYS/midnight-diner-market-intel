@@ -44,15 +44,24 @@ export class Character {
     const px = config.startTileX * TILE_SIZE + TILE_SIZE / 2;
     const py = config.startTileY * TILE_SIZE + TILE_SIZE / 2;
 
-    this.createAnimations();
+    // Animations are created in BootScene for real assets;
+    // fallback to createAnimations for programmatic sprites.
+    if (!scene.anims.exists(`${config.key}-idle-0`)) {
+      this.createAnimations();
+    }
+
+    // Scale sprites to match tile size (64px frames displayed at ~32px)
+    const spriteScale = TILE_SIZE / CHARACTER_FRAME_SIZE;
 
     this.sprite = scene.add.sprite(px, py, config.key);
-    this.sprite.setOrigin(0.5, 0.5);
+    this.sprite.setOrigin(0.5, 0.75);
+    this.sprite.setScale(spriteScale);
     this.sprite.setDepth(py);
     this.playAnim(AnimState.IDLE);
 
     this.sitSprite = scene.add.sprite(px, py, `${config.key}-sit`);
-    this.sitSprite.setOrigin(0.5, 0.5);
+    this.sitSprite.setOrigin(0.5, 0.75);
+    this.sitSprite.setScale(spriteScale);
     this.sitSprite.setVisible(false);
 
     this.targetX = px;
