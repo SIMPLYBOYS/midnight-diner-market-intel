@@ -19,12 +19,12 @@ export class LightingManager {
       0x1a0e05,
       0.35,
     );
-    this.overlay.setDepth(900);
+    this.overlay.setDepth(500);
     this.overlay.setBlendMode(Phaser.BlendModes.MULTIPLY);
 
     if (enableVignette) {
       this.vignette = scene.add.graphics();
-      this.vignette.setDepth(901);
+      this.vignette.setDepth(501);
       this.drawVignette();
     }
   }
