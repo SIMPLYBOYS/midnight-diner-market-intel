@@ -59,7 +59,11 @@ export class Character {
     this.sprite.setDepth(py);
     this.playAnim(AnimState.IDLE);
 
-    this.sitSprite = scene.add.sprite(px, py, `${config.key}-sit`);
+    // Sit sprite: use direction-specific image if available, else single image
+    const sitKey = scene.textures.exists(`${config.key}-sit-${this.direction}`)
+      ? `${config.key}-sit-${this.direction}`
+      : `${config.key}-sit`;
+    this.sitSprite = scene.add.sprite(px, py, sitKey);
     this.sitSprite.setOrigin(0.5, 0.85);
     this.sitSprite.setScale(spriteScale);
     this.sitSprite.setVisible(false);
@@ -229,6 +233,11 @@ export class Character {
     this.sprite.setVisible(false);
     this.sitSprite.setPosition(this.sprite.x, this.sprite.y);
     this.sitSprite.setDepth(this.sprite.y);
+    // Switch to direction-specific sit texture
+    const dirSitKey = `${this.key}-sit-${this.direction}`;
+    if (this.scene.textures.exists(dirSitKey)) {
+      this.sitSprite.setTexture(dirSitKey);
+    }
     this.sitSprite.setVisible(true);
   }
 
