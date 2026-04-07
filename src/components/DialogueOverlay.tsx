@@ -79,48 +79,88 @@ export function DialogueOverlay() {
   const name = CHARACTER_NAMES[state.character] ?? state.character;
   const canvasW = GAME_WIDTH * GAME_SCALE;
   const bubbleMaxW = 240;
+  const borderW = 3;
+  const borderColor = '#333';
+  const bgColor = '#ffffffee';
+  const tailSize = 40;
 
-  // Position bubble centered above character, clamped to canvas edges
+  // Position bubble above character, clamped to canvas edges
   const left = Math.max(
     8,
     Math.min(state.screenX - bubbleMaxW / 2, canvasW - bubbleMaxW - 8),
   );
-  // Tail offset: how far from bubble left edge the tail should point
-  const tailLeft = Math.max(12, Math.min(state.screenX - left, bubbleMaxW - 12));
+  // Tail points toward speaker — offset from bubble left edge
+  const tailX = Math.max(20, Math.min(state.screenX - left, bubbleMaxW - 20));
 
   return (
     <div
       style={{
         position: 'absolute',
         left: `${left}px`,
-        top: `${state.screenY}px`,
+        top: `${state.screenY + 20}px`,
         transform: 'translateY(-100%)',
-        maxWidth: `${bubbleMaxW}px`,
+        width: `${bubbleMaxW}px`,
         pointerEvents: 'none',
         zIndex: 10,
       }}
     >
-      <div style={styles.bubble}>
-        <div style={styles.name}>{name}</div>
-        <div style={styles.text}>{displayText}</div>
-      </div>
-      <div
+      {/* Bubble + tail as one SVG for clean connected shape */}
+      <svg
+        width={bubbleMaxW}
+        height="100%"
         style={{
-          ...styles.tail,
-          marginLeft: `${tailLeft - 6}px`,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: `calc(100% + ${tailSize}px)`,
+          overflow: 'visible',
         }}
-      />
+      >
+        <defs>
+          <clipPath id="bubble-clip">
+            <rect x="0" y="0" width={bubbleMaxW} height="1000" rx="8" ry="8" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* Content area */}
+      <div style={{ position: 'relative' }}>
+        <div
+          style={{
+            background: bgColor,
+            border: `${borderW}px solid ${borderColor}`,
+            borderRadius: '8px',
+            padding: '6px 10px',
+          }}
+        >
+          <div style={styles.name}>{name}</div>
+          <div style={styles.text}>{displayText}</div>
+        </div>
+
+        {/* Tail: angled tab extending from bottom-left of bubble */}
+        <svg
+          width={bubbleMaxW}
+          height={tailSize + borderW}
+          style={{ display: 'block', marginTop: `-${borderW}px` }}
+        >
+          {/* Border tail */}
+          <polygon
+            points={`${tailX - 12},0 ${tailX - 14},${tailSize} ${tailX + 2},0`}
+            fill={borderColor}
+          />
+          {/* Inner white tail */}
+          <polygon
+            points={`${tailX - 10},0 ${tailX - 12},${tailSize - 3} ${tailX},0`}
+            fill={bgColor}
+          />
+        </svg>
+      </div>
     </div>
   );
 }
 
 const styles: Record<string, React.CSSProperties> = {
-  bubble: {
-    background: '#ffffffee',
-    border: '2px solid #444',
-    borderRadius: '6px',
-    padding: '6px 10px',
-  },
   name: {
     fontSize: '11px',
     fontFamily: "'Courier New', monospace",
@@ -135,12 +175,5 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#222',
     lineHeight: 1.4,
     wordBreak: 'break-word',
-  },
-  tail: {
-    width: 0,
-    height: 0,
-    borderLeft: '6px solid transparent',
-    borderRight: '6px solid transparent',
-    borderTop: '8px solid #444',
   },
 };
