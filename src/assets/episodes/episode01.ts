@@ -31,8 +31,8 @@ export const EPISODE_01: Episode = {
     { type: 'move', character: 'chef', toTile: 'counter-center' },
     { type: 'dialogue', character: 'chef', text: 'いらっしゃい。何にしましょう？' },
 
-    // Customer A auto-paths to stool (pathfinder avoids counter)
-    { type: 'move', character: 'customer-a', toTile: 'stool-2' },
+    // Customer A auto-paths to a random stool
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
     { type: 'sit', character: 'customer-a' },
 
     // Chef returns to stove
@@ -66,8 +66,8 @@ export const EPISODE_01: Episode = {
     { type: 'move', character: 'chef', toTile: 'counter-center' },
     { type: 'wait', duration: 200 },
 
-    // Customer B auto-paths to stool
-    { type: 'move', character: 'customer-b', toTile: 'stool-4' },
+    // Customer B auto-paths to a random (different) stool
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
     { type: 'sit', character: 'customer-b' },
 
     { type: 'move', character: 'chef', toTile: 'stove' },

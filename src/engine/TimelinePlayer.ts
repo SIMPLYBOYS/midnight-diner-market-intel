@@ -16,7 +16,7 @@ import { eventBus } from './EventBus';
 import { Direction } from '../characters/types';
 import { WalkableGrid } from '../navigation/WalkableGrid';
 import { Pathfinder } from '../navigation/Pathfinder';
-import { resolveLocation } from '../navigation/LocationMap';
+import { resolveLocation, resetOccupiedStools } from '../navigation/LocationMap';
 import {
   GAME_SCALE,
   TIMELINE_TICK_MS,
@@ -58,6 +58,7 @@ export class TimelinePlayer {
     this.state = PlayerState.PLAYING;
     this.actionIndex = 0;
     const gen = ++this.generation;
+    resetOccupiedStools();
 
     eventBus.emit('timeline:started', { episodeId: episode.id });
 
