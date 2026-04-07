@@ -1,19 +1,19 @@
 // Game dimensions
-export const TILE_SIZE = 16;
-export const MAP_COLS = 32;
-export const MAP_ROWS = 24;
+export const TILE_SIZE = 32;
+export const MAP_COLS = 16;
+export const MAP_ROWS = 12;
 export const GAME_WIDTH = TILE_SIZE * MAP_COLS; // 512
 export const GAME_HEIGHT = TILE_SIZE * MAP_ROWS; // 384
 export const GAME_SCALE = 2;
 
 // Animation
 export const TYPEWRITER_SPEED = 50; // ms per character
-export const DEFAULT_ANIMATION_FRAMERATE = 8;
+export const DEFAULT_ANIMATION_FRAMERATE = 6;
 
 // Timeline
 export const TIMELINE_TICK_MS = 100;
 
-// Tile types
+// Tile types — expanded for richer scene
 export const TileType = {
   FLOOR: 0,
   WALL: 1,
@@ -23,23 +23,40 @@ export const TileType = {
   KITCHEN: 5,
   DOOR: 6,
   TV: 7,
+  WALL_SHELF: 8,
+  COUNTER_FRONT: 9,
+  NOREN: 10,
+  STOVE: 11,
+  LANTERN_WALL: 12,
+  MENU_BOARD: 13,
+  FLOOR_DARK: 14,
+  WALL_WINDOW: 15,
 } as const;
 
-// Tile colors (placeholder palette — warm izakaya tones)
+// Tile colors (warm izakaya palette)
 export const TILE_COLORS: Record<number, number> = {
-  [TileType.FLOOR]:   0x3b2d1f,
-  [TileType.WALL]:    0x5c4033,
-  [TileType.COUNTER]: 0x8b6914,
-  [TileType.TABLE]:   0x6b4226,
-  [TileType.SEAT]:    0xc44536,
-  [TileType.KITCHEN]: 0x4a4a4a,
-  [TileType.DOOR]:    0x2e5d4b,
-  [TileType.TV]:      0x2a2a3a,
+  [TileType.FLOOR]:        0x3b2d1f,
+  [TileType.WALL]:         0x4a3628,
+  [TileType.COUNTER]:      0x8b6914,
+  [TileType.TABLE]:        0x5c3a1e,
+  [TileType.SEAT]:         0xc44536,
+  [TileType.KITCHEN]:      0x3a3a3a,
+  [TileType.DOOR]:         0x2e5d4b,
+  [TileType.TV]:           0x1a1a2e,
+  [TileType.WALL_SHELF]:   0x4a3628,
+  [TileType.COUNTER_FRONT]:0x6b4f10,
+  [TileType.NOREN]:        0x1a1a2e,
+  [TileType.STOVE]:        0x555555,
+  [TileType.LANTERN_WALL]: 0x4a3628,
+  [TileType.MENU_BOARD]:   0x2a2018,
+  [TileType.FLOOR_DARK]:   0x2a1f14,
+  [TileType.WALL_WINDOW]:  0x4a3628,
 };
 
 // Character
-export const CHARACTER_SPEED = 60; // pixels per second
-export const CHARACTER_FRAME_SIZE = 16; // each sprite frame is 16×16
+export const CHARACTER_SPEED = 80; // pixels per second (faster for 32px tiles)
+export const CHARACTER_FRAME_SIZE = 32; // each sprite frame is 32×32
+export const CHARACTER_WALK_FRAMES = 3; // 3-frame walk cycle: 0→1→2→1
 
 // Timeline player
 export const DIALOGUE_BASE_DURATION = 1500;

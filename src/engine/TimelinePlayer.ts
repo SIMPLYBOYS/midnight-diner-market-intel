@@ -145,7 +145,7 @@ export class TimelinePlayer {
       name: preset.name,
       role: preset.role,
       startTileX: action.toTile.x,
-      startTileY: 23, // door row
+      startTileY: 10, // entrance row
       startDirection,
       waypoints: [],
     });

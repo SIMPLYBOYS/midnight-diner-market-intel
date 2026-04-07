@@ -3,43 +3,34 @@ import { Character } from './Character';
 import { Direction } from './types';
 import type { CharacterConfig } from './types';
 
-const CHEF_CONFIG: CharacterConfig = {
+export const CHEF_CONFIG: CharacterConfig = {
   key: 'chef',
   name: 'Master',
   role: 'chef',
-  startTileX: 5,
-  startTileY: 4,
+  startTileX: 3,
+  startTileY: 1,
   startDirection: Direction.DOWN,
-  waypoints: [
-    { x: 5, y: 7, facing: Direction.DOWN },
-    { x: 8, y: 7, pause: 500, facing: Direction.DOWN },
-  ],
+  waypoints: [],
 };
 
-const CUSTOMER_A_CONFIG: CharacterConfig = {
+export const CUSTOMER_A_CONFIG: CharacterConfig = {
   key: 'customer-a',
   name: 'Customer A',
   role: 'customer',
-  startTileX: 15, // near door
-  startTileY: 22,
+  startTileX: 7,
+  startTileY: 10,
   startDirection: Direction.UP,
-  waypoints: [
-    { x: 15, y: 17, pause: 200 },
-    { x: 15, y: 13, sit: true, facing: Direction.RIGHT },
-  ],
+  waypoints: [],
 };
 
-const CUSTOMER_B_CONFIG: CharacterConfig = {
+export const CUSTOMER_B_CONFIG: CharacterConfig = {
   key: 'customer-b',
   name: 'Customer B',
   role: 'customer',
-  startTileX: 16,
-  startTileY: 22,
+  startTileX: 8,
+  startTileY: 10,
   startDirection: Direction.UP,
-  waypoints: [
-    { x: 23, y: 17, pause: 300 },
-    { x: 23, y: 13, sit: true, facing: Direction.LEFT },
-  ],
+  waypoints: [],
 };
 
 export function createChef(scene: Phaser.Scene): Character {

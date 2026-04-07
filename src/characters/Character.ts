@@ -3,12 +3,13 @@ import {
   TILE_SIZE,
   CHARACTER_SPEED,
   CHARACTER_FRAME_SIZE,
+  CHARACTER_WALK_FRAMES,
   DEFAULT_ANIMATION_FRAMERATE,
 } from '../constants';
 import { Direction, AnimState } from './types';
 import type { Waypoint, CharacterConfig } from './types';
 
-const WALK_FRAMES = 4;
+const WALK_FRAMES = CHARACTER_WALK_FRAMES; // 3
 const DIRECTIONS = 4;
 
 /**
@@ -232,14 +233,15 @@ export class Character {
     }
 
     // Step 2: Create animations referencing the named frames.
+    // Walk cycle: 0→1→2→1 (ping-pong style), idle = frame 1 (standing).
     for (let dir = 0; dir < DIRECTIONS; dir++) {
-      const walkFrames: Phaser.Types.Animations.AnimationFrame[] = [];
-      for (let f = 0; f < WALK_FRAMES; f++) {
-        walkFrames.push({
-          key: this.key,
-          frame: `f${dir * WALK_FRAMES + f}`,
-        });
-      }
+      const base = dir * WALK_FRAMES;
+      const walkFrames: Phaser.Types.Animations.AnimationFrame[] = [
+        { key: this.key, frame: `f${base}` },
+        { key: this.key, frame: `f${base + 1}` },
+        { key: this.key, frame: `f${base + 2}` },
+        { key: this.key, frame: `f${base + 1}` },
+      ];
       this.scene.anims.create({
         key: `${this.key}-walk-${dir}`,
         frames: walkFrames,
@@ -249,7 +251,7 @@ export class Character {
 
       this.scene.anims.create({
         key: `${this.key}-idle-${dir}`,
-        frames: [{ key: this.key, frame: `f${dir * WALK_FRAMES}` }],
+        frames: [{ key: this.key, frame: `f${base + 1}` }],
         frameRate: 1,
         repeat: 0,
       });
