@@ -29,14 +29,14 @@ export const LOCATIONS: Readonly<Record<string, LocationDef>> = {
   'stove':          { x: 3.5, y: 5, facing: Direction.LEFT },
   'prep-area':      { x: 5, y: 5, facing: Direction.RIGHT },
   'counter-center': { x: 4.5, y: 5, facing: Direction.DOWN },
-  'stool-1':        { x: 2, y: 7, facing: Direction.UP },
-  'stool-2':        { x: 3, y: 7, facing: Direction.UP },
-  'stool-3':        { x: 4, y: 7, facing: Direction.UP },
-  'stool-4':        { x: 5, y: 7, facing: Direction.UP },
-  'stool-5':        { x: 6, y: 7, facing: Direction.UP },
-  'stool-r1':       { x: 7, y: 4, facing: Direction.LEFT },
-  'stool-r2':       { x: 7, y: 5, facing: Direction.LEFT },
-  'stool-r3':       { x: 7, y: 6, facing: Direction.LEFT },
+  'stool-1':        { x: 3, y: 8, facing: Direction.UP },
+  'stool-2':        { x: 4, y: 8, facing: Direction.UP },
+  'stool-3':        { x: 5, y: 8, facing: Direction.UP },
+  'stool-4':        { x: 6, y: 8, facing: Direction.UP },
+  'stool-5':        { x: 7, y: 8, facing: Direction.UP },
+  'stool-r1':       { x: 8, y: 5, facing: Direction.LEFT },
+  'stool-r2':       { x: 8, y: 6, facing: Direction.LEFT },
+  'stool-r3':       { x: 8, y: 7, facing: Direction.LEFT },
   'entrance':       { x: 7, y: 10, facing: Direction.UP },
   'door':           { x: 7.5, y: 11, facing: Direction.UP },
   'floor-center':   { x: 6, y: 8, facing: Direction.DOWN },
@@ -73,4 +73,27 @@ function pickRandomStool(): LocationDef {
 /** Reset occupied stools (call when starting a new episode). */
 export function resetOccupiedStools(): void {
   occupiedStools.clear();
+}
+
+/**
+ * Pixel-precise seat positions for sit sprites, keyed by "tileX,tileY".
+ * Measured directly from diner-bg.png to eliminate tile→pixel rounding errors.
+ */
+const SEAT_PIXELS: Record<string, { px: number; py: number }> = {
+  // Front counter stools (facing UP)
+  '3,8':  { px: 85,  py: 256 },
+  '4,8':  { px: 117, py: 256 },
+  '5,8':  { px: 149, py: 256 },
+  '6,8':  { px: 181, py: 256 },
+  '7,8':  { px: 213, py: 256 },
+  // Right-side stools (facing LEFT)
+  '8,5':  { px: 262, py: 163 },
+  '8,6':  { px: 262, py: 195 },
+  '8,7':  { px: 262, py: 227 },
+};
+
+/** Get the exact pixel position for a sit sprite at the given tile. */
+export function getSeatPixel(tileX: number, tileY: number): { px: number; py: number } | undefined {
+  const key = `${Math.round(tileX)},${Math.round(tileY)}`;
+  return SEAT_PIXELS[key];
 }

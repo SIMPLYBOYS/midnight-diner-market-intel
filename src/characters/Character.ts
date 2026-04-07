@@ -8,6 +8,7 @@ import {
 } from '../constants';
 import { Direction, AnimState } from './types';
 import type { Waypoint, CharacterConfig } from './types';
+import { getSeatPixel } from '../navigation/LocationMap';
 
 const WALK_FRAMES = CHARACTER_WALK_FRAMES; // 3
 const DIRECTIONS = 4;
@@ -231,7 +232,14 @@ export class Character {
   private enterSit(): void {
     this.state = AnimState.SIT;
     this.sprite.setVisible(false);
-    this.sitSprite.setPosition(this.sprite.x, this.sprite.y);
+
+    // Use pixel-precise seat position if available, otherwise fall back to sprite position
+    const tile = this.getTilePosition();
+    const seat = getSeatPixel(tile.x, tile.y);
+    const seatX = seat ? seat.px : this.sprite.x;
+    const seatY = seat ? seat.py : this.sprite.y;
+
+    this.sitSprite.setPosition(seatX, seatY);
     this.sitSprite.setDepth(this.sprite.y);
     // Switch to direction-specific sit texture
     const dirSitKey = `${this.key}-sit-${this.direction}`;
