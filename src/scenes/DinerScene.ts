@@ -3,6 +3,7 @@ import { TILE_SIZE } from '../constants';
 import { DINER_MAP, COLLISION_TILES } from '../tilemap/DinerMapData';
 import { Character } from '../characters/Character';
 import { LightingManager } from '../lighting/LightingManager';
+import { DialogueManager } from '../dialogue/DialogueManager';
 import { TimelinePlayer } from '../engine/TimelinePlayer';
 import { JsonDataSource } from '../datasource/JsonDataSource';
 import { EPISODE_01 } from '../assets/episodes/episode01';
@@ -11,6 +12,7 @@ import type { CharacterConfig } from '../characters/types';
 export class DinerScene extends Phaser.Scene {
   private characterMap = new Map<string, Character>();
   private timelinePlayer!: TimelinePlayer;
+  private dialogueManager!: DialogueManager;
 
   constructor() {
     super({ key: 'DinerScene' });
@@ -20,6 +22,7 @@ export class DinerScene extends Phaser.Scene {
     this.buildTilemap();
 
     this.timelinePlayer = new TimelinePlayer(this);
+    this.dialogueManager = new DialogueManager(this);
 
     // Lighting overlay
     new LightingManager(this);
@@ -35,6 +38,7 @@ export class DinerScene extends Phaser.Scene {
     for (const char of this.characterMap.values()) {
       char.update(delta);
     }
+    this.dialogueManager.update();
   }
 
   /** Look up a character by key. */
