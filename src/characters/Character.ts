@@ -50,17 +50,17 @@ export class Character {
       this.createAnimations();
     }
 
-    // Scale sprites to match tile size (64px frames displayed at ~32px)
-    const spriteScale = TILE_SIZE / CHARACTER_FRAME_SIZE;
+    // 128px frames scaled to match background furniture proportions
+    const spriteScale = 0.5;
 
     this.sprite = scene.add.sprite(px, py, config.key);
-    this.sprite.setOrigin(0.5, 0.75);
+    this.sprite.setOrigin(0.5, 0.85);
     this.sprite.setScale(spriteScale);
     this.sprite.setDepth(py);
     this.playAnim(AnimState.IDLE);
 
     this.sitSprite = scene.add.sprite(px, py, `${config.key}-sit`);
-    this.sitSprite.setOrigin(0.5, 0.75);
+    this.sitSprite.setOrigin(0.5, 0.85);
     this.sitSprite.setScale(spriteScale);
     this.sitSprite.setVisible(false);
 
@@ -137,6 +137,21 @@ export class Character {
 
   getSprite(): Phaser.GameObjects.Sprite {
     return this.sprite;
+  }
+
+  /** Command character to walk along a computed path. */
+  moveAlongPath(path: ReadonlyArray<{ x: number; y: number }>, options?: { facing?: Direction; sit?: boolean }): void {
+    this.waypoints = path.map((p, i) => ({
+      x: p.x,
+      y: p.y,
+      ...(i === path.length - 1 ? { facing: options?.facing, sit: options?.sit } : {}),
+    }));
+    this.waypointIndex = 0;
+    this.pauseTimer = 0;
+    if (this.state === AnimState.SIT) {
+      this.exitSit();
+    }
+    this.advanceWaypoint();
   }
 
   /** Command character to walk to a tile position. Clears existing waypoints. */

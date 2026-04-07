@@ -14,6 +14,9 @@ import type {
 import { PlayerState } from './types';
 import { eventBus } from './EventBus';
 import { Direction } from '../characters/types';
+import { WalkableGrid } from '../navigation/WalkableGrid';
+import { Pathfinder } from '../navigation/Pathfinder';
+import { resolveLocation } from '../navigation/LocationMap';
 import {
   GAME_SCALE,
   TIMELINE_TICK_MS,
@@ -42,6 +45,9 @@ export class TimelinePlayer {
   private actionIndex = 0;
   private generation = 0; // incremented on stop to invalidate stale promises
   private pauseResolver: (() => void) | null = null;
+
+  private walkableGrid = new WalkableGrid();
+  private pathfinder = new Pathfinder(this.walkableGrid);
 
   constructor(scene: DinerScene) {
     this.scene = scene;
@@ -135,29 +141,41 @@ export class TimelinePlayer {
     }
   }
 
-  private async executeEnter(action: EnterAction, gen: number): Promise<void> {
+  private async executeEnter(action: EnterAction, _gen: number): Promise<void> {
     const preset = CHARACTER_PRESETS[action.character];
     if (!preset) return;
 
-    const startDirection = action.facing ?? Direction.UP;
-    const char = this.scene.spawnCharacter({
+    const target = resolveLocation(action.toTile);
+    const startDirection = action.facing ?? target.facing ?? Direction.DOWN;
+    this.scene.spawnCharacter({
       key: action.character,
       name: preset.name,
       role: preset.role,
-      startTileX: action.toTile.x,
-      startTileY: 10, // entrance row
+      startTileX: target.x,
+      startTileY: target.y,
       startDirection,
       waypoints: [],
     });
-
-    char.moveTo(action.toTile);
-    await this.waitForMovementComplete(action.character, gen);
   }
 
   private async executeMove(action: MoveAction, gen: number): Promise<void> {
     const char = this.scene.getCharacter(action.character);
     if (!char) return;
-    char.moveTo(action.toTile);
+
+    const target = resolveLocation(action.toTile);
+    const from = char.getTilePosition();
+    const preset = CHARACTER_PRESETS[action.character];
+    const role = preset?.role;
+
+    const path = this.pathfinder.findPath(from.x, from.y, target.x, target.y, role);
+
+    if (path && path.length > 0) {
+      char.moveAlongPath(path, { facing: target.facing });
+    } else {
+      // Fallback: direct movement
+      char.moveTo({ x: target.x, y: target.y }, { facing: target.facing });
+    }
+
     await this.waitForMovementComplete(action.character, gen);
   }
 

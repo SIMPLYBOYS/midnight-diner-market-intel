@@ -1,4 +1,5 @@
 import type { Direction } from '../characters/types';
+import type { LocationName } from '../navigation/LocationMap';
 
 // ── Action types (discriminated union) ──────────────────────────
 
@@ -10,14 +11,14 @@ interface BaseAction {
 export interface EnterAction extends BaseAction {
   type: 'enter';
   character: string;
-  toTile: { x: number; y: number };
+  toTile: { x: number; y: number } | LocationName;
   facing?: Direction;
 }
 
 export interface MoveAction extends BaseAction {
   type: 'move';
   character: string;
-  toTile: { x: number; y: number };
+  toTile: { x: number; y: number } | LocationName;
 }
 
 export interface SitAction extends BaseAction {
