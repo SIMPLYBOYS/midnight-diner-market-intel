@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { TYPEWRITER_SPEED, GAME_WIDTH } from '../constants';
+import { TYPEWRITER_SPEED, GAME_WIDTH, GAME_SCALE } from '../constants';
 
 const BUBBLE_PAD_X = 6;
 const BUBBLE_PAD_Y = 4;
@@ -9,6 +9,7 @@ const BUBBLE_BG = 0xffffff;
 const BUBBLE_BORDER = 0x333333;
 const TEXT_COLOR = '#222222';
 const FONT_SIZE = 8;
+const TEXT_RESOLUTION = GAME_SCALE;
 const DEPTH = 900;
 
 /**
@@ -41,6 +42,7 @@ export class DialogueBubble {
       fontFamily: 'monospace',
       color: '#e8b84b',
       fontStyle: 'bold',
+      resolution: TEXT_RESOLUTION,
     });
     this.nameTag.setOrigin(0, 1);
     this.container.add(this.nameTag);
@@ -51,6 +53,7 @@ export class DialogueBubble {
       color: TEXT_COLOR,
       wordWrap: { width: BUBBLE_MAX_WIDTH - BUBBLE_PAD_X * 2 },
       lineSpacing: 2,
+      resolution: TEXT_RESOLUTION,
     });
     this.label.setOrigin(0, 0);
     this.container.add(this.label);

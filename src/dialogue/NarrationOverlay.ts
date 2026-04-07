@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
-import { GAME_WIDTH, GAME_HEIGHT, TYPEWRITER_SPEED } from '../constants';
+import { GAME_WIDTH, GAME_HEIGHT, GAME_SCALE, TYPEWRITER_SPEED } from '../constants';
 
 const OVERLAY_ALPHA = 0.7;
 const OVERLAY_COLOR = 0x000000;
 const BAR_HEIGHT = 40;
 const TEXT_COLOR = '#e8d5b0';
 const FONT_SIZE = 9;
+const TEXT_RESOLUTION = GAME_SCALE;
 const DEPTH = 950;
 
 /**
@@ -39,6 +40,7 @@ export class NarrationOverlay {
       color: TEXT_COLOR,
       wordWrap: { width: GAME_WIDTH - 40 },
       align: 'center',
+      resolution: TEXT_RESOLUTION,
     });
     this.label.setOrigin(0.5, 0.5);
     this.container.add(this.label);
