@@ -55,7 +55,7 @@ export const TILE_COLORS: Record<number, number> = {
 
 // Character
 export const CHARACTER_SPEED = 80; // pixels per second
-export const CHARACTER_FRAME_SIZE = 64; // each sprite frame is 64×64
+export const CHARACTER_FRAME_SIZE = 128; // each sprite frame is 128×128
 export const CHARACTER_WALK_FRAMES = 3; // 3-frame walk cycle: 0→1→2→1
 
 // Timeline player

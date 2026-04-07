@@ -21,7 +21,6 @@ export class BootScene extends Phaser.Scene {
   preload(): void {
     const { width, height } = this.scale;
 
-    // Loading text
     const loading = this.add.text(width / 2, height / 2, '深夜食堂', {
       fontFamily: 'monospace',
       fontSize: '24px',
@@ -36,11 +35,11 @@ export class BootScene extends Phaser.Scene {
     });
     subtext.setOrigin(0.5);
 
-    // Load background images
+    // Background
     this.load.image('diner-bg', dinerBg);
     this.load.image('city-skyline', citySkyline);
 
-    // Load character sprite sheets (3 columns × 4 rows)
+    // Character sprite sheets (3 columns × 4 rows, 32×32 frames)
     this.load.spritesheet('chef', chefWalk, {
       frameWidth: FRAME_W,
       frameHeight: FRAME_H,
@@ -54,14 +53,14 @@ export class BootScene extends Phaser.Scene {
       frameHeight: FRAME_H,
     });
 
-    // Load sit sprites
+    // Sit sprites
     this.load.image('chef-sit', chefSit);
     this.load.image('customer-a-sit', customerASit);
     this.load.image('customer-b-sit', customerBSit);
   }
 
   create(): void {
-    // Create character animations
+    // Create animations for all characters
     const chars = ['chef', 'customer-a', 'customer-b'];
     for (const key of chars) {
       for (let dir = 0; dir < 4; dir++) {
