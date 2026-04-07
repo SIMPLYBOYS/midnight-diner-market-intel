@@ -8,7 +8,7 @@ export interface EventMap {
   'timeline:paused': undefined;
   'timeline:resumed': undefined;
   'timeline:finished': { episodeId: string };
-  'dialogue:show': { character: string; text: string };
+  'dialogue:show': { character: string; text: string; screenX: number; screenY: number };
   'dialogue:hide': undefined;
   'narration:show': { text: string };
   'narration:hide': undefined;

@@ -15,6 +15,7 @@ import { PlayerState } from './types';
 import { eventBus } from './EventBus';
 import { Direction } from '../characters/types';
 import {
+  GAME_SCALE,
   TIMELINE_TICK_MS,
   TYPEWRITER_SPEED,
   DIALOGUE_BASE_DURATION,
@@ -170,7 +171,16 @@ export class TimelinePlayer {
     const duration =
       action.duration ?? action.text.length * TYPEWRITER_SPEED + DIALOGUE_BASE_DURATION;
 
-    eventBus.emit('dialogue:show', { character: action.character, text: action.text });
+    const char = this.scene.getCharacter(action.character);
+    const sprite = char?.getSprite();
+    const screenX = sprite ? sprite.x * GAME_SCALE : 0;
+    const screenY = sprite ? (sprite.y - sprite.height / 2) * GAME_SCALE : 0;
+    eventBus.emit('dialogue:show', {
+      character: action.character,
+      text: action.text,
+      screenX,
+      screenY,
+    });
     await this.waitMs(duration, gen);
     if (gen === this.generation) {
       eventBus.emit('dialogue:hide');
