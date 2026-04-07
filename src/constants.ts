@@ -40,3 +40,10 @@ export const TILE_COLORS: Record<number, number> = {
 // Character
 export const CHARACTER_SPEED = 60; // pixels per second
 export const CHARACTER_FRAME_SIZE = 16; // each sprite frame is 16×16
+
+// Timeline player
+export const DIALOGUE_BASE_DURATION = 1500;
+export const EMOTE_DEFAULT_DURATION = 1500;
+export const NARRATION_DEFAULT_DURATION = 3000;
+export const CAMERA_SHAKE_DEFAULT_INTENSITY = 3;
+export const CAMERA_SHAKE_DEFAULT_DURATION = 200;

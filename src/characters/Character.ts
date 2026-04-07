@@ -129,6 +129,66 @@ export class Character {
     return this.sprite;
   }
 
+  /** Command character to walk to a tile position. Clears existing waypoints. */
+  moveTo(tile: { x: number; y: number }, options?: { facing?: Direction; sit?: boolean }): void {
+    this.waypoints = [{ x: tile.x, y: tile.y, facing: options?.facing, sit: options?.sit }];
+    this.waypointIndex = 0;
+    this.pauseTimer = 0;
+    if (this.state === AnimState.SIT) {
+      this.exitSit();
+    }
+    this.advanceWaypoint();
+  }
+
+  /** Whether the character is in motion or has pending waypoints. */
+  isMoving(): boolean {
+    return this.moving || (this.waypointIndex < this.waypoints.length && this.state !== AnimState.SIT);
+  }
+
+  /** Teleport character to a tile position without animation. */
+  teleportTo(tileX: number, tileY: number): void {
+    const px = tileX * TILE_SIZE + TILE_SIZE / 2;
+    const py = tileY * TILE_SIZE + TILE_SIZE / 2;
+    this.sprite.setPosition(px, py);
+    this.sprite.setDepth(py);
+    this.sitSprite.setPosition(px, py);
+    this.targetX = px;
+    this.targetY = py;
+  }
+
+  /** Show or hide this character entirely. */
+  setCharacterVisible(visible: boolean): void {
+    if (this.state === AnimState.SIT) {
+      this.sitSprite.setVisible(visible);
+    } else {
+      this.sprite.setVisible(visible);
+    }
+  }
+
+  /** Switch to sit state programmatically. */
+  sit(facing?: Direction): void {
+    if (facing !== undefined) {
+      this.direction = facing;
+    }
+    this.enterSit();
+  }
+
+  /** Get current tile position. */
+  getTilePosition(): { x: number; y: number } {
+    return {
+      x: Math.round((this.sprite.x - TILE_SIZE / 2) / TILE_SIZE),
+      y: Math.round((this.sprite.y - TILE_SIZE / 2) / TILE_SIZE),
+    };
+  }
+
+  private exitSit(): void {
+    this.state = AnimState.IDLE;
+    this.sitSprite.setVisible(false);
+    this.sprite.setPosition(this.sitSprite.x, this.sitSprite.y);
+    this.sprite.setVisible(true);
+    this.playAnim(AnimState.IDLE);
+  }
+
   private advanceWaypoint(): void {
     if (this.waypointIndex >= this.waypoints.length) return;
     const wp = this.waypoints[this.waypointIndex];
