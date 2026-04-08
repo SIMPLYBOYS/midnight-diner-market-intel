@@ -1,7 +1,24 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(npm create:*)",
+      "Bash(source ~/.nvm/nvm.sh)",
+      "Bash(nvm use:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_wait_for",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "Bash(firecrawl scrape:*)",
+      "Bash(agent-browser open:*)",
+      "Bash(python3:*)",
+      "Bash(agent-browser close:*)",
+      "Bash(agent-browser wait:*)",
+      "Bash(agent-browser screenshot:*)",
+      "Bash(xargs kill:*)"
     ]
   }
 }
