@@ -41,6 +41,14 @@ const SFX_REGISTRY: Record<SfxKey, string> = {
 const BGM_FADE_MS = 1500;
 const DEFAULT_BGM_VOLUME = 0.35;
 const DEFAULT_SFX_VOLUME = 0.5;
+const TYPING_VOLUME = 0.15;
+
+/** Pitch rate per character for typing sounds (Animal Crossing style) */
+const TYPING_RATE: Record<string, number> = {
+  'chef': 0.7,         // low, calm
+  'customer-a': 1.1,   // mid-high, energetic
+  'customer-b': 0.85,  // mid-low, measured
+};
 
 // ── AudioManager (singleton) ────────────────────────────────────
 
@@ -102,6 +110,15 @@ class AudioManager {
   playSfx(key: SfxKey): void {
     const sfx = this.getOrCreateSfx(key);
     sfx.play();
+  }
+
+  /** Play a pitched click for dialogue typing (per-character voice) */
+  playTypingSound(character: string): void {
+    const rate = TYPING_RATE[character] ?? 1.0;
+    const sfx = this.getOrCreateSfx('click2');
+    const id = sfx.play();
+    sfx.rate(rate, id);
+    sfx.volume(TYPING_VOLUME, id);
   }
 
   // ── Volume control ──────────────────────────────────────────

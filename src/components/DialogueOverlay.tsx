@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { eventBus } from '../engine/EventBus';
+import { audioManager } from '../audio/AudioManager';
 import { TYPEWRITER_SPEED, GAME_WIDTH, GAME_SCALE } from '../constants';
 
 interface DialogueState {
@@ -60,6 +61,11 @@ export function DialogueOverlay() {
     timerRef.current = setInterval(() => {
       idx++;
       setDisplayText(state.text.slice(0, idx));
+      // Play typing sound every 2 characters (skip spaces/punctuation)
+      const ch = state.text[idx - 1];
+      if (idx % 2 === 1 && ch && !/\s/.test(ch)) {
+        audioManager.playTypingSound(state.character);
+      }
       if (idx >= state.text.length && timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
