@@ -1,16 +1,20 @@
 /**
- * Daily financial news collector.
- * Fetches RSS feeds, extracts headlines and summaries,
- * outputs structured JSON for episode generation.
+ * Daily financial news + market data collector.
+ * Fetches RSS feeds and real-time stock quotes via Finnhub API.
  *
  * Usage:
  *   npx tsx scripts/collect-news.ts
  *   npx tsx scripts/collect-news.ts --out data/2025-04-08.json
+ *
+ * Environment:
+ *   FINNHUB_API_KEY — free API key from https://finnhub.io (optional, skips quotes if missing)
  */
 
 import Parser from 'rss-parser';
 import { writeFileSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
+
+const FINNHUB_KEY = process.env.FINNHUB_API_KEY ?? '';
 
 // ── RSS Feed Sources ────────────────────────────────────────────
 
@@ -21,21 +25,27 @@ interface FeedSource {
 }
 
 const FEEDS: FeedSource[] = [
-  // Market & Stocks
   { name: 'Yahoo Finance Top', url: 'https://finance.yahoo.com/news/rssindex', category: 'market' },
   { name: 'MarketWatch Top Stories', url: 'https://feeds.marketwatch.com/marketwatch/topstories/', category: 'market' },
   { name: 'CNBC Top News', url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114', category: 'market' },
-
-  // Tech
   { name: 'Reuters Tech', url: 'https://feeds.reuters.com/reuters/technologyNews', category: 'tech' },
   { name: 'TechCrunch', url: 'https://techcrunch.com/feed/', category: 'tech' },
-
-  // Economy
   { name: 'Reuters Business', url: 'https://feeds.reuters.com/reuters/businessNews', category: 'economy' },
   { name: 'CNBC Economy', url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258', category: 'economy' },
-
-  // Asia Markets
   { name: 'Nikkei Asia', url: 'https://asia.nikkei.com/rss', category: 'asia' },
+];
+
+// ── Stock symbols to track ──────────────────────────────────────
+
+const WATCH_SYMBOLS = [
+  // Major indices ETFs
+  'SPY', 'QQQ', 'DIA',
+  // Mega-cap tech
+  'AAPL', 'MSFT', 'GOOG', 'AMZN', 'NVDA', 'META', 'TSLA',
+  // Semiconductor
+  'AMD', 'INTC', 'AVGO',
+  // Other notable
+  'NFLX', 'JPM', 'XOM', 'LMT',
 ];
 
 // ── Types ───────────────────────────────────────────────────────
@@ -49,21 +59,34 @@ interface NewsItem {
   category: FeedSource['category'];
 }
 
+interface StockQuote {
+  symbol: string;
+  price: number;       // current price
+  change: number;      // percent change
+  high: number;        // day high
+  low: number;         // day low
+  prevClose: number;   // previous close
+}
+
+interface MarketSnapshot {
+  quotes: StockQuote[];
+  fetchedAt: string;
+}
+
 interface DailyDigest {
   date: string;
   collectedAt: string;
   totalItems: number;
   byCategory: Record<string, NewsItem[]>;
   topHeadlines: string[];
+  market?: MarketSnapshot;
 }
 
-// ── Collector ───────────────────────────────────────────────────
+// ── RSS Collector ───────────────────────────────────────────────
 
 const parser = new Parser({
   timeout: 10000,
-  headers: {
-    'User-Agent': 'MidnightDiner-MarketIntel/1.0',
-  },
+  headers: { 'User-Agent': 'MidnightDiner-MarketIntel/1.0' },
 });
 
 async function fetchFeed(source: FeedSource): Promise<NewsItem[]> {
@@ -74,13 +97,11 @@ async function fetchFeed(source: FeedSource): Promise<NewsItem[]> {
 
     return (feed.items ?? [])
       .filter((item) => {
-        // Only include items from the last 24 hours
         if (!item.pubDate) return true;
         const pub = new Date(item.pubDate);
-        const diff = today.getTime() - pub.getTime();
-        return diff < 24 * 60 * 60 * 1000;
+        return today.getTime() - pub.getTime() < 24 * 60 * 60 * 1000;
       })
-      .slice(0, 10) // max 10 per feed
+      .slice(0, 10)
       .map((item) => ({
         title: item.title?.trim() ?? '',
         summary: (item.contentSnippet ?? item.content ?? '')
@@ -98,11 +119,59 @@ async function fetchFeed(source: FeedSource): Promise<NewsItem[]> {
   }
 }
 
+// ── Finnhub Quote Fetcher ───────────────────────────────────────
+
+async function fetchQuote(symbol: string): Promise<StockQuote | null> {
+  try {
+    const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    // Finnhub returns { c, d, dp, h, l, o, pc, t }
+    // c=current, d=change, dp=percent change, h=high, l=low, pc=prev close
+    if (!data.c || data.c === 0) return null;
+    return {
+      symbol,
+      price: data.c,
+      change: data.dp ?? 0,
+      high: data.h ?? data.c,
+      low: data.l ?? data.c,
+      prevClose: data.pc ?? data.c,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchAllQuotes(): Promise<MarketSnapshot> {
+  console.log(`\nFetching quotes for ${WATCH_SYMBOLS.length} symbols via Finnhub...\n`);
+  const quotes: StockQuote[] = [];
+
+  for (const symbol of WATCH_SYMBOLS) {
+    process.stdout.write(`  ${symbol}...`);
+    const quote = await fetchQuote(symbol);
+    if (quote) {
+      console.log(` $${quote.price.toFixed(2)} (${quote.change >= 0 ? '+' : ''}${quote.change.toFixed(2)}%)`);
+      quotes.push(quote);
+    } else {
+      console.log(' [skip]');
+    }
+    // Rate limit: Finnhub free = 60 req/min → ~1 req/sec is safe
+    await new Promise((r) => setTimeout(r, 1100));
+  }
+
+  return {
+    quotes,
+    fetchedAt: new Date().toISOString(),
+  };
+}
+
+// ── Main Collector ──────────────────────────────────────────────
+
 async function collectAll(): Promise<DailyDigest> {
   console.log(`Collecting financial news from ${FEEDS.length} RSS feeds...\n`);
 
   const allItems: NewsItem[] = [];
-
   for (const source of FEEDS) {
     process.stdout.write(`  Fetching ${source.name}...`);
     const items = await fetchFeed(source);
@@ -110,16 +179,12 @@ async function collectAll(): Promise<DailyDigest> {
     allItems.push(...items);
   }
 
-  // Group by category
   const byCategory: Record<string, NewsItem[]> = {};
   for (const item of allItems) {
-    if (!byCategory[item.category]) {
-      byCategory[item.category] = [];
-    }
+    if (!byCategory[item.category]) byCategory[item.category] = [];
     byCategory[item.category].push(item);
   }
 
-  // Extract top headlines (deduplicate by similarity)
   const seen = new Set<string>();
   const topHeadlines = allItems
     .filter((item) => {
@@ -132,13 +197,24 @@ async function collectAll(): Promise<DailyDigest> {
     .map((item) => item.title);
 
   const now = new Date();
-  return {
+  const digest: DailyDigest = {
     date: now.toISOString().slice(0, 10),
     collectedAt: now.toISOString(),
     totalItems: allItems.length,
     byCategory,
     topHeadlines,
   };
+
+  // Fetch real market quotes if API key is available
+  if (FINNHUB_KEY) {
+    digest.market = await fetchAllQuotes();
+  } else {
+    console.log('\n  [INFO] FINNHUB_API_KEY not set — skipping real-time quotes.');
+    console.log('  Get a free key at https://finnhub.io and run:');
+    console.log('  FINNHUB_API_KEY=your_key npm run collect\n');
+  }
+
+  return digest;
 }
 
 // ── Main ────────────────────────────────────────────────────────
@@ -146,12 +222,14 @@ async function collectAll(): Promise<DailyDigest> {
 async function main() {
   const digest = await collectAll();
 
-  console.log(`\nCollected ${digest.totalItems} items total:`);
+  console.log(`\nCollected ${digest.totalItems} news items:`);
   for (const [cat, items] of Object.entries(digest.byCategory)) {
     console.log(`  ${cat}: ${items.length} items`);
   }
+  if (digest.market) {
+    console.log(`  quotes: ${digest.market.quotes.length} symbols`);
+  }
 
-  // Determine output path
   const outFlag = process.argv.indexOf('--out');
   const outPath = outFlag !== -1 && process.argv[outFlag + 1]
     ? resolve(process.argv[outFlag + 1])

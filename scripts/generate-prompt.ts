@@ -37,11 +37,24 @@ interface NewsItem {
   category: string;
 }
 
+interface StockQuote {
+  symbol: string;
+  price: number;
+  change: number;
+  high: number;
+  low: number;
+  prevClose: number;
+}
+
 interface DailyDigest {
   date: string;
   totalItems: number;
   byCategory: Record<string, NewsItem[]>;
   topHeadlines: string[];
+  market?: {
+    quotes: StockQuote[];
+    fetchedAt: string;
+  };
 }
 
 const digest: DailyDigest = JSON.parse(readFileSync(dataPath, 'utf-8'));
@@ -54,6 +67,20 @@ function buildMarketSummary(): string {
   sections.push(`Date: ${digest.date}`);
   sections.push(`Total news items collected: ${digest.totalItems}`);
   sections.push('');
+
+  // Real market quotes (if available)
+  if (digest.market && digest.market.quotes.length > 0) {
+    sections.push('## REAL-TIME QUOTES (use these exact prices in market-data actions)');
+    sections.push('| Symbol | Price | Change% | High | Low | Prev Close |');
+    sections.push('|--------|-------|---------|------|-----|------------|');
+    for (const q of digest.market.quotes) {
+      const sign = q.change >= 0 ? '+' : '';
+      sections.push(`| ${q.symbol} | $${q.price.toFixed(2)} | ${sign}${q.change.toFixed(2)}% | $${q.high.toFixed(2)} | $${q.low.toFixed(2)} | $${q.prevClose.toFixed(2)} |`);
+    }
+    sections.push('');
+    sections.push(`Quotes fetched at: ${digest.market.fetchedAt}`);
+    sections.push('');
+  }
 
   sections.push('## Top Headlines');
   for (const h of digest.topHeadlines.slice(0, 15)) {
@@ -140,7 +167,8 @@ export const EPISODE_${String(episodeNum).padStart(2, '0')}: Episode = {
 
 ## Market Data Realism
 
-- Use realistic stock symbols and prices from the news
+- **If real-time quotes are provided above, use those EXACT prices and change percentages** in market-data tickers — do NOT invent numbers
+- For symbols without real quotes, you may estimate based on news context
 - VIX should correlate with market tension in the story
 - Sector data should reflect the actual market narrative
 - Headlines should be concise Traditional Chinese summaries of real events
