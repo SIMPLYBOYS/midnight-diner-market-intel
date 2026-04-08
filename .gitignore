@@ -26,3 +26,10 @@ npm-debug.log*
 # Tiled backup files
 *.tmx~
 *.tsx~
+
+# Debug screenshots
+*.png
+!src/**/*.png
+
+# Playwright MCP artifacts
+.playwright-mcp/
