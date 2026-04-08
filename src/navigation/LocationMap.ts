@@ -80,16 +80,16 @@ export function resetOccupiedStools(): void {
  * Measured directly from diner-bg.png to eliminate tile→pixel rounding errors.
  */
 const SEAT_PIXELS: Record<string, { px: number; py: number }> = {
-  // Front counter stools (facing UP)
-  '3,8':  { px: 85,  py: 256 },
-  '4,8':  { px: 117, py: 256 },
-  '5,8':  { px: 149, py: 256 },
-  '6,8':  { px: 181, py: 256 },
-  '7,8':  { px: 213, py: 256 },
+  // Front counter stools (facing UP) — measured center + 3px sprite compensation
+  '3,8':  { px: 88,  py: 254 },
+  '4,8':  { px: 128, py: 254 },
+  '5,8':  { px: 152, py: 254 },
+  '6,8':  { px: 184, py: 254 },
+  '7,8':  { px: 221, py: 254 },
   // Right-side stools (facing LEFT)
-  '8,5':  { px: 262, py: 163 },
-  '8,6':  { px: 262, py: 195 },
-  '8,7':  { px: 262, py: 227 },
+  '8,5':  { px: 261, py: 163 },
+  '8,6':  { px: 261, py: 195 },
+  '8,7':  { px: 261, py: 227 },
 };
 
 /** Get the exact pixel position for a sit sprite at the given tile. */
