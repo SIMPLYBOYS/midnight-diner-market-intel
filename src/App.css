@@ -1,9 +1,11 @@
 .app {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   background-color: #08080e;
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top, 0);
 }
 
 .app-shell {

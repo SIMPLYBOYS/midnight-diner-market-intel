@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Howler } from 'howler';
 import { GameCanvas } from './components/GameCanvas';
 import { TopNav } from './ui/TopNav';
@@ -6,6 +6,10 @@ import { PlaybackBar } from './ui/PlaybackBar';
 import { MarketDashboard } from './ui/MarketDashboard';
 import './audio/AudioManager'; // initialize singleton (auto-binds events)
 import './App.css';
+
+/** The fixed design size of the app shell */
+const DESIGN_WIDTH = 1280;
+const DESIGN_HEIGHT = 836; // TopNav(36) + scene(768) + PlaybackBar(32)
 
 function StartScreen({ onStart }: { onStart: () => void }) {
   return (
@@ -19,8 +23,28 @@ function StartScreen({ onStart }: { onStart: () => void }) {
   );
 }
 
+function useViewportScale(shellRef: React.RefObject<HTMLDivElement | null>) {
+  const update = useCallback(() => {
+    const el = shellRef.current;
+    if (!el) return;
+    const scaleX = window.innerWidth / DESIGN_WIDTH;
+    const scaleY = window.innerHeight / DESIGN_HEIGHT;
+    const scale = Math.min(scaleX, scaleY, 1); // never scale up
+    el.style.transform = `scale(${scale})`;
+    el.style.transformOrigin = 'top center';
+  }, [shellRef]);
+
+  useEffect(() => {
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, [update]);
+}
+
 function App() {
   const [started, setStarted] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
+  useViewportScale(shellRef);
 
   const handleStart = () => {
     // Unlock Web Audio API
@@ -34,7 +58,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app-shell">
+      <div className="app-shell" ref={shellRef}>
         <TopNav />
         <div className="app-main">
           <div className="scene-panel">
