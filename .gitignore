@@ -30,6 +30,7 @@ npm-debug.log*
 # Debug screenshots
 *.png
 !src/**/*.png
+!docs/**/*.png
 
 # Playwright MCP artifacts
 .playwright-mcp/
