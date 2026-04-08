@@ -59,6 +59,30 @@ export interface NarrationAction extends BaseAction {
   duration?: number;
 }
 
+export interface MarketTicker {
+  symbol: string;
+  price: number;
+  change: number; // percentage, e.g. -5.2
+}
+
+export interface MarketDataPayload {
+  tickers?: MarketTicker[];
+  priceHistory?: number[];
+  volumeHistory?: number[];
+  volatility?: number;        // 0-100
+  vix?: number;
+  rsi?: number;
+  beta?: number;
+  sectors?: { label: string; value: number; color: string }[];
+  headline?: string;          // breaking-news style headline
+}
+
+export interface MarketDataAction extends BaseAction {
+  type: 'market-data';
+  data: MarketDataPayload;
+  duration?: number;          // optional hold time before next action
+}
+
 export type Action =
   | EnterAction
   | MoveAction
@@ -67,7 +91,8 @@ export type Action =
   | WaitAction
   | EmoteAction
   | CameraAction
-  | NarrationAction;
+  | NarrationAction
+  | MarketDataAction;
 
 // ── Episode ─────────────────────────────────────────────────────
 

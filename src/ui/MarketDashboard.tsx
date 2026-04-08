@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { eventBus } from '../engine/EventBus';
+import type { MarketDataPayload, MarketTicker } from '../engine/types';
 
 // ── Mini chart components ───────────────────────────────────────
 
-function LineChart({ data, color = '#4488cc' }: { data: number[]; color?: string }) {
+function AnimatedLineChart({ data, color = '#4488cc' }: { data: number[]; color?: string }) {
   const w = 220, h = 70;
+  if (data.length < 2) return <svg width={w} height={h} />;
+
   const max = Math.max(...data);
   const min = Math.min(...data);
   const range = max - min || 1;
@@ -13,24 +16,46 @@ function LineChart({ data, color = '#4488cc' }: { data: number[]; color?: string
   ).join(' ');
 
   const areaPoints = `0,${h} ${points} ${w},${h}`;
+  const gradId = `grad-${color.replace('#', '')}`;
 
   return (
     <svg width={w} height={h} style={{ display: 'block' }}>
       <defs>
-        <linearGradient id={`grad-${color}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity="0.3" />
           <stop offset="100%" stopColor={color} stopOpacity="0.02" />
         </linearGradient>
       </defs>
-      <polygon points={areaPoints} fill={`url(#grad-${color})`} />
-      <polyline points={points} fill="none" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
+      <polygon points={areaPoints} fill={`url(#${gradId})`}>
+        <animate attributeName="opacity" from="0.5" to="1" dur="0.6s" fill="freeze" />
+      </polygon>
+      <polyline
+        points={points}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      >
+        <animate attributeName="stroke-dashoffset" from="600" to="0" dur="0.8s" fill="freeze" />
+      </polyline>
+      {/* Latest point pulse */}
+      {data.length > 0 && (() => {
+        const lastX = w;
+        const lastY = h - ((data[data.length - 1] - min) / range) * h * 0.85 - 5;
+        return (
+          <circle cx={lastX} cy={lastY} r="3" fill={color}>
+            <animate attributeName="r" values="2;4;2" dur="1.5s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite" />
+          </circle>
+        );
+      })()}
     </svg>
   );
 }
 
 function BarChart({ data, color = '#4488cc' }: { data: number[]; color?: string }) {
   const w = 100, h = 60;
-  const max = Math.max(...data);
+  const max = Math.max(...data, 1);
   const barW = w / data.length - 2;
 
   return (
@@ -47,7 +72,10 @@ function BarChart({ data, color = '#4488cc' }: { data: number[]; color?: string 
             fill={color}
             opacity={0.6 + (i / data.length) * 0.4}
             rx={1}
-          />
+          >
+            <animate attributeName="height" from="0" to={barH} dur="0.5s" fill="freeze" />
+            <animate attributeName="y" from={h} to={h - barH} dur="0.5s" fill="freeze" />
+          </rect>
         );
       })}
     </svg>
@@ -68,7 +96,15 @@ function DonutChart({ value, color = '#e6a23c' }: { value: number; color?: strin
         strokeDasharray={`${filled} ${circ - filled}`}
         strokeDashoffset={circ * 0.25}
         strokeLinecap="round"
-      />
+      >
+        <animate
+          attributeName="stroke-dasharray"
+          from={`0 ${circ}`}
+          to={`${filled} ${circ - filled}`}
+          dur="0.8s"
+          fill="freeze"
+        />
+      </circle>
       <text x={30} y={33} textAnchor="middle" fill="#ddd" fontSize="11" fontFamily="monospace">
         {value}%
       </text>
@@ -77,7 +113,7 @@ function DonutChart({ value, color = '#e6a23c' }: { value: number; color?: strin
 }
 
 function HorizontalBars({ items }: { items: { label: string; value: number; color: string }[] }) {
-  const max = Math.max(...items.map(i => i.value));
+  const max = Math.max(...items.map(i => i.value), 1);
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
       {items.map((item, i) => (
@@ -92,6 +128,7 @@ function HorizontalBars({ items }: { items: { label: string; value: number; colo
               background: item.color,
               borderRadius: '4px',
               opacity: 0.7,
+              transition: 'width 0.8s ease-out',
             }} />
           </div>
           <span style={{ fontSize: '9px', color: '#aaa', width: '30px', fontFamily: 'monospace' }}>
@@ -103,11 +140,60 @@ function HorizontalBars({ items }: { items: { label: string; value: number; colo
   );
 }
 
-// ── Sample data ─────────────────────────────────────────────────
+// ── Ticker row ──────────────────────────────────────────────────
 
-const PRICE_DATA = [420, 435, 428, 445, 460, 452, 470, 465, 480, 475, 490, 485, 500, 492, 488];
-const VOLUME_DATA = [32, 45, 28, 55, 40, 62, 38, 50, 44, 58, 35, 48];
-const SECTOR_DATA = [
+function TickerRow({ tickers }: { tickers: MarketTicker[] }) {
+  return (
+    <div style={styles.tickerRow}>
+      {tickers.map((t) => {
+        const up = t.change >= 0;
+        return (
+          <span key={t.symbol} style={styles.tickerItem}>
+            <span style={styles.tickerSymbol}>{t.symbol}</span>
+            <span style={styles.tickerPrice}>{t.price.toFixed(2)}</span>
+            <span style={{ ...styles.tickerChange, color: up ? '#22cc55' : '#ee4444' }}>
+              {up ? '+' : ''}{t.change.toFixed(1)}%
+            </span>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── Headline flash ──────────────────────────────────────────────
+
+function Headline({ text }: { text: string }) {
+  return (
+    <div style={styles.headline}>
+      <span style={styles.headlineBadge}>ALERT</span>
+      <span style={styles.headlineText}>{text}</span>
+    </div>
+  );
+}
+
+// ── CRT Overlay ─────────────────────────────────────────────────
+
+function CrtOverlay() {
+  return (
+    <div style={styles.crtOverlay} aria-hidden="true">
+      <div style={styles.scanlines} />
+      <div style={styles.crtVignette} />
+    </div>
+  );
+}
+
+// ── Default data ────────────────────────────────────────────────
+
+const DEFAULT_PRICE_HISTORY = [420, 435, 428, 445, 460, 452, 470, 465, 480, 475, 490, 485, 500, 492, 488];
+const DEFAULT_VOLUME_HISTORY = [32, 45, 28, 55, 40, 62, 38, 50, 44, 58, 35, 48];
+const DEFAULT_TICKERS: MarketTicker[] = [
+  { symbol: 'NVDA', price: 875.30, change: 0.0 },
+  { symbol: 'AAPL', price: 198.11, change: 0.0 },
+  { symbol: 'TSLA', price: 241.55, change: 0.0 },
+  { symbol: 'MSFT', price: 422.86, change: 0.0 },
+];
+const DEFAULT_SECTORS = [
   { label: 'Tech', value: 1580, color: '#4488cc' },
   { label: 'Finance', value: 1220, color: '#44aa66' },
   { label: 'Energy', value: 890, color: '#cc8844' },
@@ -118,30 +204,80 @@ const SECTOR_DATA = [
 // ── Main Dashboard ──────────────────────────────────────────────
 
 export function MarketDashboard() {
-  const [highlight, setHighlight] = useState(false);
+  const [tickers, setTickers] = useState<MarketTicker[]>(DEFAULT_TICKERS);
+  const [priceHistory, setPriceHistory] = useState<number[]>(DEFAULT_PRICE_HISTORY);
+  const [volumeHistory, setVolumeHistory] = useState<number[]>(DEFAULT_VOLUME_HISTORY);
+  const [volatility, setVolatility] = useState(34);
+  const [vix, setVix] = useState(18.5);
+  const [rsi, setRsi] = useState(52.1);
+  const [beta, setBeta] = useState(1.12);
+  const [sectors, setSectors] = useState(DEFAULT_SECTORS);
+  const [headline, setHeadline] = useState<string | null>(null);
+  const [flash, setFlash] = useState(false);
+  const headlineTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleMarketUpdate = useCallback((payload: MarketDataPayload) => {
+    // Flash effect on any update
+    setFlash(true);
+    setTimeout(() => setFlash(false), 300);
+
+    if (payload.tickers) {
+      setTickers((prev) => {
+        const map = new Map(prev.map(t => [t.symbol, t]));
+        for (const t of payload.tickers!) {
+          map.set(t.symbol, t);
+        }
+        return Array.from(map.values());
+      });
+    }
+    if (payload.priceHistory) {
+      setPriceHistory((prev) => [...prev.slice(-10), ...payload.priceHistory!]);
+    }
+    if (payload.volumeHistory) {
+      setVolumeHistory((prev) => [...prev.slice(-8), ...payload.volumeHistory!]);
+    }
+    if (payload.volatility !== undefined) setVolatility(payload.volatility);
+    if (payload.vix !== undefined) setVix(payload.vix);
+    if (payload.rsi !== undefined) setRsi(payload.rsi);
+    if (payload.beta !== undefined) setBeta(payload.beta);
+    if (payload.sectors) setSectors(payload.sectors);
+    if (payload.headline) {
+      setHeadline(payload.headline);
+      if (headlineTimer.current) clearTimeout(headlineTimer.current);
+      headlineTimer.current = setTimeout(() => setHeadline(null), 5000);
+    }
+  }, []);
 
   useEffect(() => {
-    const onDialogue = () => {
-      setHighlight(true);
-      setTimeout(() => setHighlight(false), 600);
+    eventBus.on('market:update', handleMarketUpdate);
+    return () => {
+      eventBus.off('market:update', handleMarketUpdate);
+      if (headlineTimer.current) clearTimeout(headlineTimer.current);
     };
-    eventBus.on('dialogue:show', onDialogue);
-    return () => eventBus.off('dialogue:show', onDialogue);
-  }, []);
+  }, [handleMarketUpdate]);
+
+  const vixUp = vix > 20;
 
   return (
     <div style={{
       ...styles.dashboard,
-      borderColor: highlight ? '#e6a23c44' : '#2a2a3a',
+      borderColor: flash ? '#e6a23c66' : '#2a2a3a',
     }}>
+      <CrtOverlay />
+
       <div style={styles.header}>
         <span style={styles.title}>市場情報總覽</span>
-        <div style={styles.tabs}>
-          <span style={styles.tabActive}>即時數據</span>
-          <span style={styles.tab}>趨勢分析</span>
-          <span style={styles.tab}>風險評估</span>
+        <div style={styles.statusDot}>
+          <span style={styles.liveDot} />
+          <span style={{ fontSize: '9px', color: '#22cc55' }}>LIVE</span>
         </div>
       </div>
+
+      {/* Ticker strip */}
+      <TickerRow tickers={tickers} />
+
+      {/* Breaking headline */}
+      {headline && <Headline text={headline} />}
 
       <div style={styles.grid}>
         {/* Line chart card */}
@@ -150,7 +286,7 @@ export function MarketDashboard() {
             <span style={styles.cardTitle}>價格走勢</span>
             <span style={styles.cardBadge}>即時更新 ↻</span>
           </div>
-          <LineChart data={PRICE_DATA} color="#4488cc" />
+          <AnimatedLineChart data={priceHistory} color="#4488cc" />
         </div>
 
         {/* Donut chart card */}
@@ -159,11 +295,15 @@ export function MarketDashboard() {
             <span style={styles.cardTitle}>波動率</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DonutChart value={34} color="#e6a23c" />
+            <DonutChart value={volatility} color="#e6a23c" />
             <div style={{ fontSize: '9px', color: '#888', fontFamily: 'monospace', lineHeight: 1.6 }}>
-              <div>VIX <span style={{ color: '#ee4444' }}>↑ 2.3</span></div>
-              <div>RSI <span style={{ color: '#22cc55' }}>52.1</span></div>
-              <div>Beta <span style={{ color: '#aaa' }}>1.12</span></div>
+              <div>VIX <span style={{ color: vixUp ? '#ee4444' : '#22cc55' }}>
+                {vixUp ? '↑' : '↓'} {vix.toFixed(1)}
+              </span></div>
+              <div>RSI <span style={{ color: rsi > 70 ? '#ee4444' : rsi < 30 ? '#22cc55' : '#aaa' }}>
+                {rsi.toFixed(1)}
+              </span></div>
+              <div>Beta <span style={{ color: '#aaa' }}>{beta.toFixed(2)}</span></div>
             </div>
           </div>
         </div>
@@ -172,28 +312,27 @@ export function MarketDashboard() {
         <div style={styles.card}>
           <div style={styles.cardHeader}>
             <span style={styles.cardTitle}>成交量分佈</span>
-            <div style={{ display: 'flex', gap: '4px' }}>
-              <span style={styles.toggleActive}>日</span>
-              <span style={styles.toggle}>週</span>
-            </div>
           </div>
-          <BarChart data={VOLUME_DATA} color="#44aa88" />
+          <BarChart data={volumeHistory} color="#44aa88" />
         </div>
 
         {/* Sector bars */}
-        <div style={styles.card}>
+        <div style={{ ...styles.card, gridColumn: 'span 2' }}>
           <div style={styles.cardHeader}>
             <span style={styles.cardTitle}>板塊資金流</span>
           </div>
-          <HorizontalBars items={SECTOR_DATA} />
+          <HorizontalBars items={sectors} />
         </div>
       </div>
     </div>
   );
 }
 
+// ── Styles ──────────────────────────────────────────────────────
+
 const styles: Record<string, React.CSSProperties> = {
   dashboard: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     background: '#14141e',
@@ -210,8 +349,8 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '10px',
-    paddingBottom: '8px',
+    marginBottom: '8px',
+    paddingBottom: '6px',
     borderBottom: '1px solid #2a2a3a',
   },
   title: {
@@ -219,23 +358,18 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '13px',
     fontWeight: 'bold',
   },
-  tabs: {
+  statusDot: {
     display: 'flex',
+    alignItems: 'center',
     gap: '4px',
   },
-  tabActive: {
-    fontSize: '9px',
-    padding: '2px 8px',
-    background: '#2a2a4a',
-    color: '#e6a23c',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  tab: {
-    fontSize: '9px',
-    padding: '2px 8px',
-    color: '#666',
-    cursor: 'pointer',
+  liveDot: {
+    width: '6px',
+    height: '6px',
+    borderRadius: '50%',
+    background: '#22cc55',
+    boxShadow: '0 0 6px #22cc55',
+    animation: 'pulse 2s infinite',
   },
   grid: {
     display: 'grid',
@@ -267,18 +401,78 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '1px 6px',
     borderRadius: '3px',
   },
-  toggleActive: {
-    fontSize: '8px',
-    padding: '1px 6px',
-    background: '#2a3a4a',
-    color: '#4488cc',
-    borderRadius: '3px',
-    cursor: 'pointer',
+
+  // Ticker strip
+  tickerRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '2px 10px',
+    padding: '4px 0 6px',
+    borderBottom: '1px solid #2a2a3a',
+    marginBottom: '8px',
   },
-  toggle: {
+  tickerItem: {
+    display: 'inline-flex',
+    gap: '4px',
+    fontSize: '10px',
+  },
+  tickerSymbol: {
+    color: '#aaa',
+    fontWeight: 'bold',
+  },
+  tickerPrice: {
+    color: '#ddd',
+  },
+  tickerChange: {
+    fontWeight: 'bold',
+    transition: 'color 0.3s',
+  },
+
+  // Headline
+  headline: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    padding: '4px 8px',
+    marginBottom: '8px',
+    background: '#2a1a1a',
+    border: '1px solid #ee444466',
+    borderRadius: '4px',
+    animation: 'headlineSlide 0.4s ease-out',
+  },
+  headlineBadge: {
     fontSize: '8px',
-    padding: '1px 6px',
-    color: '#555',
-    cursor: 'pointer',
+    fontWeight: 'bold',
+    color: '#fff',
+    background: '#ee4444',
+    padding: '1px 5px',
+    borderRadius: '2px',
+    flexShrink: 0,
+  },
+  headlineText: {
+    fontSize: '10px',
+    color: '#ee8888',
+    fontFamily: "'Courier New', monospace",
+  },
+
+  // CRT effects
+  crtOverlay: {
+    position: 'absolute',
+    inset: 0,
+    pointerEvents: 'none',
+    zIndex: 10,
+    borderRadius: '6px',
+    overflow: 'hidden',
+  },
+  scanlines: {
+    position: 'absolute',
+    inset: 0,
+    background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px)',
+    animation: 'scanlineScroll 8s linear infinite',
+  },
+  crtVignette: {
+    position: 'absolute',
+    inset: 0,
+    background: 'radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.4) 100%)',
   },
 };

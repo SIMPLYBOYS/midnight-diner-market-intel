@@ -6,6 +6,7 @@ import type {
   EmoteAction,
   EnterAction,
   Episode,
+  MarketDataAction,
   MoveAction,
   NarrationAction,
   SitAction,
@@ -139,6 +140,8 @@ export class TimelinePlayer {
         return this.executeCamera(action, gen);
       case 'narration':
         return this.executeNarration(action, gen);
+      case 'market-data':
+        return this.executeMarketData(action, gen);
     }
   }
 
@@ -247,6 +250,13 @@ export class TimelinePlayer {
     await this.waitMs(duration, gen);
     if (gen === this.generation) {
       eventBus.emit('narration:hide');
+    }
+  }
+
+  private async executeMarketData(action: MarketDataAction, gen: number): Promise<void> {
+    eventBus.emit('market:update', action.data);
+    if (action.duration) {
+      await this.waitMs(action.duration, gen);
     }
   }
 

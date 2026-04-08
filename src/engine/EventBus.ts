@@ -1,4 +1,4 @@
-import type { Action } from './types';
+import type { Action, MarketDataPayload } from './types';
 
 // ── Event payload map ───────────────────────────────────────────
 
@@ -14,6 +14,7 @@ export interface EventMap {
   'narration:hide': undefined;
   'emote:show': { character: string; emote: string };
   'emote:hide': { character: string };
+  'market:update': MarketDataPayload;
 }
 
 type EventKey = keyof EventMap;
