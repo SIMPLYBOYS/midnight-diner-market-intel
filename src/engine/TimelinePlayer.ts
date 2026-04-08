@@ -1,6 +1,7 @@
 import type { DinerScene } from '../scenes/DinerScene';
 import type {
   Action,
+  BgmAction,
   CameraAction,
   DialogueAction,
   EmoteAction,
@@ -9,6 +10,7 @@ import type {
   MarketDataAction,
   MoveAction,
   NarrationAction,
+  SfxAction,
   SitAction,
   WaitAction,
 } from './types';
@@ -18,6 +20,8 @@ import { Direction } from '../characters/types';
 import { WalkableGrid } from '../navigation/WalkableGrid';
 import { Pathfinder } from '../navigation/Pathfinder';
 import { resolveLocation, resetOccupiedStools } from '../navigation/LocationMap';
+import { audioManager } from '../audio/AudioManager';
+import type { BgmKey, SfxKey } from '../audio/AudioManager';
 import {
   GAME_SCALE,
   TIMELINE_TICK_MS,
@@ -142,6 +146,10 @@ export class TimelinePlayer {
         return this.executeNarration(action, gen);
       case 'market-data':
         return this.executeMarketData(action, gen);
+      case 'bgm':
+        return this.executeBgm(action);
+      case 'sfx':
+        return this.executeSfx(action);
     }
   }
 
@@ -258,6 +266,18 @@ export class TimelinePlayer {
     if (action.duration) {
       await this.waitMs(action.duration, gen);
     }
+  }
+
+  private async executeBgm(action: BgmAction): Promise<void> {
+    if (action.command === 'play') {
+      audioManager.playBgm(action.track as BgmKey, action.fade !== false);
+    } else {
+      audioManager.stopBgm(action.fade !== false);
+    }
+  }
+
+  private async executeSfx(action: SfxAction): Promise<void> {
+    audioManager.playSfx(action.sound as SfxKey);
   }
 
   /** Indirection avoids TS narrowing issues — state can change externally. */

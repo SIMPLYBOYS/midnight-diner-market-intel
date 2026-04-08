@@ -83,6 +83,18 @@ export interface MarketDataAction extends BaseAction {
   duration?: number;          // optional hold time before next action
 }
 
+export interface BgmAction extends BaseAction {
+  type: 'bgm';
+  track: string;              // BgmKey from AudioManager
+  command: 'play' | 'stop';
+  fade?: boolean;
+}
+
+export interface SfxAction extends BaseAction {
+  type: 'sfx';
+  sound: string;              // SfxKey from AudioManager
+}
+
 export type Action =
   | EnterAction
   | MoveAction
@@ -92,7 +104,9 @@ export type Action =
   | EmoteAction
   | CameraAction
   | NarrationAction
-  | MarketDataAction;
+  | MarketDataAction
+  | BgmAction
+  | SfxAction;
 
 // ── Episode ─────────────────────────────────────────────────────
 
