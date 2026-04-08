@@ -32,5 +32,8 @@ npm-debug.log*
 !src/**/*.png
 !docs/**/*.png
 
+# Collected news data (ephemeral)
+data/
+
 # Playwright MCP artifacts
 .playwright-mcp/
