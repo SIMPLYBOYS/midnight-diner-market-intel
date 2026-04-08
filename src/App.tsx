@@ -7,10 +7,6 @@ import { MarketDashboard } from './ui/MarketDashboard';
 import './audio/AudioManager'; // initialize singleton (auto-binds events)
 import './App.css';
 
-/** The fixed design size of the app shell */
-const DESIGN_WIDTH = 1280;
-const DESIGN_HEIGHT = 836; // TopNav(36) + scene(768) + PlaybackBar(32)
-
 function StartScreen({ onStart }: { onStart: () => void }) {
   return (
     <div className="start-screen" onClick={onStart}>
@@ -27,8 +23,11 @@ function useViewportScale(shellRef: React.RefObject<HTMLDivElement | null>) {
   const update = useCallback(() => {
     const el = shellRef.current;
     if (!el) return;
-    const scaleX = window.innerWidth / DESIGN_WIDTH;
-    const scaleY = window.innerHeight / DESIGN_HEIGHT;
+    // Reset scale to measure natural size
+    el.style.transform = 'none';
+    const rect = el.getBoundingClientRect();
+    const scaleX = window.innerWidth / rect.width;
+    const scaleY = window.innerHeight / rect.height;
     const scale = Math.min(scaleX, scaleY, 1); // never scale up
     el.style.transform = `scale(${scale})`;
     el.style.transformOrigin = 'top center';
