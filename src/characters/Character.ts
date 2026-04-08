@@ -144,6 +144,12 @@ export class Character {
     return this.sprite;
   }
 
+  /** Clean up all game objects owned by this character. */
+  destroy(): void {
+    this.sprite.destroy();
+    this.sitSprite.destroy();
+  }
+
   /** Command character to walk along a computed path. */
   moveAlongPath(path: ReadonlyArray<{ x: number; y: number }>, options?: { facing?: Direction; sit?: boolean }): void {
     this.waypoints = path.map((p, i) => ({

@@ -15,6 +15,7 @@ export interface EventMap {
   'emote:show': { character: string; emote: string };
   'emote:hide': { character: string };
   'market:update': MarketDataPayload;
+  'episode:select': { episodeId: string };
 }
 
 type EventKey = keyof EventMap;

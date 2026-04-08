@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { eventBus } from '../engine/EventBus';
+import { ALL_EPISODES } from '../assets/episodes';
 
 export function TopNav() {
-  const [episodeTitle, setEpisodeTitle] = useState('');
+  const [currentEpisode, setCurrentEpisode] = useState(ALL_EPISODES[0].id);
   const [status, setStatus] = useState<'idle' | 'playing' | 'finished'>('idle');
 
   useEffect(() => {
     const onStart = ({ episodeId }: { episodeId: string }) => {
-      setEpisodeTitle(episodeId);
+      setCurrentEpisode(episodeId);
       setStatus('playing');
     };
     const onFinish = () => setStatus('finished');
@@ -20,13 +21,38 @@ export function TopNav() {
     };
   }, []);
 
+  const handleSelect = (episodeId: string) => {
+    if (episodeId === currentEpisode && status === 'playing') return;
+    eventBus.emit('episode:select', { episodeId });
+  };
+
+  const currentTitle = ALL_EPISODES.find(e => e.id === currentEpisode)?.title ?? '';
+
   return (
     <nav style={styles.nav}>
       <div style={styles.left}>
         <span style={styles.logo}>☰</span>
         <span style={styles.breadcrumb}>深夜食堂</span>
         <span style={styles.sep}>›</span>
-        <span style={styles.breadcrumbActive}>{episodeTitle || 'Market Intel'}</span>
+        <span style={styles.breadcrumbActive}>{currentTitle}</span>
+      </div>
+      <div style={styles.center}>
+        {ALL_EPISODES.map((ep) => {
+          const active = ep.id === currentEpisode;
+          return (
+            <button
+              key={ep.id}
+              onClick={() => handleSelect(ep.id)}
+              style={{
+                ...styles.episodeBtn,
+                ...(active ? styles.episodeBtnActive : {}),
+              }}
+              title={ep.description}
+            >
+              {ep.title}
+            </button>
+          );
+        })}
       </div>
       <div style={styles.right}>
         <span style={{
@@ -35,9 +61,6 @@ export function TopNav() {
         }}>
           {status === 'playing' ? '● LIVE' : status === 'finished' ? '● END' : '● IDLE'}
         </span>
-        <span style={styles.icon}>📊</span>
-        <span style={styles.icon}>⚙</span>
-        <span style={styles.icon}>🔔</span>
       </div>
     </nav>
   );
@@ -76,6 +99,26 @@ const styles: Record<string, React.CSSProperties> = {
   breadcrumbActive: {
     color: '#e6a23c',
   },
+  center: {
+    display: 'flex',
+    gap: '4px',
+  },
+  episodeBtn: {
+    background: 'transparent',
+    border: '1px solid #333',
+    borderRadius: '4px',
+    padding: '2px 10px',
+    color: '#666',
+    fontSize: '10px',
+    fontFamily: "'Courier New', monospace",
+    cursor: 'pointer',
+    transition: 'all 0.2s',
+  },
+  episodeBtnActive: {
+    background: '#2a2a4a',
+    borderColor: '#e6a23c',
+    color: '#e6a23c',
+  },
   right: {
     display: 'flex',
     alignItems: 'center',
@@ -88,10 +131,5 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#fff',
     fontWeight: 'bold',
     letterSpacing: '1px',
-  },
-  icon: {
-    fontSize: '14px',
-    cursor: 'pointer',
-    opacity: 0.6,
   },
 };
