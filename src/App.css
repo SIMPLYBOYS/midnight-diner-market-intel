@@ -14,10 +14,13 @@
   overflow: hidden;
   background: #0e0e18;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  max-height: 100vh;
 }
 
 .app-main {
   display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 .scene-panel {
@@ -26,7 +29,7 @@
 }
 
 .dashboard-panel {
-  width: 380px;
+  width: 250px;
   padding: 8px;
   background: #0e0e18;
   overflow-y: auto;

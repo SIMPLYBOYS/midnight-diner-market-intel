@@ -13,6 +13,7 @@ export class DinerScene extends Phaser.Scene {
   private timelinePlayer!: TimelinePlayer;
   private dialogueManager!: DialogueManager;
   private dataSource!: JsonDataSource;
+  private currentEpisodeId: string | null = null;
 
   constructor() {
     super({ key: 'DinerScene' });
@@ -28,8 +29,14 @@ export class DinerScene extends Phaser.Scene {
     this.dialogueManager = new DialogueManager(this);
     this.dataSource = new JsonDataSource(ALL_EPISODES);
 
-    // Listen for episode selection from React UI
+    // Listen for React UI events
     eventBus.on('episode:select', this.onEpisodeSelect.bind(this));
+    eventBus.on('player:pause', () => this.timelinePlayer.pause());
+    eventBus.on('player:resume', () => this.timelinePlayer.resume());
+    eventBus.on('player:restart', () => {
+      const episodeId = this.currentEpisodeId;
+      if (episodeId) this.playEpisode(episodeId);
+    });
 
     // Auto-play first episode
     this.playEpisode(ALL_EPISODES[0].id);
@@ -59,6 +66,7 @@ export class DinerScene extends Phaser.Scene {
   }
 
   private playEpisode(episodeId: string): void {
+    this.currentEpisodeId = episodeId;
     // Stop current playback and clear characters
     this.timelinePlayer.stop();
     for (const char of this.characterMap.values()) {

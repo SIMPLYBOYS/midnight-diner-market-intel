@@ -3,7 +3,7 @@ import type { Action, MarketDataPayload } from './types';
 // ── Event payload map ───────────────────────────────────────────
 
 export interface EventMap {
-  'timeline:started': { episodeId: string };
+  'timeline:started': { episodeId: string; totalActions: number };
   'timeline:action': { action: Action; index: number };
   'timeline:paused': undefined;
   'timeline:resumed': undefined;
@@ -16,6 +16,9 @@ export interface EventMap {
   'emote:hide': { character: string };
   'market:update': MarketDataPayload;
   'episode:select': { episodeId: string };
+  'player:pause': undefined;
+  'player:resume': undefined;
+  'player:restart': undefined;
 }
 
 type EventKey = keyof EventMap;

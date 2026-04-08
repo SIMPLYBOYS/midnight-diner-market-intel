@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Howler } from 'howler';
 import { GameCanvas } from './components/GameCanvas';
 import { TopNav } from './ui/TopNav';
-import { HudBar } from './ui/HudBar';
+import { PlaybackBar } from './ui/PlaybackBar';
 import { MarketDashboard } from './ui/MarketDashboard';
 import './audio/AudioManager'; // initialize singleton (auto-binds events)
 import './App.css';
@@ -44,7 +44,7 @@ function App() {
             <MarketDashboard />
           </div>
         </div>
-        <HudBar />
+        <PlaybackBar />
       </div>
     </div>
   );

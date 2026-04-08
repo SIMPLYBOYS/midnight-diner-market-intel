@@ -65,7 +65,7 @@ export class TimelinePlayer {
     const gen = ++this.generation;
     resetOccupiedStools();
 
-    eventBus.emit('timeline:started', { episodeId: episode.id });
+    eventBus.emit('timeline:started', { episodeId: episode.id, totalActions: episode.actions.length });
 
     for (const action of episode.actions) {
       if (gen !== this.generation) return; // stopped
