@@ -23,27 +23,44 @@ function useViewportScale(shellRef: React.RefObject<HTMLDivElement | null>) {
   const update = useCallback(() => {
     const el = shellRef.current;
     if (!el) return;
-    // Reset scale to measure natural size
+    // Temporarily remove scale to measure natural size
     el.style.transform = 'none';
-    const rect = el.getBoundingClientRect();
-    const scaleX = window.innerWidth / rect.width;
-    const scaleY = window.innerHeight / rect.height;
-    const scale = Math.min(scaleX, scaleY, 1); // never scale up
+    // Force layout recalc
+    const natural = el.scrollWidth;
+    const naturalH = el.scrollHeight;
+    const scaleX = window.innerWidth / natural;
+    const scaleY = window.innerHeight / naturalH;
+    const scale = Math.min(scaleX, scaleY, 1);
     el.style.transform = `scale(${scale})`;
-    el.style.transformOrigin = 'top center';
+    el.style.transformOrigin = 'top left';
+    // Center horizontally via margin
+    const scaledWidth = natural * scale;
+    const marginLeft = Math.max(0, (window.innerWidth - scaledWidth) / 2);
+    el.style.marginLeft = `${marginLeft}px`;
+    // Set explicit width/height so the scaled element doesn't leave blank space
+    el.style.width = `${natural}px`;
+    el.style.height = `${naturalH}px`;
+    // Collapse wrapper to scaled height
+    const wrapper = el.parentElement;
+    if (wrapper) {
+      wrapper.style.height = `${naturalH * scale}px`;
+    }
   }, [shellRef]);
 
   useEffect(() => {
-    update();
+    // Delay first measure to ensure DOM is fully rendered
+    const raf = requestAnimationFrame(update);
     window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', update);
+    };
   }, [update]);
 }
 
 function App() {
   const [started, setStarted] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
-  useViewportScale(shellRef);
 
   const handleStart = () => {
     // Unlock Web Audio API
@@ -51,12 +68,19 @@ function App() {
     setStarted(true);
   };
 
+  // Only activate scaling after start (shell must be in DOM)
+  useViewportScale(started ? shellRef : { current: null });
+
   if (!started) {
     return <StartScreen onStart={handleStart} />;
   }
 
   return (
     <div className="app">
+      <div className="portrait-hint">
+        <div className="portrait-hint-icon">📱</div>
+        <div className="portrait-hint-text">Please rotate your device to landscape</div>
+      </div>
       <div className="app-shell" ref={shellRef}>
         <TopNav />
         <div className="app-main">
