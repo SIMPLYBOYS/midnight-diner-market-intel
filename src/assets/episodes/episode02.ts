@@ -5,6 +5,9 @@ export const EPISODE_02: Episode = {
   title: 'Earnings Whisper',
   description: 'Two regulars debate an earnings surprise while the chef serves late-night ramen.',
   actions: [
+    // Start BGM
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
     {
       type: 'narration',
       text: '財報季的深夜，食堂比平常更熱鬧⋯⋯',

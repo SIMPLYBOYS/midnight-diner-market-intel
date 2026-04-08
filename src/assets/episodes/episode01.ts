@@ -5,6 +5,9 @@ export const EPISODE_01: Episode = {
   title: 'First Customer',
   description: 'A quiet evening — the first customer arrives with market gossip.',
   actions: [
+    // Start BGM
+    { type: 'bgm', track: 'bossa-lofi', command: 'play' },
+
     {
       type: 'narration',
       text: '深夜，食堂的暖簾在微風中輕輕搖曳⋯⋯',
