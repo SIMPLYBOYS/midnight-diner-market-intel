@@ -2,7 +2,8 @@ import type { Episode } from '../../engine/types';
 
 export const EPISODE_02: Episode = {
   id: 'ep-02',
-  title: 'Earnings Whisper',
+  date: '2026-04-08',
+  title: '20260408 Earnings Whisper',
   description: 'Two regulars debate an earnings surprise while the chef serves late-night ramen.',
   actions: [
     // Start BGM

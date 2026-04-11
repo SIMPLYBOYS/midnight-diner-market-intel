@@ -2,7 +2,8 @@ import type { Episode } from '../../engine/types';
 
 export const EPISODE_03: Episode = {
   id: 'ep-03',
-  title: 'Ceasefire Rally',
+  date: '2026-04-08',
+  title: '20260408 Ceasefire Rally',
   description: 'Iran ceasefire news sparks a market rally — the diner buzzes with cautious optimism.',
   actions: [
     // Start BGM

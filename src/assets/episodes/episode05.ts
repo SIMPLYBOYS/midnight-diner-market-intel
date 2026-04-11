@@ -2,7 +2,8 @@ import type { Episode } from '../../engine/types';
 
 export const EPISODE_05: Episode = {
   id: 'ep-05',
-  title: 'Sentiment Crash',
+  date: '2026-04-11',
+  title: '20260411 Sentiment Crash',
   description: 'Consumer sentiment hits a record low as inflation fears spike — but a moonshot splashdown offers a glimmer of hope.',
   actions: [
     // Start BGM

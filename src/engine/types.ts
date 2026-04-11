@@ -112,6 +112,7 @@ export type Action =
 
 export interface Episode {
   id: string;
+  date?: string;
   title: string;
   description?: string;
   actions: Action[];
@@ -119,6 +120,7 @@ export interface Episode {
 
 export interface EpisodeMeta {
   id: string;
+  date?: string;
   title: string;
   description?: string;
 }

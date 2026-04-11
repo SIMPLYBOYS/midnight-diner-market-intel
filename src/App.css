@@ -38,6 +38,11 @@
   border-radius: 0;
 }
 
+/* Hide scrollbar for episode selector (webkit) */
+.episode-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 /* CRT & dashboard animations */
 @keyframes pulse {
   0%, 100% { opacity: 1; }

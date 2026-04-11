@@ -2,7 +2,8 @@ import type { Episode } from '../../engine/types';
 
 export const EPISODE_04: Episode = {
   id: 'ep-04',
-  title: 'Fed Nightmare',
+  date: '2026-04-09',
+  title: '20260409 Fed Nightmare',
   description: 'The Fed\'s nightmare scenario looms as S&P rallies — the diner debates what comes next.',
   actions: [
     // Start BGM

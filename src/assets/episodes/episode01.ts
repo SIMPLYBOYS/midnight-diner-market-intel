@@ -2,7 +2,8 @@ import type { Episode } from '../../engine/types';
 
 export const EPISODE_01: Episode = {
   id: 'ep-01',
-  title: 'First Customer',
+  date: '2026-04-07',
+  title: '20260407 First Customer',
   description: 'A quiet evening — the first customer arrives with market gossip.',
   actions: [
     // Start BGM
