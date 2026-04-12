@@ -6,6 +6,7 @@ import { TimelinePlayer } from '../engine/TimelinePlayer';
 import { JsonDataSource } from '../datasource/JsonDataSource';
 import { ALL_EPISODES } from '../assets/episodes';
 import { eventBus } from '../engine/EventBus';
+import { audioManager } from '../audio/AudioManager';
 import type { CharacterConfig } from '../characters/types';
 
 export class DinerScene extends Phaser.Scene {
@@ -74,9 +75,10 @@ export class DinerScene extends Phaser.Scene {
     }
     this.characterMap.clear();
 
-    // Hide any lingering dialogue/narration
+    // Hide any lingering dialogue/narration and stop BGM
     eventBus.emit('dialogue:hide');
     eventBus.emit('narration:hide');
+    audioManager.stopBgm(false);
 
     this.dataSource.getEpisode(episodeId).then((episode) => {
       this.timelinePlayer.play(episode);
