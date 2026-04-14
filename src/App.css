@@ -33,6 +33,20 @@
   overflow-y: auto;
 }
 
+.chatlog-panel {
+  width: 200px;
+  padding: 8px;
+  background: #0e0e18;
+  border-left: 1px solid #2a2a3a;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatlog-panel .scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
 #game-container {
   border: none;
   border-radius: 0;

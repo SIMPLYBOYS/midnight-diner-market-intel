@@ -4,6 +4,7 @@ import { GameCanvas } from './components/GameCanvas';
 import { TopNav } from './ui/TopNav';
 import { PlaybackBar } from './ui/PlaybackBar';
 import { MarketDashboard } from './ui/MarketDashboard';
+import { ChatLog } from './ui/ChatLog';
 import './audio/AudioManager'; // initialize singleton (auto-binds events)
 import './App.css';
 
@@ -89,6 +90,9 @@ function App() {
           </div>
           <div className="dashboard-panel">
             <MarketDashboard />
+          </div>
+          <div className="chatlog-panel">
+            <ChatLog />
           </div>
         </div>
         <PlaybackBar />
