@@ -7,5 +7,6 @@ import { EPISODE_05 } from './episode05';
 import { EPISODE_06 } from './episode06';
 import { EPISODE_07 } from './episode07';
 import { EPISODE_08 } from './episode08';
+import { EPISODE_09 } from './episode09';
 
-export const ALL_EPISODES: Episode[] = [EPISODE_01, EPISODE_02, EPISODE_03, EPISODE_04, EPISODE_05, EPISODE_06, EPISODE_07, EPISODE_08];
+export const ALL_EPISODES: Episode[] = [EPISODE_01, EPISODE_02, EPISODE_03, EPISODE_04, EPISODE_05, EPISODE_06, EPISODE_07, EPISODE_08, EPISODE_09];
