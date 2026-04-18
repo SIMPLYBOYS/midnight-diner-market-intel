@@ -4,6 +4,7 @@ import { Character } from '../characters/Character';
 import { DialogueManager } from '../dialogue/DialogueManager';
 import { TimelinePlayer } from '../engine/TimelinePlayer';
 import { JsonDataSource } from '../datasource/JsonDataSource';
+import { enrichEpisodeWithLivePolymarket, isLiveMode } from '../datasource/livePolymarket';
 import { ALL_EPISODES } from '../assets/episodes';
 import { eventBus } from '../engine/EventBus';
 import { audioManager } from '../audio/AudioManager';
@@ -80,9 +81,14 @@ export class DinerScene extends Phaser.Scene {
     eventBus.emit('narration:hide');
     audioManager.stopBgm(false);
 
-    this.dataSource.getEpisode(episodeId).then((episode) => {
-      this.timelinePlayer.play(episode);
-    });
+    this.dataSource
+      .getEpisode(episodeId)
+      .then((episode) => (isLiveMode() ? enrichEpisodeWithLivePolymarket(episode) : episode))
+      .then((episode) => {
+        // Guard against a newer playEpisode() call arriving while live fetch was in flight.
+        if (this.currentEpisodeId !== episodeId) return;
+        this.timelinePlayer.play(episode);
+      });
   }
 
   destroy(): void {

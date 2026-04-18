@@ -11,6 +11,7 @@
     "deploy": "npm run build && gh-pages -d dist",
     "typecheck": "tsc --noEmit",
     "collect": "tsx scripts/collect-news.ts",
+    "collect-polymarket": "tsx scripts/collect-polymarket.ts",
     "generate-prompt": "tsx scripts/generate-prompt.ts"
   },
   "dependencies": {
