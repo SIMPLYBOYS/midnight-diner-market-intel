@@ -10,6 +10,7 @@ import type {
   MarketDataAction,
   MoveAction,
   NarrationAction,
+  PolymarketOddsAction,
   SfxAction,
   SitAction,
   WaitAction,
@@ -146,6 +147,8 @@ export class TimelinePlayer {
         return this.executeNarration(action, gen);
       case 'market-data':
         return this.executeMarketData(action, gen);
+      case 'polymarket-odds':
+        return this.executePolymarket(action, gen);
       case 'bgm':
         return this.executeBgm(action);
       case 'sfx':
@@ -263,6 +266,13 @@ export class TimelinePlayer {
 
   private async executeMarketData(action: MarketDataAction, gen: number): Promise<void> {
     eventBus.emit('market:update', action.data);
+    if (action.duration) {
+      await this.waitMs(action.duration, gen);
+    }
+  }
+
+  private async executePolymarket(action: PolymarketOddsAction, gen: number): Promise<void> {
+    eventBus.emit('polymarket:update', action.data);
     if (action.duration) {
       await this.waitMs(action.duration, gen);
     }

@@ -1,4 +1,4 @@
-import type { Action, MarketDataPayload } from './types';
+import type { Action, MarketDataPayload, PolymarketOddsPayload } from './types';
 
 // ── Event payload map ───────────────────────────────────────────
 
@@ -15,6 +15,7 @@ export interface EventMap {
   'emote:show': { character: string; emote: string };
   'emote:hide': { character: string };
   'market:update': MarketDataPayload;
+  'polymarket:update': PolymarketOddsPayload;
   'episode:select': { episodeId: string };
   'player:pause': undefined;
   'player:resume': undefined;

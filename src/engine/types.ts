@@ -83,6 +83,35 @@ export interface MarketDataAction extends BaseAction {
   duration?: number;          // optional hold time before next action
 }
 
+// ── Polymarket (prediction market) odds ────────────────────────
+
+export interface PolymarketHistoryPoint {
+  t: number;    // unix seconds
+  p: number;    // probability 0–1
+}
+
+export interface PolymarketMarket {
+  slug: string;
+  question: string;
+  yesProbability: number;     // 0–1, already parsed from Gamma's stringified outcomePrices
+  volume?: number;            // USDC
+  liquidity?: number;
+  endDate?: string;           // ISO
+  history?: PolymarketHistoryPoint[];
+}
+
+export interface PolymarketOddsPayload {
+  markets: PolymarketMarket[];
+  highlightSlug?: string;     // spotlight one market (larger donut + history)
+  asOf?: string;              // ISO timestamp; drives LIVE vs SNAPSHOT chip
+}
+
+export interface PolymarketOddsAction extends BaseAction {
+  type: 'polymarket-odds';
+  data: PolymarketOddsPayload;
+  duration?: number;
+}
+
 export interface BgmAction extends BaseAction {
   type: 'bgm';
   track: string;              // BgmKey from AudioManager
@@ -105,6 +134,7 @@ export type Action =
   | CameraAction
   | NarrationAction
   | MarketDataAction
+  | PolymarketOddsAction
   | BgmAction
   | SfxAction;
 
