@@ -1,12 +1,156 @@
 .app {
+  background-color: #08080e;
+  overflow: hidden;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0e0e18;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  width: max-content;
+  flex-shrink: 0;
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.scene-panel {
+  flex-shrink: 0;
+  border-right: 1px solid #2a2a3a;
+}
+
+.dashboard-panel {
+  width: 250px;
+  padding: 8px;
+  background: #0e0e18;
+  overflow-y: auto;
+}
+
+.chatlog-panel {
+  width: 200px;
+  padding: 8px;
+  background: #0e0e18;
+  border-left: 1px solid #2a2a3a;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatlog-panel .scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+#game-container {
+  border: none;
+  border-radius: 0;
+}
+
+/* Hide scrollbar for episode selector (webkit) */
+.episode-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* CRT & dashboard animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes scanlineScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+@keyframes headlineSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Start screen */
+.start-screen {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #0a0a1a;
+  background: #08080e;
+  cursor: pointer;
+  user-select: none;
 }
 
-#game-container {
-  border: 2px solid #333;
-  border-radius: 4px;
+.start-content {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+}
+
+.start-title {
+  font-size: 48px;
+  color: #e6a23c;
+  font-weight: bold;
+  letter-spacing: 8px;
+  margin-bottom: 8px;
+}
+
+.start-subtitle {
+  font-size: 16px;
+  color: #666;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+}
+
+.start-hint {
+  font-size: 13px;
+  color: #555;
+  animation: hintBlink 2s ease-in-out infinite;
+}
+
+@keyframes hintBlink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Portrait orientation hint */
+.portrait-hint {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #08080e;
+  color: #666;
+  font-family: 'Courier New', monospace;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.portrait-hint-icon {
+  font-size: 48px;
+  animation: rotateHint 2s ease-in-out infinite;
+}
+
+.portrait-hint-text {
+  font-size: 14px;
+  color: #888;
+}
+
+@keyframes rotateHint {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(90deg); }
+}
+
+@media (orientation: portrait) and (max-width: 1024px) {
+  .portrait-hint {
+    display: flex;
+  }
+  .app-shell {
+    display: none;
+  }
 }
