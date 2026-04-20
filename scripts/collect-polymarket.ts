@@ -10,6 +10,14 @@
  *   npx tsx scripts/collect-polymarket.ts
  *   npx tsx scripts/collect-polymarket.ts --slugs foo,bar,baz
  *   npx tsx scripts/collect-polymarket.ts --out data/custom.json
+ *   npx tsx scripts/collect-polymarket.ts --slugs foo,bar --ts
+ *       (also prints a TS literal block to stdout, ready to paste into
+ *        an episode's polymarket-odds action, with history trimmed to
+ *        the last 30 points per market)
+ *   npx tsx scripts/collect-polymarket.ts --slugs foo,bar --ts --ts-history 60
+ *       (override history trim — default 30)
+ *   npx tsx scripts/collect-polymarket.ts --slugs foo,bar --ts --ts-highlight foo
+ *       (mark slug `foo` as highlightSlug in the emitted block)
  */
 
 import { writeFileSync, mkdirSync } from 'fs';
@@ -126,10 +134,21 @@ async function collectSlug(slug: string): Promise<SnapshotMarket | null> {
   };
 }
 
-function parseArgs(): { slugs: string[]; out?: string } {
+interface CliArgs {
+  slugs: string[];
+  out?: string;
+  emitTs: boolean;
+  tsHistory: number;
+  tsHighlight?: string;
+}
+
+function parseArgs(): CliArgs {
   const args = process.argv.slice(2);
   let slugs = DEFAULT_SLUGS;
   let out: string | undefined;
+  let emitTs = false;
+  let tsHistory = 30;
+  let tsHighlight: string | undefined;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--slugs' && args[i + 1]) {
       slugs = args[i + 1].split(',').map((s) => s.trim()).filter(Boolean);
@@ -137,13 +156,62 @@ function parseArgs(): { slugs: string[]; out?: string } {
     } else if (args[i] === '--out' && args[i + 1]) {
       out = args[i + 1];
       i++;
+    } else if (args[i] === '--ts') {
+      emitTs = true;
+    } else if (args[i] === '--ts-history' && args[i + 1]) {
+      const n = Number(args[i + 1]);
+      if (Number.isFinite(n) && n > 0) tsHistory = Math.floor(n);
+      i++;
+    } else if (args[i] === '--ts-highlight' && args[i + 1]) {
+      tsHighlight = args[i + 1];
+      i++;
     }
   }
-  return { slugs, out };
+  return { slugs, out, emitTs, tsHistory, tsHighlight };
+}
+
+function emitTsLiteral(snapshot: Snapshot, historyCap: number, highlightSlug: string | undefined): void {
+  const indent = '      '; // six spaces to sit inside a `data: { ... }` block
+  const lines: string[] = [];
+  lines.push('// ── Paste into an episode as:  { type: \'polymarket-odds\', data: { ... } } ──');
+  lines.push(`{`);
+  lines.push(`${indent}asOf: '${snapshot.collectedAt}',`);
+  if (highlightSlug) {
+    lines.push(`${indent}highlightSlug: '${highlightSlug}',`);
+  }
+  lines.push(`${indent}markets: [`);
+  for (const m of snapshot.markets) {
+    lines.push(`${indent}  {`);
+    lines.push(`${indent}    slug: ${JSON.stringify(m.slug)},`);
+    lines.push(`${indent}    question: ${JSON.stringify(m.question)},`);
+    lines.push(`${indent}    yesProbability: ${m.yesProbability.toFixed(4)},`);
+    if (m.volume !== undefined) {
+      lines.push(`${indent}    volume: ${Math.round(m.volume)},`);
+    }
+    if (m.endDate) {
+      lines.push(`${indent}    endDate: ${JSON.stringify(m.endDate)},`);
+    }
+    const history = (m.history ?? []).slice(-historyCap);
+    if (history.length > 0) {
+      lines.push(`${indent}    history: [`);
+      const parts = history.map((p) => `{ t: ${p.t}, p: ${Number(p.p).toFixed(4)} }`);
+      for (let i = 0; i < parts.length; i += 4) {
+        lines.push(`${indent}      ${parts.slice(i, i + 4).join(', ')},`);
+      }
+      lines.push(`${indent}    ],`);
+    }
+    lines.push(`${indent}  },`);
+  }
+  lines.push(`${indent}],`);
+  lines.push('},');
+
+  console.log('\n─── TS literal (paste as the `data` value of a polymarket-odds action) ───');
+  console.log(lines.join('\n'));
+  console.log('──────────────────────────────────────────────────────────────────────────');
 }
 
 async function main() {
-  const { slugs, out } = parseArgs();
+  const { slugs, out, emitTs, tsHistory, tsHighlight } = parseArgs();
   console.log(`Collecting Polymarket odds for ${slugs.length} slugs...\n`);
 
   const markets: SnapshotMarket[] = [];
@@ -171,6 +239,10 @@ async function main() {
   mkdirSync(resolve(servedPath, '..'), { recursive: true });
   writeFileSync(servedPath, JSON.stringify(snapshot, null, 2), 'utf-8');
   console.log(`Also wrote ${servedPath} (live-mode fallback)`);
+
+  if (emitTs) {
+    emitTsLiteral(snapshot, tsHistory, tsHighlight);
+  }
 }
 
 main().catch((err) => {

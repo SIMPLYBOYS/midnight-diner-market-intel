@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "collect": "tsx scripts/collect-news.ts",
     "collect-polymarket": "tsx scripts/collect-polymarket.ts",
+    "daily": "npm run collect && npm run collect-polymarket",
     "generate-prompt": "tsx scripts/generate-prompt.ts"
   },
   "dependencies": {

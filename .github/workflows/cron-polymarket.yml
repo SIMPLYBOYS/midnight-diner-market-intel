@@ -1,0 +1,82 @@
+name: Cron — refresh Polymarket snapshot
+
+# Runs daily at 04:00 UTC (≈ 00:00 ET post-close, 13:00 JST pre-open).
+# Fetches odds for a curated slug list and, if the served file actually
+# changed, commits it back to develop. The existing Deploy-to-GitHub-Pages
+# workflow then fires on that push and republishes the site.
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'Comma-separated slug list (overrides CURATED_SLUGS)'
+        required: false
+        default: ''
+
+concurrency:
+  group: cron-polymarket
+  cancel-in-progress: false
+
+# Curated slug list — edit here to track different markets.
+# Keep this in sync with the episodes that bake these slugs so
+# enrichEpisodeWithLivePolymarket has a matching served payload.
+env:
+  CURATED_SLUGS: >-
+    will-the-iranian-regime-fall-by-april-30,
+    will-the-iranian-regime-fall-by-june-30,
+    will-the-fed-decrease-interest-rates-by-50-bps-after-the-april-2026-meeting
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    # contents: write → push the snapshot; actions: write → trigger deploy.yml
+    # (a push made with the default GITHUB_TOKEN does not fire on-push workflows,
+    # so we explicitly dispatch the deploy job afterwards.)
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch Polymarket odds
+        run: |
+          SLUGS_INPUT="${{ github.event.inputs.slugs }}"
+          SLUGS="${SLUGS_INPUT:-$(echo "$CURATED_SLUGS" | tr -d ' \n')}"
+          echo "Using slugs: $SLUGS"
+          npx tsx scripts/collect-polymarket.ts --slugs "$SLUGS"
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- public/polymarket/latest.json; then
+            echo "No odds change — skipping commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add public/polymarket/latest.json
+          git commit -m "chore(polymarket): refresh latest.json
+
+          Automated cron snapshot of curated Polymarket slugs."
+          git push origin develop
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger deploy workflow
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref develop
