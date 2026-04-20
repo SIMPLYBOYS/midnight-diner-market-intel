@@ -27,20 +27,37 @@
 }
 
 .dashboard-panel {
-  width: 250px;
+  width: 250px; /* default; overridden by inline style from App.tsx */
+  flex-shrink: 0;
   padding: 8px;
   background: #0e0e18;
   overflow-y: auto;
 }
 
 .chatlog-panel {
-  width: 200px;
+  width: 200px; /* default; overridden by inline style from App.tsx */
+  flex-shrink: 0;
   padding: 8px;
   background: #0e0e18;
-  border-left: 1px solid #2a2a3a;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.resize-handle {
+  width: 6px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  background: transparent;
+  border-left: 1px solid #2a2a3a;
+  border-right: 1px solid #1a1a26;
+  transition: background 120ms ease;
+  touch-action: none;
+}
+
+.resize-handle:hover,
+.resize-handle:active {
+  background: #3a3a55;
 }
 
 .chatlog-panel .scroll-area::-webkit-scrollbar {

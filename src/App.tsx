@@ -5,8 +5,28 @@ import { TopNav } from './ui/TopNav';
 import { PlaybackBar } from './ui/PlaybackBar';
 import { MarketDashboard } from './ui/MarketDashboard';
 import { ChatLog } from './ui/ChatLog';
+import { ResizeHandle } from './ui/ResizeHandle';
 import './audio/AudioManager'; // initialize singleton (auto-binds events)
 import './App.css';
+
+const PANEL_WIDTH_KEYS = {
+  dashboard: 'midnight-diner.dashboardWidth',
+  chatlog: 'midnight-diner.chatlogWidth',
+} as const;
+
+const PANEL_BOUNDS = {
+  dashboard: { default: 250, min: 180, max: 500 },
+  chatlog: { default: 200, min: 150, max: 400 },
+} as const;
+
+function loadWidth(key: string, fallback: number, min: number, max: number): number {
+  if (typeof window === 'undefined') return fallback;
+  const raw = window.localStorage.getItem(key);
+  if (!raw) return fallback;
+  const n = Number(raw);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+}
 
 function StartScreen({ onStart }: { onStart: () => void }) {
   return (
@@ -63,6 +83,13 @@ function App() {
   const [started, setStarted] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
 
+  const [dashboardWidth, setDashboardWidth] = useState(() =>
+    loadWidth(PANEL_WIDTH_KEYS.dashboard, PANEL_BOUNDS.dashboard.default, PANEL_BOUNDS.dashboard.min, PANEL_BOUNDS.dashboard.max),
+  );
+  const [chatlogWidth, setChatlogWidth] = useState(() =>
+    loadWidth(PANEL_WIDTH_KEYS.chatlog, PANEL_BOUNDS.chatlog.default, PANEL_BOUNDS.chatlog.min, PANEL_BOUNDS.chatlog.max),
+  );
+
   const handleStart = () => {
     // Unlock Web Audio API
     Howler.ctx?.resume();
@@ -71,6 +98,15 @@ function App() {
 
   // Only activate scaling after start (shell must be in DOM)
   useViewportScale(started ? shellRef : { current: null });
+
+  // After a panel resize, persist to localStorage and re-fire the resize hook
+  // so the shell re-measures and re-scales to fit the new natural width.
+  useEffect(() => {
+    if (!started) return;
+    window.localStorage.setItem(PANEL_WIDTH_KEYS.dashboard, String(dashboardWidth));
+    window.localStorage.setItem(PANEL_WIDTH_KEYS.chatlog, String(chatlogWidth));
+    window.dispatchEvent(new Event('resize'));
+  }, [started, dashboardWidth, chatlogWidth]);
 
   if (!started) {
     return <StartScreen onStart={handleStart} />;
@@ -88,10 +124,24 @@ function App() {
           <div className="scene-panel">
             <GameCanvas />
           </div>
-          <div className="dashboard-panel">
+          <ResizeHandle
+            width={dashboardWidth}
+            onChange={setDashboardWidth}
+            min={PANEL_BOUNDS.dashboard.min}
+            max={PANEL_BOUNDS.dashboard.max}
+            grow="left"
+          />
+          <div className="dashboard-panel" style={{ width: `${dashboardWidth}px` }}>
             <MarketDashboard />
           </div>
-          <div className="chatlog-panel">
+          <ResizeHandle
+            width={chatlogWidth}
+            onChange={setChatlogWidth}
+            min={PANEL_BOUNDS.chatlog.min}
+            max={PANEL_BOUNDS.chatlog.max}
+            grow="left"
+          />
+          <div className="chatlog-panel" style={{ width: `${chatlogWidth}px` }}>
             <ChatLog />
           </div>
         </div>
