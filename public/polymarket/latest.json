@@ -1,18 +1,14 @@
 {
-  "collectedAt": "2026-04-21T03:05:00.855Z",
+  "collectedAt": "2026-04-21T04:57:17.590Z",
   "markets": [
     {
       "slug": "will-the-iranian-regime-fall-by-april-30",
       "question": "Will the Iranian regime fall by April 30?",
-      "yesProbability": 0.0125,
-      "volume": 36932500.17244414,
-      "liquidity": 1253771.50382,
+      "yesProbability": 0.0105,
+      "volume": 36961510.31954313,
+      "liquidity": 1231770.87054,
       "endDate": "2026-04-30T00:00:00Z",
       "history": [
-        {
-          "t": 1776139250,
-          "p": 0.0225
-        },
         {
           "t": 1776142850,
           "p": 0.0225
@@ -554,8 +550,12 @@
           "p": 0.0125
         },
         {
-          "t": 1776740569,
-          "p": 0.0125
+          "t": 1776744042,
+          "p": 0.012
+        },
+        {
+          "t": 1776747399,
+          "p": 0.0135
         }
       ]
     },
@@ -563,8 +563,8 @@
       "slug": "will-the-iranian-regime-fall-by-june-30",
       "question": "Will the Iranian regime fall by June 30?",
       "yesProbability": 0.085,
-      "volume": 32711423.2653519,
-      "liquidity": 496855.4828,
+      "volume": 32713897.370895892,
+      "liquidity": 477126.7799,
       "endDate": "2026-06-30T00:00:00Z",
       "history": [
         {
@@ -744,7 +744,11 @@
           "p": 0.075
         },
         {
-          "t": 1776740635,
+          "t": 1776744058,
+          "p": 0.085
+        },
+        {
+          "t": 1776747406,
           "p": 0.085
         }
       ]
@@ -753,14 +757,10 @@
       "slug": "will-the-fed-decrease-interest-rates-by-50-bps-after-the-april-2026-meeting",
       "question": "Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?",
       "yesProbability": 0.0015,
-      "volume": 43750915.37600033,
-      "liquidity": 8105046.81738,
+      "volume": 43770082.59200033,
+      "liquidity": 8100453.46177,
       "endDate": "2026-04-29T00:00:00Z",
       "history": [
-        {
-          "t": 1776139246,
-          "p": 0.0035
-        },
         {
           "t": 1776142844,
           "p": 0.0035
@@ -1090,7 +1090,11 @@
           "p": 0.0015
         },
         {
-          "t": 1776740575,
+          "t": 1776744055,
+          "p": 0.0015
+        },
+        {
+          "t": 1776747404,
           "p": 0.0015
         }
       ]
