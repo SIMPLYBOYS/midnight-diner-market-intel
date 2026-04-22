@@ -1,13 +1,15 @@
 name: Cron — refresh Polymarket snapshot
 
-# Runs daily at 04:00 UTC (≈ 00:00 ET post-close, 13:00 JST pre-open).
+# Runs daily at 00:07 UTC (= 08:07 UTC+8 / TPE / JST morning).
+# Minute nudged off :00 because GitHub Actions throttles top-of-hour cron
+# jobs under load — landing 7 min late trades negligible lag for reliability.
 # Fetches odds for a curated slug list and, if the served file actually
 # changed, commits it back to develop. The existing Deploy-to-GitHub-Pages
 # workflow then fires on that push and republishes the site.
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '7 0 * * *'
   workflow_dispatch:
     inputs:
       slugs:
