@@ -20,6 +20,8 @@ export interface EventMap {
   'player:pause': undefined;
   'player:resume': undefined;
   'player:restart': undefined;
+  'player:set-manual-mode': { enabled: boolean };
+  'player:advance': undefined;
 }
 
 type EventKey = keyof EventMap;

@@ -41,6 +41,13 @@ const CHARACTER_PRESETS: Record<string, { name: string; role: 'chef' | 'customer
   'customer-b': { name: 'Customer B', role: 'customer' },
 };
 
+const MANUAL_MODE_KEY = 'midnight-diner.manualMode';
+
+function readManualModeFromStorage(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.localStorage.getItem(MANUAL_MODE_KEY) === '1';
+}
+
 /**
  * TimelinePlayer — core sequencer that reads Episode JSON and drives the scene.
  * Uses async/await for sequential action execution with Promise-based pause.
@@ -55,8 +62,29 @@ export class TimelinePlayer {
   private walkableGrid = new WalkableGrid();
   private pathfinder = new Pathfinder(this.walkableGrid);
 
+  private manualMode = readManualModeFromStorage();
+  private advanceResolver: (() => void) | null = null;
+
   constructor(scene: DinerScene) {
     this.scene = scene;
+  }
+
+  setManualMode(enabled: boolean): void {
+    this.manualMode = enabled;
+    // Switching to auto while a dialogue is awaiting a click would strand the
+    // timeline — unblock it so playback resumes from the next action onward.
+    if (!enabled && this.advanceResolver) {
+      this.advanceResolver();
+      this.advanceResolver = null;
+    }
+  }
+
+  /** User clicked to advance past a manual-mode dialogue/narration. */
+  advance(): void {
+    if (this.advanceResolver) {
+      this.advanceResolver();
+      this.advanceResolver = null;
+    }
   }
 
   async play(episode: Episode): Promise<void> {
@@ -114,6 +142,10 @@ export class TimelinePlayer {
     if (this.pauseResolver) {
       this.pauseResolver();
       this.pauseResolver = null;
+    }
+    if (this.advanceResolver) {
+      this.advanceResolver();
+      this.advanceResolver = null;
     }
   }
 
@@ -201,6 +233,7 @@ export class TimelinePlayer {
   }
 
   private async executeDialogue(action: DialogueAction, gen: number): Promise<void> {
+    const manual = this.manualMode;
     const duration =
       action.duration ?? action.text.length * TYPEWRITER_SPEED + DIALOGUE_BASE_DURATION;
 
@@ -214,7 +247,11 @@ export class TimelinePlayer {
       screenX,
       screenY,
     });
-    await this.waitMs(duration, gen);
+    if (manual) {
+      await this.waitForAdvance(gen);
+    } else {
+      await this.waitMs(duration, gen);
+    }
     if (gen === this.generation) {
       eventBus.emit('dialogue:hide');
     }
@@ -256,9 +293,14 @@ export class TimelinePlayer {
   }
 
   private async executeNarration(action: NarrationAction, gen: number): Promise<void> {
+    const manual = this.manualMode;
     const duration = action.duration ?? NARRATION_DEFAULT_DURATION;
     eventBus.emit('narration:show', { text: action.text });
-    await this.waitMs(duration, gen);
+    if (manual) {
+      await this.waitForAdvance(gen);
+    } else {
+      await this.waitMs(duration, gen);
+    }
     if (gen === this.generation) {
       eventBus.emit('narration:hide');
     }
@@ -332,6 +374,16 @@ export class TimelinePlayer {
         return;
       }
       this.pauseResolver = resolve;
+    });
+  }
+
+  private waitForAdvance(gen: number): Promise<void> {
+    return new Promise((resolve) => {
+      if (gen !== this.generation) {
+        resolve();
+        return;
+      }
+      this.advanceResolver = resolve;
     });
   }
 }

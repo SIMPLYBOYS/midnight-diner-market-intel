@@ -12,12 +12,18 @@ const DEFAULT_TICKERS: MarketTicker[] = [
   { symbol: 'MSFT', price: 422.86, change: 0.0 },
 ];
 
+const MANUAL_MODE_KEY = 'midnight-diner.manualMode';
+
 export function PlaybackBar() {
   const [status, setStatus] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
   const [actionIdx, setActionIdx] = useState(0);
   const [totalActions, setTotalActions] = useState(0);
   const [muted, setMuted] = useState(false);
   const [tickers, setTickers] = useState<MarketTicker[]>(DEFAULT_TICKERS);
+  const [manual, setManual] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem(MANUAL_MODE_KEY) === '1';
+  });
 
   useEffect(() => {
     const onStarted = ({ totalActions: total }: { episodeId: string; totalActions: number }) => {
@@ -71,6 +77,19 @@ export function PlaybackBar() {
     setMuted(nowMuted);
   }, []);
 
+  // Broadcast manual-mode to the timeline player whenever it changes
+  // (including the initial hydration from localStorage).
+  useEffect(() => {
+    eventBus.emit('player:set-manual-mode', { enabled: manual });
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(MANUAL_MODE_KEY, manual ? '1' : '0');
+    }
+  }, [manual]);
+
+  const handleToggleManual = useCallback(() => {
+    setManual((v) => !v);
+  }, []);
+
   const progress = totalActions > 0 ? ((actionIdx + 1) / totalActions) * 100 : 0;
 
   return (
@@ -84,6 +103,20 @@ export function PlaybackBar() {
         </button>
         <button onClick={handleMute} style={styles.btn} title={muted ? 'Unmute' : 'Mute'}>
           {muted ? '🔇' : '🔊'}
+        </button>
+        <button
+          onClick={handleToggleManual}
+          style={{
+            ...styles.btn,
+            width: 'auto',
+            padding: '0 6px',
+            color: manual ? '#e6a23c' : '#888',
+            borderColor: manual ? '#e6a23c' : '#333',
+            fontSize: '10px',
+          }}
+          title={manual ? 'Manual: click dialogue to advance' : 'Auto: dialogue advances automatically'}
+        >
+          {manual ? 'MANUAL' : 'AUTO'}
         </button>
       </div>
 

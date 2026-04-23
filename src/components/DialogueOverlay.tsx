@@ -26,6 +26,8 @@ export function DialogueOverlay() {
     visible: false,
   });
   const [displayText, setDisplayText] = useState('');
+  const [manual, setManual] = useState(false);
+  const [typingDone, setTypingDone] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -38,17 +40,22 @@ export function DialogueOverlay() {
         visible: true,
       });
       setDisplayText('');
+      setTypingDone(false);
     };
     const onHide = () => {
       setState((s) => ({ ...s, visible: false }));
       setDisplayText('');
+      setTypingDone(false);
     };
+    const onMode = ({ enabled }: { enabled: boolean }) => setManual(enabled);
 
     eventBus.on('dialogue:show', onShow);
     eventBus.on('dialogue:hide', onHide);
+    eventBus.on('player:set-manual-mode', onMode);
     return () => {
       eventBus.off('dialogue:show', onShow);
       eventBus.off('dialogue:hide', onHide);
+      eventBus.off('player:set-manual-mode', onMode);
     };
   }, []);
 
@@ -69,6 +76,7 @@ export function DialogueOverlay() {
       if (idx >= state.text.length && timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
+        setTypingDone(true);
       }
     }, TYPEWRITER_SPEED);
 
@@ -98,15 +106,22 @@ export function DialogueOverlay() {
   // Tail points toward speaker — offset from bubble left edge
   const tailX = Math.max(20, Math.min(state.screenX - left, bubbleMaxW - 20));
 
+  const handleAdvance = () => {
+    if (!manual) return;
+    eventBus.emit('player:advance');
+  };
+
   return (
     <div
+      onClick={handleAdvance}
       style={{
         position: 'absolute',
         left: `${left}px`,
         top: `${state.screenY + 20}px`,
         transform: 'translateY(-100%)',
         width: `${bubbleMaxW}px`,
-        pointerEvents: 'none',
+        pointerEvents: manual ? 'auto' : 'none',
+        cursor: manual ? 'pointer' : 'default',
         zIndex: 10,
       }}
     >
@@ -141,7 +156,10 @@ export function DialogueOverlay() {
           }}
         >
           <div style={styles.name}>{name}</div>
-          <div style={styles.text}>{displayText}</div>
+          <div style={styles.text}>
+            {displayText}
+            {manual && typingDone && <span style={styles.advanceHint}>▶</span>}
+          </div>
         </div>
 
         {/* Tail: angled tab extending from bottom-left of bubble */}
@@ -181,5 +199,11 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#222',
     lineHeight: 1.4,
     wordBreak: 'break-word',
+  },
+  advanceHint: {
+    marginLeft: '6px',
+    color: '#d4a024',
+    fontSize: '11px',
+    animation: 'dialogueAdvancePulse 1s ease-in-out infinite',
   },
 };
