@@ -14,7 +14,6 @@ export type LocationName =
   | 'stool-2'
   | 'stool-3'
   | 'stool-4'
-  | 'stool-5'
   | 'stool-r1'
   | 'stool-r2'
   | 'stool-r3'
@@ -33,7 +32,6 @@ export const LOCATIONS: Readonly<Record<string, LocationDef>> = {
   'stool-2':        { x: 4, y: 8, facing: Direction.UP },
   'stool-3':        { x: 5, y: 8, facing: Direction.UP },
   'stool-4':        { x: 6, y: 8, facing: Direction.UP },
-  'stool-5':        { x: 7, y: 8, facing: Direction.UP },
   'stool-r1':       { x: 8, y: 5, facing: Direction.LEFT },
   'stool-r2':       { x: 8, y: 6, facing: Direction.LEFT },
   'stool-r3':       { x: 8, y: 7, facing: Direction.LEFT },
@@ -44,7 +42,7 @@ export const LOCATIONS: Readonly<Record<string, LocationDef>> = {
   'dining-right':   { x: 10, y: 8, facing: Direction.RIGHT },
 };
 
-const STOOL_KEYS = ['stool-1', 'stool-2', 'stool-3', 'stool-4', 'stool-5', 'stool-r1', 'stool-r2', 'stool-r3'];
+const STOOL_KEYS = ['stool-1', 'stool-2', 'stool-3', 'stool-4', 'stool-r1', 'stool-r2', 'stool-r3'];
 const occupiedStools = new Set<string>();
 
 export function resolveLocation(
@@ -80,12 +78,12 @@ export function resetOccupiedStools(): void {
  * Measured directly from diner-bg.png to eliminate tile→pixel rounding errors.
  */
 const SEAT_PIXELS: Record<string, { px: number; py: number }> = {
-  // Front counter stools (facing UP) — measured center + 3px sprite compensation
-  '3,8':  { px: 88,  py: 254 },
-  '4,8':  { px: 128, py: 254 },
-  '5,8':  { px: 152, py: 254 },
-  '6,8':  { px: 184, py: 254 },
-  '7,8':  { px: 221, py: 254 },
+  // Front counter stools (facing UP) — re-measured from diner-bg.png chair seats
+  // (only 4 chairs in the art; centers ~42px apart, sampled at y=270)
+  '3,8':  { px: 112, py: 254 },
+  '4,8':  { px: 158, py: 254 },
+  '5,8':  { px: 200, py: 254 },
+  '6,8':  { px: 238, py: 254 },
   // Right-side stools (facing LEFT)
   '8,5':  { px: 261, py: 163 },
   '8,6':  { px: 261, py: 195 },
