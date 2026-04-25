@@ -82,8 +82,9 @@ const SEAT_PIXELS: Record<string, { px: number; py: number }> = {
   // Front counter stools (facing UP) — only chair 1 and chair 3 used
   // (chairs 2 and 4 are visible in the art but skipped to avoid sprite overlap;
   //  see STOOL_KEYS comment above for the math).
-  '3,8':  { px: 112, py: 254 },
-  '5,8':  { px: 200, py: 254 },
+  // Centers measured by overlaying crosshairs on diner-bg.png at 4x zoom.
+  '3,8':  { px: 88,  py: 254 },
+  '5,8':  { px: 190, py: 254 },
   // Right-side stools (facing LEFT)
   '8,5':  { px: 261, py: 163 },
   '8,6':  { px: 261, py: 195 },
