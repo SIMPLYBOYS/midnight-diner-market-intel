@@ -10,7 +10,7 @@ export const EPISODE_17: Episode = {
 
     {
       type: 'narration',
-      text: '週六中午前。市場關門、新聞稀薄、但 Polymarket 整夜都在動——4/30 那條從昨天收盤的 0.85% 一路滑回 0.55%，6/30 從 8.5% 也退到 7.5%。Walmart 的退款表格躺在財政部、JBLU 的債券桌週末加班、MSFT-OpenAI 的改約信在私訊群裡轉。WTI 在 globex 上沒人想動 $95。下週二 Warsh 投票、週三 Q1 GDP advance、週四 Powell 最後一次站講台。今天是這一週唯一沒有 print 的日子——也是把 position 做好的那一天。',
+      text: '週六中午前。市場關門、新聞稀薄、但 Polymarket 整夜都在動——4/30 那檔從昨天收盤的 0.85% 一路滑回 0.55%，6/30 從 8.5% 也退到 7.5%。Walmart 的退款表格躺在財政部、JBLU 的債券人週末加班、MSFT-OpenAI 的改約信在私訊群裡轉。原油 WTI 在夜盤上沒人想動 $95。下週二 Warsh 投票、週三 Q1 GDP 第一版數字、週四 Powell 最後一次站講台。今天是這一週唯一沒有 print 的日子——也是把位子做好的那一天。',
       duration: 5400,
     },
 
@@ -37,7 +37,7 @@ export const EPISODE_17: Episode = {
           { label: 'Crypto-24/7', value: 680, color: '#22cc55' },
           { label: 'Polymarket', value: 220, color: '#22cc55' },
         ],
-        headline: '週六 — 現股關門、ES 期貨小綠 +0.1%、WTI 在 $95.20 沒人動、VIX 維持 25.8',
+        headline: '週六 — 現股關門、標普期貨小綠 +0.1%、原油在 $95.20 沒人動、VIX 維持 25.8',
       },
     },
 
@@ -57,16 +57,16 @@ export const EPISODE_17: Episode = {
     { type: 'move', character: 'customer-a', toTile: 'random-stool' },
     { type: 'sit', character: 'customer-a' },
 
-    { type: 'dialogue', character: 'customer-a', text: '原本是這樣計劃。但凌晨三點看了一眼手機——Polymarket 的 4/30 又掉了一階、0.55%。從昨天收盤的 0.85% 整夜滑下來。' },
+    { type: 'dialogue', character: 'customer-a', text: '原本是這樣計劃。但凌晨三點看了一眼手機——Polymarket 那檔賭「伊朗政權會不會在 4/30 之前倒台」的合約又掉了一階、剩 0.55%。從昨天收盤的 0.85% 整夜慢慢滑下來。' },
 
     { type: 'move', character: 'chef', toTile: 'stove' },
     { type: 'wait', duration: 400 },
 
-    { type: 'dialogue', character: 'chef', text: '昨晚你不是還說 0.55 → 0.85 那個爬升要當警鐘？怎麼又退回去了？' },
+    { type: 'dialogue', character: 'chef', text: '昨晚你不是還說 0.55% 爬回 0.85% 那一段要當警鐘？怎麼又退回去了？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '這就是合約還剩五天的好處——deadline decay 把所有 noise 都壓平。每過六小時、未發生的機率就被時間吃掉一塊。0.85% → 0.55% 不是「政權變穩了」，是「沒事發生 + 還剩 120 小時」這個簡單算術。' },
+    { type: 'dialogue', character: 'customer-a', text: '因為這檔合約只剩五天就到期了。離到期越近、什麼事都沒發生，「會發生」的機率自然越小——時間自己在把它壓扁。0.85% 退回 0.55% 不是「政權變穩了」，只是「過了半天還是沒事 + 還剩 120 個小時」這個簡單算術。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '6/30 那條也跟著退——從 0.085 到 0.075。但 6/30 不一樣，它離到期還兩個月、time decay 沒那麼狠。它退是因為 4/30 的 anchor 退了——「短期不會、長期也降一階」。' },
+    { type: 'dialogue', character: 'customer-a', text: '6/30 那檔（賭 6 月底之前倒台）也跟著退——從 8.5% 到 7.5%。但 6/30 不一樣，它離到期還兩個月、時間沒那麼急。它退是因為 4/30 先退了——「短期不會、長期也順著降一階」。' },
 
     { type: 'emote', character: 'customer-a', emote: 'thinking', duration: 700 },
 
@@ -132,9 +132,9 @@ export const EPISODE_17: Episode = {
       },
     },
 
-    { type: 'dialogue', character: 'customer-a', text: '6/30 那條凌晨還閃過一次 9.0%——亞洲時段、兩分鐘內又退回 8.5%。Volume 沒跳、liquidity 只有 $51 萬，看起來就是某個帳戶在試水溫。半小時後就被吃回去了。' },
+    { type: 'dialogue', character: 'customer-a', text: '6/30 那條凌晨還閃過一次 9.0%——亞洲時段、兩分鐘內又退回 8.5%。但成交量沒跳、整檔的胃口只有 51 萬美金（很淺），看起來就是某個帳戶在試水溫。半小時就被吃回去了。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '真正值得記的是 Fed -50bp——47M volume、liquidity $1014 萬，整週紋風不動的 0.15%。這檔在告訴你：下週的 event risk 不是降息幅度、是 Powell 的最後一句話會不會留下記號。' },
+    { type: 'dialogue', character: 'customer-a', text: '真正值得記的是 Fed 那檔——賭「Fed 4 月會不會直接降 2 碼（50bp）」。整週累積成交 4700 萬美金、帳裡放了 1000 萬流動性，紋風不動的 0.15%。這等於市場在說：下週要看的不是 Fed 降幾碼，是 Powell 最後一次站講台會留下什麼一句話。' },
 
     { type: 'wait', duration: 400 },
 
@@ -147,11 +147,11 @@ export const EPISODE_17: Episode = {
     { type: 'dialogue', character: 'chef', text: 'いらっしゃい。MSFT 那封改約信看完了？' },
     { type: 'move', character: 'chef', toTile: 'stove' },
 
-    { type: 'dialogue', character: 'customer-b', text: '昨晚紅眼讀完。22 頁、註腳 47 個、附件三份。Sam 跟 Satya 各自的字選得很有意思——Sam 用了 5 次「partnership」、3 次「stewardship」，沒有一次「parent」或「subsidiary」。Satya 反過來——4 次「optionality」、2 次「decoupling」。這是兩家公司在互相鬆綁。' },
+    { type: 'dialogue', character: 'customer-b', text: '昨晚熬夜讀完。22 頁、註腳 47 個、附件三份。Sam 跟 Satya 用的字很有意思——Sam 講了 5 次「夥伴關係」、3 次「託管」，整封信沒一次說「母公司」或「子公司」。Satya 反過來——4 次「保留選擇權」、2 次「鬆綁」。兩家公司在用文字互相放手。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '我同事昨晚跟一個 ex-MSFT board observer 通了電話——關鍵不是 49% → 35%，是「revenue share waterfall」改成 tiered。OpenAI 在 $5B ARR 之前 MSFT 拿 75%、$5B-$15B 變 50%、$15B 以上只剩 25%。等於 OpenAI 的成功不再 100% map 回 MSFT 估值。' },
+    { type: 'dialogue', character: 'customer-a', text: '我同事昨晚跟一個前 MSFT 董事會列席的人通電話——關鍵不是股權從 49% 砍到 35%，是「拆帳公式」整個改了。OpenAI 年營收還沒到 50 億美金以前 MSFT 拿 75%、50 到 150 億這段拿 50%、超過 150 億只剩 25%。等於 OpenAI 越成功、MSFT 反而分得越少。' },
 
-    { type: 'dialogue', character: 'customer-b', text: '那才是真正的 unlock。週一盤前 GS、Morgan Stanley 的 desk 會把 OpenAI implied valuation 從 MSFT 股價剝出來——目前市場用 $300B impute、改約後可能要重新算到 $400-500B 獨立估值。MSFT 的 multiple 反而會微縮，因為它從「OpenAI 的最大持股者」變成「之一」。' },
+    { type: 'dialogue', character: 'customer-b', text: '那才是真正鬆開的東西。週一開盤前 GS、Morgan Stanley 那邊會把 OpenAI 的隱含估值（也就是市場目前用 MSFT 股價反推出來的）從 MSFT 拆出來——之前市場是用 3000 億美金在算，改約後可能要重新跳到 4000-5000 億的獨立估值。MSFT 自己的本益比反而會微縮，因為它從「OpenAI 最大的股東」變成「之一」。' },
 
     { type: 'camera', effect: 'flash', duration: 200 },
 
@@ -177,23 +177,23 @@ export const EPISODE_17: Episode = {
           { label: 'AI-Hyperscaler', value: 1420, color: '#22cc55' },
           { label: 'Cap-Table-Rewrite', value: 980, color: '#22cc55' },
         ],
-        headline: '週末 desk 推演：MSFT 改約 = OpenAI 估值剝離、MSFT multiple 微縮、整體 AI cap-table 重寫',
+        headline: '週末桌上推演：MSFT 改約 = OpenAI 估值要從 MSFT 拆出來、MSFT 本益比微縮、整個 AI 圈股權結構重寫',
       },
     },
 
-    { type: 'dialogue', character: 'customer-a', text: '這就是為什麼 Citi 那張 note 寫「position for a Powell dove surprise」——下週四 Powell 的最後一場、加上週一 OpenAI 估值剝離、加上 GOOGL cloud 38% 的 anchor，AI infra 這條敘事如果再被 dove 確認、SPY 540 是預設目標。' },
+    { type: 'dialogue', character: 'customer-a', text: '這就是為什麼 Citi 那張內部 note 寫「壓 Powell 會偏鴿（軟）這條」——下週四 Powell 最後一場、加上週一 OpenAI 估值要被拆出來、加上昨天 GOOGL 雲端 38% 那個強數字，「AI 基礎建設這條故事還在跑」如果再被 Powell 一句鴿派確認、那 SPY 衝 540 是預設目標。' },
 
     { type: 'wait', duration: 400 },
 
     // ── JBLU bondholders — weekend OTC chatter ──
     { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: 'JBLU 那邊呢？昨天放話 Chapter 11 explore——週末他們的人不睡？' },
+    { type: 'dialogue', character: 'chef', text: 'JBLU 那邊呢？昨天放話在考慮 Chapter 11——週末他們的人不睡？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '債券桌週末沒有「不睡」這個選項。OTC 的報價昨天收 16% yield，亞洲時段 dealer 報 17%、歐洲時段又退回 16.5%。沒有 official price、但 chatter 已經把 recovery rate 從 60% 砍到 45%。' },
+    { type: 'dialogue', character: 'customer-a', text: '做債券的週末沒有「不睡」這個選項。場外（沒有交易所、就是幾家券商之間互相報價）昨天收的時候是 16% 殖利率——白話講，就是市場覺得這檔債券很危險，所以要求很高的利息才願意接。亞洲時段被報到 17%、歐洲又退回 16.5%。沒有官方價、但圈內人聊起來，已經把「萬一倒了能拿回多少錢」從 60 cents 砍到 45 cents。' },
 
-    { type: 'dialogue', character: 'customer-b', text: '我聽到的版本是——Apollo 跟 Cerberus 兩家 distressed fund 已經在組 DIP financing 的初步條件。如果週一 JBLU 真的 file、那 DIP 額度可能 $1.2B、interest 16-18%、equity warrants attached。這是合 SAVE 2024 那次的範本——股東歸零、債券 60 cents、distressed fund 拿走 reorganized equity。' },
+    { type: 'dialogue', character: 'customer-b', text: '我聽到的版本是——Apollo 跟 Cerberus 兩家專做不良資產的基金已經在討論借「續命錢」的條件（破產過程中還能繼續營運的緊急貸款）。如果週一 JBLU 真的聲請破產、那這筆錢可能 12 億美金、利率 16-18%、附帶日後可換股的選擇權。整個劇本就是 SAVE 在 2024 那次的翻版——原股東歸零、債主拿回六成、這些禿鷹基金最後拿走重整後的新公司股權。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '更狠的是同業——SAVE 今天場外被報到 $1.40（昨天收 $1.80），就是市場在說 SAVE 也撐不住。Frontier 的 CDS spread 昨天加寬 80bp。WTI 還在 $95、JBLU 倒下、SAVE 跟、Frontier 觀察名單——LCC 整條線在週末就被 mark-to-thinking 了。' },
+    { type: 'dialogue', character: 'customer-a', text: '更狠的是同業——SAVE 今天場外被報到 $1.40（昨天才 $1.80），市場在說 SAVE 也撐不住。Frontier 的「違約保險費」（如果它倒了，買保險的人拿賠償）昨天又跳了 80bp，等於變貴一截。原油還在 $95、JBLU 倒、SAVE 跟、Frontier 進觀察名單——廉航整條線在週末就被「先在心裡標壞」了。' },
 
     { type: 'emote', character: 'customer-b', emote: 'surprise', duration: 700 },
 
@@ -218,7 +218,7 @@ export const EPISODE_17: Episode = {
           { label: 'Legacy-Bonds', value: 720, color: '#ee4444' },
           { label: 'CDS-Spreads', value: 880, color: '#ee4444' },
         ],
-        headline: '週末 OTC：JBLU 債 62 cents、SAVE 場外 -22%、ULCC CDS +18.5% — distressed 桌已經在算 DIP',
+        headline: '週末場外行情：JBLU 債券 62 cents、SAVE -22%、廉航違約保險費 +18.5% — 禿鷹基金已在算續命錢條件',
       },
     },
 
@@ -228,11 +228,11 @@ export const EPISODE_17: Episode = {
     { type: 'move', character: 'chef', toTile: 'stove' },
     { type: 'dialogue', character: 'chef', text: 'Walmart 那張表格現在在哪裡？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '靜靜躺在 Treasury 的 inbox。週末政府不審。最快下週三才會有第一個 receipt confirmation——也就是「我們收到了」這四個字。實質審核 30 天起跳。' },
+    { type: 'dialogue', character: 'customer-a', text: '靜靜躺在財政部的收件匣。週末政府不審。最快下週三才會收到第一個「我們收到了」——就這四個字。實質審核 30 天起跳。' },
 
-    { type: 'dialogue', character: 'customer-b', text: 'Target 的策略今天看更聰明——不交、就沒有審核風險、就沒有 14% 股權帳的麻煩。週一盤前 BBY 那邊的 update 會是關鍵：他們週五沒表態、週末董事會在開、週一 8:00 ET pre-market 會有公告。如果 BBY 跟進 Target 不交——retail split 就定型了。' },
+    { type: 'dialogue', character: 'customer-b', text: 'Target 的策略今天回頭看更聰明——不交、就沒有審核風險、就不用煩股權那筆帳。週一開盤前 Best Buy 那邊的決定才是關鍵：他們週五沒表態、週末董事會在開、週一早上 8 點美東時間會有公告。如果 BBY 跟 Target 一樣不交——零售圈就正式裂成兩派了。' },
 
-    { type: 'dialogue', character: 'customer-a', text: 'CFO 們週末在算的是另一筆——「不交退款 + 川普如果連任 / 共和黨控國會」的政治打擊。Walmart CFO 那句「duty to shareholders, not to memory」會不會在 Q3 變成 audit 的標題？這不是法律問題、是 narrative 風險。' },
+    { type: 'dialogue', character: 'customer-a', text: 'CFO 們週末在算的是另一筆——「不交退款 + 川普如果連任 / 共和黨控國會」會被怎麼修理。Walmart CFO 那句「我們對股東負責、不對總統的記憶力負責」會不會在 Q3 變成國稅局重點查核的標題？這不是法律問題、是給市場的形象問題。' },
 
     { type: 'wait', duration: 300 },
 
@@ -240,11 +240,11 @@ export const EPISODE_17: Episode = {
     { type: 'move', character: 'chef', toTile: 'counter-center' },
     { type: 'dialogue', character: 'chef', text: 'Iran 這邊週末沒什麼新消息？' },
 
-    { type: 'dialogue', character: 'customer-a', text: 'Reuters 凌晨那則最值得讀——IRGC 內部換了三個區域指揮、但官方理由是「routine rotation」。BBC Persian 跟 Iran International 兩邊的解讀完全相反。Polymarket 4/30 從 0.85% 退回 0.55% 就是「沒人能 confirm」的那種沉默。' },
+    { type: 'dialogue', character: 'customer-a', text: 'Reuters 凌晨那則最值得讀——伊朗革命衛隊內部換了三個區域指揮官、但官方說法是「例行調動」。BBC 波斯語跟 Iran International 兩邊解讀完全相反。Polymarket 4/30 從 0.85% 退回 0.55%，就是「沒人能確認」的那種沉默。' },
 
-    { type: 'dialogue', character: 'customer-b', text: 'WTI globex 週六凌晨摸到 $95.05、又回 $95.20。$95 那條線從週三停火後就變成新地板——交易員會說那叫 "war-residual premium"，差不多 $7-8 是定價在那裡的。要回 $88、需要 Iran 那邊真正穩定 + Strait of Hormuz 通行率回到正常。兩個都沒到。' },
+    { type: 'dialogue', character: 'customer-b', text: '原油 24 小時電子盤週六凌晨摸到 $95.05、又回 $95.20。$95 那條線從週三停火後就變成新地板——交易員會說那是「戰爭沒打完但價格還高一截」的殘留費用，差不多 7-8 美金一桶就是定價在那裡。要回到 $88、需要伊朗那邊真正穩定 + 荷莫茲海峽通行率回到正常。兩個都還沒到。' },
 
-    { type: 'dialogue', character: 'customer-a', text: 'OPEC+ 那邊週六 Riyadh 有一個 informal phone call——成員國代表沒有 statement、但 Bloomberg 的 source 講 Saudi 跟 UAE 在討論「voluntary cut 是否要 unwind」。如果週日傍晚有 statement、WTI 週一開盤可能直接 -3 到 $92。但機率現在看不高。' },
+    { type: 'dialogue', character: 'customer-a', text: 'OPEC+ 那邊週六沙烏地有一個非正式電話會——成員國代表沒發聲明、但 Bloomberg 的線人說沙烏地跟阿聯在討論「之前自願減產的份額要不要恢復供應」。如果週日傍晚有正式聲明、原油週一開盤可能直接跌 3 塊到 $92。但機率現在看不高。' },
 
     { type: 'camera', effect: 'shake', duration: 250, intensity: 1 },
 
@@ -252,13 +252,13 @@ export const EPISODE_17: Episode = {
 
     // ── Look ahead: Tuesday Warsh / Wednesday GDP / Thursday Powell ──
     { type: 'move', character: 'chef', toTile: 'stove' },
-    { type: 'dialogue', character: 'chef', text: '下週的 calendar 怎麼排？' },
+    { type: 'dialogue', character: 'chef', text: '下週的行事曆怎麼排？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '三個 event、三個方向——週二 9pm ET Warsh 投票，預期 confirmed by 52-48；週三 8:30am ET Q1 GDP advance，consensus +1.8% annualized、whisper number 落在 +1.4-1.6%；週四 2pm ET Powell 最後一次 FOMC 記者會。三件事擺一起、curve 會被重寫。' },
+    { type: 'dialogue', character: 'customer-a', text: '三件事、三個方向——週二晚上 9 點 Warsh 確認投票，分析師預估 52-48 過關；週三早上 8:30 Q1 GDP 第一版數字，街上共識 +1.8%（換算成年率）、私下傳的版本是 +1.4-1.6%；週四下午 2 點 Powell 最後一次 FOMC 記者會。三件事擺一起、整條利率曲線（債券殖利率高低點）會被重寫。' },
 
-    { type: 'dialogue', character: 'customer-b', text: '我的 desk 排了 scenario tree——A：GDP miss + Powell dove + Warsh confirmed → SPY 540 by Friday、10Y 退到 4.30、USD 弱。B：GDP beat + Powell hold + Warsh confirmed → SPY 530 區間、10Y 持平 4.45、USD 強。C：GDP miss + Powell hawk → SPY -2% 到 520、bond curve flattening。三條路機率大概 35/40/25。' },
+    { type: 'dialogue', character: 'customer-b', text: '我們桌上排了三種劇本——A：GDP 比預期差 + Powell 偏鴿 + Warsh 過關 → SPY 週五衝 540、10 年期殖利率退到 4.30、美元偏弱。B：GDP 達標 + Powell 持平 + Warsh 過關 → SPY 在 530 區間、10 年期維持 4.45、美元偏強。C：GDP 差 + Powell 鷹 → SPY 跌 2% 到 520、債券殖利率曲線變平。三條路機率大概 35%、40%、25%。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '我的個人偏 A 跟 C 中間——GDP 應該不會差太多，Powell 的退場 instinct 偏 dove，但 Warsh 的影子已經在整 curve。如果週四 Powell 的 statement 提到「passing the baton」這幾個字、那 dove pivot 就 confirmed。如果他只說「continuity」、就是 hold。' },
+    { type: 'dialogue', character: 'customer-a', text: '我個人押在 A 跟 C 中間——GDP 不會差太多，Powell 個性退場時偏鴿、但 Warsh 的影子已經先在影響債券價格。如果週四 Powell 講出「交棒」這兩個字、那「鴿派轉向」就確認了。如果他只說「延續」、那就是維持現狀。' },
 
     { type: 'wait', duration: 400 },
 
@@ -285,25 +285,25 @@ export const EPISODE_17: Episode = {
           { label: 'Tariff-Cliff', value: 880, color: '#cc8844' },
           { label: 'LCC-Casualty', value: 320, color: '#ee4444' },
         ],
-        headline: '一週復盤：SPY +1.6% / WTI -8.6% / VIX -19.4% / 10Y -18bp — war-premium 退、bill 寫進弱者',
+        headline: '一週復盤：SPY +1.6% / WTI -8.6% / VIX -19.4% / 10Y -18bp — 戰爭溢價退出、帳單寫進弱者',
       },
     },
 
-    { type: 'dialogue', character: 'customer-b', text: '一週收下來——SPY +1.6%、VIX 從 32 退到 25.8、10Y 收 18bp。這不是「risk-on」、是「war-premium 從漲價回到正常」。差別是：risk-on 應該帶 cyclical、energy、small-cap 領漲；這週領漲的是 cloud 跟 mega-cap，是「最 boring 的避風港」。' },
+    { type: 'dialogue', character: 'customer-b', text: '一週收下來——SPY +1.6%、VIX 從 32 退到 25.8、10 年期殖利率收 18bp。這不是「市場敢冒險了」、是「戰爭加上去的溢價慢慢退掉」。差別在哪？敢冒險的話、應該是景氣循環股、能源、小型股領漲；這週領漲的反而是雲端跟超大型科技，其實是「最無聊的避風港」。' },
 
-    { type: 'dialogue', character: 'customer-a', text: 'JBLU、SAVE、Walmart split——這三個是 war-premium 的真實帳單。砲沒打、但帳單分批寄。最弱的這個月就破產、中間的零售今天還在分裂、最強的（Costco、Target）甚至受惠。這不是 V-shape recovery、是 K-shape billing。' },
+    { type: 'dialogue', character: 'customer-a', text: 'JBLU、SAVE、Walmart 裂成兩派——這三個就是戰爭溢價的真實帳單。砲沒打、但帳單分批寄。最弱的這個月就破產、中間的零售今天還在分裂、最強的（Costco、Target）甚至受惠。這不是 V 形反彈、是 K 形分帳——強的更強、弱的歸零。' },
 
     { type: 'wait', duration: 300 },
 
     // ── Sunday futures / Monday-open positioning ──
     { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: '週日傍晚 globex 開盤要看什麼？' },
+    { type: 'dialogue', character: 'chef', text: '週日傍晚期貨夜盤開了要看什麼？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '三個鐘——6pm ET ES 期貨開、看 OPEC+ 是不是有 statement、看 Iran 那邊有沒有 incident。任何一條動超過 1%、整週的 setup 就要重新算。' },
+    { type: 'dialogue', character: 'customer-a', text: '三個鬧鐘——下午 6 點美東時間標普期貨開、看 OPEC+ 是不是有正式聲明、看伊朗那邊有沒有突發狀況。任何一條動超過 1%、整週的局面就要重新算。' },
 
-    { type: 'dialogue', character: 'customer-b', text: 'Polymarket 4/30 那條我會盯——如果週日凌晨從 0.55% 又跳回 0.85% 以上、那是 information leak 的 footprint。如果繼續往 0.45%、0.35% 滑、那 deadline decay 在主導，可以放著。我會在 Discord 上設個 alert。' },
+    { type: 'dialogue', character: 'customer-b', text: 'Polymarket 4/30 那檔我會盯——如果週日凌晨從 0.55% 又跳回 0.85% 以上、那是「有人提早知道消息」的痕跡。如果繼續往 0.45%、0.35% 滑、那就是時間在替我們減壓、可以放著睡。我會在 Discord 上設個提醒。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '週一 pre-market 8:00 ET 三個事件——BBY 退款表態、JBLU 8-K update、Walmart 週末有沒有遞補檔案。9:30 開盤的方向就由這三條決定。' },
+    { type: 'dialogue', character: 'customer-a', text: '週一開盤前 8 點美東時間三個事件——BBY 退款表態、JBLU 8-K（給投資人的重大事件公告）有沒有更新、Walmart 週末有沒有遞補檔案。9:30 開盤的方向就由這三條決定。' },
 
     { type: 'wait', duration: 400 },
 
@@ -311,9 +311,9 @@ export const EPISODE_17: Episode = {
     { type: 'move', character: 'chef', toTile: 'counter-center' },
     { type: 'dialogue', character: 'chef', text: '今天兩位都不點熱湯？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '要、一碗熱的、加蛋。下午要回 desk 把 scenario tree 寫成週一 morning note。' },
+    { type: 'dialogue', character: 'customer-a', text: '要、一碗熱的、加蛋。下午要回辦公室把那三種劇本寫成週一早上發給客戶的 morning note。' },
 
-    { type: 'dialogue', character: 'customer-b', text: '我也一碗。下午要打三通電話——一個 ex-MSFT board observer、一個 Apollo distressed、一個 Houston energy desk。週日下午寫成一份內部 memo。週六的午餐要吃飽——下午的工作量比週一還大。' },
+    { type: 'dialogue', character: 'customer-b', text: '我也一碗。下午要打三通電話——一個前 MSFT 列席董事、一個 Apollo 的禿鷹基金經理、一個休士頓做能源的桌。週日下午寫成內部 memo。週六的午餐要吃飽——下午的工作量比週一還大。' },
 
     { type: 'sfx', sound: 'chimes' },
 
@@ -322,7 +322,7 @@ export const EPISODE_17: Episode = {
 
     {
       type: 'narration',
-      text: '週六中午前的食堂，兩碗熱拉麵、一壺麥茶、窗外是空蕩的東京週末。太平洋這邊——Sundar 在 Mountain View 看 Q1 cloud 數字的內部 dashboard、Satya 在週末 board call 上跟 Sam 確認改約信的最後一句、Apollo 的 distressed team 在 Park Avenue 的會議室白板上寫 JBLU DIP 的 term sheet、Walmart 的 tax counsel 在 Bentonville 算 Q3 的退款 credit、Warsh 在 Hoover Institution 跟兩位 ex-Fed governor 吃午飯。市場關門、但工作沒停。Polymarket 那條 0.55% 的線、像是這個週末最誠實的指標——沒事發生、所以時間在替我們減壓。下週一開盤、所有今天沒被定價的東西、會一起走進報價單。今天先把午餐吃完。',
+      text: '週六中午前的食堂，兩碗熱拉麵、一壺麥茶、窗外是空蕩的東京週末。太平洋這邊——Sundar 在 Mountain View 看 Q1 雲端數字的內部儀表板、Satya 在週末董事會上跟 Sam 確認改約信的最後一句、Apollo 的不良資產團隊在 Park Avenue 會議室白板上寫 JBLU 的續命錢條件、Walmart 的稅務律師在 Bentonville 算 Q3 的退款抵稅、Warsh 在 Hoover 智庫跟兩位前 Fed 理事吃午飯。市場關門、但工作沒停。Polymarket 那條 0.55% 的線、像是這個週末最誠實的指標——沒事發生、所以時間在替我們減壓。下週一開盤、所有今天沒被定價的東西、會一起走進報價單。今天先把午餐吃完。',
       duration: 5800,
     },
   ],
