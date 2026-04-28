@@ -1,0 +1,311 @@
+import type { Episode } from '../../engine/types';
+
+export const EPISODE_20: Episode = {
+  id: 'ep-20',
+  date: '2026-04-28',
+  title: '20260428 The Day Before',
+  description: 'Tuesday — the day before the print storm. Two readings from yesterday\'s ep19 morning note got rewritten by the tape: 6/30 Iran did mean-revert (8.5% → 7.5% pre-market Monday at 07:00 ET) so the long-tail was not sticky after all; and 4/30 Iran flickered to 0.15% for 90 minutes in mid-Monday-afternoon (14:00–15:00 ET) on a misposted Reuters tape that was retracted in 47 minutes — clean print of how a single intraday event can move a contract that\'s otherwise been welded to time decay. Fed-50bp expires tomorrow at FOMC (14:00 ET) at 0.05%. Tonight 21:00 ET: Warsh confirmation. Tomorrow 08:30 ET: Q1 GDP advance. Thursday: Powell\'s last presser. Today is the last "normal" day for three days.',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜二傍晚——這是這一週最後一天「沒有事件」。再過 14 個小時 Warsh 確認投票（東京禮拜三早上 10 點）、20 個小時 Q1 GDP 第一版（禮拜三晚上 9:30）、26 個小時 FOMC 決議（禮拜四凌晨 3 點）、44 個小時 Powell 最後一場記者會（禮拜五早上）。Polymarket 那邊昨天兩件事讓 morning note 要改——6/30 伊朗從 8.5% 真的退回 7.5% 了（禮拜一盤前 7 點美東）、所以禮拜天說的「亞洲噪音」是對的、只是慢了 24 小時；4/30 那檔禮拜一下午 2 到 3 點美東突然從 0.25% 跳到 0.15%、90 分鐘後又回 0.25%——一則 Reuters 撤稿造的價。今晚先把劇本看清楚、明天三件事擠在 18 小時裡。',
+      duration: 5400,
+    },
+
+    // ── Opening: Tuesday-evening pre-event snapshot ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'SPY', price: 534.20, change: 0.15 },
+          { symbol: 'ES=F', price: 5340.50, change: 0.05 },
+          { symbol: '10Y', price: 4.38, change: -0.01 },
+          { symbol: 'WTI', price: 95.40, change: 0.2 },
+        ],
+        volatility: 22,
+        vix: 24.4,
+        rsi: 55.0,
+        beta: 1.04,
+        priceHistory: [533, 533, 534, 534, 534, 534, 534, 534],
+        volumeHistory: [88, 96, 92, 84, 76, 68, 60, 56],
+        sectors: [
+          { label: 'Pre-FOMC-Drift', value: 480, color: '#cc8844' },
+          { label: 'Vol-Compressed', value: 380, color: '#888888' },
+          { label: 'Bond-Hedge-Buy', value: 720, color: '#22cc55' },
+          { label: 'Warsh-Cash', value: 580, color: '#888888' },
+          { label: 'Polymarket', value: 320, color: '#22cc55' },
+        ],
+        headline: '禮拜二傍晚——SPY 在 534 動兩毛、VIX 退到 24.4（最近三週新低）、整盤都在「等三件事」、現金部位最高',
+      },
+    },
+
+    // Chef Tuesday late evening — knows tomorrow is the storm
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 400 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    // Customer A enters — has spent the day rewriting the morning note addendum
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。昨天說 6/30 那條長尾沒退、今天還是 8.5%？' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '退了——但退得不照我的時間表。昨天我說「禮拜一美國時段沒被吃回去就是訊號」、結果今天早上看 chart——禮拜一早盤 7 點美東、6/30 從 8.5% 退到 7.5%、整天就釘在那。等於禮拜天那個「亞洲薄量噪音」的判讀其實是對的、只是要 24 個小時才被市場修正、不是 6 個小時。我搞錯時間尺度了。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '所以今天的 morning note 怎麼改？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我們桌的合夥人今早 6 點 35 分——比平常的 7 點還早——把昨天那段「6/30 sticky」整段刪掉、改成「24h delayed mean-reversion」。要點：薄量噪音的修正窗口比我們想的長、但方向是對的。教訓——亞洲時段薄量推動的、要等到歐洲開盤、再等美國時段第二輪確認、才算真的訊號。心裡記下來。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '4/30 那條今天才是真戲——下午 2 點美東左右、從 0.25% 突然跳到 0.15%、整整 90 分鐘紋風不動。3 點半又彈回 0.25%。我看到的時候在桌上喊了一聲——這個時間有事件、不是時間衰減。後來查到——是 Reuters 一個 Tehran 線記者發了一則「IRGC 一個高層被擊中」、47 分鐘後撤稿說「未經證實」。Polymarket 在那 47 分鐘裡的反應就是 0.25 → 0.15 → 0.25 的回路。' },
+
+    { type: 'emote', character: 'customer-a', emote: 'surprise', duration: 700 },
+
+    // ── Polymarket — Tuesday evening snapshot, with Monday-afternoon flicker visible ──
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-04-28T01:06:57Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-april-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-april-30',
+            question: 'Will the Iranian regime fall by April 30?',
+            yesProbability: 0.0025,
+            volume: 46418519,
+            endDate: '2026-04-30T00:00:00Z',
+            history: [
+              { t: 1777237206, p: 0.0025 }, { t: 1777240805, p: 0.0025 }, { t: 1777244403, p: 0.0025 }, { t: 1777248004, p: 0.0025 },
+              { t: 1777251604, p: 0.0025 }, { t: 1777255205, p: 0.0025 }, { t: 1777258803, p: 0.0025 }, { t: 1777262405, p: 0.0025 },
+              { t: 1777266004, p: 0.0025 }, { t: 1777269604, p: 0.0025 }, { t: 1777273205, p: 0.0025 }, { t: 1777276817, p: 0.0025 },
+              { t: 1777280403, p: 0.0025 }, { t: 1777284003, p: 0.0025 }, { t: 1777287603, p: 0.0025 }, { t: 1777291215, p: 0.0025 },
+              { t: 1777294803, p: 0.0025 }, { t: 1777298405, p: 0.0025 }, { t: 1777302005, p: 0.0025 }, { t: 1777305606, p: 0.0025 },
+              { t: 1777309204, p: 0.0025 }, { t: 1777312817, p: 0.0015 }, { t: 1777316418, p: 0.0015 }, { t: 1777320004, p: 0.0025 },
+              { t: 1777323618, p: 0.0025 }, { t: 1777327204, p: 0.0025 }, { t: 1777330803, p: 0.0025 }, { t: 1777334404, p: 0.0025 },
+              { t: 1777338004, p: 0.0025 }, { t: 1777338364, p: 0.0025 },
+            ],
+          },
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.0750,
+            volume: 34102071,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1777237212, p: 0.0850 }, { t: 1777240807, p: 0.0850 }, { t: 1777244406, p: 0.0850 }, { t: 1777248011, p: 0.0850 },
+              { t: 1777251605, p: 0.0850 }, { t: 1777255206, p: 0.0850 }, { t: 1777258810, p: 0.0850 }, { t: 1777262408, p: 0.0850 },
+              { t: 1777266010, p: 0.0850 }, { t: 1777269610, p: 0.0850 }, { t: 1777273207, p: 0.0850 }, { t: 1777276818, p: 0.0850 },
+              { t: 1777280409, p: 0.0850 }, { t: 1777284007, p: 0.0850 }, { t: 1777287605, p: 0.0750 }, { t: 1777291223, p: 0.0750 },
+              { t: 1777294810, p: 0.0750 }, { t: 1777298408, p: 0.0750 }, { t: 1777302013, p: 0.0750 }, { t: 1777305611, p: 0.0750 },
+              { t: 1777309212, p: 0.0750 }, { t: 1777312823, p: 0.0750 }, { t: 1777316421, p: 0.0750 }, { t: 1777320012, p: 0.0750 },
+              { t: 1777323625, p: 0.0750 }, { t: 1777327207, p: 0.0750 }, { t: 1777330807, p: 0.0750 }, { t: 1777334412, p: 0.0750 },
+              { t: 1777338007, p: 0.0750 }, { t: 1777338367, p: 0.0750 },
+            ],
+          },
+          {
+            slug: 'will-the-fed-decrease-interest-rates-by-50-bps-after-the-april-2026-meeting',
+            question: 'Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?',
+            yesProbability: 0.0005,
+            volume: 58458808,
+            endDate: '2026-04-29T00:00:00Z',
+            history: [
+              { t: 1777237212, p: 0.0005 }, { t: 1777240807, p: 0.0005 }, { t: 1777244405, p: 0.0005 }, { t: 1777248011, p: 0.0005 },
+              { t: 1777251605, p: 0.0005 }, { t: 1777255206, p: 0.0005 }, { t: 1777258810, p: 0.0005 }, { t: 1777262408, p: 0.0005 },
+              { t: 1777266009, p: 0.0005 }, { t: 1777269609, p: 0.0005 }, { t: 1777273207, p: 0.0005 }, { t: 1777276818, p: 0.0005 },
+              { t: 1777280409, p: 0.0005 }, { t: 1777284006, p: 0.0005 }, { t: 1777287605, p: 0.0005 }, { t: 1777291222, p: 0.0005 },
+              { t: 1777294808, p: 0.0005 }, { t: 1777298407, p: 0.0005 }, { t: 1777302012, p: 0.0005 }, { t: 1777305610, p: 0.0005 },
+              { t: 1777309210, p: 0.0005 }, { t: 1777312823, p: 0.0005 }, { t: 1777316421, p: 0.0005 }, { t: 1777320012, p: 0.0005 },
+              { t: 1777323624, p: 0.0005 }, { t: 1777327207, p: 0.0005 }, { t: 1777330807, p: 0.0005 }, { t: 1777334412, p: 0.0005 },
+              { t: 1777338007, p: 0.0005 }, { t: 1777338304, p: 0.0005 },
+            ],
+          },
+        ],
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-a', text: '看這條走勢圖、4/30 中間那個下凹是 Reuters 撤稿事件——成交量在那 90 分鐘炸出 18 萬美金（平常 1 小時不到 1 萬），等於有人讀到那則新聞、立刻去 Polymarket 下注「真的會倒」、那邊 yes 從 0.25 衝到 0.15、47 分鐘後新聞撤、第一波買家立刻平倉、第二波套利的人吃進來、3 點半完全恢復。整段是教科書級別的「假消息單一事件」回路。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Customer B enters — has the FOMC / Warsh / GDP framework ──
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天忙到剛才？' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: '在桌上跑了一個下午的「事件 EV 矩陣」（每件事件對 SPY 的預期影響、然後加總）。三件事情擠在 18 小時裡——Warsh 9 點美東、GDP 8:30、FOMC 14:00、Powell 禮拜四早上。我們桌算下來——標普明天可能在 528 到 540 之間擺、單日波動可能 1.5-2%。VIX 期貨已經反映、近月合約從 23.5 跳到 25.8。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我們桌押 GDP 共識 +1.8% 會偏弱（私下估 +1.5%）。如果是這個版本——債券殖利率立刻退 5bp、SPY 跳 0.5%、然後等 FOMC。FOMC 那邊我們 100% 確定降 25bp（不是 50bp、Polymarket 已經幫我們確認）、重點在聲明文字——「a」becoming「the」、「expected」消失或保留——這種一個字的變化會推 10 年期 5-8bp、推 SPY 0.7%。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我桌的同事在 Citi 跟 GS 兩邊客戶都聽到一樣的話——機構現在的策略是「FOMC 之前現金 + 防禦、FOMC 之後再決定」。所以今天 SPY 量縮、VIX 反而退到 24.4——因為對沖部位少了、市場在等。明天白天會超低量、下午 1:55 開始放大、2 點聲明出來那一秒 SPY 期貨可能直接跳 1%。' },
+
+    { type: 'camera', effect: 'flash', duration: 200 },
+
+    // ── FOMC scenario matrix ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'A-Dovish', price: 540.00, change: 1.1 },
+          { symbol: 'B-Inline', price: 534.00, change: 0.0 },
+          { symbol: 'C-Hawk', price: 524.00, change: -1.9 },
+          { symbol: 'VIX-fut', price: 25.80, change: 5.7 },
+        ],
+        volatility: 38,
+        vix: 24.4,
+        rsi: 54.0,
+        beta: 1.08,
+        priceHistory: [524, 528, 532, 534, 536, 538, 540, 540],
+        volumeHistory: [42, 56, 68, 84, 96, 108, 124, 140],
+        sectors: [
+          { label: 'A-Dovish-40%', value: 1380, color: '#22cc55' },
+          { label: 'B-Inline-30%', value: 920, color: '#cc8844' },
+          { label: 'C-Hawk-30%', value: 1080, color: '#ee4444' },
+          { label: 'VIX-Fut-Stretched', value: 480, color: '#cc8844' },
+          { label: 'Cash-On-Sideline', value: 1240, color: '#888888' },
+        ],
+        headline: '禮拜二桌上重排：A=40%（GDP 弱 + Powell 鴿）/ B=30% / C=30%（GDP 強 + Powell 鷹）— 單日震幅可能 1.5-2%',
+      },
+    },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Warsh confirmation tonight ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'Warsh 投票今晚 9 點美東——你們桌怎麼操作？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '東京這邊就是明早 10 點。投票結果可能 51-49 過關、52-48 過關、或者 50-50（副總統打破平手）三個情境。我跟同事押 52-48——三票民主黨的搖擺位（Manchin 已經退、不算；新進的西維吉尼亞那位 + 蒙大拿那位 + 阿拉斯加那位）會投贊成、但會公開放話「我們投贊成是因為這次提名走完了流程、不代表我們認可候選人」。這種「投贊成但留紀錄」的劇本、市場會解讀成「Warsh 過、但身上有疤」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '如果真的 52-48 過——10 年期殖利率投票結果出來那一刻可能跳 6-8bp、美元也跳 0.2-0.3%。但是！如果是 50-50 副總統打破——市場會解讀成「政治成本很高」、債券殖利率反而會退、因為「Warsh 上任就會比較收斂」。聽起來反直覺、但是這就是「過程價」（process pricing）——同一個結果、過程不同、市場給的價不同。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我們桌會在投票前 15 分鐘——東京 9:45——買 SPY 隔日的平價買權（at-the-money）+ 平價賣權當「跨式組合」（市場任一邊大動都賺、只怕不動）、放 30 分鐘、不管哪邊跳都拆一邊收一邊。如果都不跳——學費 0.4%、可以接受。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Iran / Oil follow-through ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: '伊朗 6/30 退到 7.5% 了——能源那邊跟著動嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '原油今天在 $95.40 動 30 分錢——完全沒跟。意思是——能源市場已經把伊朗風險定價在「6 月底之前、7.5% 機率出事、扣抵到 $95 這條地板」。Polymarket 從 8.5% 退 1 點到 7.5%、原油理論上應該退 0.5 美金、但沒有。可能解釋——OPEC+ 在護盤的力道比伊朗風險小退一階更強。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'Brent 跟 WTI 的差價今天從 $1.50 縮到 $1.20——通常這代表「歐洲端的恐慌少一階」。歐洲煉油廠週末買的那批庫存正在消化、庫欣（Cushing）的庫存週報也少 50 萬桶。如果禮拜四美東早上 EIA 庫存報告再少、原油可能下殺到 $93。但伊朗那條線只要還是 7.5%、不太可能破 $90。' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'Polymarket 4/30 那條剩 60 小時就到期——如果禮拜三半夜還是 0.25%、禮拜四下午就會自然退到 0.10%、禮拜五凌晨歸 0。我會在禮拜四下午看著它消失——這種「合約到期前 24 小時時間衰減的最後階段」是教科書、值得在 Discord 上做截圖存檔。' },
+
+    { type: 'wait', duration: 300 },
+
+    // ── Retail aftershock — BBY/Costco follow-up ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '昨天說的零售裂成兩派、今天 Costco 跟 Macy\'s 表態了？' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'Costco 今天美東早上 9 點公告——「會交退款、但保留法律追索權」。這是第三條路！既不是 Walmart 的「全交」、也不是 Target 的「全拒」、是「先交、後告」。律師界今天下午有一場線上研討會、討論這條路的後果。Macy\'s 還沒表態、Kohl\'s 跟 Costco 同步——「先交」陣線多了兩家。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '所以零售圈現在三派——「全交」（Walmart, Lowe\'s, DG）、「先交後告」（Costco, Kohl\'s）、「全拒」（Target, BBY, HD）。市場今天的反應——「先交後告」陣營股價最強（Costco +1.2%、Kohl\'s +2.1%）、市場喜歡這種「政治上對總統交代、法律上保留權利」的雙保險。財政部那張禮拜五要發的「乖寶寶清單」、現在變得有點尷尬——Costco 算哪邊？' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'JBLU 今天又下殺——盤前到 $2.85、收 $2.95。Apollo 跟 Cerberus 那邊條件清單最後版可能今晚定。SAVE 場外今天 $0.78（昨天 $0.95）。Frontier 終於發 8-K——說「正在評估資本結構」、跟 JBLU 上禮拜的措辭一模一樣。市場反應——Frontier 盤前跌 28%、收 -22%。廉航三家死兩家、正在進倒數計時。' },
+
+    { type: 'emote', character: 'customer-a', emote: 'thinking', duration: 700 },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'COST', price: 824.40, change: 1.2 },
+          { symbol: 'KSS', price: 22.80, change: 2.1 },
+          { symbol: 'JBLU', price: 2.95, change: -7.8 },
+          { symbol: 'ULCC', price: 4.20, change: -22.1 },
+        ],
+        volatility: 48,
+        vix: 24.4,
+        rsi: 42.0,
+        beta: 1.42,
+        priceHistory: [820, 822, 823, 824, 824, 825, 824, 824],
+        volumeHistory: [38, 52, 68, 82, 96, 84, 72, 60],
+        sectors: [
+          { label: 'Pay-Then-Sue', value: 1280, color: '#22cc55' },
+          { label: 'Pay-Full', value: 580, color: '#cc8844' },
+          { label: 'Refuse-Full', value: 920, color: '#cc8844' },
+          { label: 'LCC-Cascade', value: 320, color: '#ee4444' },
+          { label: 'Treasury-Friday-List', value: 480, color: '#888888' },
+        ],
+        headline: 'Costco 開出第三條路「先交後告」+1.2% / Frontier 8-K 跌 22% — 零售三派、廉航三家死兩家',
+      },
+    },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Powell prep — three keywords ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: 'Powell 禮拜四的講稿、Politico 那邊有沒有漏出來？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '一句話沒有——歷任 Fed 主席最後一場、稿子鎖得最嚴。但我們聽到的版本——Powell 自己親手修了三遍、最後一稿凌晨改完、把「鷹」（hawk）這個字整段刪了。如果這是真的、那就是 A 劇本（鴿派 + SPY 540）的第二個確認。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我們桌會盯三個關鍵字——「交棒」（passing the baton）、「延續」（continuity）、「通膨還沒到目標」（inflation not yet at target）。一個關鍵字決定一個劇本。「交棒」=A、「延續」=B、「通膨」=C。這三個字的權重已經被市場壓縮到極限——Polymarket 上面有一檔「Will Powell mention "passing the baton"」的合約、yes 報 32%、no 報 68%、流動性才 8 萬美金（很淺）、但是有很多桌在用它做 hedge。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我個人——FOMC 聲明 14:00 看一輪、Powell 14:30 站講台再看一輪。中間 30 分鐘是真空、市場最容易 overshoot。我會留 20% 部位等聲明出來那一刻、看完整理 5 分鐘、再看 Powell 的肢體語言調整。Powell 講話的節奏——他卡頓的字、就是他不確定的字。市場會抓那個。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Wednesday 18-hour clock ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Warsh-T+0h', price: 100.00, change: 0.0 },
+          { symbol: 'GDP-T+12h', price: 100.00, change: 0.0 },
+          { symbol: 'FOMC-T+18h', price: 100.00, change: 0.0 },
+          { symbol: 'Powell-T+44h', price: 100.00, change: 0.0 },
+        ],
+        volatility: 18,
+        vix: 24.4,
+        rsi: 50.0,
+        beta: 1.00,
+        priceHistory: [100, 100, 100, 100, 100, 100, 100, 100],
+        volumeHistory: [20, 22, 24, 26, 28, 30, 32, 34],
+        sectors: [
+          { label: 'T+0h-Warsh', value: 480, color: '#cc8844' },
+          { label: 'T+12h-GDP', value: 720, color: '#22cc55' },
+          { label: 'T+18h-FOMC', value: 1380, color: '#22cc55' },
+          { label: 'T+44h-Powell', value: 1480, color: '#22cc55' },
+          { label: 'Cash-Pre-Storm', value: 1240, color: '#888888' },
+        ],
+        headline: '禮拜二 21:00 美東倒數計時：Warsh +0h / GDP +12h / FOMC +18h / Powell +44h — 18 小時 4 件事',
+      },
+    },
+
+    { type: 'wait', duration: 300 },
+
+    // ── Wrap: Tuesday calm food ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚兩位都還要回辦公室？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '回。10 點看 Warsh 投票直播、確認結果出來、夜盤期貨第一個小時的反應寫一頁 quick note 給合夥人。然後睡 4 個小時、5 點半起床看 GDP。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我也回。今晚要把事件 EV 矩陣的最後版本發給三十個客戶、然後 4 點半起床看 GDP。可能要熱一份夜宵——拉麵、加蛋、加溏心、湯多、麵硬。明早可能沒時間吃。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我也來一份、跟他一樣。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜二傍晚、東京街上下著小雨、食堂裡兩碗熱拉麵、麥茶、麵的蒸氣在窗上凝結。太平洋那邊——Powell 在華府宿舍翻最後一遍講稿、Warsh 跟夫人在喬治城吃晚飯說「不管投票結果、明天就上工」、JPMorgan 的固收桌剛把 GDP / FOMC 雙模型跑完最後一次、Apollo 的不良資產組在簽 JBLU 的 DIP 條款、Costco 的法務團隊正在寫「先交後告」的訴訟策略備忘、Frontier 的 CFO 在打給她的破產律師。市場關著、但事件在排隊。Polymarket 那條 0.25% 的線——再 60 個小時就會消失、那條 7.5% 的線——還會走兩個月。今晚先把拉麵吃完。明早 10 點 Warsh 投票、那是這一週第一個真實的數字。',
+      duration: 5800,
+    },
+  ],
+};
