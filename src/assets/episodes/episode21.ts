@@ -3,74 +3,116 @@ import type { Episode } from '../../engine/types';
 export const EPISODE_21: Episode = {
   id: 'ep-21',
   date: '2026-04-29',
-  title: '20260429 The Print',
-  description: 'Wednesday evening Tokyo — GDP just printed +1.5% (below +1.8% consensus, vindicating yesterday\'s scenario-A push). Warsh confirmed 52-48 overnight as predicted, with three swing senators voting yes-with-dissent statements. SPY trading +0.6% pre-FOMC at $537.50, 10Y -5bp to 4.33%. The data anomaly worth talking about: at 12:00 UTC Tuesday (= 21:00 JST, exactly when ep20 customers were eating dinner) all three Polymarket contracts simultaneously jumped to ~0.50 for one hour, then snapped back — classic oracle/midprice fallback when the order book emptied during a feed bridge issue. JBLU filed Chapter 11 this morning ET, Apollo won the DIP loan auction. FOMC announcement in 5 hours (14:00 ET = Thu 03:00 JST), Powell\'s last presser tomorrow ET. The 4/30 Iran contract has 10 hours of life left.',
+  title: '20260429 公司倒了那員工怎麼辦',
+  description: '禮拜三晚上、東京下著小雨。這一天有三件事——美國公布了一個經濟數字、一個央行委員過了任命投票、一家叫 JetBlue 的航空公司宣布破產重整。但走進食堂的人、心情是被「客戶有沒有失業」「家人有沒有買到票」「下個月房貸利息會不會降」決定的。今晚的對話沒有交易桌、沒有行話——就是一群普通人問一群懂一點點的人、生活到底會發生什麼。',
   actions: [
     { type: 'bgm', track: 'chill-lofi', command: 'play' },
 
     {
       type: 'narration',
-      text: '禮拜三晚上 10 點 Tokyo——US GDP 第一版 30 分鐘前才出、+1.5%（共識 +1.8%）、比預期弱、市場立刻按下 A 劇本（鴿派預期）的第一個確認鍵。Warsh 凌晨 10 點東京時間 52-48 過關、跟我們桌押的數字一樣、三個搖擺州的民主黨投了「贊成但留紀錄」的票、債券殖利率投票出來那一刻跳 7bp、又被 GDP 退回去。SPY 收盤前在 $537.50、漲 0.6%。FOMC 還剩 5 個小時——這個禮拜真正的爆點還沒來。Polymarket 那邊 4/30 那檔 10 小時後到期、Fed 50bp 那檔 5 小時後跟著到。但今天的 chart 上有一個黑天鵝痕跡——昨天 9 點晚上、我們在這裡吃飯的時候、三檔合約同時跳到 50%、一小時後又退回來。',
+      text: '禮拜三晚上 10 點、東京下著小雨。這一天美國發生了三件事——一家叫 JetBlue 的航空公司早上宣布破產、政府公布了一個比預期弱一點的經濟成長數字、然後一個被總統提名進中央銀行的人通過了參議院投票。明天凌晨還有一場央行會議要決定利息。但今晚走進食堂的兩個人、心情不是被這些大標題決定的——是被自己的客戶、自己的朋友、自己每個月要繳的房貸決定的。',
       duration: 5400,
     },
 
-    // ── Opening: Wed evening — post-GDP, pre-FOMC ──
+    // ── Snapshot focused on JBLU + a couple of broad reads ──
     {
       type: 'market-data',
       data: {
         tickers: [
+          { symbol: 'JetBlue', price: 0.30, change: -89.8 },
           { symbol: 'SPY', price: 537.50, change: 0.6 },
-          { symbol: '10Y', price: 4.33, change: -0.05 },
-          { symbol: 'DXY', price: 103.80, change: -0.3 },
-          { symbol: 'USDJPY', price: 156.20, change: -0.2 },
+          { symbol: '失業申請', price: 24800, change: 12.0 },
+          { symbol: 'WTI 油價', price: 95.40, change: -0.1 },
         ],
         volatility: 28,
         vix: 23.6,
         rsi: 58.0,
         beta: 1.04,
-        priceHistory: [534, 535, 536, 537, 537, 538, 538, 537],
-        volumeHistory: [82, 96, 108, 142, 168, 156, 138, 120],
+        priceHistory: [3.0, 1.2, 0.6, 0.4, 0.35, 0.32, 0.30, 0.30],
+        volumeHistory: [88, 142, 168, 156, 132, 108, 86, 64],
         sectors: [
-          { label: 'GDP-Miss-Bid', value: 1180, color: '#22cc55' },
-          { label: 'Pre-FOMC-Drift', value: 920, color: '#cc8844' },
-          { label: 'Bond-Rally', value: 1320, color: '#22cc55' },
-          { label: 'Yen-Bid', value: 480, color: '#22cc55' },
-          { label: 'Polymarket-Bridge', value: 320, color: '#888888' },
+          { label: 'JetBlue 員工 25,000 人', value: 1080, color: '#ee4444' },
+          { label: '已售出機票 150 萬張', value: 720, color: '#cc8844' },
+          { label: '美國股市小漲', value: 480, color: '#22cc55' },
+          { label: '油價平平', value: 380, color: '#888888' },
         ],
-        headline: 'GDP +1.5%（共識 +1.8%、比預期弱）— SPY +0.6% / 10Y -5bp / DXY -0.3% — 5 小時後 FOMC、A 劇本第一個確認鍵',
+        headline: 'JetBlue 早上宣布破產重整 — 股價剩三毛美金、25,000 名員工等通知、150 萬張已售出的機票去向未明',
       },
     },
 
-    // Chef Wed evening — early dinner crowd already cleared
+    // Chef Wed evening — closing prep, light crowd already gone
     { type: 'enter', character: 'chef', toTile: 'stove' },
-    { type: 'wait', duration: 500 },
+    { type: 'wait', duration: 600 },
     { type: 'move', character: 'chef', toTile: 'prep-area' },
-    { type: 'wait', duration: 400 },
+    { type: 'wait', duration: 500 },
     { type: 'move', character: 'chef', toTile: 'stove' },
     { type: 'wait', duration: 400 },
 
-    // Customer A enters — has been awake since 5am
+    // Customer A enters — looks tired
     { type: 'enter', character: 'customer-a', toTile: 'entrance' },
     { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。GDP 那個 +1.5%——你昨晚押的數字。' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天看你眼睛紅紅的、這麼晚才來、客戶那邊出狀況？' },
 
     { type: 'move', character: 'customer-a', toTile: 'random-stool' },
     { type: 'sit', character: 'customer-a' },
 
-    { type: 'dialogue', character: 'customer-a', text: '中了。但我跟合夥人都覺得——這次中得有點僥倖。我們桌算的是 +1.5%、市場共識 +1.8%、實際印出 +1.5%——剛好踩在我們押的那條。BEA 第二、第三次修正可能會把這個數字推回 +1.7% 左右。所以「中」這個字、我們不太敢用——更準確的說法是「方向對、第一版印的剛好我們在線」。' },
+    { type: 'dialogue', character: 'customer-a', text: '今天有點難。我有個大學同學——之前在 JetBlue 紐約總部做財務的——早上 7 點傳訊息給我、說公司剛在法院遞了破產的文件、整個樓層被叫去開會、不知道下個月還有沒有薪水。' },
 
     { type: 'move', character: 'chef', toTile: 'stove' },
     { type: 'wait', duration: 400 },
 
-    { type: 'dialogue', character: 'chef', text: 'Warsh 過關那一段——10 年期跳 7bp、又被 GDP 退回去？' },
+    { type: 'dialogue', character: 'chef', text: '蛤？JetBlue？那家美國的廉價航空？我去年才搭過、帶我老婆去夏威夷、機票還挺便宜的。怎麼會就這樣倒了？' },
 
-    { type: 'dialogue', character: 'customer-a', text: '對。10 點東京時間 Warsh 確認、52-48、票數跟我們押的一樣、三個搖擺州——西維吉尼亞、蒙大拿、阿拉斯加——都投贊成但發了「我們不認可」的書面聲明。10 年期投票結果出來那一刻從 4.39 跳到 4.46（+7bp）、美元也跳了 0.2。但兩個半小時後 GDP 印出來、立刻又退到 4.32、現在 4.33 收。等於 Warsh 那條走完了、市場現在所有的注意力都在 5 個小時後的 FOMC。' },
+    { type: 'dialogue', character: 'customer-a', text: '其實沒有「就這樣倒」、是慢慢倒的。航空公司平常就靠很薄的利潤撐著——機票賣便宜、油又貴、人工成本高。今年初油價一漲、再加上中東打了一個月仗、客人怕飛沒人買票、整個就撐不下去了。今天遞的那種破產、不是直接關門、英文叫做「第十一章」——白話講就是「我先停下來、欠的錢慢慢還、繼續開門營業、看能不能把自己救回來」。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '我同事在 GS 收益債桌的桌長今早給我們電話會——他說 Warsh 那票留下的疤、會在他正式上任那天再被市場拿出來算。今天先過、不代表 Q3 不會被秋後算帳。但這個禮拜、Warsh 已經是「過去式」。' },
+    { type: 'dialogue', character: 'chef', text: '那繼續開、員工會不會被裁？我同學當時去 JetBlue 是因為那邊福利還不錯、有醫療保險。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '會裁、但不是馬上、也不是全部。一般這種破產重整、會先砍掉沒賺錢的航線、再砍 10-15% 的人。我同學是財務、財務通常會留——因為破產過程要算很多錢、需要熟悉內部帳的人。但下面的空服員、地勤、那種「飛少了就不需要那麼多人」的位置、就比較危險。' },
 
     { type: 'emote', character: 'customer-a', emote: 'thinking', duration: 700 },
 
-    // ── Polymarket — Wed evening snapshot, with Tuesday-noon anomaly visible ──
+    { type: 'dialogue', character: 'chef', text: '那我去年買的票呢？我朋友三月的時候才買了暑假帶小孩去佛羅里達的票。錢會不會就泡湯了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '票通常會繼續有效——破產期間飛機還在飛、只是航線可能改、班次可能變。如果他訂的那個航線剛好被砍、航空公司會幫他換到別的航班、或者退錢。退錢的話可能要等幾個月、因為破產法院要排隊處理。但機票本身不會直接「歸零」、那是股票才會。' },
+
+    { type: 'dialogue', character: 'chef', text: '股票會歸零？JetBlue 的股票今天跌成什麼樣了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '從昨天的 $2.95 跌到 $0.30——大概是九成。明天可能停止交易、過幾個禮拜會從交易所下架。意思是、原本買 JetBlue 股票的人、口袋裡那張紙就變成幾乎沒價值。我看到 Reddit 上有個老先生、退休前買了五千美金的 JetBlue、想說廉價航空有未來、結果今天剩 500 美金。' },
+
+    { type: 'wait', duration: 400 },
+
+    // Customer B enters — also tired
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天大家都很累的樣子。' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: '剛才在公司、我們團隊三個人都被同事打電話來問——他們有人剛買了帶小孩去 Disney World 的家族行程、有人是常客累積飛行里程要換到歐洲的票、有人是供應商、JetBlue 欠他們上個月的錢還沒付。一整個下午都在解釋「破產不等於關門」這六個字。' },
+
+    { type: 'dialogue', character: 'chef', text: '飛行里程那種、會不會也歸零？我妹妹累積了一大堆、本來說要帶她小孩去韓國。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '里程通常還在、但會貶值——意思是同樣的里程、可能換不到原本能換的票了。歷史上美國以前幾家航空破產、最後里程大概只剩原本價值的三到七成。叫她趕快用掉、不要一直存。' },
+
+    { type: 'dialogue', character: 'chef', text: '那欠供應商錢呢？我們食堂如果哪天客人欠帳跑掉、那真的就拿不回來。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '差不多——但比你想的更不公平。破產法院會排隊還錢、銀行排第一、後面才是供應商、最後才是員工的某些福利。我朋友的公司是賣機上小點心給 JetBlue 的、上個月的帳單 40 萬美金、最後可能拿回 10 萬。剩下 30 萬、就當是學費。' },
+
+    { type: 'camera', effect: 'flash', duration: 200 },
+
+    { type: 'dialogue', character: 'chef', text: '那為什麼還有人想接這種快倒的公司？我聽你們上禮拜聊過、有什麼基金搶著借錢給他們。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '那種叫「禿鷹基金」——專門找快倒的公司、用很高的利息借錢給他們撐過破產這段。今天 JetBlue 接的那筆錢、利息 17%——一般房貸 6%、信用卡循環利息 18%、這是接近信用卡那種等級的。但對禿鷹基金來說、JetBlue 撐過去、他們收 17%；JetBlue 真的關門、他們把飛機跟航線當抵押品拿走、變成新的航空公司大股東。怎樣都不太虧。' },
+
+    { type: 'dialogue', character: 'chef', text: '聽起來蠻狠的。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '是狠、但市場就是這樣。沒有他們、JetBlue 今天就直接關門、25,000 個員工明天全部失業。有他們、至少多撐 12 到 18 個月、給時間慢慢調整。某種程度上是必要之惡。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── A brief Polymarket aside — not the centerpiece ──
     {
       type: 'polymarket-odds',
       data: {
@@ -84,14 +126,11 @@ export const EPISODE_21: Episode = {
             volume: 46956649,
             endDate: '2026-04-30T00:00:00Z',
             history: [
-              { t: 1777323618, p: 0.0025 }, { t: 1777327204, p: 0.0025 }, { t: 1777330803, p: 0.0025 }, { t: 1777334404, p: 0.0025 },
-              { t: 1777338004, p: 0.0025 }, { t: 1777341604, p: 0.0025 }, { t: 1777345203, p: 0.0025 }, { t: 1777348805, p: 0.0025 },
-              { t: 1777352404, p: 0.0025 }, { t: 1777356003, p: 0.0025 }, { t: 1777359616, p: 0.0025 }, { t: 1777363204, p: 0.0025 },
-              { t: 1777366805, p: 0.0025 }, { t: 1777370403, p: 0.0025 }, { t: 1777374003, p: 0.0025 }, { t: 1777377603, p: 0.5010 },
-              { t: 1777381204, p: 0.0025 }, { t: 1777384804, p: 0.0025 }, { t: 1777388404, p: 0.0025 }, { t: 1777392003, p: 0.0025 },
-              { t: 1777395604, p: 0.0025 }, { t: 1777399204, p: 0.0025 }, { t: 1777402805, p: 0.0025 }, { t: 1777406418, p: 0.0025 },
-              { t: 1777410003, p: 0.0025 }, { t: 1777413618, p: 0.0025 }, { t: 1777417204, p: 0.0025 }, { t: 1777420803, p: 0.0025 },
-              { t: 1777424404, p: 0.0025 }, { t: 1777424776, p: 0.0025 },
+              { t: 1777359616, p: 0.0025 }, { t: 1777363204, p: 0.0025 }, { t: 1777366805, p: 0.0025 }, { t: 1777370403, p: 0.0025 },
+              { t: 1777374003, p: 0.0025 }, { t: 1777377603, p: 0.5010 }, { t: 1777381204, p: 0.0025 }, { t: 1777384804, p: 0.0025 },
+              { t: 1777388404, p: 0.0025 }, { t: 1777392003, p: 0.0025 }, { t: 1777395604, p: 0.0025 }, { t: 1777399204, p: 0.0025 },
+              { t: 1777402805, p: 0.0025 }, { t: 1777406418, p: 0.0025 }, { t: 1777410003, p: 0.0025 }, { t: 1777413618, p: 0.0025 },
+              { t: 1777417204, p: 0.0025 }, { t: 1777420803, p: 0.0025 }, { t: 1777424404, p: 0.0025 }, { t: 1777424776, p: 0.0025 },
             ],
           },
           {
@@ -101,14 +140,11 @@ export const EPISODE_21: Episode = {
             volume: 34435198,
             endDate: '2026-06-30T00:00:00Z',
             history: [
-              { t: 1777323625, p: 0.0750 }, { t: 1777327207, p: 0.0750 }, { t: 1777330807, p: 0.0750 }, { t: 1777334412, p: 0.0750 },
-              { t: 1777338007, p: 0.0750 }, { t: 1777341608, p: 0.0750 }, { t: 1777345209, p: 0.0750 }, { t: 1777348813, p: 0.0750 },
-              { t: 1777352406, p: 0.0750 }, { t: 1777356008, p: 0.0750 }, { t: 1777359623, p: 0.0750 }, { t: 1777363206, p: 0.0750 },
-              { t: 1777366814, p: 0.0750 }, { t: 1777370406, p: 0.0750 }, { t: 1777374004, p: 0.0750 }, { t: 1777377612, p: 0.5050 },
-              { t: 1777381206, p: 0.0750 }, { t: 1777384807, p: 0.0750 }, { t: 1777388410, p: 0.0750 }, { t: 1777392005, p: 0.0750 },
-              { t: 1777395606, p: 0.0750 }, { t: 1777399210, p: 0.0750 }, { t: 1777402807, p: 0.0750 }, { t: 1777406421, p: 0.0750 },
-              { t: 1777410009, p: 0.0750 }, { t: 1777413620, p: 0.0750 }, { t: 1777417213, p: 0.0750 }, { t: 1777420810, p: 0.0750 },
-              { t: 1777424406, p: 0.0750 }, { t: 1777424777, p: 0.0750 },
+              { t: 1777359623, p: 0.0750 }, { t: 1777363206, p: 0.0750 }, { t: 1777366814, p: 0.0750 }, { t: 1777370406, p: 0.0750 },
+              { t: 1777374004, p: 0.0750 }, { t: 1777377612, p: 0.5050 }, { t: 1777381206, p: 0.0750 }, { t: 1777384807, p: 0.0750 },
+              { t: 1777388410, p: 0.0750 }, { t: 1777392005, p: 0.0750 }, { t: 1777395606, p: 0.0750 }, { t: 1777399210, p: 0.0750 },
+              { t: 1777402807, p: 0.0750 }, { t: 1777406421, p: 0.0750 }, { t: 1777410009, p: 0.0750 }, { t: 1777413620, p: 0.0750 },
+              { t: 1777417213, p: 0.0750 }, { t: 1777420810, p: 0.0750 }, { t: 1777424406, p: 0.0750 }, { t: 1777424777, p: 0.0750 },
             ],
           },
           {
@@ -118,150 +154,64 @@ export const EPISODE_21: Episode = {
             volume: 60317022,
             endDate: '2026-04-29T00:00:00Z',
             history: [
-              { t: 1777323624, p: 0.0005 }, { t: 1777327207, p: 0.0005 }, { t: 1777330807, p: 0.0005 }, { t: 1777334412, p: 0.0005 },
-              { t: 1777338007, p: 0.0005 }, { t: 1777341607, p: 0.0005 }, { t: 1777345208, p: 0.0005 }, { t: 1777348812, p: 0.0005 },
-              { t: 1777352406, p: 0.0005 }, { t: 1777356008, p: 0.0005 }, { t: 1777359622, p: 0.0005 }, { t: 1777363206, p: 0.0005 },
-              { t: 1777366813, p: 0.0005 }, { t: 1777370406, p: 0.0005 }, { t: 1777374004, p: 0.0005 }, { t: 1777377610, p: 0.4955 },
-              { t: 1777381206, p: 0.0005 }, { t: 1777384806, p: 0.0005 }, { t: 1777388410, p: 0.0005 }, { t: 1777392005, p: 0.0005 },
-              { t: 1777395606, p: 0.0005 }, { t: 1777399210, p: 0.0005 }, { t: 1777402807, p: 0.0005 }, { t: 1777406420, p: 0.0005 },
-              { t: 1777410008, p: 0.0005 }, { t: 1777413620, p: 0.0005 }, { t: 1777417213, p: 0.0005 }, { t: 1777420810, p: 0.0005 },
-              { t: 1777424406, p: 0.0005 }, { t: 1777424703, p: 0.0005 },
+              { t: 1777359622, p: 0.0005 }, { t: 1777363206, p: 0.0005 }, { t: 1777366813, p: 0.0005 }, { t: 1777370406, p: 0.0005 },
+              { t: 1777374004, p: 0.0005 }, { t: 1777377610, p: 0.4955 }, { t: 1777381206, p: 0.0005 }, { t: 1777384806, p: 0.0005 },
+              { t: 1777388410, p: 0.0005 }, { t: 1777392005, p: 0.0005 }, { t: 1777395606, p: 0.0005 }, { t: 1777399210, p: 0.0005 },
+              { t: 1777402807, p: 0.0005 }, { t: 1777406420, p: 0.0005 }, { t: 1777410008, p: 0.0005 }, { t: 1777413620, p: 0.0005 },
+              { t: 1777417213, p: 0.0005 }, { t: 1777420810, p: 0.0005 }, { t: 1777424406, p: 0.0005 }, { t: 1777424703, p: 0.0005 },
             ],
           },
         ],
       },
     },
 
-    { type: 'dialogue', character: 'customer-a', text: '看這條走勢圖中間那根直插上去再瞬間落下來——三檔合約的共同尖峰、發生在昨天 12:00 UTC、就是東京時間禮拜二晚上 9 點整。我們昨晚吃飯吃到一半！我手機螢幕上看到 4/30 從 0.25% 跳到 50%、第一反應是「螢幕死掉了重新整理一下」、結果重整後還是 50%、再過一陣子又退回 0.25%。當下不知道是什麼。今早查紀錄——三檔同步、同一個小時、全部跳到 0.50 附近、然後同時退回。' },
+    { type: 'dialogue', character: 'customer-b', text: '對了給你看一個有趣的東西——這個叫做「預測網站」、上面有人下注賭各種事情會不會發生。中間那一條凸起來的尖峰、是昨天晚上系統故障一個小時、跟市場無關、純粹是技術問題、跑出來的假數字。今天我同事拿來上課用——「相關的事情才一起動、不相關的事情同時動就是 bug」。' },
+
+    { type: 'dialogue', character: 'chef', text: '哈、原來這種網站也會出包。我以為都很厲害。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '都是人寫的、都會出包。重點是會看的人、知道哪邊是真訊號、哪邊是雜音。' },
 
     { type: 'wait', duration: 400 },
 
-    // ── Customer B enters — has the post-mortem on the anomaly ──
-    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
-    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
-    { type: 'sit', character: 'customer-b' },
-
+    // ── GDP / cost-of-living angle ──
     { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。昨晚那個 50% 跳——你那邊查到原因了？' },
+    { type: 'dialogue', character: 'chef', text: '對了今天美國的那個經濟數字呢？早上看新聞說「比預期差」、可是股票好像反而漲？聽起來怪怪的。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '對、聽起來是怪。但其實邏輯是這樣——經濟成長慢、央行就比較有理由降利息。利息降、企業借錢便宜、股票就漲。所以現在這個情況——「不太好但也沒太壞」、就是股票最喜歡的版本。' },
+
+    { type: 'dialogue', character: 'chef', text: '說起來、我這條街上最近確實客人比上個月少。我開始煮拉麵以來、四月通常是最旺的、櫻花季餘溫、但今年的四月、我桌數平均掉了大概兩成。進貨方面——豬肉漲了 8%、雞蛋漲了 12%、啤酒批發又漲一輪。我自己也在想要不要把湯麵漲 50 円。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '你感受到的、就是那個經濟數字背後的東西。每個人都微微緊一點、你的客人少兩成、隔壁麵包店的生意也少兩成、結果整個城市消費就少一截、這就是 GDP 比預期弱的真實意思。不是抽象的數字、是你今天少了幾桌客人。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── FOMC tonight + closing ──
     { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: '那你們說明天凌晨那個央行會議——「降利息」——對我們普通人有什麼差？' },
 
-    { type: 'dialogue', character: 'customer-b', text: '查到了——那不是真的成交、是 oracle 出問題。Polymarket 的價格是訂單簿上面 best bid 跟 best ask 的中間值（midpoint）。昨天 12:00 UTC 整、訂單簿空了一個小時——可能是 CLOB 的 keeper 帳戶 gas 不夠、或者 RPC 節點掉線——所有 maker 的單同時失效。沒有 bid 跟 ask、預設值就是 0.50（不知道偏哪邊）。三檔合約的成交不一樣、所以三檔的「沒成交但被讀成 0.5」的數字小不一樣——0.501、0.505、0.4955。' },
+    { type: 'dialogue', character: 'customer-b', text: '兩面都有。利息降、你的房貸利率慢慢往下、每個月省一點；企業借錢便宜、可能多徵人、就業會好一點。但反面——你存在銀行的錢利息也少、養老退休族那邊收入會減。所以央行在「想刺激經濟」跟「想保護儲蓄者」之間做平衡。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '所以不是有人真的下單、是「沒有人下單」被系統當成 0.50？這個記在心裡——以後在 Polymarket 上看到所有合約同步跳到 50%、第一反應是「oracle 掉線」、不是「市場有事」。三條同時動、相關性 1.0、那不是市場、那是 bug。' },
+    { type: 'dialogue', character: 'chef', text: '我房貸還剩 12 年、每個月差 5,000 円我都很有感。' },
 
-    { type: 'dialogue', character: 'customer-b', text: '對——而且更重要的是、看那個 timestamp。12:00 UTC 整數、不是 12:00:30 或 11:59:48——是「整點抓資料」的那一秒、剛好抓到掉線中。下一個整點 13:00 UTC 抓的時候、訂單簿已經回來了、價格瞬間恢復。等於這是「採樣偏差」（sampling artifact）——如果你 30 秒採樣一次、你可能完全沒看到。我們公司昨晚的 risk dashboard 就完全沒看到——因為它每 5 分鐘採樣、剛好錯過。' },
+    { type: 'dialogue', character: 'customer-a', text: '美國降息、日本央行不一定跟、所以你這邊的房貸不會立刻動。但日圓會升、進口的東西會便宜一點點——你的豬肉、雞蛋、啤酒、可能下個月進貨價格會稍微緩一點。間接的、會影響到。' },
 
-    { type: 'camera', effect: 'flash', duration: 200 },
+    { type: 'dialogue', character: 'chef', text: '聽起來不管做什麼工作、最後都是回到「下個月日子好不好過」。' },
 
-    // ── JBLU Chapter 11 + retail follow-up ──
-    {
-      type: 'market-data',
-      data: {
-        tickers: [
-          { symbol: 'JBLU', price: 0.30, change: -89.8 },
-          { symbol: 'SAVE-OTC', price: 0.18, change: -76.9 },
-          { symbol: 'ULCC', price: 2.40, change: -42.9 },
-          { symbol: 'ALGT', price: 51.20, change: 3.6 },
-        ],
-        volatility: 78,
-        vix: 23.6,
-        rsi: 12.0,
-        beta: 1.92,
-        priceHistory: [2.95, 1.20, 0.60, 0.40, 0.35, 0.32, 0.30, 0.30],
-        volumeHistory: [88, 142, 168, 156, 132, 108, 86, 64],
-        sectors: [
-          { label: 'JBLU-Ch11-Filed', value: 480, color: '#ee4444' },
-          { label: 'SAVE-Pennies', value: 180, color: '#ee4444' },
-          { label: 'Apollo-DIP-Won', value: 920, color: '#22cc55' },
-          { label: 'ALGT-Survivor', value: 680, color: '#22cc55' },
-          { label: 'LCC-Cascade-Done', value: 380, color: '#cc8844' },
-        ],
-        headline: 'JBLU 上午 8:30 美東遞 Chapter 11 — 股價 -90% 到 $0.30、Apollo 得標 10 億 DIP 借款（17%、18% 換股）、原股東歸零',
-      },
-    },
-
-    { type: 'dialogue', character: 'customer-b', text: 'JBLU 今早 8:30 美東——也就是禮拜三早上 21:30 JST、跟 GDP 同一個小時——遞 Chapter 11。Apollo 得標、條件比禮拜一漏出來那版稍緊一點：10 億美金、17%、18% 換股、強制重整。原股東今天歸零、明天股票會被 NYSE 摘牌。Frontier 那邊董事會今晚還在開——SAVE 場外 18 cents、被當作下一個。' },
-
-    { type: 'dialogue', character: 'customer-a', text: '廉航三家死兩家——LCC cascade（連鎖）算告一段落。剩下 Frontier 還在掙扎、ALGT 是這條故事裡的最大贏家——市佔率重分配、地面服務商搶它、油價避險續約都比同業便宜。今天 ALGT +3.6% 收 $51.20、整個四月漲了 24%。我們桌四月初買進的那批（每股 $42）、現在 +22%。算這禮拜唯一一筆完全照腳本走的部位。' },
+    { type: 'dialogue', character: 'customer-b', text: '差不多就是這樣。我們桌上每天看的數字、最後落在我朋友的小孩到底能不能搭上去 Disney World 的飛機、你的客人下班會不會走進來吃一碗麵、JetBlue 的空姐六月還有沒有薪水。其他的、都是裝飾。' },
 
     { type: 'wait', duration: 400 },
 
-    // ── FOMC in 5 hours ──
+    // ── Wrap: ramen ──
     { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: 'FOMC 5 小時後——東京凌晨 3 點。你們桌怎麼操作？' },
+    { type: 'dialogue', character: 'chef', text: '今晚要點什麼？兩位看起來都需要一碗熱的。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '我們桌的同事大部分今晚不睡——3 點看聲明、3:30 看 Powell 站講台、4:30 看完寫快訊、5 點半交給亞洲時段桌。我自己——3 點看完聲明就回家睡 3 小時、6 點半再起來看 Powell 影片重播跟市場第一輪反應整理。Powell 30 分鐘的記者會、有時候第三次重看才會聽出他卡頓在哪個字。' },
+    { type: 'dialogue', character: 'customer-a', text: '熱拉麵、加蛋、加溏心、湯多。' },
 
-    { type: 'dialogue', character: 'customer-b', text: 'GDP +1.5% 這個版本——已經先把「鴿派預期」的 0.4% 漲幅做掉了。FOMC 聲明出來、如果只是「降 25bp + 維持原措辭」、SPY 可能不動或微跌（因為「沒驚喜」）。如果聲明把「expected」拿掉換成「committed」、那是 A 劇本的第二個鍵——SPY 跳到 539-540。如果聲明加上「inflation persistent」這種字、那 C 劇本啟動、SPY 跌到 532。' },
+    { type: 'dialogue', character: 'customer-b', text: '一樣、加煎餃。等一下回辦公室盯凌晨那個會議、可能要熬到三點半。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '我桌押 A 機率現在從 40% 升到 50%——GDP 弱已經是先確認的鍵。B 維持 30%、C 退到 20%。Polymarket 那檔 Fed 50bp 5 小時後就到期、現在 0.05%、絕對歸 0、那是已經死透。今晚 3 點聲明出來、市場第一秒會跳的方向、我們押綠（A）的 60%、紅（C）的 40%——但下注的不是「跳哪邊」、是「跳幅有多大」。' },
+    { type: 'dialogue', character: 'chef', text: '來、馬上煮。湯今天熬得久、應該不會讓你們失望。我那個朋友——JetBlue 你那位同學——叫他這禮拜過來吃一頓、湯免費。' },
 
-    { type: 'wait', duration: 400 },
-
-    // ── Powell tomorrow keyword bingo ──
-    { type: 'move', character: 'chef', toTile: 'stove' },
-    { type: 'dialogue', character: 'chef', text: 'Powell 禮拜四講話——明天什麼時候？東京時間。' },
-
-    { type: 'dialogue', character: 'customer-b', text: 'Powell 整段是禮拜三 14:30 美東——東京時間禮拜四凌晨 3:30。聲明 14:00 出、Powell 14:30 站講台。中間 30 分鐘的真空、市場容易 overshoot。聲明文字市場會解讀成 60%、Powell 講話是另外 40%。我們桌的觀察策略——聲明出來那一刻只放 50% 的部位、看 Powell 講完再把剩下 50% 補上。' },
-
-    { type: 'dialogue', character: 'customer-a', text: '關鍵字三個——「交棒」（passing）、「延續」（continuity）、「通膨」（inflation）。一個關鍵字一個劇本。但今天 GDP 弱、Polymarket Fed 50bp 死透、市場已經在 lean dovish。Powell 即使講「延續」、市場也會解讀成「不鷹」、所以 A 跟 B 之間的差距已經在縮小。真正能讓市場驚到的、只剩 C——也就是他突然講「inflation expectations」三個字、那才會把 SPY 推下去。' },
-
-    { type: 'dialogue', character: 'customer-b', text: 'Polymarket 那檔「Will Powell mention passing the baton」我昨天說 yes 32%、no 68%——今天看一下、yes 已經跳到 41%、no 退到 59%。流動性還是只有 8 萬美金（很淺）、但方向告訴你——市場越來越覺得 Powell 會直接講出「交棒」。如果他真的講、那是 A 劇本第三個鍵、SPY 540 確認。' },
-
-    { type: 'wait', duration: 400 },
-
-    // ── Iran 4/30 contract — 10 hours to expiry ──
-    { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: '4/30 那檔合約——還剩 10 個小時就到期、最後一段時間衰減看起來怎麼樣？' },
-
-    { type: 'dialogue', character: 'customer-a', text: '剩 10 小時、現在 0.25%——理論上最後 10 小時應該退到 0.10% 以下、最後一小時可能歸 0。但今天整天都釘在 0.25%、完全沒退。意思是——還是有人在這個機率下接單。可能是套利、可能是有人想留個尾巴。我會在凌晨 2 點—FOMC 前 1 小時—看一次、如果還在 0.25%、那就是真的有人在賭最後一秒驚喜。' },
-
-    { type: 'dialogue', character: 'customer-b', text: '0.25% 換算成押注賠率——你下 25 美金、贏的話拿 1 萬美金、虧損上限就是那 25 美金。對這種「機率極小但賠率極高」的合約、最後 24 小時通常還會留一個小池子——彩票心態。10 小時後到期、我猜會走到 0.10% 左右、不會歸 0。明天早上 9 點 JST 到期那一刻、然後合約消失。我會在 Discord 上設個鬧鐘、看那一秒。' },
-
-    { type: 'camera', effect: 'shake', duration: 250, intensity: 1 },
-
-    { type: 'wait', duration: 300 },
-
-    // ── 5-hour overnight clock ──
-    {
-      type: 'market-data',
-      data: {
-        tickers: [
-          { symbol: 'FOMC-T+5h', price: 100.00, change: 0.0 },
-          { symbol: 'Powell-T+5.5h', price: 100.00, change: 0.0 },
-          { symbol: 'Iran-T+10h', price: 100.00, change: 0.0 },
-          { symbol: 'Asia-Open-T+8h', price: 100.00, change: 0.0 },
-        ],
-        volatility: 18,
-        vix: 23.6,
-        rsi: 50.0,
-        beta: 1.00,
-        priceHistory: [100, 100, 100, 100, 100, 100, 100, 100],
-        volumeHistory: [40, 44, 48, 52, 56, 60, 64, 68],
-        sectors: [
-          { label: 'T+5h-FOMC', value: 1480, color: '#22cc55' },
-          { label: 'T+5.5h-Powell', value: 1380, color: '#22cc55' },
-          { label: 'T+10h-Iran-Expiry', value: 480, color: '#cc8844' },
-          { label: 'A-50%', value: 1280, color: '#22cc55' },
-          { label: 'C-20%', value: 720, color: '#ee4444' },
-        ],
-        headline: '禮拜三晚 22:00 JST 倒數計時：FOMC +5h / Powell +5.5h / Iran 4/30 +10h — A 劇本機率 40% → 50%（GDP 弱已先確認）',
-      },
-    },
-
-    { type: 'wait', duration: 300 },
-
-    // ── Wrap: Wed evening, late food ──
-    { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: '今晚兩位都不睡了？' },
-
-    { type: 'dialogue', character: 'customer-a', text: '半睡——3 點看完聲明回家補 3 小時、6 點半再起來看 Powell 重播。熱拉麵、加蛋、加溏心、湯多、麵硬。這碗要撐到凌晨。' },
-
-    { type: 'dialogue', character: 'customer-b', text: '我整晚不睡——回辦公室盯到亞洲早盤 8 點。一樣熱拉麵、加蛋、不要蔥。再多一個煎餃。' },
-
-    { type: 'dialogue', character: 'customer-a', text: '你那個 oracle bug 的 post-mortem——記得寫進今晚 quick note 給客戶。下次再出現他們才不會被嚇到。' },
-
-    { type: 'dialogue', character: 'customer-b', text: '已經寫了。標題「Polymarket midpoint defaulting: a sampling story」。半頁、附那張 timestamp 12:00:00 的截圖。' },
+    { type: 'dialogue', character: 'customer-a', text: '我會跟他說。他會很感動。' },
 
     { type: 'sfx', sound: 'chimes' },
 
@@ -270,7 +220,7 @@ export const EPISODE_21: Episode = {
 
     {
       type: 'narration',
-      text: '禮拜三晚上 10 點半的食堂、兩碗熱拉麵、煎餃、麥茶、外面是東京週中的小雨、計程車燈在路口閃綠然後紅。太平洋那邊——FOMC 的 19 個官員在華府 Eccles Building 二樓會議室坐定、Powell 在隔壁辦公室翻最後一遍講稿（那一段 hawk 字仍然是被刪掉的版本）、JBLU 的破產律師在達拉斯的法院遞交章節 11 的最後一份附件、Apollo 的不良資產組在會議室白板上寫「ALGT 收購可行性」、Frontier 的董事會還沒開完、Costco 的法務團隊把「先交後告」訴狀模板寄給其他六家潛在加入者。Polymarket 那條 0.25% 的線——再 10 個小時就會消失；那條 7.5% 的線——還會走兩個月。今晚 5 個小時後、市場會給這個禮拜真正的數字。先把拉麵吃完。',
+      text: '禮拜三晚上 11 點、雨停了、東京的空氣有點冷。食堂裡兩碗熱拉麵的蒸氣在窗上凝結。明天早上 9 點、JetBlue 的股票會在紐約交易所停牌；中午、150 萬個買了暑假機票的家庭會收到郵件「您的航班可能異動」；下午、央行會宣布利息決定、Powell 會做最後一場記者會。但今晚、有個叫山田的人剛走進食堂吃完麵回家、有個在 JetBlue 工作了八年的紐約財務部副理在家裡跟太太討論小孩的學區、有一群禿鷹基金經理在 Park Avenue 簽完文件回家睡覺。市場是抽象的、但每個數字背後、是一個一個具體的人。湯熬得好、麵下得快、客人吃得飽——這條街、這個晚上、這碗麵、就是經濟。',
       duration: 5800,
     },
   ],
