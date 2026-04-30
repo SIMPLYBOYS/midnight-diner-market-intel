@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { eventBus } from '../engine/EventBus';
 import { ALL_EPISODES } from '../assets/episodes';
+
+const LATEST_EPISODE = ALL_EPISODES[ALL_EPISODES.length - 1];
 
 function formatDateLabel(date?: string): string {
   if (!date) return '';
@@ -16,9 +18,10 @@ function formatDateCompact(date?: string): string {
 }
 
 export function TopNav() {
-  const [currentEpisode, setCurrentEpisode] = useState(ALL_EPISODES[0].id);
+  const [currentEpisode, setCurrentEpisode] = useState(LATEST_EPISODE.id);
   const [status, setStatus] = useState<'idle' | 'playing' | 'finished'>('idle');
   const scrollRef = useRef<HTMLDivElement>(null);
+  const orderedEpisodes = useMemo(() => [...ALL_EPISODES].reverse(), []);
 
   useEffect(() => {
     const onStart = ({ episodeId }: { episodeId: string }) => {
@@ -58,7 +61,7 @@ export function TopNav() {
       <div style={styles.selectorWrap}>
         <button style={styles.arrowBtn} onClick={() => scroll(-1)}>◀</button>
         <div ref={scrollRef} className="episode-scroll" style={styles.scrollContainer}>
-          {ALL_EPISODES.map((ep) => {
+          {orderedEpisodes.map((ep) => {
             const active = ep.id === currentEpisode;
             const dateLabel = formatDateLabel(ep.date);
             const dateCompact = formatDateCompact(ep.date);

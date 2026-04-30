@@ -42,8 +42,8 @@ export class DinerScene extends Phaser.Scene {
     eventBus.on('player:set-manual-mode', ({ enabled }) => this.timelinePlayer.setManualMode(enabled));
     eventBus.on('player:advance', () => this.timelinePlayer.advance());
 
-    // Auto-play first episode
-    this.playEpisode(ALL_EPISODES[0].id);
+    // Auto-play the latest episode
+    this.playEpisode(ALL_EPISODES[ALL_EPISODES.length - 1].id);
   }
 
   update(_time: number, delta: number): void {
