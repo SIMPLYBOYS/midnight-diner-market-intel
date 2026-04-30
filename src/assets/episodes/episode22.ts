@@ -92,7 +92,7 @@ export const EPISODE_22: Episode = {
     { type: 'dialogue', character: 'chef', text: 'いらっしゃい。你也在講 Powell？' },
     { type: 'move', character: 'chef', toTile: 'stove' },
 
-    { type: 'dialogue', character: 'customer-b', text: '我比較聰明、3 點半睡覺、6 點半起來看重播。看完之後我老婆問我「你昨晚為什麼一直翻來翻去」、其實是因為我在想——這種「一個時代結束」的感覺、上一次體會到是什麼時候。然後想起來——我爸退休那年、他打電話給我講三十年金融業生涯的時候、語氣跟 Powell 今天差不多。' },
+    { type: 'dialogue', character: 'customer-b', text: '我比較聰明、3 點半睡覺、6 點半起來看重播。看完之後我先生問我「你昨晚為什麼一直翻來翻去」、其實是因為我在想——這種「一個時代結束」的感覺、上一次體會到是什麼時候。然後想起來——我爸退休那年、他打電話給我講三十年金融業生涯的時候、語氣跟 Powell 今天差不多。' },
 
     { type: 'dialogue', character: 'chef', text: '我老婆每次聽我講金融的事都會打哈欠、但她聽我講「我師父最後一天交班」那次哭了。可能就是這種感覺。' },
 
@@ -187,7 +187,7 @@ export const EPISODE_22: Episode = {
 
     { type: 'dialogue', character: 'customer-a', text: '上下跳通常代表沒有強烈意見——下午從 7.5% 跳到 8.5% 又退回 7.5% 又跳到 8.5%、沒有明確方向。可能是有人在試水溫、可能就是一些零散的小單。我們不會太認真看這種訊號。' },
 
-    { type: 'dialogue', character: 'chef', text: '聽起來就像我老闆在我老婆面前評論晚餐——他不確定好不好吃、就一直「嗯、嗯、不錯、不錯」上下跳。' },
+    { type: 'dialogue', character: 'chef', text: '聽起來就像我老婆問我她今天煮的菜好不好吃、我又怕真話太傷、就一直「嗯、嗯、不錯、不錯」上下跳。' },
 
     { type: 'dialogue', character: 'customer-b', text: '哈——對、就是那種感覺。市場有時候真的就是還沒想清楚。' },
 
