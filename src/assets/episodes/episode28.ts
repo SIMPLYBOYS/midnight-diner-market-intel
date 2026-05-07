@@ -68,11 +68,14 @@ export const EPISODE_28: Episode = {
         beta: 1.02,
         priceHistory: [7259, 7278, 7295, 7312, 7328, 7342, 7355, 7365],
         volumeHistory: [78, 92, 104, 112, 118, 124, 128, 130],
+        // sectors[].value = |%change| × 100 (basis points) of the headline asset for each theme.
+        // Upcoming-event rows are dropped (NFP/jobless claims belong in dialogue, not the bar chart).
         sectors: [
-          { label: 'Nikkei +5% 破 6 萬 2 — 黃金週後第二天補完所有恐慌', value: 1240, color: '#22cc55' },
-          { label: 'AMD +17.77%、Nvidia +5.77%、SMCI +24.5% — AI 整片紅', value: 980, color: '#44aaee' },
-          { label: 'Brent 102 — 三天前 114、Trump 喊停 + 威脅、油吐回來', value: 720, color: '#22cc55' },
-          { label: '今晚 21:30 JST 失業金 + 生產力，明早 NFP 6 萬', value: 420, color: '#cc8844' },
+          { label: 'SMCI +24.5%（AMD 同題材、半導體整片紅）', value: 2450, color: '#44aaee' },
+          { label: 'AMD +17.77% 收盤（Q1 大爆發、Data Center +57%）', value: 1777, color: '#44aaee' },
+          { label: 'Brent -6.96% 收 $102.22（Trump 喊停 + 威脅、油吐回來）', value: 696, color: '#22cc55' },
+          { label: 'Nvidia +5.77% 收 $207.83（Corning 27 億光纖合作）', value: 577, color: '#44aaee' },
+          { label: 'Nikkei +5.0% 破 6 萬 2（黃金週後補課、第一次）', value: 500, color: '#22cc55' },
         ],
         headline: 'Nikkei 第一次破 6 萬 2，S&P／Nasdaq 同創新高，AMD +17.77%、Brent 跌回 102；賭盤伊朗政府倒台機率 5.5%→4.5%',
       },
