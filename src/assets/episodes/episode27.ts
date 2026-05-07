@@ -73,11 +73,12 @@ export const EPISODE_27: Episode = {
         beta: 1.05,
         priceHistory: [7200, 7212, 7228, 7240, 7244, 7252, 7256, 7259],
         volumeHistory: [128, 118, 102, 96, 88, 84, 80, 78],
+        // sectors[].value = |%change| × 100 (basis points) of the headline asset for each theme.
+        // ISM print (53.6 level, not an asset move) dropped — belongs in dialogue.
         sectors: [
-          { label: 'Trump 暫停 Project Freedom — 油 110、S&P／Nasdaq 同創新高', value: 1260, color: '#22cc55' },
-          { label: 'AMD Q1：營收 103 億 +38%、DC 58 億 +57%、Q2 指引 +46%', value: 980, color: '#44aaee' },
-          { label: 'KOSPI 7,384 +6.45%、Samsung +15% 破一兆市值', value: 720, color: '#22cc55' },
-          { label: 'ISM 服務業 4 月 53.6（vs 53.7）、就業跌回 48 收縮', value: 380, color: '#cc8844' },
+          { label: 'Samsung 005930 +15.05%（破一兆美金市值、第一檔韓股）', value: 1505, color: '#22cc55' },
+          { label: 'AMD 盤後 +15%（Q1 營收 103 億 +38%、DC +57%）', value: 1500, color: '#44aaee' },
+          { label: 'Brent -3.99% 收 $109.87（Trump 暫停 Project Freedom）', value: 399, color: '#22cc55' },
         ],
         headline: 'Trump 暫停 Project Freedom：油 -4% 收 110，S&P／Nasdaq 同創新高，AMD 盤後 +15%、KOSPI +6.45% 破七千',
       },

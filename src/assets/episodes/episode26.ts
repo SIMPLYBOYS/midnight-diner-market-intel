@@ -69,11 +69,12 @@ export const EPISODE_26: Episode = {
         beta: 1.18,
         priceHistory: [7245, 7252, 7258, 7240, 7222, 7215, 7208, 7200],
         volumeHistory: [78, 82, 88, 102, 118, 124, 132, 128],
+        // sectors[].value = |%change| × 100 (basis points) of the headline asset for each theme.
+        // Upcoming-event row (今晚 ISM 服務業／凌晨 AMD) dropped — belongs in dialogue.
         sectors: [
-          { label: 'Project Freedom 第一天 — UAE 攔截、Fujairah 起火、油 +5%', value: 1140, color: '#cc4444' },
-          { label: '韓台同日打破紀錄 — KOSPI +5%、台股破四萬', value: 880, color: '#22cc55' },
-          { label: '今晚 11 點 ISM 服務業／凌晨 5 點 AMD 財報', value: 540, color: '#cc8844' },
-          { label: 'eBay 董事會「會仔細評估」、GME -10%', value: 380, color: '#888888' },
+          { label: 'GME -10%（Cohen CNBC 訪談 + 反向併購質疑）', value: 1000, color: '#cc4444' },
+          { label: 'KOSPI +5.12%（Samsung +5.44%、SK Hynix +12.52% 同破紀錄）', value: 512, color: '#22cc55' },
+          { label: 'Brent +5.0% 收 $114（UAE 攔截、Fujairah 起火）', value: 500, color: '#cc4444' },
         ],
         headline: 'Project Freedom 第一天就出事：UAE 攔截伊朗飛彈、Fujairah 起火、Brent +5% 到 $114；Dow 跌 557 點；韓台同日破紀錄',
       },

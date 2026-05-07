@@ -53,11 +53,12 @@ export const EPISODE_25: Episode = {
         beta: 1.03,
         priceHistory: [7211, 7218, 7224, 7230, 7238, 7245, 7252, 7258],
         volumeHistory: [82, 88, 92, 88, 90, 86, 78, 92],
+        // sectors[].value = |%change| × 100 (basis points) of the headline asset for each theme.
+        // Upcoming-event rows (NFP forecast / earnings preview) dropped — belong in dialogue.
         sectors: [
-          { label: 'GameStop ➜ eBay 560 億美金併購提案', value: 1180, color: '#22cc55' },
-          { label: 'Project Freedom 今天開始 — 油反而冷靜', value: 720, color: '#22aacc' },
-          { label: '禮拜五 NFP 預估剩 6 萬', value: 540, color: '#cc8844' },
-          { label: 'AMD／ARM 本週財報', value: 380, color: '#888888' },
+          { label: 'eBay 盤後 +14%（GameStop 560 億美金併購提案）', value: 1400, color: '#22cc55' },
+          { label: 'Nasdaq 100 期貨 +0.87%（科技再帶、Apple 週五 +3.4%）', value: 87, color: '#44aaee' },
+          { label: 'Brent -0.5%（Project Freedom 開動、油反而冷靜）', value: 50, color: '#22aacc' },
         ],
         headline: 'GameStop 出價 560 億吞 eBay；Project Freedom 上午開始護航、Brent 沒跳；NFP 預估只剩 6 萬',
       },
