@@ -28,11 +28,12 @@ import type { Episode } from '../../engine/types';
  *   for cloture vote on Kevin Warsh as next Fed chair. Powell's term ends
  *   Fri 5/15 (6 days from today). (CNBC 4/29, Senate Daily Press)
  * - Polymarket "Will the Iranian regime fall by June 30?": latest.json
- *   collectedAt 2026-05-08T01:07:32Z (~28h stale by Sat night). Last refresh
- *   showed yesProbability 0.045, volume $37.87M, 168 history points. Last 25
- *   used verbatim below — captures the flat 24h leading into the NFP print.
- *   No newer snapshot available, so dialogue treats it as "yesterday's
- *   reading" rather than live. (public/polymarket/latest.json)
+ *   collectedAt 2026-05-09T01:06:33Z (Sat ~10:06 JST). yesProbability 0.045,
+ *   volume $38.08M (was $37.87M Fri = +$0.21M in 24h — even smaller than
+ *   Fri's +$0.17M, the quietest two-day stretch in a week, despite the
+ *   UAE/tanker flare-up). 169 history points. Last 25 used verbatim below —
+ *   captures the line *not* moving through Friday's missile exchange, which
+ *   is the actual story tonight. (public/polymarket/latest.json)
  * - sectors[].value methodology: |%change|×100 of headline asset for each
  *   theme. Nasdaq +1.71→171, Brent +1.66→166, S&P +0.84→84, Dow +0.02→2.
  */
@@ -151,43 +152,43 @@ export const EPISODE_30: Episode = {
 
     // ── Polymarket — yesterday's reading, line still 4.5%, no fresh data ──
     { type: 'move', character: 'chef', toTile: 'counter-center' },
-    { type: 'dialogue', character: 'chef', text: '那賭盤上那條 4.5%、伊朗政府倒不倒、今天有沒有動？昨晚出 NFP、今天又有飛彈、應該動了一下吧？' },
+    { type: 'dialogue', character: 'chef', text: '那賭盤上那條 4.5%、伊朗政府倒不倒、今天有沒有動？昨晚出 NFP、禮拜五早上又有飛彈、按理說該動一下吧？' },
 
     {
       type: 'polymarket-odds',
       data: {
-        asOf: '2026-05-08T01:07:32Z',
+        asOf: '2026-05-09T01:06:33Z',
         highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
         markets: [
           {
             slug: 'will-the-iranian-regime-fall-by-june-30',
             question: 'Will the Iranian regime fall by June 30?',
             yesProbability: 0.045,
-            volume: 37870761,
+            volume: 38075107,
             endDate: '2026-06-30T00:00:00Z',
             history: [
-              { t: 1778119207, p: 0.045 }, { t: 1778122806, p: 0.045 }, { t: 1778126405, p: 0.045 },
-              { t: 1778130006, p: 0.045 }, { t: 1778133606, p: 0.045 }, { t: 1778137209, p: 0.045 },
-              { t: 1778140821, p: 0.045 }, { t: 1778144405, p: 0.045 }, { t: 1778148005, p: 0.045 },
-              { t: 1778151606, p: 0.045 }, { t: 1778155219, p: 0.045 }, { t: 1778158804, p: 0.045 },
-              { t: 1778162418, p: 0.045 }, { t: 1778166020, p: 0.045 }, { t: 1778169604, p: 0.045 },
-              { t: 1778173215, p: 0.045 }, { t: 1778176807, p: 0.045 }, { t: 1778180406, p: 0.045 },
-              { t: 1778184008, p: 0.045 }, { t: 1778187609, p: 0.045 }, { t: 1778191206, p: 0.045 },
-              { t: 1778194820, p: 0.045 }, { t: 1778198408, p: 0.045 }, { t: 1778202006, p: 0.045 },
-              { t: 1778202365, p: 0.045 },
+              { t: 1778205605, p: 0.045 }, { t: 1778209208, p: 0.045 }, { t: 1778212804, p: 0.045 },
+              { t: 1778216406, p: 0.045 }, { t: 1778220006, p: 0.045 }, { t: 1778223606, p: 0.045 },
+              { t: 1778227205, p: 0.045 }, { t: 1778230805, p: 0.045 }, { t: 1778234406, p: 0.045 },
+              { t: 1778238007, p: 0.045 }, { t: 1778241605, p: 0.045 }, { t: 1778245205, p: 0.045 },
+              { t: 1778248806, p: 0.045 }, { t: 1778252405, p: 0.045 }, { t: 1778256006, p: 0.045 },
+              { t: 1778259608, p: 0.045 }, { t: 1778263207, p: 0.045 }, { t: 1778266806, p: 0.045 },
+              { t: 1778270407, p: 0.045 }, { t: 1778274007, p: 0.045 }, { t: 1778277607, p: 0.045 },
+              { t: 1778281207, p: 0.045 }, { t: 1778284824, p: 0.045 }, { t: 1778288410, p: 0.045 },
+              { t: 1778288768, p: 0.045 },
             ],
           },
         ],
       },
     },
 
-    { type: 'dialogue', character: 'customer-b', text: '師傅、我手機上看到的還是 4.5%——但這個截圖其實是昨天早上紀錄的、最後一筆是台北時間禮拜五早上 9 點。週末 Polymarket 還在交易、不過更新沒進到我們桌上看的那條線。換句話說——目前我能告訴你的、是「禮拜五早上飛彈打 UAE 之前、線還在 4.5%」。禮拜五整天到禮拜六晚上、市場有沒有把它拉上去、我這邊看不到——禮拜一早上回辦公室才會知道。' },
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我剛剛打開手機看了——還是 4.5%。最後一筆更新是今天早上 10 點過 6 分、禮拜五 UAE 飛彈到禮拜六早上整整 24 小時、這條線一格都沒動過。下注金額這 24 小時只多了 21 萬美金、比禮拜四的 17 萬多一點點、是這禮拜下注最少的兩天。賭盤的人經歷了昨晚 NFP +11.5 萬的驚喜、又經歷了禮拜五的飛彈、結論是——「都不改變我原本的看法」。' },
 
-    { type: 'dialogue', character: 'customer-a', text: '我們桌上其實有人在賭、現在開出來會是 5% 出頭——因為禮拜五打了 UAE、邏輯上「政府倒」這條應該升一點。但也有人說「Trump 講 love tap、市場聽到的是不會升級」、還是 4.5%。週一早上 7 點打開電腦、看到的會是這兩派誰對。' },
+    { type: 'dialogue', character: 'customer-a', text: '這個我覺得才是今晚最值得記下來的事。我們桌上禮拜五早上聽到 UAE 那則新聞、第一反應就是「Polymarket 那條會跳一下」——結果一整天沒跳。意思是、賭盤上玩這條的人、把禮拜五早上那一波讀成「signaling、不是 escalation」——跟 Trump 那句 love tap 同調。他們不是看新聞反應、是看「事件 + Trump 的措辭」一起算、然後決定不下注。' },
 
-    { type: 'dialogue', character: 'chef', text: '所以這個賭盤、平常你們是看「線在動」、現在反而是「看不到線、自己在心裡賭線該在哪」？' },
+    { type: 'dialogue', character: 'chef', text: '哦——所以平常你們看賭盤、是看「線動了多少」；今晚你們看的、是「打飛彈了它還不動」？「沒動」也是一種訊號？' },
 
-    { type: 'dialogue', character: 'customer-b', text: '師傅、對。週末對我們這種人最折磨的不是市場跌、是市場關門——你心裡覺得有事在動、但你連看都看不到。我先生看我臉、知道我在想什麼、剛剛訊息問我「妳在想週一開盤對不對」、我說「對」、他回「下禮拜一還沒到、先吃飯」。他講得對。' },
+    { type: 'dialogue', character: 'customer-b', text: '師傅、對。「沒動」在某些日子比「動了」還重要。我們組長有句話——「線會在你以為它要動的時候不動、那條線才是真的有人在看」。今晚這條 4.5% 就是這樣。我先生剛剛訊息問我「妳在看什麼」、我說「我在看一條沒動的線」、他回「那妳看完了沒、可以回家了嗎」——他講得對。' },
 
     { type: 'wait', duration: 400 },
 
@@ -222,7 +223,7 @@ export const EPISODE_30: Episode = {
 
     {
       type: 'narration',
-      text: '禮拜六晚上 10 點半、東京小巷只剩兩三家店還亮、便利商店把今天最後一爐關東煮端進保溫櫃、外送員的車燈在巷口閃了一下又走。今晚的食堂沒有人在搶數字——禮拜五紐約收盤的 +11.5 萬 NFP、+0.84% S&P、+1.71% Nasdaq、+1.66% Brent 已經寫進歷史；禮拜五早上的 UAE 飛彈跟兩艘油輪、Trump 那句「love tap」、跟那封還沒寫出來的伊朗回信、留在週末的縫隙裡。賭盤上那條 4.5% 的線、最後一次更新已經是禮拜五早上的事——禮拜一打開電腦才會知道誰對。再過 36 小時、紐約禮拜一下午 3 點、參議院走 cloture；再過 6 天、Powell 把聯準會主席的位子交出去。今晚兩位帶走五塊柏餅、三碗慢慢燉的湯下肚、一通老婆從千葉打來的電話、跟一個還沒到的訊息。下禮拜的事、留給下禮拜。',
+      text: '禮拜六晚上 10 點半、東京小巷只剩兩三家店還亮、便利商店把今天最後一爐關東煮端進保溫櫃、外送員的車燈在巷口閃了一下又走。今晚的食堂沒有人在搶數字——禮拜五紐約收盤的 +11.5 萬 NFP、+0.84% S&P、+1.71% Nasdaq、+1.66% Brent 已經寫進歷史；禮拜五早上的 UAE 飛彈跟兩艘油輪、Trump 那句「love tap」、跟那封還沒寫出來的伊朗回信、留在週末的縫隙裡。賭盤上那條 4.5% 的線、過去 24 小時下注只多了 21 萬美金、是這禮拜最少的一天——大家把昨晚的 NFP 跟禮拜五的飛彈一起讀成「不會升級」、然後不下注。再過 36 小時、紐約禮拜一下午 3 點、參議院走 cloture；再過 6 天、Powell 把聯準會主席的位子交出去。今晚兩位帶走五塊柏餅、三碗慢慢燉的湯下肚、一通老婆從千葉打來的電話、跟一個還沒到的訊息。下禮拜的事、留給下禮拜。',
       duration: 5800,
     },
   ],
