@@ -47,11 +47,19 @@ import type { Episode } from '../../engine/types';
  *     The National 5/11, TradingEconomics)
  * - USD/JPY: ~157.11-157.19 area. BOJ tightening trajectory, Tokyo real
  *   wages rose for 3rd straight month (March data). (FXStreet, BOJ daily)
- * - Polymarket: latest.json snapshot is still 2026-05-11T01:13:30Z
- *   (Mon 10:13 JST). Iran-regime market last printed 6.5% with no fresh
- *   refresh available from this ISP (gamma-api geo-blocked). Per past
- *   pattern (ep30 fix), reference the line as flat-since-spike in dialogue
- *   only — do NOT show a fabricated Tue chart.
+ * - Polymarket: refreshed snapshot collectedAt 2026-05-12T01:06:39Z
+ *   (Tue 10:06 JST). Iran-regime market FADED BACK from 6.5% to 5.5%:
+ *   - Last 0.065 print: t=1778490009 (Mon 5/11 18:00 JST)
+ *   - First 0.055 after spike: t=1778493605 (Mon 5/11 19:00 JST)
+ *   - Mon afternoon Tokyo close + early NY hours retraced the spike
+ *   - 50 hourly samples at 0.055 since then → flat at 5.5% through Tue
+ *   - Volume Mon snap → Tue snap: $38.648M → $38.986M = +$338K in 24h
+ *     (vs Sun→Mon +$485K; vs Sat→Sun +$88K — Tue settled lower than Mon)
+ *   - Liquidity recovered $445K → $701K (book fattened, makers came back)
+ *   Narrative: Mon morning's 4.5→6.5 spike got fully retraced by Mon
+ *   evening JST. Trump's second Oval Office round Mon afternoon ET did
+ *   NOT re-spike the line — market faded the news. (public/polymarket
+ *   /latest.json)
  * - sectors[].value methodology: |%change|×100 of headline asset for each
  *   theme, sorted desc. Tuesday's picture: KOSPI snaps the streak, chips
  *   the painful losers, oil keeps grinding, Nikkei quietly green.
@@ -189,14 +197,48 @@ export const EPISODE_33: Episode = {
 
     { type: 'wait', duration: 400 },
 
-    // ── Polymarket — flat since Monday's spike, no fresh shock ──
+    // ── Polymarket — Mon's 6.5% spike got faded back to 5.5% ──
     { type: 'dialogue', character: 'chef', text: '那昨天那條伊朗賭盤、4.5 跳 6.5 的、今天有沒有再動？昨晚 Trump 在橢圓辦公室講「加護病房 1% 活著」、那條應該再跳吧？' },
 
-    { type: 'dialogue', character: 'customer-b', text: '師傅、沒動。一整天卡在 6.5%。我們 desk 的 quant 小組今天還特別把那條線抓出來看——理由是「禮拜一早上 7 點那一筆 48 萬美金、是有人在 Trump 第一篇文後立刻掃單、那筆是『新聞反應』；今晚 Trump 又補一句『1% 活著』、按理應該再跳一次——結果沒跳」。意思是、市場已經把「Trump 罵伊朗」這件事算到價格裡了、罵第二次、不會再嚇到人。要再動、要等到「Trump 真的下令動手」、那才會是另一個跳。' },
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-12T01:06:39Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.055,
+            volume: 38986406,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1778446812, p: 0.045 }, { t: 1778450408, p: 0.065 },
+              { t: 1778454011, p: 0.065 }, { t: 1778457611, p: 0.065 },
+              { t: 1778461205, p: 0.065 }, { t: 1778464821, p: 0.065 },
+              { t: 1778468408, p: 0.065 }, { t: 1778472006, p: 0.065 },
+              { t: 1778475606, p: 0.065 }, { t: 1778479208, p: 0.065 },
+              { t: 1778482820, p: 0.065 }, { t: 1778486406, p: 0.065 },
+              { t: 1778490009, p: 0.065 }, { t: 1778493605, p: 0.055 },
+              { t: 1778497216, p: 0.055 }, { t: 1778500812, p: 0.055 },
+              { t: 1778504409, p: 0.055 }, { t: 1778508006, p: 0.055 },
+              { t: 1778511624, p: 0.055 }, { t: 1778515207, p: 0.055 },
+              { t: 1778518818, p: 0.055 }, { t: 1778522415, p: 0.055 },
+              { t: 1778526011, p: 0.055 }, { t: 1778529609, p: 0.055 },
+              { t: 1778533215, p: 0.055 },
+            ],
+          },
+        ],
+      },
+    },
 
-    { type: 'dialogue', character: 'customer-a', text: '另一個小細節——這條的成交量、昨天 24 小時新增 48 萬美金、今天 24 小時新增看起來不到 5 萬。一個禮拜下注金額萎縮到原本的十分之一、意思是、賭盤上的人也覺得「沒事、繼續看」。賭盤跟油、跟我們桌上、今天都是同一個句子——「等下一個真的消息」。' },
+    { type: 'dialogue', character: 'customer-b', text: '師傅、動了——但是動的方向跟你猜的反過來。昨天早上 7 點跳到 6.5、卡到禮拜一傍晚 6 點、Tokyo 收盤之後沒多久、那條線從 6.5 一根掉回 5.5——然後今天一整天就在 5.5。等於昨天早上那筆 48 萬掃上去的單、到禮拜一晚上、被別人慢慢賣回來。Trump 在紐約橢圓辦公室講「加護病房 1% 活著」的時候、Tokyo 這邊已經睡了、那條線沒再跳——隔天我們起來看、6.5 不見了、變回 5.5。' },
 
-    { type: 'dialogue', character: 'chef', text: '等下一個真的消息——這句、我們店裡的客人也常講。冬天那一波感冒、第一個禮拜大家都緊張、第二個禮拜開始有人不戴口罩、第三個禮拜大家就忘了、然後第四個禮拜真的有人住院、整條街才又緊張一次。市場跟流感、原來節奏一樣。' },
+    { type: 'dialogue', character: 'customer-a', text: '更重要的是「掛單厚度」——昨天我跟師傅講「書架被搬空、補書的人還沒上班」、今天補書的人上班了。掛單厚度從 44 萬美金、回到 70 萬。意思是、做市的那群人趁機把書補回來、而且補在 5.5 那一檔比較厚、變相把價格往下壓。一整天 24 小時下了 34 萬美金、比禮拜天到禮拜一那 48 萬少、比再前一個 24 小時的 9 萬多——還是有人在賭、但不像昨天那樣搶單邊。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我們 quant 小組今天還特別把這條挑出來看、結論是「Trump 罵兩次、市場吸收了第一次、第二次無感」——更白話、「狼來了」效應第二次就半價」。要再動、要等到「Trump 真的下令動手」、那個跳幅會比這次的 2 個百分點大很多。' },
+
+    { type: 'dialogue', character: 'chef', text: '所以昨天跳上去的、今天被收回來了——這個我懂。我們店裡也有一樣的故事。前年冬天有個禮拜、有人傳「巷口有人感冒住院」、那個禮拜店裡客人少一半、結果第二天就傳「那個人其實只是過敏」、客人第三天就回來了。一條街、一個消息、上去再下來、跟你們這個賭盤一樣——只是我們街上是兩天、你們快、幾個小時就走完整圈。' },
 
     { type: 'wait', duration: 400 },
 
@@ -242,7 +284,7 @@ export const EPISODE_33: Episode = {
 
     {
       type: 'narration',
-      text: '禮拜二晚上 10 點半、東京。Warsh 的 cloture 在禮拜二清晨 6 點半 49 比 44 過、兩個民主黨員跑票；Kospi 在禮拜二早上 9 點 50 分摸到 7,999.67——差 0.33 點沒過 8,000、然後一篇韓國總統府幕僚的 Facebook、把整條線從 8,000 摔到 7,421、收 -1.45%；Samsung -4.2%、SK Hynix -1.28%——昨天的英雄、今天的兇手。Nikkei +0.36% 安靜收 62,644。Brent +0.96% 收 $105.21、WTI +1.10% 摸 $99.15——油在「磨」、不再「跳」。賭盤上伊朗那條卡 6.5%、整天沒動、成交量縮到昨天的十分之一——市場對 Trump 第二次罵伊朗、麻木了。明天清晨 4 點 Tokyo 時間、Senate 投 Warsh 的 governor 正式任命；後天投 Fed chair；禮拜五 Powell 把椅子交出去。師傅關東煮兩碗、客人帶走兩塊昨天剩的草餅、Customer B 跟先生明天 6 點半並排沙發看新聞、Customer A 設 6 點 25 分還是設 6 點半、自己也還沒決定。今晚的食堂、湯薄、料軟、客人話比昨天少、走得早——禮拜一的火、禮拜二燒到尾巴、整個禮拜還剩 3 天、明天再說。',
+      text: '禮拜二晚上 10 點半、東京。Warsh 的 cloture 在禮拜二清晨 6 點半 49 比 44 過、兩個民主黨員跑票；Kospi 在禮拜二早上 9 點 50 分摸到 7,999.67——差 0.33 點沒過 8,000、然後一篇韓國總統府幕僚的 Facebook、把整條線從 8,000 摔到 7,421、收 -1.45%；Samsung -4.2%、SK Hynix -1.28%——昨天的英雄、今天的兇手。Nikkei +0.36% 安靜收 62,644。Brent +0.96% 收 $105.21、WTI +1.10% 摸 $99.15——油在「磨」、不再「跳」。賭盤上伊朗那條從昨天早上 7 點的 6.5%、禮拜一傍晚被別人賣回 5.5%、今天一整天就在 5.5%、掛單厚度從 44 萬補回 70 萬——做市的人趁機把書架補回來、Trump 第二次罵伊朗、市場無感。明天清晨 4 點 Tokyo 時間、Senate 投 Warsh 的 governor 正式任命；後天投 Fed chair；禮拜五 Powell 把椅子交出去。師傅關東煮兩碗、客人帶走兩塊昨天剩的草餅、Customer B 跟先生明天 6 點半並排沙發看新聞、Customer A 設 6 點 25 分還是設 6 點半、自己也還沒決定。今晚的食堂、湯薄、料軟、客人話比昨天少、走得早——禮拜一的火、禮拜二燒到尾巴、整個禮拜還剩 3 天、明天再說。',
       duration: 6000,
     },
   ],
