@@ -37,3 +37,4 @@ data/
 
 # Playwright MCP artifacts
 .playwright-mcp/
+.firecrawl/
