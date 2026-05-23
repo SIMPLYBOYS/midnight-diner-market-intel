@@ -16,12 +16,31 @@ export class DinerScene extends Phaser.Scene {
   private dialogueManager!: DialogueManager;
   private dataSource!: JsonDataSource;
   private currentEpisodeId: string | null = null;
+  private liveFetchAbort: AbortController | null = null;
+  private cleanedUp = false;
+
+  // Stable handler references — class-field arrows are bound to the instance
+  // so eventBus.off() in cleanup() removes the exact listeners create() added.
+  // (inline arrows / .bind() create fresh refs that off() can never match.)
+  private onEpisodeSelect = ({ episodeId }: { episodeId: string }): void => {
+    this.playEpisode(episodeId);
+  };
+  private onPause = (): void => this.timelinePlayer.pause();
+  private onResume = (): void => this.timelinePlayer.resume();
+  private onRestart = (): void => {
+    if (this.currentEpisodeId) this.playEpisode(this.currentEpisodeId);
+  };
+  private onSetManualMode = ({ enabled }: { enabled: boolean }): void =>
+    this.timelinePlayer.setManualMode(enabled);
+  private onAdvance = (): void => this.timelinePlayer.advance();
 
   constructor() {
     super({ key: 'DinerScene' });
   }
 
   create(): void {
+    this.cleanedUp = false;
+
     // Background image (replaces tilemap for high-quality visuals)
     const bg = this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'diner-bg');
     bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
@@ -32,15 +51,19 @@ export class DinerScene extends Phaser.Scene {
     this.dataSource = new JsonDataSource(ALL_EPISODES);
 
     // Listen for React UI events
-    eventBus.on('episode:select', this.onEpisodeSelect.bind(this));
-    eventBus.on('player:pause', () => this.timelinePlayer.pause());
-    eventBus.on('player:resume', () => this.timelinePlayer.resume());
-    eventBus.on('player:restart', () => {
-      const episodeId = this.currentEpisodeId;
-      if (episodeId) this.playEpisode(episodeId);
-    });
-    eventBus.on('player:set-manual-mode', ({ enabled }) => this.timelinePlayer.setManualMode(enabled));
-    eventBus.on('player:advance', () => this.timelinePlayer.advance());
+    eventBus.on('episode:select', this.onEpisodeSelect);
+    eventBus.on('player:pause', this.onPause);
+    eventBus.on('player:resume', this.onResume);
+    eventBus.on('player:restart', this.onRestart);
+    eventBus.on('player:set-manual-mode', this.onSetManualMode);
+    eventBus.on('player:advance', this.onAdvance);
+
+    // Phaser fires SHUTDOWN (scene stop/restart) and DESTROY (game teardown)
+    // as events — there is no overridable Scene.destroy() method. Without this,
+    // the eventBus listeners above outlive the scene and leak (notably under
+    // React StrictMode's mount→unmount→mount in dev).
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, this.cleanup, this);
+    this.events.once(Phaser.Scenes.Events.DESTROY, this.cleanup, this);
 
     // Auto-play the latest episode
     this.playEpisode(ALL_EPISODES[ALL_EPISODES.length - 1].id);
@@ -65,10 +88,6 @@ export class DinerScene extends Phaser.Scene {
     return char;
   }
 
-  private onEpisodeSelect({ episodeId }: { episodeId: string }): void {
-    this.playEpisode(episodeId);
-  }
-
   private playEpisode(episodeId: string): void {
     this.currentEpisodeId = episodeId;
     // Stop current playback and clear characters
@@ -78,6 +97,11 @@ export class DinerScene extends Phaser.Scene {
     }
     this.characterMap.clear();
 
+    // Cancel any live Polymarket fetch still in flight for the previous episode.
+    this.liveFetchAbort?.abort();
+    const abort = new AbortController();
+    this.liveFetchAbort = abort;
+
     // Hide any lingering dialogue/narration and stop BGM
     eventBus.emit('dialogue:hide');
     eventBus.emit('narration:hide');
@@ -85,7 +109,9 @@ export class DinerScene extends Phaser.Scene {
 
     this.dataSource
       .getEpisode(episodeId)
-      .then((episode) => (isLiveMode() ? enrichEpisodeWithLivePolymarket(episode) : episode))
+      .then((episode) =>
+        isLiveMode() ? enrichEpisodeWithLivePolymarket(episode, abort.signal) : episode,
+      )
       .then((episode) => {
         // Guard against a newer playEpisode() call arriving while live fetch was in flight.
         if (this.currentEpisodeId !== episodeId) return;
@@ -93,7 +119,19 @@ export class DinerScene extends Phaser.Scene {
       });
   }
 
-  destroy(): void {
-    eventBus.off('episode:select', this.onEpisodeSelect.bind(this));
+  private cleanup(): void {
+    if (this.cleanedUp) return; // SHUTDOWN + DESTROY can both fire
+    this.cleanedUp = true;
+
+    eventBus.off('episode:select', this.onEpisodeSelect);
+    eventBus.off('player:pause', this.onPause);
+    eventBus.off('player:resume', this.onResume);
+    eventBus.off('player:restart', this.onRestart);
+    eventBus.off('player:set-manual-mode', this.onSetManualMode);
+    eventBus.off('player:advance', this.onAdvance);
+
+    this.liveFetchAbort?.abort();
+    this.timelinePlayer.stop();
+    this.dialogueManager.destroy();
   }
 }

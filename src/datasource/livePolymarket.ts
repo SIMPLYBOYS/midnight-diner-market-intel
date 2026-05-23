@@ -1,5 +1,9 @@
 import type { Action, Episode, PolymarketOddsAction } from '../engine/types';
 import { PolymarketClient } from './PolymarketClient';
+import { logger } from '../logger';
+
+/** Give up on live data after this long so a slow API can't stall episode load. */
+const LIVE_FETCH_TIMEOUT_MS = 5000;
 
 export function isLiveMode(): boolean {
   if (typeof window !== 'undefined') {
@@ -15,17 +19,28 @@ function isPolymarket(a: Action): a is PolymarketOddsAction {
 
 /**
  * Replace baked Polymarket payloads with live Gamma data, keyed by slug.
- * On any failure, returns the original episode — demo stays offline-safe.
+ * On any failure, timeout, or external abort, returns the original episode —
+ * the demo stays offline-safe. `externalSignal` lets the caller cancel a
+ * stale fetch when the user switches episodes mid-flight.
  */
-export async function enrichEpisodeWithLivePolymarket(ep: Episode): Promise<Episode> {
+export async function enrichEpisodeWithLivePolymarket(
+  ep: Episode,
+  externalSignal?: AbortSignal,
+): Promise<Episode> {
   const pmActions = ep.actions.filter(isPolymarket);
   if (pmActions.length === 0) return ep;
 
   const slugs = [...new Set(pmActions.flatMap((a) => a.data.markets.map((m) => m.slug)))];
   const client = new PolymarketClient();
 
+  // Abort on either the caller's signal or our own timeout.
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), LIVE_FETCH_TIMEOUT_MS);
+  const onExternalAbort = (): void => controller.abort();
+  externalSignal?.addEventListener('abort', onExternalAbort);
+
   try {
-    const live = await client.fetchMarkets({ slugs, includeHistory: true });
+    const live = await client.fetchMarkets({ slugs, includeHistory: true, signal: controller.signal });
     if (live.length === 0) return ep;
 
     const bySlug = new Map(live.map((m) => [m.slug, m]));
@@ -47,7 +62,11 @@ export async function enrichEpisodeWithLivePolymarket(ep: Episode): Promise<Epis
       };
     });
     return { ...ep, actions: rewritten };
-  } catch {
+  } catch (err) {
+    logger.warn('live Polymarket enrich failed; falling back to baked payloads', err);
     return ep;
+  } finally {
+    clearTimeout(timeout);
+    externalSignal?.removeEventListener('abort', onExternalAbort);
   }
 }

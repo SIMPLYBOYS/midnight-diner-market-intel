@@ -48,7 +48,7 @@ export const COLLISION_TILES = [
 ];
 
 function buildMap(): number[][] {
-  /* eslint-disable no-multi-spaces */
+  // Columns are intentionally space-aligned for readability as a visual grid.
   return [
     //0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
     [ W, Ws, Wl,  W,  W, Ws,  W, Ww,  W,  W,  W,  V,  W, Wl, Ws,  W], // row 0: top wall
@@ -64,5 +64,4 @@ function buildMap(): number[][] {
     [ W,  W,  W,  W,  W,  W, Fd, Fd, Fd, Fd,  W,  W,  W,  W,  W,  W], // row 10: entrance area
     [ W,  W,  W,  W,  W,  W,  N,  D,  D,  N,  W,  W,  W,  W,  W,  W], // row 11: bottom wall
   ];
-  /* eslint-enable no-multi-spaces */
 }

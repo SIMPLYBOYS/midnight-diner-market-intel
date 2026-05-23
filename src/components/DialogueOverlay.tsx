@@ -86,7 +86,7 @@ export function DialogueOverlay() {
         timerRef.current = null;
       }
     };
-  }, [state.visible, state.text]);
+  }, [state.visible, state.text, state.character]);
 
   if (!state.visible) return null;
 

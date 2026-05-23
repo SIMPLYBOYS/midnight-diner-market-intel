@@ -162,7 +162,7 @@ export class TimelinePlayer {
   private async executeAction(action: Action, gen: number): Promise<void> {
     switch (action.type) {
       case 'enter':
-        return this.executeEnter(action, gen);
+        return this.executeEnter(action);
       case 'move':
         return this.executeMove(action, gen);
       case 'sit':
@@ -188,7 +188,8 @@ export class TimelinePlayer {
     }
   }
 
-  private async executeEnter(action: EnterAction, _gen: number): Promise<void> {
+  // Enter is synchronous (spawn only) so it takes no generation token.
+  private async executeEnter(action: EnterAction): Promise<void> {
     const preset = CHARACTER_PRESETS[action.character];
     if (!preset) return;
 
@@ -373,6 +374,9 @@ export class TimelinePlayer {
         resolve();
         return;
       }
+      // Settle any prior resolver first so it can't be orphaned (left pending
+      // forever) by this overwrite.
+      if (this.pauseResolver) this.pauseResolver();
       this.pauseResolver = resolve;
     });
   }
@@ -383,6 +387,9 @@ export class TimelinePlayer {
         resolve();
         return;
       }
+      // Settle any prior resolver first so it can't be orphaned (left pending
+      // forever) by this overwrite.
+      if (this.advanceResolver) this.advanceResolver();
       this.advanceResolver = resolve;
     });
   }

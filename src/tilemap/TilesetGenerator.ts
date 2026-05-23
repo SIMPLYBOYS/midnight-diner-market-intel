@@ -25,8 +25,6 @@ export function generateTileset(scene: Phaser.Scene): void {
 }
 
 function drawTileDetail(gfx: Phaser.GameObjects.Graphics, type: number, x: number): void {
-  const s = TILE_SIZE;
-
   switch (type) {
     case TileType.FLOOR:
       drawWoodFloor(gfx, x);
@@ -71,7 +69,7 @@ function drawTileDetail(gfx: Phaser.GameObjects.Graphics, type: number, x: numbe
       drawNoren(gfx, x);
       break;
     case TileType.TV:
-      drawTV(gfx, x, s);
+      drawTV(gfx, x);
       break;
     case TileType.MENU_BOARD:
       drawMenuBoard(gfx, x);
@@ -339,7 +337,7 @@ function drawNoren(gfx: Phaser.GameObjects.Graphics, x: number): void {
   gfx.fillRect(x + 14, 16, 4, 1);
 }
 
-function drawTV(gfx: Phaser.GameObjects.Graphics, x: number, _s: number): void {
+function drawTV(gfx: Phaser.GameObjects.Graphics, x: number): void {
   // TV casing
   gfx.fillStyle(0x222222, 1);
   gfx.fillRect(x + 2, 4, 28, 22);

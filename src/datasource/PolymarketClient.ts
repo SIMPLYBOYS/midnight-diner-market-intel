@@ -37,13 +37,18 @@ function parseMaybeArray(v: string[] | string | undefined): string[] {
   }
 }
 
-function parseYes(m: GammaMarket): number {
+/**
+ * Returns the parsed YES probability, or null if the payload shape can't be
+ * read. Null lets the caller skip the market and keep the baked value — a
+ * silent 0% would be indistinguishable from a genuine 0% on the board.
+ */
+function parseYes(m: GammaMarket): number | null {
   const outcomes = parseMaybeArray(m.outcomes);
   const prices = parseMaybeArray(m.outcomePrices);
   const yesIdx = outcomes.findIndex((o) => o.toLowerCase() === 'yes');
   const raw = prices[yesIdx === -1 ? 0 : yesIdx];
   const n = Number(raw);
-  return Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : 0;
+  return Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : null;
 }
 
 export class PolymarketClient {
@@ -68,6 +73,9 @@ export class PolymarketClient {
     const market = Array.isArray(payload) ? (payload[0] as GammaMarket | undefined) : undefined;
     if (!market) return null;
 
+    const yesProbability = parseYes(market);
+    if (yesProbability === null) return null; // unreadable shape — keep baked value
+
     const tokenIds = parseMaybeArray(market.clobTokenIds);
     let history: PolymarketHistoryPoint[] | undefined;
     if (opts.includeHistory && tokenIds.length > 0) {
@@ -78,7 +86,7 @@ export class PolymarketClient {
     return {
       slug: market.slug,
       question: market.question,
-      yesProbability: parseYes(market),
+      yesProbability,
       volume: market.volumeNum ?? market.volume,
       liquidity: market.liquidityNum ?? market.liquidity,
       endDate: market.endDate,
@@ -97,9 +105,11 @@ export class PolymarketClient {
     if (!res.ok) return null;
     const payload = (await res.json().catch(() => null)) as ClobHistoryResponse | null;
     if (!payload || !Array.isArray(payload.history)) return null;
-    return payload.history.map((pt) => ({
-      t: pt.t,
-      p: typeof pt.p === 'string' ? Number(pt.p) : pt.p,
-    }));
+    return payload.history
+      .map((pt) => ({
+        t: pt.t,
+        p: typeof pt.p === 'string' ? Number(pt.p) : pt.p,
+      }))
+      .filter((pt) => Number.isFinite(pt.t) && Number.isFinite(pt.p));
   }
 }
