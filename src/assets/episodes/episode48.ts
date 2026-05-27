@@ -1,0 +1,201 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-27 (Wed JST):
+ * - Markets ripped to fresh records EVEN AS the US actually struck Iran:
+ *   - Nikkei 225 +1.49% to a fresh record high (reclaimed 65,000 after
+ *     Tuesday's dip to 64,996); Topix +0.57%.
+ *   - Kospi +4.84% at the open (Kosdaq -0.68%); ASX 200 +0.13%.
+ *   (CNBC Asia 5/27)
+ *   Nikkei level DERIVED from Tue close 64,996.09 × 1.0149 ≈ 65,964
+ *   (approximate); Kospi from Tue close 8,047.51 × 1.0484 ≈ 8,437
+ *   (OPEN print, labelled).
+ * - THE TWIST: US forces carried out Pentagon-described "self-defense"
+ *   strikes in southern Iran early Tuesday — hitting missile launch
+ *   sites and Iranian VESSELS allegedly trying to deploy MINES — even
+ *   while Washington insisted it's still observing ceasefire restraint.
+ *   Both sides testing limits as talks are called "nearing completion."
+ *   Read: the strikes look like the US ENFORCING the deal's "Iran clears
+ *   the mines / no new mines" performance term (ep47), not the deal
+ *   breaking down. Ex-CIA Dir. Petraeus: Tehran appears to be "blinking"
+ *   over Hormuz (backing down). (CNBC Asia 5/27, CNBC oil 5/26)
+ * - Oil bounced then steadied: Brent jumped >3% Tue after Iran vowed to
+ *   retaliate for the US strikes, then eased to $99.18 (-0.41%) Wed,
+ *   hovering above $99; WTI around $93-94 (no clean Wed print — approx).
+ *   (CNBC 5/26, Trading Economics Brent 5/27)
+ * - The brakes: Sec. State Rubio said any deal could still take SEVERAL
+ *   DAYS; unresolved = Iran's FROZEN ASSETS + Iran's hesitation to
+ *   GUARANTEE unrestricted Hormuz passage. Trump + Cabinet meet at Camp
+ *   David on Wed. Deal still NOT signed. (CNBC 5/27, Al Jazeera 5/24)
+ * - USD/JPY: no clean dated 5/27 print; last-known ~160 zone carried as
+ *   context only.
+ * - POLYMARKET (1st use THIS week — ep46/47 skipped; the beat is genuinely
+ *   new): "Will the Iranian regime fall by June 30?" fell to a FRESH LOW
+ *   ~2.6% (0.0265), vol ~$44.3M — i.e. the US literally bombed Iran this
+ *   week and the regime-COLLAPSE bet went DOWN, consistent with "strikes
+ *   = enforcement, not breakdown." Data from public/polymarket/latest.json
+ *   (collectedAt 2026-05-27T01:17:27Z).
+ * - sectors[].value = |%change|x100 of headline asset per theme, desc;
+ *   all Wed 5/27 sourced (Nikkei % derived from sourced Tue close).
+ * - Continuity: ep47 (Tue) Customer A solo; ended "明天看 Hormuz 那艘船
+ *   過了沒." Payoff: no clean ship — instead US strikes on mine-laying
+ *   vessels (performance contested). ep46 (Mon) B said 65k wouldn't hold
+ *   without US-back volume → Tue it slipped, Wed it reclaimed + new
+ *   record WITH the US back (more real this time). Tonight CUSTOMER B
+ *   (alternation 43A 44B 45A 46B 47A 48B); desk/flow + risk voice fits
+ *   "records while bombs drop." B persona: spouse "我先生", kids,
+ *   retired-finance father. Chef's wife: asked 要不要買 (ep46) → 還好沒追
+ *   (ep47) → tonight 早知道就買了 (the FOMO-regret trap). A does NOT
+ *   appear. Warsh first FOMC still 6/16-17.
+ */
+export const EPISODE_48: Episode = {
+  id: 'ep-48',
+  date: '2026-05-27',
+  title: '20260527 禮拜三晚上、市場創新高但美國真的開火了——打伊朗佈雷船＋飛彈陣地（停火框架下的「自衛」）、弔詭的是開火被讀成「強制執行 relief-for-performance」不是破局；Nikkei 奪回 65,000 創新高 +1.49%、Kospi 開盤 +4.84%、Polymarket 政權垮台不升反降到 2.6%、油穩 $99；Rubio：還要幾天',
+  description: '禮拜三晚上、Tokyo 21:00。今天的畫面很違和——市場創新高、但美國這兩天真的對伊朗開火了。五角大廈說是「自衛」、打了伊朗南部的飛彈陣地、還打了幾艘「正在佈水雷」的伊朗船；嘴上說還在停火框架內、手上卻在開火。弔詭的是，市場不但沒怕、反而漲更兇：Nikkei 奪回 65,000、+1.49% 創新高（這次美國在場、不是上禮拜一那種假期淡量）、Kospi 開盤跳 +4.84%。為什麼開火還漲？因為市場把這次開火讀成「美國在強制執行 deal 的 performance」——deal 講好伊朗要清雷、結果伊朗還在佈雷、美國就用打的逼它做到。罰，是為了讓合作繼續，不是拆夥。連 Polymarket「伊朗政權垮台」都不升反降、摜到新低 2.6%——炸彈落下、賭垮台的人反而更少。油穩在 $99 上（昨天因伊朗揚言報復先跳 >3%、今天回穩）。但 Rubio 踩煞車：deal 還要幾天、frozen assets 跟 Hormuz 的通行保證還沒解決、Trump 今天在 Camp David 開內閣會。今晚 customer-b 來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 9 點、東京。今天的畫面很違和——市場創新高、但美國這兩天，是真的對伊朗開火了。五角大廈的說法是「自衛」：打了伊朗南部的飛彈發射陣地、還打了幾艘「正在佈水雷」的伊朗船；嘴上強調還在停火框架內、手上卻在開火。弔詭的是，市場不但沒被嚇到，反而漲更兇——Nikkei 奪回 65,000、+1.49% 創新高，而且這次是美國在場、不是上禮拜一那種假期淡量撐出來的；Kospi 開盤直接跳 +4.84%。為什麼開火還能漲？因為市場把這次開火，讀成「美國在強制執行這份 deal 的 performance」——deal 講好伊朗要負責清掉水雷，結果伊朗還在偷偷佈雷，美國就直接用打的、逼它做到。罰，是為了讓合作繼續，不是為了拆夥。最能說明這件事的、是牆上那個 Polymarket——「伊朗政權 6 月底前垮台」、炸彈都落下了、它不升反降、摜到新低 2.6%。油穩在 $99 上方（昨天伊朗揚言報復、Brent 先跳超過 3%、今天回穩）。但別太樂觀——Rubio 踩了煞車：deal 還要好幾天、伊朗被凍結的資產、跟它肯不肯保證 Hormuz 自由通行，都還沒解決；Trump 今天人在 Camp David 開內閣會。今晚 customer-b 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Nikkei 225（5/27 創新高、奪回 65,000）', price: 65964.0, change: 1.49 },
+          { symbol: 'Kospi（5/27 開盤 +4.84%）', price: 8437.0, change: 4.84 },
+          { symbol: 'Brent 油（5/27、穩在 $99 上）', price: 99.18, change: -0.41 },
+          { symbol: 'Topix（5/27）', price: 0, change: 0.57 },
+          { symbol: 'USD/JPY（carryover ~160）', price: 159.0, change: 0.0 },
+        ],
+        volatility: 19,
+        vix: 15.6,
+        rsi: 66.8,
+        beta: 1.03,
+        priceHistory: [63900, 64300, 64700, 65000, 64996, 65300, 65700, 65964],
+        volumeHistory: [360, 300, 280, 240, 560, 640, 720, 780],
+        sectors: [
+          { label: 'Kospi +4.84%（開盤跳空、deal 樂觀＋韓國出口受惠、續飆）', value: 484, color: '#22cc55' },
+          { label: 'Nikkei +1.49%（奪回 65,000 創新高、這次美國在場、量比禮拜一實）', value: 149, color: '#22cc55' },
+          { label: 'Topix +0.57%（寬度跟上、不只權值股、內需也動）', value: 57, color: '#22cc55' },
+          { label: 'Brent 油 -0.41%（$99.18、昨天伊朗揚言報復跳 >3%、今天回穩 $99 上）', value: 41, color: '#cc4422' },
+          { label: 'ASX 200 +0.13%（澳洲微紅、亞太普遍 risk-on）', value: 13, color: '#22cc55' },
+        ],
+        headline: '禮拜三 21:00 JST：市場創新高 vs 美國真的開火（打伊朗佈雷船＋飛彈陣地、稱「自衛」仍在停火框架）/ 開火被讀成「強制執行 performance」非破局 / Nikkei 奪回 65,000 +1.49% 創新高、Kospi 開盤 +4.84% / Polymarket 政權垮台不升反降 2.6% 新低 / 油穩 $99 / Rubio：還要幾天、frozen assets＋Hormuz 保證未解',
+      },
+    },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-27T01:17:27Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.0265,
+            volume: 44255181,
+            liquidity: 488802,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1779242405, p: 0.055 }, { t: 1779274808, p: 0.055 }, { t: 1779307209, p: 0.055 },
+              { t: 1779339609, p: 0.045 }, { t: 1779372008, p: 0.045 }, { t: 1779404410, p: 0.055 },
+              { t: 1779436805, p: 0.045 }, { t: 1779469205, p: 0.0375 }, { t: 1779501607, p: 0.0435 },
+              { t: 1779534006, p: 0.0455 }, { t: 1779566408, p: 0.0315 }, { t: 1779598806, p: 0.0315 },
+              { t: 1779631206, p: 0.0235 }, { t: 1779663607, p: 0.0315 }, { t: 1779696006, p: 0.0255 },
+              { t: 1779728410, p: 0.0245 }, { t: 1779760806, p: 0.0285 }, { t: 1779793205, p: 0.0265 },
+              { t: 1779825606, p: 0.027 }, { t: 1779844563, p: 0.0265 },
+            ],
+          },
+        ],
+      },
+      duration: 5000,
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。我老婆今天看新聞、整個人糾結——一邊是「日經又創新高、奪回 65,000」、一邊是「美國打伊朗、飛彈、軍艦」。她說「禮拜一你叫我別追、現在又創新高了、早知道就買了」、然後下一句又問「可是在打仗欸、怎麼還會漲？」。她自己把自己問倒了。' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安。你老婆這兩句、剛好是今天市場最難的兩個問題、我一個一個拆。先講「早知道就買了」——這個叫「事後 FOMO」、是散戶最大的陷阱。禮拜一那個 65,000 是假期淡量、踮腳尖的；禮拜二它就跌回去了、證明該別追；禮拜三它又站回來、還創新高——但你不能拿「禮拜三的結果」去罵「禮拜一的決定」。當時的資訊下，別追是對的。看著後來的價格回頭怪自己，會讓你下次在最危險的時候衝進去。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '不能拿後來的結果罵當時的決定——這個我懂、而且很痛。我有次沒進一批比目魚、想說太貴、結果那週缺貨、價格翻倍、我懊惱了好幾天。但我師父說「你當時用當時的價判斷、沒錯；錯的是事後拿天意來懲罰自己」。原來買股票跟我進魚，連懊惱的毛病都一樣。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你師父那句「別拿天意懲罰自己」、是我聽過最好的交易心理學、我要傳給組裡每個新人。我們這行賠最慘的，往往不是判斷錯，是「上次沒跟到、這次賭氣加倍追」——追在最高點。你太太現在「早知道就買」的衝動，如果照著做、很可能就買在今天這個新高、然後明天一個壞消息就套住。FOMO 不是資訊、是情緒，要擋掉。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── The hard one: records while bombs drop ──
+    { type: 'dialogue', character: 'chef', text: '那她第二個問題——在打仗、美國真的射飛彈了、市場怎麼還漲？這個我也想不通。打仗不是應該大跌嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這就是今天最反直覺、但最重要的一課。關鍵是「這一槍，市場怎麼解讀」。美國打的是什麼？是「正在佈水雷的伊朗船」、跟飛彈陣地。可是這份 deal 講好的條件之一，就是「伊朗要清掉水雷、不能再佈」。伊朗一邊談、一邊偷偷佈雷——這叫「沒做到 performance」；美國開火、是去「逼它做到」。所以市場讀這一槍，不是「和平破局、要打大仗了」，是「美國在強制執行合約、督促伊朗守規矩」。督工拿棍子敲一下偷懶的工人，不是要拆掉工地，是要工程繼續。' },
+
+    { type: 'dialogue', character: 'chef', text: '督工敲偷懶的工人、不是要拆工地——這個比喻我秒懂！我廚房學徒切魚偷工，我會罵、甚至打他手背一下，但那是要他切好、不是要趕他走。罵，是因為還想留他。所以美國這一槍，是「還想跟伊朗成交」的意思？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、完全正確——而且這正是上禮拜 a 跟你講的「relief for performance」在真實世界裡跑起來的樣子。你做到、我給好處；你沒做到、我給棒子。這禮拜我們看到的，就是「棒子」那一手。如果美國是想拆夥、它不會只打佈雷船、它會打更大的、會撤談判代表。它只打「違規的那部分」、精準、有限——這在我們眼裡，反而是「deal 還活著」的證據。最好的證據你也看到了——牆上那個賭盤。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket: bombs fell, collapse-odds fell ──
+    { type: 'dialogue', character: 'chef', text: '對、那個「伊朗政權垮台」的賭盤——美國都射飛彈了、它居然還往下掉、到 2.6% 新低？炸彈落下、賭垮台的人反而更少？這太奇怪了吧。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這個「奇怪」、正是今天最強的訊號。你想——如果這一槍是「戰爭要重新升級」、那「政權垮台」的機率應該往上跳才對。結果它不升反降、摜到 2.6% 新低。拿真錢下注的人，用錢投票投出一句話：「這一槍不是開戰、是執行合約的細節；伊朗在退、不是要拼命。」前 CIA 局長 Petraeus 今天也講了一個詞——伊朗在「blinking」、眨眼了，就是喊價喊到一半先軟的那一方。賭盤跟 Petraeus，講的是同一件事：伊朗在讓步，不是在備戰。' },
+
+    { type: 'dialogue', character: 'chef', text: '誰先眨眼誰先讓——這個我們菜市場喊價天天上演。所以炸彈雖然嚇人，但「方向」是伊朗在退、deal 在往前走，市場看的是這個方向，不是那一聲巨響？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你抓到精髓了——市場看方向、不看單一一聲響。一聲巨響是「事件」、會嚇人一下；方向是「趨勢」、決定錢往哪流。今天的趨勢是「伊朗在退、deal 在推進、油的戰爭溢價在洩」，所以亞洲全面 risk-on、Nikkei 創新高、Kospi 跳 4.84%。那一槍只是趨勢路上的一個顛簸，不是改道。但——我得馬上補一個但書，免得你跟你老婆又衝動。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── The brake: Rubio, frozen assets, Hormuz guarantee ──
+    { type: 'dialogue', character: 'chef', text: '但書來了——你每次最樂觀的時候後面都接一個但書。這次是什麼？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、但書是 Rubio——美國國務卿今天親口說，這個 deal「還要好幾天」，而且有兩塊硬的還沒解決：第一、伊朗被凍結的資產要不要放、放多少；第二、伊朗到現在「不肯白紙黑字保證 Hormuz 一定自由通行」。你看——海峽要不要保證暢通，正是這整件事的核心，伊朗偏偏在這一條上含糊。再加上 Trump 今天把整個內閣拉去 Camp David 開會——通常這種「全員集合到山上」，是要做大決定，可能是拍板簽、也可能是決定要不要再加壓。所以今天市場很開心、但這份 deal 還沒落地，最後一哩路的兩個釘子還在。' },
+
+    { type: 'dialogue', character: 'chef', text: '不肯保證海峽暢通——這不就是整件事最重要的那塊嗎？前面講得再好，這條含糊，不是等於菜端上來、最貴的那道還沒上？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是這樣、你一句講到底。Hormuz 自由通行的「白紙黑字保證」，是這份 deal 的主菜——前面那些 60 天停火、清雷、解封，都是配菜。主菜沒上桌、這頓飯就不算開動。伊朗在這一條含糊，原因也好懂——海峽是它手上最後、也最有力的牌，它要留到能換最多東西（凍結資產、制裁全解）的那一刻才打。所以今天市場的新高，本質上是「賭主菜會上」，不是「主菜已經上了」。賭對了，這波還有；賭錯了，今天追新高的，就是接刀的那群。我們 desk 今天還是那套——參與、但留現金、不追最後一根。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Wednesday, B alone ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜三、又是盯盤盯到晚的一天——我做點暖的：豚汁（豬肉味噌湯）配麥飯、烤鯡魚、玉子燒、香物，再給你溫酒半合。豚汁料多、暖身也暖心。你先生跟小孩都顧好了？今晚能坐多久？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、豚汁配麥飯、今天就想要這種扎實又家常的。我先生今天提早下班接小孩、難得不用我趕、可以坐到九點半。今天 desk 又是滿手單——市場創新高、客戶全在問「現在追還來不來得及」，我一整天就在勸大家「別追最後一根」，勸到沒力。回家路上看到你這盞燈，就想進來喝碗熱的。' },
+
+    { type: 'dialogue', character: 'chef', text: '勸大家別追最後一根、勸到沒力——這個我懂，做對的事最累，因為要一直逆著別人的興奮講話。我店裡也有，限定菜賣完了，客人盧著要加、我得一個一個說「真的沒有了、明天請早」，說到喉嚨痛。但你要是順著他亂給，砸的是招牌。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、「順著他亂給、砸的是招牌」——這跟我這行說的「信譽是慢慢累積、一次違背就沒了」一樣。我爸退休前跟我講過：「客戶賺錢時會忘了你，但你讓他在高點接了刀，他記你一輩子。」今天我擋掉的那些想追新高的，可能在罵我膽小；但如果這 deal 卡在 Hormuz 那條破了局，他們會回頭謝我沒讓他們追。對的事，得等結果揭曉才被看見——這行最孤獨的地方，就在這。' },
+
+    { type: 'dialogue', character: 'chef', text: '對的事要等結果揭曉才被看見——這句今晚收得重。我煮了三十年，最好吃的那鍋高湯，客人也嚐不出我熬了幾小時，他們只知道「好喝」。我們做的功夫，藏在看不見的地方，這點你我一樣。豚汁來了、料給你裝滿、溫酒半合先暖著。明天 Camp David 開完會、看 Trump 拍不拍板。今晚先把這碗喝完，明天再說。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 10 點半、東京。今天的故事是「市場創新高 vs 美國真的開火——而開火被讀成執行、不是破局」。五角大廈打了伊朗的飛彈陣地、跟正在佈水雷的伊朗船，說是「自衛」、仍在停火框架內。市場不但沒怕、反而漲更兇：Nikkei 奪回 65,000、+1.49% 創新高（這次美國在場、量比禮拜一假期淡量實）、Kospi 開盤跳 +4.84%、Topix +0.57%、ASX +0.13%。為什麼開火還漲？因為 deal 講好「伊朗要清雷」、伊朗卻還在佈雷——美國開火是「逼它做到 performance」，督工拿棍子敲偷懶的工人、是要工程繼續、不是拆工地，正是上週「relief for performance」的棒子那一手在真實世界跑起來。最強的證據是 Polymarket——炸彈都落下了、「伊朗政權垮台」不升反降、摜到 2.6% 新低；前 CIA 局長 Petraeus 說伊朗在「blinking」、眨眼了——賭盤跟他講同一件事：伊朗在退、不是在備戰。市場看方向、不看單一一聲響；那一槍是趨勢路上的顛簸、不是改道。油穩在 $99 上。但 Rubio 踩煞車：deal 還要幾天、兩根釘子沒拔——伊朗被凍結的資產、跟伊朗不肯白紙黑字保證 Hormuz 自由通行（這條，正是整桌的主菜，伊朗留作最後一張牌）；Trump 今天把內閣拉去 Camp David。所以今天的新高，本質是「賭主菜會上」、不是「主菜已上」；追最後一根的，可能就是接刀的。Customer B 一整天勸客戶別追、勸到沒力——她爸那句「你讓客戶在高點接了刀，他記你一輩子」，跟師傅「順著客人亂給、砸的是招牌」是同一件事；對的事，得等結果揭曉才被看見。豚汁配麥飯、溫酒半合。明天 Camp David 開完會，看 Trump 拍不拍板。',
+      duration: 6000,
+    },
+  ],
+};
