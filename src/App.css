@@ -90,6 +90,11 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* Start screen */
 .start-screen {
   display: flex;

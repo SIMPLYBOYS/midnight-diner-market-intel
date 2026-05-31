@@ -10,23 +10,62 @@ import {
 } from './charts/CrtCharts';
 import { PolymarketOdds } from './PolymarketOdds';
 
-// ── Ticker row ──────────────────────────────────────────────────
+// ── Ticker row (marquee with simulated price jitter) ────────────
+
+const TICKER_JITTER_MS = 600;
+const TICKER_JITTER_AMPLITUDE = 0.0005; // ±0.05% wiggle around the authored price
 
 function TickerRow({ tickers }: { tickers: MarketTicker[] }) {
+  // Per-ticker simulated price — small random walk around the authored value
+  // so the tape feels alive without misrepresenting the daily move.
+  const [simPrices, setSimPrices] = useState<number[]>(() => tickers.map((t) => t.price));
+
+  useEffect(() => {
+    setSimPrices(tickers.map((t) => t.price));
+  }, [tickers]);
+
+  useEffect(() => {
+    if (tickers.length === 0) return;
+    const id = setInterval(() => {
+      setSimPrices((prev) =>
+        prev.map((_, i) => {
+          const base = tickers[i]?.price ?? 0;
+          if (base === 0) return 0;
+          return base * (1 + (Math.random() - 0.5) * 2 * TICKER_JITTER_AMPLITUDE);
+        }),
+      );
+    }, TICKER_JITTER_MS);
+    return () => clearInterval(id);
+  }, [tickers]);
+
+  if (tickers.length === 0) {
+    return <div style={styles.tickerMarquee} />;
+  }
+
+  const renderItem = (t: MarketTicker, key: number, idx: number) => {
+    const up = t.change >= 0;
+    const displayPrice = simPrices[idx] ?? t.price;
+    return (
+      <span key={key} style={styles.tickerItem}>
+        <span style={styles.tickerSymbol}>{t.symbol}</span>
+        <span style={styles.tickerPrice}>
+          {displayPrice > 0 ? displayPrice.toFixed(2) : '—'}
+        </span>
+        <span style={{ ...styles.tickerChange, color: up ? '#22cc55' : '#ee4444' }}>
+          {up ? '+' : ''}
+          {t.change.toFixed(1)}%
+        </span>
+      </span>
+    );
+  };
+
   return (
-    <div style={styles.tickerRow}>
-      {tickers.map((t) => {
-        const up = t.change >= 0;
-        return (
-          <span key={t.symbol} style={styles.tickerItem}>
-            <span style={styles.tickerSymbol}>{t.symbol}</span>
-            <span style={styles.tickerPrice}>{t.price.toFixed(2)}</span>
-            <span style={{ ...styles.tickerChange, color: up ? '#22cc55' : '#ee4444' }}>
-              {up ? '+' : ''}{t.change.toFixed(1)}%
-            </span>
-          </span>
-        );
-      })}
+    <div style={styles.tickerMarquee}>
+      <div style={styles.tickerTrack}>
+        {/* Two copies side-by-side; CSS keyframe translates -50% for seamless loop. */}
+        {tickers.map((t, i) => renderItem(t, i, i))}
+        {tickers.map((t, i) => renderItem(t, i + tickers.length, i))}
+      </div>
     </div>
   );
 }
@@ -266,19 +305,28 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '3px',
   },
 
-  // Ticker strip
-  tickerRow: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '2px 10px',
+  // Ticker strip — horizontal marquee with seamless loop.
+  // The outer box clips; the inner track holds two copies of the ticker list
+  // and is animated by `marqueeScroll` (App.css) translating 0 → -50%, so as
+  // the first copy leaves the left edge the second copy slides into place.
+  tickerMarquee: {
+    overflow: 'hidden',
     padding: '4px 0 6px',
     borderBottom: '1px solid #2a2a3a',
     marginBottom: '8px',
   },
+  tickerTrack: {
+    display: 'flex',
+    width: 'max-content',
+    whiteSpace: 'nowrap',
+    animation: 'marqueeScroll 40s linear infinite',
+  },
   tickerItem: {
     display: 'inline-flex',
-    gap: '4px',
+    gap: '6px',
     fontSize: '10px',
+    paddingRight: '24px',
+    flexShrink: 0,
   },
   tickerSymbol: {
     color: '#aaa',
