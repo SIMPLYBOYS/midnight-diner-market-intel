@@ -15,6 +15,16 @@ import { PolymarketOdds } from './PolymarketOdds';
 const TICKER_JITTER_MS = 600;
 const TICKER_JITTER_AMPLITUDE = 0.0005; // ±0.05% wiggle around the authored price
 
+/**
+ * Strip the parenthesized annotation episodes attach to ticker symbols.
+ * Episode scripts write things like `"Kospi（6/1 收、再破紀錄）"` so the label
+ * carries context for the sectors chart, but the marquee row only has room
+ * for the short identifier — keep "Kospi", drop the rest.
+ */
+function cleanSymbol(s: string): string {
+  return s.replace(/\s*[（(].*$/u, '').trim() || s;
+}
+
 function TickerRow({ tickers }: { tickers: MarketTicker[] }) {
   // Per-ticker simulated price — small random walk around the authored value
   // so the tape feels alive without misrepresenting the daily move.
@@ -47,7 +57,7 @@ function TickerRow({ tickers }: { tickers: MarketTicker[] }) {
     const displayPrice = simPrices[idx] ?? t.price;
     return (
       <span key={key} style={styles.tickerItem}>
-        <span style={styles.tickerSymbol}>{t.symbol}</span>
+        <span style={styles.tickerSymbol}>{cleanSymbol(t.symbol)}</span>
         <span style={styles.tickerPrice}>
           {displayPrice > 0 ? displayPrice.toFixed(2) : '—'}
         </span>
@@ -314,6 +324,7 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '4px 0 6px',
     borderBottom: '1px solid #2a2a3a',
     marginBottom: '8px',
+    minWidth: 0,
   },
   tickerTrack: {
     display: 'flex',

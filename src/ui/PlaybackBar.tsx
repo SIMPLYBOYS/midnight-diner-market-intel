@@ -133,19 +133,67 @@ export function PlaybackBar() {
       {/* Divider */}
       <span style={styles.divider}>│</span>
 
-      {/* Mini ticker */}
-      <div style={styles.ticker}>
-        {tickers.map((t) => {
-          const up = t.change >= 0;
-          return (
-            <span key={t.symbol} style={styles.tickerItem}>
-              <span style={styles.tickerSymbol}>{t.symbol}</span>
-              <span style={{ ...styles.tickerChange, color: up ? '#22cc55' : '#ee4444' }}>
-                {up ? '+' : ''}{t.change.toFixed(1)}%
-              </span>
-            </span>
-          );
-        })}
+      {/* Mini ticker — scrolling marquee */}
+      <PlaybackTicker tickers={tickers} />
+    </div>
+  );
+}
+
+// ── PlaybackBar ticker marquee ──────────────────────────────────
+
+const TICKER_JITTER_MS = 600;
+const TICKER_JITTER_AMPLITUDE = 0.0005;
+
+/** Strip the parenthesized annotation episode scripts attach to symbols. */
+function cleanSymbol(s: string): string {
+  return s.replace(/\s*[（(].*$/u, '').trim() || s;
+}
+
+function PlaybackTicker({ tickers }: { tickers: MarketTicker[] }) {
+  const [simPrices, setSimPrices] = useState<number[]>(() => tickers.map((t) => t.price));
+
+  useEffect(() => {
+    setSimPrices(tickers.map((t) => t.price));
+  }, [tickers]);
+
+  useEffect(() => {
+    if (tickers.length === 0) return;
+    const id = setInterval(() => {
+      setSimPrices((prev) =>
+        prev.map((_, i) => {
+          const base = tickers[i]?.price ?? 0;
+          if (base === 0) return 0;
+          return base * (1 + (Math.random() - 0.5) * 2 * TICKER_JITTER_AMPLITUDE);
+        }),
+      );
+    }, TICKER_JITTER_MS);
+    return () => clearInterval(id);
+  }, [tickers]);
+
+  if (tickers.length === 0) return <div style={styles.ticker} />;
+
+  const renderItem = (t: MarketTicker, key: number, idx: number) => {
+    const up = t.change >= 0;
+    const displayPrice = simPrices[idx] ?? t.price;
+    return (
+      <span key={key} style={styles.tickerItem}>
+        <span style={styles.tickerSymbol}>{cleanSymbol(t.symbol)}</span>
+        <span style={styles.tickerPrice}>
+          {displayPrice > 0 ? displayPrice.toFixed(2) : '—'}
+        </span>
+        <span style={{ ...styles.tickerChange, color: up ? '#22cc55' : '#ee4444' }}>
+          {up ? '+' : ''}
+          {t.change.toFixed(1)}%
+        </span>
+      </span>
+    );
+  };
+
+  return (
+    <div style={styles.ticker}>
+      <div style={styles.tickerTrack}>
+        {tickers.map((t, i) => renderItem(t, i, i))}
+        {tickers.map((t, i) => renderItem(t, i + tickers.length, i))}
       </div>
     </div>
   );
@@ -214,20 +262,33 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#333',
     flexShrink: 0,
   },
+  // Marquee container — clips the wide track to the available width.
   ticker: {
-    display: 'flex',
-    gap: '12px',
     flex: 1,
     overflow: 'hidden',
+    minWidth: 0,
+  },
+  // Inner track — two ticker copies side by side, animated by `marqueeScroll`
+  // (App.css) translating 0 → -50% so the loop is seamless.
+  tickerTrack: {
+    display: 'flex',
+    width: 'max-content',
+    whiteSpace: 'nowrap',
+    animation: 'marqueeScroll 35s linear infinite',
   },
   tickerItem: {
     display: 'inline-flex',
     gap: '4px',
+    paddingRight: '20px',
     flexShrink: 0,
   },
   tickerSymbol: {
-    color: '#666',
+    color: '#888',
     fontWeight: 'bold',
+    fontSize: '10px',
+  },
+  tickerPrice: {
+    color: '#ccc',
     fontSize: '10px',
   },
   tickerChange: {
