@@ -322,8 +322,12 @@ const styles: Record<string, React.CSSProperties> = {
   // The outer box clips; the inner track holds two copies of the ticker list
   // and is animated by `marqueeScroll` (App.css) translating 0 → -50%, so as
   // the first copy leaves the left edge the second copy slides into place.
+  // No overflow:hidden here — the wide track is already clipped by the
+  // outer `.dashboard`'s own overflow:hidden. Stacking a second clipping
+  // context around the marquee can produce sub-pixel rendering artifacts
+  // where the translateX animation crosses the boundary, which shows up
+  // as a layout snap / "跑版" right after the first market-data fires.
   tickerMarquee: {
-    overflow: 'hidden',
     padding: '4px 0 6px',
     borderBottom: '1px solid #2a2a3a',
     marginBottom: '8px',
