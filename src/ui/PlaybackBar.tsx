@@ -37,11 +37,9 @@ export function PlaybackBar() {
     const onFinished = () => setStatus('finished');
     const onMarket = (payload: { tickers?: MarketTicker[] }) => {
       if (payload.tickers) {
-        setTickers((prev) => {
-          const map = new Map(prev.map(t => [t.symbol, t]));
-          for (const t of payload.tickers!) map.set(t.symbol, t);
-          return Array.from(map.values());
-        });
+        // Replace, don't merge — defaults shouldn't accumulate with the
+        // episode's tickers (would widen the marquee mid-animation).
+        setTickers(payload.tickers);
       }
     };
 
@@ -189,9 +187,12 @@ function PlaybackTicker({ tickers }: { tickers: MarketTicker[] }) {
     );
   };
 
+  // See MarketDashboard: remount track on ticker change so keyframe restarts.
+  const trackKey = tickers.map((t) => t.symbol).join('|');
+
   return (
     <div style={styles.ticker}>
-      <div style={styles.tickerTrack}>
+      <div key={trackKey} style={styles.tickerTrack}>
         {tickers.map((t, i) => renderItem(t, i, i))}
         {tickers.map((t, i) => renderItem(t, i + tickers.length, i))}
       </div>

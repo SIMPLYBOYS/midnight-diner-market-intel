@@ -69,9 +69,14 @@ function TickerRow({ tickers }: { tickers: MarketTicker[] }) {
     );
   };
 
+  // Key on the symbol list so React remounts the track when the ticker set
+  // changes — the keyframe restarts at offset 0 instead of continuing from
+  // a stale percentage of a now-different track width.
+  const trackKey = tickers.map((t) => t.symbol).join('|');
+
   return (
     <div style={styles.tickerMarquee}>
-      <div style={styles.tickerTrack}>
+      <div key={trackKey} style={styles.tickerTrack}>
         {/* Two copies side-by-side; CSS keyframe translates -50% for seamless loop. */}
         {tickers.map((t, i) => renderItem(t, i, i))}
         {tickers.map((t, i) => renderItem(t, i + tickers.length, i))}
@@ -130,13 +135,11 @@ export function MarketDashboard() {
     setTimeout(() => setFlash(false), 300);
 
     if (payload.tickers) {
-      setTickers((prev) => {
-        const map = new Map(prev.map(t => [t.symbol, t]));
-        for (const t of payload.tickers!) {
-          map.set(t.symbol, t);
-        }
-        return Array.from(map.values());
-      });
+      // Each episode's market-data is a complete snapshot — replace rather
+      // than merge, otherwise the default NVDA/AAPL/... defaults accumulate
+      // with the episode's tickers and the marquee track silently widens
+      // mid-animation (the keyframe -50% endpoint shifts → visual "snap").
+      setTickers(payload.tickers);
     }
     if (payload.priceHistory) {
       setPriceHistory((prev) => [...prev.slice(-10), ...payload.priceHistory!]);
