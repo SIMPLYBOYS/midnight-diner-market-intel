@@ -5,6 +5,7 @@ import { DialogueManager } from '../dialogue/DialogueManager';
 import { TimelinePlayer } from '../engine/TimelinePlayer';
 import { JsonDataSource } from '../datasource/JsonDataSource';
 import { enrichEpisodeWithLivePolymarket, isLiveMode } from '../datasource/livePolymarket';
+import { enrichEpisodeWithLiveBinance } from '../datasource/liveBinanceTickers';
 import { ALL_EPISODES } from '../assets/episodes';
 import { eventBus } from '../engine/EventBus';
 import { audioManager } from '../audio/AudioManager';
@@ -111,6 +112,9 @@ export class DinerScene extends Phaser.Scene {
       .getEpisode(episodeId)
       .then((episode) =>
         isLiveMode() ? enrichEpisodeWithLivePolymarket(episode, abort.signal) : episode,
+      )
+      .then((episode) =>
+        isLiveMode() ? enrichEpisodeWithLiveBinance(episode, abort.signal) : episode,
       )
       .then((episode) => {
         // Guard against a newer playEpisode() call arriving while live fetch was in flight.
