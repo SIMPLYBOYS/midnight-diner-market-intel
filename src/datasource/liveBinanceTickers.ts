@@ -1,6 +1,7 @@
 import type { Action, Episode, MarketDataAction, MarketTicker } from '../engine/types';
 import { BinanceClient } from './BinanceClient';
 import { logger } from '../logger';
+import { cleanSymbol } from '../utils/symbols';
 
 /** Give up on live data after this long. */
 const LIVE_FETCH_TIMEOUT_MS = 5000;
@@ -46,12 +47,8 @@ const NAME_TO_BINANCE: Record<string, string> = {
   'coin': 'COINUSDT',
 };
 
-function cleanedName(symbol: string): string {
-  return symbol.replace(/\s*[（(].*$/u, '').trim().toLowerCase();
-}
-
 function toBinanceSymbol(displaySymbol: string): string | null {
-  return NAME_TO_BINANCE[cleanedName(displaySymbol)] ?? null;
+  return NAME_TO_BINANCE[cleanSymbol(displaySymbol).toLowerCase()] ?? null;
 }
 
 function isMarketData(a: Action): a is MarketDataAction {

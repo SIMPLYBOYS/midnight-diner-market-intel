@@ -2,6 +2,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { eventBus } from '../engine/EventBus';
 import { audioManager } from '../audio/AudioManager';
 import type { MarketTicker } from '../engine/types';
+import { useSimulatedPrices } from './useSimulatedPrices';
+import { cleanSymbol } from '../utils/symbols';
 
 // ── Ticker data (updated via market:update) ─────────────────────
 
@@ -139,34 +141,8 @@ export function PlaybackBar() {
 
 // ── PlaybackBar ticker marquee ──────────────────────────────────
 
-const TICKER_JITTER_MS = 600;
-const TICKER_JITTER_AMPLITUDE = 0.0005;
-
-/** Strip the parenthesized annotation episode scripts attach to symbols. */
-function cleanSymbol(s: string): string {
-  return s.replace(/\s*[（(].*$/u, '').trim() || s;
-}
-
 function PlaybackTicker({ tickers }: { tickers: MarketTicker[] }) {
-  const [simPrices, setSimPrices] = useState<number[]>(() => tickers.map((t) => t.price));
-
-  useEffect(() => {
-    setSimPrices(tickers.map((t) => t.price));
-  }, [tickers]);
-
-  useEffect(() => {
-    if (tickers.length === 0) return;
-    const id = setInterval(() => {
-      setSimPrices((prev) =>
-        prev.map((_, i) => {
-          const base = tickers[i]?.price ?? 0;
-          if (base === 0) return 0;
-          return base * (1 + (Math.random() - 0.5) * 2 * TICKER_JITTER_AMPLITUDE);
-        }),
-      );
-    }, TICKER_JITTER_MS);
-    return () => clearInterval(id);
-  }, [tickers]);
+  const simPrices = useSimulatedPrices(tickers);
 
   if (tickers.length === 0) return <div style={styles.ticker} />;
 

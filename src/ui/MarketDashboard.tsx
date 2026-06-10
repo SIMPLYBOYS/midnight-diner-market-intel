@@ -9,44 +9,13 @@ import {
   CrtOverlay,
 } from './charts/CrtCharts';
 import { PolymarketOdds } from './PolymarketOdds';
+import { useSimulatedPrices } from './useSimulatedPrices';
+import { cleanSymbol } from '../utils/symbols';
 
 // ── Ticker row (marquee with simulated price jitter) ────────────
 
-const TICKER_JITTER_MS = 600;
-const TICKER_JITTER_AMPLITUDE = 0.0005; // ±0.05% wiggle around the authored price
-
-/**
- * Strip the parenthesized annotation episodes attach to ticker symbols.
- * Episode scripts write things like `"Kospi（6/1 收、再破紀錄）"` so the label
- * carries context for the sectors chart, but the marquee row only has room
- * for the short identifier — keep "Kospi", drop the rest.
- */
-function cleanSymbol(s: string): string {
-  return s.replace(/\s*[（(].*$/u, '').trim() || s;
-}
-
 function TickerRow({ tickers }: { tickers: MarketTicker[] }) {
-  // Per-ticker simulated price — small random walk around the authored value
-  // so the tape feels alive without misrepresenting the daily move.
-  const [simPrices, setSimPrices] = useState<number[]>(() => tickers.map((t) => t.price));
-
-  useEffect(() => {
-    setSimPrices(tickers.map((t) => t.price));
-  }, [tickers]);
-
-  useEffect(() => {
-    if (tickers.length === 0) return;
-    const id = setInterval(() => {
-      setSimPrices((prev) =>
-        prev.map((_, i) => {
-          const base = tickers[i]?.price ?? 0;
-          if (base === 0) return 0;
-          return base * (1 + (Math.random() - 0.5) * 2 * TICKER_JITTER_AMPLITUDE);
-        }),
-      );
-    }, TICKER_JITTER_MS);
-    return () => clearInterval(id);
-  }, [tickers]);
+  const simPrices = useSimulatedPrices(tickers);
 
   if (tickers.length === 0) {
     return <div style={styles.tickerMarquee} />;
