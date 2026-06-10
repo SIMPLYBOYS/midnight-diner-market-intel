@@ -3,10 +3,11 @@ import { GAME_WIDTH, GAME_HEIGHT } from '../constants';
 import { Character } from '../characters/Character';
 import { DialogueManager } from '../dialogue/DialogueManager';
 import { TimelinePlayer } from '../engine/TimelinePlayer';
-import { JsonDataSource } from '../datasource/JsonDataSource';
+import type { DataSource } from '../datasource/interface';
+import { LazyEpisodeDataSource } from '../datasource/LazyEpisodeDataSource';
 import { enrichEpisodeWithLivePolymarket, isLiveMode } from '../datasource/livePolymarket';
 import { enrichEpisodeWithLiveBinance } from '../datasource/liveBinanceTickers';
-import { ALL_EPISODES } from '../assets/episodes';
+import { LATEST_EPISODE_ID } from '../assets/episodes';
 import { eventBus } from '../engine/EventBus';
 import { audioManager } from '../audio/AudioManager';
 import type { CharacterConfig } from '../characters/types';
@@ -15,7 +16,7 @@ export class DinerScene extends Phaser.Scene {
   private characterMap = new Map<string, Character>();
   private timelinePlayer!: TimelinePlayer;
   private dialogueManager!: DialogueManager;
-  private dataSource!: JsonDataSource;
+  private dataSource!: DataSource;
   private currentEpisodeId: string | null = null;
   private liveFetchAbort: AbortController | null = null;
   private cleanedUp = false;
@@ -49,7 +50,7 @@ export class DinerScene extends Phaser.Scene {
 
     this.timelinePlayer = new TimelinePlayer(this);
     this.dialogueManager = new DialogueManager(this);
-    this.dataSource = new JsonDataSource(ALL_EPISODES);
+    this.dataSource = new LazyEpisodeDataSource();
 
     // Listen for React UI events
     eventBus.on('episode:select', this.onEpisodeSelect);
@@ -67,7 +68,7 @@ export class DinerScene extends Phaser.Scene {
     this.events.once(Phaser.Scenes.Events.DESTROY, this.cleanup, this);
 
     // Auto-play the latest episode
-    this.playEpisode(ALL_EPISODES[ALL_EPISODES.length - 1].id);
+    this.playEpisode(LATEST_EPISODE_ID);
   }
 
   update(_time: number, delta: number): void {

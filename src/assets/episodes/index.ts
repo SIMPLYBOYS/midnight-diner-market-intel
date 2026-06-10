@@ -1,64 +1,74 @@
-import type { Episode } from '../../engine/types';
-import { EPISODE_01 } from './episode01';
-import { EPISODE_02 } from './episode02';
-import { EPISODE_03 } from './episode03';
-import { EPISODE_04 } from './episode04';
-import { EPISODE_05 } from './episode05';
-import { EPISODE_06 } from './episode06';
-import { EPISODE_07 } from './episode07';
-import { EPISODE_08 } from './episode08';
-import { EPISODE_09 } from './episode09';
-import { EPISODE_10 } from './episode10';
-import { EPISODE_11 } from './episode11';
-import { EPISODE_12 } from './episode12';
-import { EPISODE_13 } from './episode13';
-import { EPISODE_14 } from './episode14';
-import { EPISODE_15 } from './episode15';
-import { EPISODE_16 } from './episode16';
-import { EPISODE_17 } from './episode17';
-import { EPISODE_18 } from './episode18';
-import { EPISODE_19 } from './episode19';
-import { EPISODE_20 } from './episode20';
-import { EPISODE_21 } from './episode21';
-import { EPISODE_22 } from './episode22';
-import { EPISODE_23 } from './episode23';
-import { EPISODE_24 } from './episode24';
-import { EPISODE_25 } from './episode25';
-import { EPISODE_26 } from './episode26';
-import { EPISODE_27 } from './episode27';
-import { EPISODE_28 } from './episode28';
-import { EPISODE_29 } from './episode29';
-import { EPISODE_30 } from './episode30';
-import { EPISODE_31 } from './episode31';
-import { EPISODE_32 } from './episode32';
-import { EPISODE_33 } from './episode33';
-import { EPISODE_34 } from './episode34';
-import { EPISODE_35 } from './episode35';
-import { EPISODE_36 } from './episode36';
-import { EPISODE_37 } from './episode37';
-import { EPISODE_38 } from './episode38';
-import { EPISODE_39 } from './episode39';
-import { EPISODE_40 } from './episode40';
-import { EPISODE_41 } from './episode41';
-import { EPISODE_42 } from './episode42';
-import { EPISODE_43 } from './episode43';
-import { EPISODE_44 } from './episode44';
-import { EPISODE_45 } from './episode45';
-import { EPISODE_46 } from './episode46';
-import { EPISODE_47 } from './episode47';
-import { EPISODE_48 } from './episode48';
-import { EPISODE_49 } from './episode49';
-import { EPISODE_50 } from './episode50';
-import { EPISODE_51 } from './episode51';
-import { EPISODE_52 } from './episode52';
-import { EPISODE_53 } from './episode53';
-import { EPISODE_54 } from './episode54';
-import { EPISODE_55 } from './episode55';
-import { EPISODE_56 } from './episode56';
-import { EPISODE_57 } from './episode57';
-import { EPISODE_58 } from './episode58';
-import { EPISODE_59 } from './episode59';
-import { EPISODE_60 } from './episode60';
-import { EPISODE_61 } from './episode61';
+import type { Episode, EpisodeMeta } from '../../engine/types';
+import { logger } from '../../logger';
 
-export const ALL_EPISODES: Episode[] = [EPISODE_01, EPISODE_02, EPISODE_03, EPISODE_04, EPISODE_05, EPISODE_06, EPISODE_07, EPISODE_08, EPISODE_09, EPISODE_10, EPISODE_11, EPISODE_12, EPISODE_13, EPISODE_14, EPISODE_15, EPISODE_16, EPISODE_17, EPISODE_18, EPISODE_19, EPISODE_20, EPISODE_21, EPISODE_22, EPISODE_23, EPISODE_24, EPISODE_25, EPISODE_26, EPISODE_27, EPISODE_28, EPISODE_29, EPISODE_30, EPISODE_31, EPISODE_32, EPISODE_33, EPISODE_34, EPISODE_35, EPISODE_36, EPISODE_37, EPISODE_38, EPISODE_39, EPISODE_40, EPISODE_41, EPISODE_42, EPISODE_43, EPISODE_44, EPISODE_45, EPISODE_46, EPISODE_47, EPISODE_48, EPISODE_49, EPISODE_50, EPISODE_51, EPISODE_52, EPISODE_53, EPISODE_54, EPISODE_55, EPISODE_56, EPISODE_57, EPISODE_58, EPISODE_59, EPISODE_60, EPISODE_61];
+/**
+ * Episode registry — discovered via Vite glob, loaded lazily.
+ *
+ * Every `episodeNN.ts` in this directory is picked up automatically; there
+ * is no manual import list to maintain. Vite code-splits each episode into
+ * its own chunk, so the initial bundle no longer carries the full script
+ * library (~1.3MB source and growing daily) — an episode's chunk is fetched
+ * the first time it is loaded.
+ *
+ * Convention: the filename `episodeNN.ts` must match the episode's internal
+ * `id: 'ep-NN'` (zero-padded the same way). A mismatch logs a warning and
+ * the module's own id wins for playback.
+ */
+const modules = import.meta.glob<Record<string, unknown>>('./episode*.ts');
+
+interface RegistryEntry {
+  id: string;
+  num: number;
+  load: () => Promise<Record<string, unknown>>;
+}
+
+const registry: RegistryEntry[] = Object.entries(modules)
+  .map(([path, load]): RegistryEntry | null => {
+    const m = /episode(\d+)\.ts$/.exec(path);
+    if (!m) return null;
+    return { id: `ep-${m[1]}`, num: Number(m[1]), load };
+  })
+  .filter((e): e is RegistryEntry => e !== null)
+  .sort((a, b) => a.num - b.num);
+
+/** All episode ids in chronological (file-number) order. Synchronous. */
+export const EPISODE_IDS: string[] = registry.map((e) => e.id);
+
+/** Newest episode id — what the scene auto-plays on startup. */
+export const LATEST_EPISODE_ID: string = EPISODE_IDS[EPISODE_IDS.length - 1];
+
+const cache = new Map<string, Episode>();
+
+function isEpisode(v: unknown): v is Episode {
+  return (
+    typeof v === 'object' && v !== null && 'id' in v && 'actions' in v && Array.isArray((v as Episode).actions)
+  );
+}
+
+/** Load one episode by id, fetching its chunk on first access. */
+export async function loadEpisode(id: string): Promise<Episode> {
+  const hit = cache.get(id);
+  if (hit) return hit;
+
+  const entry = registry.find((e) => e.id === id);
+  if (!entry) throw new Error(`Episode not found: ${id}`);
+
+  const mod = await entry.load();
+  const ep = Object.values(mod).find(isEpisode);
+  if (!ep) throw new Error(`No Episode export found in module for ${id}`);
+  if (ep.id !== id) {
+    logger.warn(`episode id mismatch: filename implies ${id}, module declares ${ep.id}`);
+  }
+
+  cache.set(id, ep);
+  return ep;
+}
+
+/**
+ * Metadata for every episode (id/date/title/description), for menus.
+ * Loads all episode chunks (cached) — call after first paint, not before.
+ */
+export async function listEpisodeMetas(): Promise<EpisodeMeta[]> {
+  const eps = await Promise.all(EPISODE_IDS.map((id) => loadEpisode(id)));
+  return eps.map(({ id, date, title, description }) => ({ id, date, title, description }));
+}

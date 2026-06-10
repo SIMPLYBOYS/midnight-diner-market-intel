@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { eventBus } from '../engine/EventBus';
-import { ALL_EPISODES } from '../assets/episodes';
-
-const LATEST_EPISODE = ALL_EPISODES[ALL_EPISODES.length - 1];
+import { LATEST_EPISODE_ID, listEpisodeMetas } from '../assets/episodes';
+import type { EpisodeMeta } from '../engine/types';
 
 function formatDateLabel(date?: string): string {
   if (!date) return '';
@@ -18,10 +17,23 @@ function formatDateCompact(date?: string): string {
 }
 
 export function TopNav() {
-  const [currentEpisode, setCurrentEpisode] = useState(LATEST_EPISODE.id);
+  const [currentEpisode, setCurrentEpisode] = useState(LATEST_EPISODE_ID);
   const [status, setStatus] = useState<'idle' | 'playing' | 'finished'>('idle');
+  const [metas, setMetas] = useState<EpisodeMeta[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const orderedEpisodes = useMemo(() => [...ALL_EPISODES].reverse(), []);
+  const orderedEpisodes = useMemo(() => [...metas].reverse(), [metas]);
+
+  // Episode metadata loads lazily (each episode is its own chunk); the menu
+  // populates shortly after mount instead of bloating the initial bundle.
+  useEffect(() => {
+    let alive = true;
+    listEpisodeMetas().then((m) => {
+      if (alive) setMetas(m);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   useEffect(() => {
     const onStart = ({ episodeId }: { episodeId: string }) => {
@@ -47,7 +59,7 @@ export function TopNav() {
     scrollRef.current?.scrollBy({ left: dir * 140, behavior: 'smooth' });
   };
 
-  const currentEp = ALL_EPISODES.find(e => e.id === currentEpisode);
+  const currentEp = metas.find(e => e.id === currentEpisode);
   const currentTitle = currentEp?.title ?? '';
 
   return (
