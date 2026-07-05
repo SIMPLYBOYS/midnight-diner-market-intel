@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { eventBus } from '../engine/EventBus';
-import { LATEST_EPISODE_ID, listEpisodeMetas } from '../assets/episodes';
+import { dataSource } from '../datasource';
 import type { EpisodeMeta } from '../engine/types';
 
 function formatDateLabel(date?: string): string {
@@ -17,7 +17,7 @@ function formatDateCompact(date?: string): string {
 }
 
 export function TopNav() {
-  const [currentEpisode, setCurrentEpisode] = useState(LATEST_EPISODE_ID);
+  const [currentEpisode, setCurrentEpisode] = useState('');
   const [status, setStatus] = useState<'idle' | 'playing' | 'finished'>('idle');
   const [metas, setMetas] = useState<EpisodeMeta[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -25,10 +25,15 @@ export function TopNav() {
 
   // Episode metadata loads lazily (each episode is its own chunk); the menu
   // populates shortly after mount instead of bloating the initial bundle.
+  // The current selection is also seeded from the DataSource's latest id, then
+  // kept in sync by timeline:started events below.
   useEffect(() => {
     let alive = true;
-    listEpisodeMetas().then((m) => {
+    dataSource.listEpisodes().then((m) => {
       if (alive) setMetas(m);
+    });
+    dataSource.getLatestEpisodeId().then((id) => {
+      if (alive) setCurrentEpisode((prev) => prev || id);
     });
     return () => {
       alive = false;
