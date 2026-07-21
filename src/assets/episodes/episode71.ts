@@ -48,11 +48,15 @@ import type { Episode } from '../../engine/types';
  *   Japan angle that makes this bite: island economy, oil arrives by sea —
  *   on the day it celebrates the sea, the sea lane is the problem.
  *
- * — NIKKEI LAST PRINT, a genuine source conflict I had to adjudicate:
- *   one source says Fri 7/17 closed 63,674 (-3,161 pts, -4.73%), another
- *   says 64,140. 63,674 is internally consistent (66,835 - 3,161 = 63,674;
- *   3161/66835 = 4.73% ✓) and is what ep70 already committed, so I use it
- *   for continuity and flag the conflict here rather than silently switch.
+ * — NIKKEI LAST PRINT — ⚠️ CORRECTED 2026-07-22. This episode originally
+ *   published 63,674 for the Fri 7/17 close, reasoning it was "internally
+ *   consistent" with -3,161 pts / -4.73%. That check was CIRCULAR: the
+ *   prior close (66,835) was itself derived from the very figures being
+ *   validated, so the set could only ever agree with itself. The correct
+ *   close is 64,141.12 (-4.03%, -2,694 pts), confirmed by ts2.tech and
+ *   5paisa, and decisively by arithmetic off Tue 7/21's reopen:
+ *   66,231 / 1.0326 = 64,141 ✓ (whereas 63,674 x 1.0326 = 65,750 ✗).
+ *   Values throughout this file now read 64,141.
  *
  * — sectors[].value = |%change|x100 of each theme's indicator asset,
  *   sorted desc, date-tagged. The two grey value:0 rows are EVENTS not
@@ -60,7 +64,7 @@ import type { Episode } from '../../engine/types';
  *   correct, there was no move because there was no market; and the Hormuz
  *   transit collapse, which is a shipping count, not an asset %move, so it
  *   must NOT be scaled as one.
- * — priceHistory: the flat tail is the holiday, not a bug — 63,674 repeated
+ * — priceHistory: the flat tail is the holiday, not a bug — 64,141 repeated
  *   because no price exists for three days. volumeHistory zeros likewise.
  *   The 7/16 (66,835) and one interpolated mid-point are shape-only.
  *   vix/rsi/beta are mood indicators, not sourced prints.
@@ -100,7 +104,7 @@ export const EPISODE_71: Episode = {
       type: 'market-data',
       data: {
         tickers: [
-          { symbol: '日經 225（海の日休市、三天無報價、上週五收 63,674）', price: 63674.0, change: 0.0 },
+          { symbol: '日經 225（海の日休市、三天無報價、上週五收 64,141）', price: 64141.0, change: 0.0 },
           { symbol: 'Brent 原油（站上 $90、6 月中來最高、科威特油廠被打）', price: 90.0, change: 4.0 },
           { symbol: 'S&P 500（7/17 收、當週 -1.6%）', price: 7457.69, change: -1.01 },
           { symbol: 'Nasdaq（7/17 收、當週 -2.9%）', price: 25520.24, change: -1.4 },
@@ -110,7 +114,7 @@ export const EPISODE_71: Episode = {
         vix: 25.0,
         rsi: 31.0,
         beta: 1.35,
-        priceHistory: [72353, 69174, 67500, 66835, 63674, 63674, 63674, 63674],
+        priceHistory: [72353, 69174, 67500, 66835, 64141, 64141, 64141, 64141],
         volumeHistory: [900, 1000, 1400, 2000, 2500, 0, 0, 0],
         sectors: [
           { label: '晶片股 ETF（SMH）7/17 -4%（Applied Materials／Lam／Intel／KLA／Arm 各約 -4%、整片被殺）', value: 400, color: '#dd3333' },
