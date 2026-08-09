@@ -38,3 +38,6 @@ data/
 # Playwright MCP artifacts
 .playwright-mcp/
 .firecrawl/
+
+# automated episode cron log
+.episode-cron.log

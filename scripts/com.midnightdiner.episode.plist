@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Template. To install:
+    cp scripts/com.midnightdiner.episode.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.midnightdiner.episode.plist
+  Change the <Hour> below to 16 if you want that day's Tokyo close (15:00 JST)
+  in the episode; 11 fires before Tokyo closes (see the note in the chat).
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.midnightdiner.episode</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel/scripts/update-episode.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>11</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- launchd starts with a bare PATH; give it nvm's bin (claude/node/npm) plus git. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/mac/.nvm/versions/node/v20.12.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel/.episode-cron.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel/.episode-cron.log</string>
+</dict>
+</plist>
