@@ -15,7 +15,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel/scripts/update-episode.sh</string>
+    <string>/Users/mac/dev/midnight-diner-market-intel/scripts/update-episode.sh</string>
   </array>
 
   <key>StartCalendarInterval</key>
@@ -34,8 +34,8 @@
   </dict>
 
   <key>StandardOutPath</key>
-  <string>/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel/.episode-cron.log</string>
+  <string>/Users/mac/dev/midnight-diner-market-intel/.episode-cron.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel/.episode-cron.log</string>
+  <string>/Users/mac/dev/midnight-diner-market-intel/.episode-cron.log</string>
 </dict>
 </plist>

@@ -7,7 +7,7 @@
 # Push is gated on typecheck so a broken episode can never reach the remote.
 set -uo pipefail
 
-REPO="/Users/mac/Documents/OpenSourceProjects/midnight-diner-market-intel"
+REPO="/Users/mac/dev/midnight-diner-market-intel"
 BRANCH="develop"
 cd "$REPO" || { echo "repo not found: $REPO"; exit 1; }
 
