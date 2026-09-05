@@ -1,0 +1,223 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-22 (Fri JST):
+ * - DATA NOTE: clean 5/22 (Fri) Asia closing prints were not reliably
+ *   available at episode time — web results kept resolving to the
+ *   5/21 Nvidia-rally session. Per the project's real-data-only rule,
+ *   this episode is framed as a FRIDAY-NIGHT WEEK-WRAP (same convention
+ *   ep37/ep30 used on thin-data days) and every figure below is sourced
+ *   from THIS WEEK, labelled by its real date. No invented 5/22 closes.
+ * - The AI week (5/21 session, the week's high point):
+ *   - Nvidia Q1 revenue $81.6B, +85% YoY; Q2 guide $91B, above Street.
+ *   - Kospi +6.7% to 7,688.43; Nikkei +3.5% to 61,877.89.
+ *   - SK Hynix +11.3%, TSMC +3%, Samsung +~8% after averting an 18-day
+ *     strike by ~48,000 workers (tentative wage deal).
+ *   (CNBC/Investing.com/ts2.tech 5/21, IndexBox May 2026)
+ * - Oil collapsed across the week as war-escalation fear drained:
+ *   WTI fell below $100, settling ~$98.26 (5/20); Brent -5% to ~$105.02
+ *   (5/19) on Trump shelving the "scheduled Tuesday attack" after Qatar/
+ *   Saudi/UAE lobbying. (CNBC 5/19, 5/20)
+ * - Japan 10y JGB yield eased to ~2.77% (5/21), retreating from 30-year
+ *   highs, as falling oil eased import-inflation pressure on Japan.
+ *   (Trading Economics / Investing.com 5/21)
+ * - USD/JPY softened toward 160 (from ~159.05 on 5/21); BofA shifted
+ *   yen view bearish->neutral, cut 2026 year-end USD/JPY forecast to
+ *   152 from 157. 160 (intervention zone) still the line in the sand.
+ *   (FXStreet/OCBC 5/20, BofA note)
+ * - US 10y ~4.6% (no clean fresh 5/22 print; ep41/42 level carried as
+ *   context, NOT asserted as a new close). April CPI 3-yr high / PPI
+ *   highest since Dec 2022 remain the structural backdrop.
+ * - Iran diplomacy STALLED on the 5/22 window: a senior US official
+ *   told Axios the latest Iranian proposal "is not a meaningful
+ *   improvement" and is insufficient for a deal; Trump called off the
+ *   planned envoy mission to Pakistan citing lack of progress and
+ *   proposed phone negotiations instead. Talks remain Pakistan-mediated;
+ *   Hormuz-first / nuclear-later sequencing still the core sticking
+ *   point; Tehran blockades Hormuz, US blockades Iranian ports; CENTCOM
+ *   has turned around 58 vessels. So the much-watched late-week "deal"
+ *   moment passed with no signing.
+ *   (Axios 4/27 + 5/6, Al Jazeera 5/6 + 5/8, HoC Library CBP-10637)
+ * - POLYMARKET (2nd use this week — within the 2-3x/week guidance; the
+ *   signal IS the point): "Will the Iranian regime fall by June 30?"
+ *   STILL 4.5% (0.045), vol ~$41.8M, week range 4.5-6.5%. Even with a
+ *   late-week deal deadline passing and diplomacy stalling, the
+ *   regime-collapse bet did NOT move — flat at the low end. Data from
+ *   public/polymarket/latest.json (collectedAt 2026-05-22T01:15:39Z).
+ * - sectors[].value = |%change|x100 of headline asset per theme, desc;
+ *   uses this week's SOURCED moves (rally day + oil week), not invented
+ *   5/22 numbers.
+ * - Continuity: ep42 (Thu) both A+B; B warned the AI pop was "borrowed
+ *   from tomorrow" + "check the fridge on your best sales night", said
+ *   she'd watch the US bond open Friday. Tonight CUSTOMER A SOLO (varies
+ *   the cast; A is the macro/analyst voice for the week-wrap + Iran
+ *   stall). A explicitly validates B's caution landing. ep42: A's wife
+ *   at her parents', he wasn't rushing. Chef's wife callback continues
+ *   ("這禮拜到底發生什麼"). Don't pin B's husband's job (she's not on
+ *   screen tonight anyway).
+ */
+export const EPISODE_43: Episode = {
+  id: 'ep-43',
+  date: '2026-05-22',
+  title: '20260522 禮拜五晚上、AI 狂歡的隔天市場高檔整理、那個被講了很久的 5/22 Iran「deadline」安靜地過了——Trump 取消去巴基斯坦的特使行程改打電話、美官員嫌伊朗提案「不夠看」、油續軟日本 10y 從 30 年高回落到 2.77%、Polymarket 政權垮台還是卡 4.5%',
+  description: '禮拜五晚上、Tokyo 21:00、一週收尾。這禮拜是「先恐慌、後狂歡、再冷靜」三段——前半週被伊朗戰爭壓著跌、禮拜四 Nvidia 財報炸裂（Q1 營收 $81.6B、年增 85%、下季看 $91B）全亞洲噴出（Kospi +6.7%、Nikkei +3.5%、SK Hynix +11.3%、Samsung 避掉 18 天罷工 +約 8%）；今天禮拜五、狂歡隔天、高檔整理、大家開始檢查冰箱——b 昨天那句「跟明天借的」今天有人開始還。比較安靜但其實重要的是兩條線：第一、那個被講了很久的 Iran「deal deadline」今天安靜地過了、沒簽——美方官員跟 Axios 說伊朗最新提案「不夠看」、Trump 把原本要去巴基斯坦的特使行程取消、改打電話、外交卡住；第二、油這禮拜整週重挫（WTI 跌破 $100、5/20 收 $98.26、Brent 5/19 -5%）、war-fear 退潮、連帶日本 10y 從 30 年高點回落到 2.77%、進口通膨壓力鬆一口氣。USD/JPY 逼近 160、還是沒破那條干預線、BofA 把日圓看法從看貶改中性。最有意思的是 Polymarket——「伊朗政權 6/30 前垮台」整週卡在 4.5%、連 deadline 過了都沒動。今晚 a 一個人來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜五晚上 9 點、東京。一週收尾。這禮拜講起來像三段——前半週被伊朗戰爭新聞壓著跌、跌得很悶；禮拜四晚上 Nvidia 那份財報炸裂、AI 點火、全亞洲噴出來、Kospi 一天 +6.7%、Nikkei +3.5%、SK Hynix +11.3%、Samsung 避掉一場 4 萬 8 千人、18 天的罷工、一檔 +約 8%；今天禮拜五、是狂歡的隔天、高檔整理、漲多的開始有人獲利了結——customer-b 昨天講那句「今天的漲是跟明天借的」、今天就有人開始還。今天比較安靜、但其實有兩條重要的線在底下走。第一條——那個被講了好久的 Iran「deal deadline」、今天安靜地過了、沒簽成。美方官員跟 Axios 講、伊朗最新那份提案「不夠看」、不足以成交；Trump 把原本要派去巴基斯坦的特使行程取消、改成打電話、外交卡住。第二條——油這禮拜整週重挫、WTI 跌破 $100、禮拜三收 $98.26、Brent 禮拜二一天 -5%、打仗的恐懼退潮、油就洩氣；連帶日本 10 年公債殖利率從 30 年高點回落到 2.77%、日本進口通膨的壓力鬆了一口氣。USD/JPY 逼近 160、還是沒破那條干預線、連美國銀行都把日圓從「看貶」改成「中性」。最妙的是那個 Polymarket——「伊朗政權 6 月底前垮台」整週卡在 4.5%、連今天 deadline 過了都沒動一下。今晚 customer-a 一個人來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Kospi（5/21 AI 高潮日）', price: 7688.43, change: 6.7 },
+          { symbol: 'Nikkei（5/21 AI 高潮日）', price: 61877.89, change: 3.5 },
+          { symbol: 'WTI 油（5/20 收、跌破 $100）', price: 98.26, change: -5.0 },
+          { symbol: '日本 10y（5/21、從 30 年高回落）', price: 2.77, change: -0.08 },
+          { symbol: 'USD/JPY（逼近 160）', price: 159.8, change: 0.5 },
+        ],
+        volatility: 19,
+        vix: 16.8,
+        rsi: 55.4,
+        beta: 1.05,
+        priceHistory: [7272, 7234, 7400, 7560, 7688, 7660, 7650, 7645],
+        volumeHistory: [690, 740, 820, 910, 970, 760, 640, 560],
+        sectors: [
+          { label: 'Kospi +6.7%（5/21 本週高潮、SK Hynix +11.3% TSMC +3%、AI 全面點火）', value: 670, color: '#22cc55' },
+          { label: 'WTI 油 -5%（整週重挫、跌破 $100、5/20 收 $98.26、war-fear 退潮）', value: 500, color: '#cc4422' },
+          { label: 'Nikkei +3.5%（5/21、SoftBank +20%、4 月出口 +14.8% 半導體領）', value: 350, color: '#22cc55' },
+          { label: 'USD/JPY 逼近 160（+0.5%、還是沒破干預線、BofA 把日圓改中性）', value: 50, color: '#cc4422' },
+          { label: '日本 10y 回落 2.77%（從 30 年高點下來、油跌減進口通膨、難得喘口氣）', value: 8, color: '#22cc55' },
+        ],
+        headline: '禮拜五 21:00 JST、一週收尾：AI 狂歡隔天高檔整理 / Iran 5/22「deadline」安靜過了沒簽、Trump 取消巴基斯坦特使改打電話、美官員嫌提案「不夠看」/ 油整週重挫 WTI 破 $100 / 日本 10y 回落 2.77% / USD/JPY 逼近 160 / Polymarket 伊朗政權垮台整週卡 4.5%',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。禮拜五了、我老婆今天問我一個總結題——她說「這禮拜到底發生什麼、前面跌得要死、禮拜四突然全部漲、今天又不太動、你給我講清楚」。我講到一半自己也亂了、只好說「等 a 來幫我整理」。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安、你老婆這題問得好、剛好適合禮拜五收尾。這禮拜就三段——前半週「恐慌」、被伊朗戰爭壓著賣；禮拜四「狂歡」、Nvidia 財報太猛、AI 整片噴；今天禮拜五「冷靜」、漲多了、大家開始獲利了結、順便檢查一下「昨天是不是太樂觀」。一個禮拜走完情緒三溫暖、其實很典型。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '恐慌、狂歡、冷靜——三段。那昨天 b 走的時候講一句、我記到現在、她說「今天的漲是跟明天借的」。今天是不是就是那個「明天」、開始還了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你記性真的好、b 那句今天兌現了一部分。今天高檔整理、就是「還一點」——不是大跌、是漲太快的先有人下車。她昨天還講一句「生意最好那天晚上、最該檢查冰箱」、那是你太太的話對吧？今天整個市場就在檢查冰箱：AI 是真的好、但一天漲 6%、是不是把未來三個月的好消息一次吃完了？今天大家就在問這個。' },
+
+    { type: 'dialogue', character: 'chef', text: '把未來三個月一次吃完——這個我懂、像吃到飽，第一盤拿太多、後面就吃不下。那 AI 這頓、到底是真的有東西、還是大家嘴巴喊爽的？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這次是真的有東西、這點跟以前的泡沫不一樣。Nvidia 那份財報、營收 $81.6B、比去年同期多 85%、下一季還看到 $91B——這是真金白銀的訂單、不是吹的。所以「AI 需求是真的」這件事、這禮拜被證實了。今天整理、整理的不是「AI 是不是假的」、是「價格是不是一天漲太多」。東西是真的、只是吃太快會脹氣。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── The quiet but important thing: the Iran "deadline" passed ──
+    { type: 'dialogue', character: 'chef', text: '你剛說今天底下有兩條重要的線、其中一條是伊朗那個「deadline」過了。這個我新聞有看到、但看不太懂——deadline 過了沒簽、不是應該很嚴重、市場大跌嗎？怎麼今天反而很安靜？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這就是今天最有意思的地方。照理講「談判破局、deadline 過了」是壞消息、但市場今天幾乎沒反應——原因是、市場「早就不信這個 deadline 了」。這幾個禮拜 Trump 喊過好幾次「就快成了」「最後階段」、結果一次都沒真的簽。所以當這次 deadline 又過了、市場的反應是「喔、又一次、不意外」。一個你已經失望很多次的承諾、再失望一次、不痛了。' },
+
+    { type: 'dialogue', character: 'chef', text: '已經失望很多次、再失望一次就不痛了——這個太真實了。我們店有個供應商、每次都說「下批一定準時到」、遲到第五次以後、我就乾脆自己多備貨、他遲到我也不生氣了、因為我根本沒在等他。市場是不是也對 Trump 這樣？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「乾脆自己多備貨、不等他了」、就是市場現在對伊朗談判的態度、一模一樣。專業講法叫「鈍化」——同一種利空講太多次、市場就免疫了。今天美方官員跟記者講「伊朗的提案不夠看」、Trump 把要去巴基斯坦的特使行程取消、改打電話——這些以前會嚇到市場的話、今天大家看過就算了。市場已經自己多備貨了——油這禮拜先跌、就是「不等和平、自己先反映戰爭沒擴大」。' },
+
+    { type: 'dialogue', character: 'chef', text: '等一下——你說油「先跌」、是因為「戰爭沒擴大」？可是談判明明卡住了、照理講不是更危險、油要漲嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、好問題、這裡要分兩件事——「談判有沒有成」跟「戰爭有沒有擴大」是兩回事。談判卡住、確實沒成；但這禮拜更重要的是「Trump 取消了原本要打的攻擊、油田沒被炸、海峽雖然卡但沒全封」——也就是「最壞的軍事情況沒發生」。油價怕的是「斷供」、不是「談不攏」。談不攏、只要油還在流、油價就會洩氣。所以這禮拜 WTI 跌破 $100、Brent 一天 -5%、是市場在說「打不起來、囤的戰爭溢價可以退了」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Oil down → Japan yields ease → a rare bit of relief ──
+    { type: 'dialogue', character: 'chef', text: '油跌、對日本是好事吧？我們什麼都進口、油便宜、成本就低。新聞說日本那個什麼 10 年殖利率「從 30 年高點回落」、這個跟油有關？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這條線串得漂亮、完全正確。日本能源幾乎全靠進口、油貴的時候、什麼都跟著貴、通膨壓力大、債券殖利率就被推到 30 年來最高。這禮拜油一跌、市場想「進口通膨會降溫」、那條殖利率就從高點回落到 2.77%。對日本來說、這是這禮拜難得的好消息——不是因為日本做對什麼、是因為「中東那邊沒打起來、油洩氣了」、外面的壓力自己鬆了。' },
+
+    { type: 'dialogue', character: 'chef', text: '不是自己做對、是外面壓力鬆了——這個我們小店超有感。有時候生意突然變好、不是我菜變厲害、是隔壁倒了、或是這個月油電沒漲。運氣的成分、比大家想的多。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這句「運氣的成分比大家想的多」、是我們這行最不願意承認、但最真的一句。今天日本殖利率回落、日本央行什麼都沒做、純粹是油跌幫的忙。所以聰明的人不會太得意——因為油可以跌回來、也可以再漲上去。靠外面運氣的好消息、外面變天就沒了。真正穩的、是自己手上能控制的東西。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket: even on deadline day, the bet didn't move ──
+    { type: 'dialogue', character: 'chef', text: '牆上那個賭盤——「伊朗政權 6 月底前垮台」、我昨天看是 4.5%、今天再看、還是 4.5%。連 deadline 過了都沒動？這個「沒動」、是不是也在講什麼？' },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-22T01:15:39Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.045,
+            volume: 41800000,
+            liquidity: 593139,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1778810408, p: 0.045 }, { t: 1778839210, p: 0.045 }, { t: 1778871609, p: 0.045 },
+              { t: 1778900423, p: 0.045 }, { t: 1778929224, p: 0.045 }, { t: 1778958007, p: 0.045 },
+              { t: 1778986810, p: 0.045 }, { t: 1779015613, p: 0.045 }, { t: 1779044408, p: 0.045 },
+              { t: 1779073210, p: 0.045 }, { t: 1779102006, p: 0.045 }, { t: 1779130810, p: 0.055 },
+              { t: 1779159609, p: 0.055 }, { t: 1779188409, p: 0.045 }, { t: 1779217220, p: 0.045 },
+              { t: 1779246008, p: 0.055 }, { t: 1779274808, p: 0.055 }, { t: 1779303607, p: 0.045 },
+              { t: 1779332408, p: 0.045 }, { t: 1779361208, p: 0.045 }, { t: 1779390009, p: 0.045 },
+            ],
+          },
+        ],
+      },
+      duration: 5000,
+    },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「沒動」本身就是最強的訊號。你想——這禮拜新聞天翻地覆、deadline 過了、談判卡住、特使行程取消、按理講「政權會不會垮」這種賭盤、應該上上下下才對。結果它從頭到尾貼在 4.5%、連抖都沒抖。意思是、拿真錢下注的這群人、心裡早就有定見：「不管 Trump 怎麼喊、不管談判成不成、伊朗政權短期內就是不會垮。」新聞的戲劇性、跟他們的判斷、完全分開。' },
+
+    { type: 'dialogue', character: 'chef', text: '新聞演新聞的、賭盤不為所動——這個畫面有點酷。就像我們店外面有時候在吵架、很大聲、店裡的老客人連頭都不抬、繼續吃他的麵、因為他知道「吵歸吵、不會打起來」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「老客人連頭都不抬」、是我聽過形容這種市場最傳神的。我們管這個叫「噪音」跟「訊號」的差別——新聞很多是噪音、會讓你心跳加速、但不改變結局；真正的訊號、是那些「不為噪音所動」的東西。這個賭盤一週不動、就是訊號在說「結局沒變」。新人最容易犯的錯、就是把噪音當訊號、每條快訊都嚇得跳起來——做久了才學會、像那個老客人一樣、低頭吃麵。' },
+
+    { type: 'dialogue', character: 'chef', text: '把噪音當訊號、每條都跳起來——這個我年輕剛接店的時候也犯過、客人隨口一句「今天湯有點淡」、我整鍋倒掉重煮、後來才知道他只是當天感冒沒味覺。分得出哪句要當真、哪句聽聽就好、是要交學費的。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「整鍋倒掉重煮」的學費、我們每個人都繳過、只是我們繳的是真金白銀。今天禮拜五收尾、我給這禮拜下一個結論——這禮拜真正重要的不是哪天漲哪天跌、是「市場學會了分辨噪音」：伊朗的噪音很大、被鈍化了；Nvidia 的訊號很實、被買單了。能分清楚這兩個，比追漲殺跌重要一百倍。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Friday solo, week's end ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚就你一個、b 大概回家陪小孩了——禮拜五嘛。一個人吃、我幫你弄家常一點的：燒鯖魚定食、味噌湯、玉子燒、漬物、白飯給你盛滿。再給你來一小壺熱酒收一週。你今天不趕吧？太太還在她爸媽家？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你連這個都記得——對、太太禮拜天才回來、我這兩天自由。燒鯖魚定食太好了、熱酒一小壺、慢慢喝。這禮拜過得像坐雲霄飛車、今晚就想安安靜靜吃個定食、把腦袋放空。明天禮拜六、我打算睡到自然醒、什麼盤都不看。' },
+
+    { type: 'dialogue', character: 'chef', text: '什麼盤都不看——這個好。我師父以前講、休息不是偷懶、是讓舌頭歸零、不然天天試味道、舌頭會麻、嚐不出鹹淡。你們看盤看一週、眼睛大概也麻了、週末讓它歸零、禮拜一才看得清楚。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「讓舌頭歸零」這個、跟我們講的「week-end reset」一模一樣、但你講得好聽太多。其實我們最厲害的前輩、週末是真的完全不看盤的——他說「市場禮拜一還在、你不會錯過什麼；但你眼睛麻了、會把噪音看成訊號、那才真的賠錢」。跟你師父那套，根本同一個道理。' },
+
+    { type: 'dialogue', character: 'chef', text: '不同行、同一個道理——做久了大概都會走到同一個地方。鯖魚我烤到皮酥、玉子燒今天多打一顆蛋、甜一點，配你這一週的辛苦；熱酒先上、你慢慢喝、不夠再說。這禮拜收工了。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、謝謝。下禮拜會怎樣我先不猜——油會不會再漲回去、6 月 16 號 Warsh 那場 FOMC、伊朗那個沒簽的 deal、都還在桌上。但那是下禮拜的事。今晚燒鯖魚、熱酒、什麼都不想。你那句「讓舌頭歸零」、我這週末就拿來用。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜五晚上 10 點半、東京。一週收尾、店裡只有一桌、燈黃、熱酒的霧氣飄上來。這禮拜的故事是「恐慌、狂歡、冷靜」三段——前半週被伊朗壓著跌、禮拜四 Nvidia 財報炸裂全亞洲噴（Kospi +6.7%、Nikkei +3.5%、SK Hynix +11.3%、Samsung 避掉 18 天罷工 +約 8%、AI 需求被證實是真的）、今天禮拜五高檔整理、b 昨天那句「跟明天借的」開始還一點。底下兩條安靜但重要的線：一、那個被講了好久的 Iran「deadline」今天安靜過了沒簽——美官員嫌提案「不夠看」、Trump 取消巴基斯坦特使行程改打電話——但市場沒反應、因為這個利空被喊太多次、鈍化了；油怕的是斷供不是談不攏、最壞的軍事情況沒發生、所以整週重挫（WTI 破 $100、5/20 收 $98.26、Brent 5/19 -5%）。二、油跌連帶日本 10y 從 30 年高點回落到 2.77%、日本進口通膨難得鬆一口氣——不是日本做對什麼、是外面運氣鬆了。USD/JPY 逼近 160、沒破干預線、BofA 把日圓改中性。最強的訊號是那個一動不動的 Polymarket——「伊朗政權 6/30 前垮台」整週貼在 4.5%、連 deadline 過了都沒抖：新聞演新聞的、老客人低頭吃麵、因為他知道吵歸吵不會真打起來。a 今晚一個人、燒鯖魚定食配一壺熱酒收一週、明天決定什麼盤都不看——讓舌頭歸零、禮拜一才嚐得出鹹淡。下禮拜的事下禮拜再說：油會不會漲回去、6/16 Warsh 的 FOMC、那個沒簽的 deal、都還在桌上。今晚先收工。',
+      duration: 6000,
+    },
+  ],
+};

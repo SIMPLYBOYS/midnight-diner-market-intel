@@ -1,0 +1,197 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-20 (Wed JST):
+ * - The relief from Trump's Monday-evening strike postponement faded
+ *   within a day. Asia fell Wednesday on elevated bond yields +
+ *   renewed geopolitical tension. Trump revealed Tuesday he was "an
+ *   hour away" from deciding to attack Iran before being persuaded
+ *   to postpone "for a few days". Postponement ≠ deal.
+ *   (CNBC Asia-Pacific live 5/20)
+ * - Asia Wednesday 5/20 closes (per CNBC 5/20 live blog):
+ *   - Nikkei 225: -0.88%
+ *   - Kospi: -0.52%
+ *   - Kosdaq (small-cap): -2.15%
+ *   - S&P/ASX 200: -0.5%
+ *   Levels derived from sourced prior close × sourced %: Tuesday
+ *   5/19 Nikkei close ~60,550 → Wed ~60,017; Tuesday Kospi close
+ *   ~7,271.66 → Wed ~7,234. Treat levels as approximate; the
+ *   percent moves are the directly-sourced figures.
+ *   (CNBC 5/19 + 5/20)
+ * - Bonds — the real story. US 10y rose to ~4.62% Tuesday close
+ *   (Trading Economics flagged 4.7% intraday print; day high 4.63%,
+ *   low 4.56%). Driver: April CPI a 3-year high, PPI highest since
+ *   Dec 2022 — inflation, not war, is now the dominant yield force.
+ *   This is the 4.7% level Customer B flagged in ep38 as a "stop-
+ *   loss / passive-selling" threshold; it's now being tested.
+ *   (Trading Economics 5/19, CNBC 5/20)
+ * - USD/JPY ~158.77 Wed; week range 157.32 (5/12 low) to 159.075
+ *   (5/18 high). 160 still untested — 4th straight day. Japanese
+ *   officials signalling "no limit to how often" they can intervene;
+ *   MoF jawboning continuing to cap the pair near 159.
+ *   (Tradingeconomics / Wise 5/20, BoJ FX list)
+ * - Iran deal terms still far apart despite Trump's optimism. Trump
+ *   posted "A Deal will be made... NO NUCLEAR WEAPONS FOR IRAN",
+ *   credited Qatari Emir Tamim bin Hamad Al Thani + Saudi Crown
+ *   Prince MBS. But per Tasnim / Iran International: US latest text
+ *   offers only TEMPORARY OFAC oil-sanction waivers during talks;
+ *   Iran demands ALL sanctions fully lifted, plus war-damage
+ *   compensation, sovereignty over Hormuz, release of frozen assets.
+ *   IRGC retired Gen. Jafari issued 5 preconditions (end invasion,
+ *   no renewed attack, release blocked funds, ...). Nuclear
+ *   enrichment deferred to later rounds. So the "deal" is a headline,
+ *   not a signed term sheet.
+ *   (Iran International 5/18, Al Jazeera 5/11, Algemeiner 5/18)
+ * - Tehran SE: Wednesday 5/20 is the last trading day of the Iranian
+ *   week (weekend Thu-Fri). Day 1 (Tue 5/19) closed ~-2.75% near the
+ *   3% downside limit per Tehran Times. No clean Day-2 print
+ *   available at episode time; treat as "second day, watching whether
+ *   SEO has to step in", not a confirmed number.
+ *   (Tehran Times 5/19)
+ * - Powell-Warsh: still no clean dated swearing-in confirmation;
+ *   Stephen Miran resignation still pending. No new beat today.
+ * - sectors[].value methodology unchanged: |%change|×100 of headline
+ *   asset per theme. Wednesday Asia %s used; the 10y line is the
+ *   headline even though its daily change is small — flagged because
+ *   it's testing B's 4.7% threshold.
+ * - No polymarket block.
+ * - Continuity: ep40 (Tue) — Customer A only; he debriefed the
+ *   24-hour Trump reversal, rewrote his Iran briefing section. ep38
+ *   (Sun) — Customer B set the watch levels: USD/JPY 160 and 10y
+ *   4.7% as passive-selling triggers. Tonight (Wed) Customer B comes
+ *   — 10y is finally testing 4.7%, her call is "paying off", and
+ *   she's the FX/rates-desk voice for the bond story. Customer A not
+ *   tonight (he said in ep40 he'd be rewriting his brief to midnight
+ *   Tue + Wed). Chef's wife callback: she asked "Trump 不是說要 deal
+ *   了嗎、怎麼今天股票還跌" — chef relays.
+ */
+export const EPISODE_41: Episode = {
+  id: 'ep-41',
+  date: '2026-05-20',
+  title: '20260520 禮拜三晚上、Trump「我離下令打伊朗只剩一小時」被勸住、緩和只撐一天、Asia 全部回吐（Nikkei -0.88%、Kosdaq -2.15%）、真主角是美 10y 盤中觸 4.7%（b 在 ep38 設的線）、USD/JPY 連四天沒破 160',
+  description: '禮拜三晚上、Tokyo 21:00、昨天的緩和今天就吐回去了。Trump 禮拜二自己爆料「我離下令攻擊伊朗只剩一個小時」、被 Gulf 三國勸住、延「幾天」——關鍵是延後不是 deal。他發 Truth Social「A Deal will be made、NO NUCLEAR WEAPONS FOR IRAN」、感謝卡達 Emir 跟沙烏地 MBS；但伊朗那邊（Tasnim / Iran International）講美方最新文本只給「談判期間暫時的 OFAC 石油制裁豁免」、伊朗要的是「全部制裁解除＋戰爭賠償＋Hormuz 主權＋解凍資產」、IRGC 退役將領 Jafari 還開 5 個前提條件——兩邊根本還沒對上。所以市場今天看穿了：Asia 全部回吐、Nikkei -0.88%、Kospi -0.52%、Kosdaq -2.15%、ASX -0.5%。真正的主角不是伊朗、是債券——美 10y 禮拜二收約 4.62%、盤中觸 4.7%、剛好碰到 b 在 ep38 設的那條「被動賣壓線」、推手是 April CPI 三年新高、PPI 自 2022-12 最高——通膨、不是戰爭、現在是殖利率的主引擎。USD/JPY 158.77、連四天沒破 160、日本官員放話「介入次數沒有上限」、jawboning 繼續把它壓在 159。Customer B 今晚來——她 ep38 設的 4.7% 線今天兌現、收割她自己的 call。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 9 點、東京。昨天那點緩和、今天就吐回去了。Trump 禮拜二自己爆了一個料——「我離下令攻擊伊朗只剩一個小時」、然後被卡達、沙烏地、阿聯酋三國勸住、延「幾天」。重點是：延後不是 deal。他在 Truth Social 寫「A Deal will be made、NO NUCLEAR WEAPONS FOR IRAN」、感謝卡達 Emir 跟沙烏地的 MBS；但伊朗那邊、Tasnim 跟 Iran International 講得很清楚——美方最新文本只給「談判期間、暫時的石油制裁豁免」、伊朗要的是「全部制裁解除、戰爭賠償、Hormuz 主權、解凍被凍結的資產」、IRGC 退役將領 Jafari 還開了 5 個前提條件。兩邊根本還沒對上。市場今天看穿這件事——Asia 全部回吐、Nikkei -0.88%、Kospi -0.52%、Kosdaq -2.15%、ASX -0.5%。但今天真正的主角不是伊朗、是債券——美 10y 禮拜二收大約 4.62%、盤中一度觸 4.7%、剛好碰到 customer-b 上禮拜天設的那條「被動賣壓線」。推手是通膨——April CPI 三年新高、PPI 自 2022 年 12 月以來最高。通膨、不是戰爭、現在是殖利率的主引擎。USD/JPY 158.77、連四天沒破 160、日本官員放話「介入次數沒有上限」。今晚 customer-b 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: '美 10y 殖利率（盤中觸 4.7%）', price: 4.62, change: 0.02 },
+          { symbol: 'Nikkei（5/20 收）', price: 60017.0, change: -0.88 },
+          { symbol: 'Kospi（5/20 收）', price: 7234.0, change: -0.52 },
+          { symbol: 'Kosdaq（5/20 收）', price: 1087.2, change: -2.15 },
+          { symbol: 'USD/JPY', price: 158.77, change: -0.11 },
+        ],
+        volatility: 27,
+        vix: 20.8,
+        rsi: 35.6,
+        beta: 1.09,
+        priceHistory: [7820, 7765, 7780, 7712, 7558, 7610, 7272, 7234],
+        volumeHistory: [425, 510, 588, 642, 720, 815, 760, 690],
+        sectors: [
+          { label: '美 10y 盤中觸 4.7%（b 在 ep38 設的被動賣壓線、CPI 三年新高 / PPI 自 2022-12 最高）', value: 70, color: '#cc4422' },
+          { label: 'Kosdaq -2.15%（韓國小型股最痛、緩和只撐一天就吐回）', value: 215, color: '#cc4422' },
+          { label: 'Nikkei -0.88%（昨天 relief 今天 give back、債券殖利率壓頭）', value: 88, color: '#cc4422' },
+          { label: 'Kospi -0.52%（連三天區間：5/15 -3.37、5/19 -3、5/20 -0.52、累計重傷）', value: 52, color: '#cc4422' },
+          { label: 'USD/JPY 158.77（連四天沒破 160、官員放話介入次數無上限、jawboning 壓 159）', value: 11, color: '#22cc55' },
+        ],
+        headline: '禮拜三 21:00 JST、Asia 收盤：Trump「離下令打伊朗剩一小時」被勸住、延後不是 deal / 兩邊條件還沒對上（伊朗要全解制裁＋賠償＋Hormuz 主權）/ 美 10y 盤中觸 4.7%、通膨是主引擎 / Asia 全回吐 Nikkei -0.88% Kosdaq -2.15% / USD/JPY 158.77 連四天沒破 160',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+
+    // ── Customer B enters ──
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。我老婆今天又考我——她說「Trump 不是禮拜一就講要 deal 了嗎、怎麼今天股票還跌」、我老樣子答不出來。你上禮拜天講的那條 4.7% 的線、我記得、今天有碰到嗎？' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安、你記性比我們新人好。碰到了——美 10y 禮拜二盤中觸到 4.7%、收回 4.62% 左右。我上禮拜天設那條線、今天兌現、我們 desk 早上 line 上我講「來了」。但說實話、兌現的方式跟我想的不一樣——我以為 4.7% 會是「伊朗開打、避險、殖利率衝上去」、結果今天是「伊朗緩和、但通膨數據壓過來、殖利率還是上去」。線對了、原因錯了。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '線對了、原因錯了——這個我居然懂。我之前猜禮拜五客人會多、結果真的多、但不是因為我猜的「發薪日」、是因為隔壁辦活動帶人潮。猜中結果、猜錯理由。這樣到底算不算猜中？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這個問題我們這行吵了一百年——叫「process vs outcome」。outcome 對、process 錯、嚴格講是運氣、不能算實力。我那條 4.7% 線兌現、但我下的理由（伊朗開打）沒發生、發生的是另一個理由（通膨）、所以我不能跟主管邀功、只能說「位置對、邏輯要修」。今天我把 desk 的 thesis 改了——主線從「地緣風險推升殖利率」換成「通膨黏著推升殖利率」、地緣降成配角。' },
+
+    { type: 'dialogue', character: 'chef', text: '主線換配角——所以伊朗現在對你們來說、變成不是重點了？昨天 a 才講伊朗是「controllable noise」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、a 講得對、而且今天被驗證了——Trump 自己爆料「離下令攻擊只剩一個小時」、聽起來很驚悚、但市場反應很淡、油沒暴衝、債也沒因為這句話跳。為什麼？因為市場已經學會「Trump 的一小時、是談判語言、不是軍事時程」。同一句話、兩個禮拜前講會嚇死人、今天講、大家只當配樂。地緣風險被「鈍化」了——這個鈍化本身、就是市場成熟的訊號。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Why the relief faded — postponement is not a deal ──
+    { type: 'dialogue', character: 'chef', text: '那回到我老婆的問題——Trump 講「will be a deal」、為什麼股票不漲反跌？講要簽約了、不是好事嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、因為「will be a deal」跟「a deal is signed」差很遠。Trump 講的是意願、不是文件。實際上兩邊條件差超多——美方最新版本只給「談判期間、暫時的石油制裁豁免」、就是 OFAC 發一張臨時通行證、隨時可以收回；伊朗要的是「全部制裁永久解除、戰爭賠償、Hormuz 主權承認、解凍他們被凍的資產」。IRGC 退役將領還開了 5 個前提。你看這個差距——一個給臨時票、一個要永久權利＋賠償。市場一比對、就知道「will be a deal」是頭條、不是合約。' },
+
+    { type: 'dialogue', character: 'chef', text: '臨時票 vs 永久權利——這個我太懂了。我們店裡跟食材供應商也這樣、他說「這個月給你優惠價」、我要的是「簽一年的固定價」。他給的是臨時、我要的是長期、談不攏就一直拖。國家也這樣？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、國家版本只是金額多幾個零、邏輯一模一樣。而且還有個你那個供應商沒有的問題——「信任」。你跟供應商至少還做了幾年生意、伊朗跟美國是剛打完仗、2/28 開打、5/5 才停火攻擊、信任是負的。所以伊朗要「永久＋白紙黑字＋賠償」、因為他們不相信美國的「臨時票」明天不會撕掉。這個就是為什麼 deal 這麼難——不是價格問題、是信任問題。' },
+
+    { type: 'dialogue', character: 'chef', text: '信任是負的——這句話聽起來好沉。那這種情況、到底要怎麼談得成？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、通常要靠「第三方擔保」——所以卡達、沙烏地、阿聯酋這次跳出來、不只是勸架、是要當「中間人＋保人」。就像你跟供應商談不攏、找一個雙方都信的老朋友來做中間人、他說「我擔保、你先給三個月、他先簽半年」、兩邊才肯各退一步。Gulf 三國現在就是這個保人角色——這也是為什麼 Trump 特別感謝卡達 Emir 跟 MBS、不只是客套、是把他們架成「deal 破了是你們的責任」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Bonds: inflation is the engine now ──
+    { type: 'dialogue', character: 'chef', text: '你說今天主線換成通膨——那通膨數據是今天出的嗎？怎麼會壓得殖利率一直上？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、不是今天、是上禮拜出的——April CPI 三年新高、PPI 自 2022 年 12 月以來最高、這兩個數字像兩塊石頭丟進水裡、漣漪這禮拜還在擴散。為什麼漣漪這麼久——因為它改變的不是「今天的價格」、是「市場對 Warsh 那個 Fed 會不會降息的預期」。通膨高、Warsh 又是鷹派、市場推論「6/16 那場 FOMC 不會降、可能還暗示要升」——這個預期一變、債券持有人就要重新定價、賣壓一波一波出、所以殖利率天天往上磨。' },
+
+    { type: 'dialogue', character: 'chef', text: '一波一波磨——不是一次跌完、是慢慢來。這個跟 Tehran 那個 3% 跌停反而像、都是「不讓它一天跌完、攤開來跌」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個聯想很厲害、但方向相反——Tehran 是「人為限制、強迫攤開」；美債是「自然攤開、沒人限制」。一個是政府按著、一個是市場自己慢慢消化。但你抓到的共同點對——都是「重新定價需要時間、不會一秒到位」。美債這種一週磨 12bp、再磨幾 bp、是健康的重新定價；Tehran 那種撞跌停、是不健康的人為冰封。同樣慢、品質完全不同。' },
+
+    { type: 'dialogue', character: 'chef', text: '健康的慢、跟不健康的慢——這個分別好。那 USD/JPY 呢、你說連四天沒破 160、是不是也是一種「健康的撐住」？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、USD/JPY 這個不太一樣、它是「人為撐住」——日本財務省連續放話「介入次數沒有上限」、市場知道一破 160 他們真的會進場買日圓、所以投機客不敢追到 160。今天收 158.77、卡在 159 下面。但這種撐、跟 Tehran 的跌停一樣、是人為的——撐得住一時、撐不住基本面。只要美 10y 繼續往上、日美利差繼續拉大、159 這條線遲早要再測。今天沒破、不代表這禮拜不破。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — B's family window, Wednesday ──
+    { type: 'dialogue', character: 'chef', text: '今晚你怎麼有空、禮拜三不是你家庭日的隔天、應該也很忙？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、今晚我先生帶小孩去他爸媽家吃飯、我難得一個人、就過來。其實今天我心情不錯——4.7% 那條線兌現、雖然原因猜錯、但位置對、主管早上有點頭。這行很久才會有一次「我設的線真的被市場碰到」的時刻、值得吃頓好的。' },
+
+    { type: 'dialogue', character: 'chef', text: '設的線被市場碰到——這個對你們來說、是不是像我研發一道新菜、終於有客人指名點？那種「我想的東西、外面真的認」的感覺。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是那個感覺、你形容得比我準。但我們這行有個殘酷的地方——客人指名你的菜、那道菜會一直在；我設的線被碰到、明天市場就忘了、後天我要再設新的線。沒有累積、每天歸零。所以你那個「客人指名」其實比我幸福、你有存貨、我沒有。' },
+
+    { type: 'dialogue', character: 'chef', text: '每天歸零、沒有存貨——這個我第一次聽你講工作的累。那今晚就吃頓有存貨感的——我給你做鍋物、一個人也能吃的小土鍋、裡面下雞肉、白菜、豆腐、菇、最後煮個雜炊收尾。配溫酒半合、慶祝你那條線。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、小土鍋加雜炊收尾——太好了、這個有「慢慢吃、慢慢暖」的存貨感。溫酒半合、45 度那個 nuru-kan、麻煩你。今晚不趕、我先生 10 點半才回來。' },
+
+    { type: 'dialogue', character: 'chef', text: '45 度、記得。土鍋我用昆布柴魚高湯打底、雞肉先燙過去腥、白菜墊底、豆腐菇類鋪上、滾起來給你端過去、雜炊我留最後幫你下飯加蛋。半合溫酒先上。今晚慢慢吃。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、謝謝。我邊吃邊跟你講——明天禮拜四、Tehran 放假（他們週末是四五）、所以伊朗那條線暫停一天；但美債不休、明天要看 10y 收破不破 4.7%、如果收破、USD/JPY 那個 159 就危險了。後天的事後天再說、今晚我先把這鍋吃完。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 10 點半、東京。今天的故事是「緩和只撐一天」——Trump 禮拜二爆料「離下令攻擊伊朗剩一小時」被 Gulf 三國勸住、發 Truth Social 喊「will be a deal、NO NUCLEAR WEAPONS」、但伊朗那邊條件天差地遠（要全解制裁＋戰爭賠償＋Hormuz 主權＋解凍資產、美方只給臨時石油豁免）、市場一比對就知道是頭條不是合約。Asia 全回吐——Nikkei -0.88%、Kospi -0.52%、Kosdaq -2.15%、ASX -0.5%。但真主角是債券——美 10y 盤中觸 4.7%、碰到 customer-b 在 ep38 設的線、只是兌現的原因從「戰爭避險」換成「通膨黏著」（April CPI 三年新高、PPI 自 2022-12 最高）——位置對、邏輯要修、process vs outcome。USD/JPY 158.77、連四天沒破 160、財務省 jawboning「介入次數無上限」人為撐住 159。Customer B 今晚一個人來慶祝她那條線、吃一個人的小土鍋＋雜炊收尾＋45 度溫酒半合。她講了一句這行的累——「我設的線被碰到、明天市場就忘了、每天歸零、沒有存貨」、chef 那道被指名的新菜反而比較幸福。明天禮拜四、Tehran 放假（伊朗週末四五）、伊朗線暫停；但美債不休、看 10y 收破不破 4.7%、破了 USD/JPY 159 就危險。窗外沒雨、廣播古典樂台、土鍋在小爐上滾著、店裡今晚比昨天多兩桌。',
+      duration: 6000,
+    },
+  ],
+};

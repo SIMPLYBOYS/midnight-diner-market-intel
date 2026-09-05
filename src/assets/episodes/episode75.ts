@@ -1,0 +1,262 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-07-29 (Wed, ~12:30 JST) — 「今晚不是一個答案、是三個
+ * 一起來」：the decision day where the Fed is no longer alone.
+ *
+ * DATE: verified before writing (standing discipline since ep69's removal).
+ * Box clock 7/29 11:27 CST = 12:27 JST — Tokyo in lunch break; the FOMC
+ * decision is 7/29 14:00 ET = 7/30 03:00 JST, i.e. still ~15h away and NOT
+ * yet announced (search-confirmed: "the FOMC decision has not yet been
+ * announced. The meeting concludes today"). So this is still a PRE-decision
+ * evening. It is deliberately NOT a re-run of ep74's wait — the material
+ * moved: 7/28 completed as a violent down day, today bounced, the odds
+ * shifted hawkish, and tonight the Fed shares the stage with Microsoft +
+ * Meta. Sequence: ep73=7/22, ep74=7/28 (FOMC-eve, B solo), ep75=7/29.
+ *
+ * WHY THIS IS NOT ep74 REDUX (the differentiation is the point):
+ *   ep74's lesson = "price of money underneath all prices / do less before
+ *   the unknowable." ep75's lesson is different and more advanced:
+ *   (1) SEVERAL answers land the SAME NIGHT and they are CORRELATED — the
+ *       Fed (price of money) and the megacap AI-capex verdict (MSFT/Meta)
+ *       are linked, so a hawkish Fed + weak AI returns is not two problems
+ *       but one problem hitting twice; you cannot be positioned right for
+ *       all of them at once.
+ *   (2) A BOUNCE IS NOT AN ALL-CLEAR — today's ~+1% after yesterday's
+ *       -3.95% tells you nothing; a real bottom and a dead-cat bounce look
+ *       identical in real time.
+ *   (3) WAITING IS NOT FREE — while everyone waited, hike odds rose from
+ *       ~21% (ep74) to ~36%; the thing you wait for can get scarier.
+ *
+ * — 7/28 (Tue) COMPLETED — the close ep74 deliberately didn't cite:
+ *   NIKKEI 225 closed 62,364.92, -3.95% — it fell BELOW ep74's weak-open
+ *   forecast band (63,800-64,500), i.e. worse than expected. (This keeps
+ *   ep74 consistent: ep74 used only the open-forecast and refused a close.)
+ *   US 7/28 close, the "old-economy up, chips bleed" split: S&P 500
+ *   +0.21% to 7,428.78; Nasdaq -0.22% to 24,876.91; Dow +537.24 (+1.03%)
+ *   to 52,747.32. Coca-Cola +5% (beat + raised outlook); IQVIA +13.7%;
+ *   Sherwin-Williams +8.5%. BUT VanEck Semi ETF (SMH) -3%+, a FOURTH
+ *   straight down day; Micron and AMD each -8%+. (WashPost 7/28,
+ *   TheStreet 7/28, Yahoo 7/28)
+ *
+ * — 7/29 (Wed, today) — Nikkei BOUNCED ~+1% intraday, recovering some of
+ *   the 7/28 rout, but "bracing for a ~10% drop in July" on the month;
+ *   Asian stocks "stabilise after rout ahead of tech earnings, Fed
+ *   decision." (MarketScreener 7/29, TipRanks 7/29) The exact 7/29 CLOSE
+ *   is not yet printed at writing (12:27 JST) — I cite only the sourced
+ *   ~+1% bounce direction, never a fabricated close; hard numbers anchor
+ *   on the 7/28 closes.
+ *
+ * — FOMC today: decision 7/29 14:00 ET (7/30 03:00 JST), Warsh presser
+ *   14:30. HOLD ~64%, a 25bp HIKE ~36%, 50bp ~0; a hold would be the
+ *   FIFTH straight no-change (3.50-3.75%). The odds moved hawkish vs
+ *   ep74's ~77/21. "More a communication event than a policy event."
+ *   (CoinGape, FederalNewsNetwork, CBS, Cambridge 7/29)
+ *
+ * — MEGACAP EARNINGS TONIGHT — the direct sequel to ep74's Alphabet
+ *   verdict and the reason the Fed isn't alone: MICROSOFT and META report
+ *   7/29 AFTER the US close (= ~7/30 morning JST). MSFT Street: EPS ~$7.18,
+ *   revenue ~+27% to $60.22B; the tell is whether AZURE / AI is turning
+ *   spend into returns. Apple and Amazon land later in the week. So the
+ *   "is the AI capex working" question (Google Cloud +82% but stock fell,
+ *   ep74) gets its next two data points the SAME NIGHT as the Fed.
+ *   (TipRanks 7/29, TradingKey week-ahead, IC 7/28)
+ *
+ * — sectors[].value = |%change|x100 of that row's indicator asset, sorted
+ *   desc, all from the sourced 7/28 session. Two grey value:0 rows are
+ *   pending EVENTS (ep68 convention), not prices: the FOMC result and the
+ *   MSFT/Meta prints — must not be scaled. Index levels live in tickers.
+ * — priceHistory: down to the sourced 7/28 close 62,365, then a small
+ *   up-tick for today's ~+1% bounce; the 7/23-7/27 mids are shape-only
+ *   (no closes cited). volumeHistory spikes on the crash then coils into
+ *   the event. vix/rsi are mood, not sourced prints.
+ *
+ * — CAST: A=5 (ep67,68,70,72,73), B=5 (ep67,70,71,72,74) → tonight BOTH
+ *   (→6:6). Earned: the night has two linked threads, one each. A owns the
+ *   MSFT/Meta AI-capex sequel (his 開二店/capex lineage, ep70; he set up
+ *   Alphabet in ep73). B owns the Fed + correlated-risk + "bounce ≠
+ *   all-clear" positioning (desk / 減震器, ep56/61; her 散戶情緒指數
+ *   recurring device, ep54/58). They regroup after two consecutive solos
+ *   (A ep73, B ep74); B explicitly references "昨晚我一個人來" (ep74) and
+ *   why she pulled A in tonight. Independent regulars — no shared desk
+ *   (CONTINUITY DEBT); A knows last night's talk only via comparing notes.
+ *   Personas: A male/太太/framework/humble/no shouting calls; B female/
+ *   我先生+kids/我的 desk/15-yr client/retired finance-lifer dad.
+ *   CHEF: layman — his everyman entry is his WIFE'S confusion at the daily
+ *   noise ("昨天大跌、今天又反彈、到底是好是壞"), which opens the
+ *   bounce-≠-all-clear lesson; he must have 聯準會/megacap framed in plain
+ *   words; 老闆 not employee; 師父.
+ * — Menu is the CONSTANT beneath the noise: chef makes a steady,
+ *   outcome-independent meal ("不管那三個答案怎樣、你們都得吃飯") — 鱚天ぷら,
+ *   甘鯛, 万願寺, 焼きなす, 冷酒 — distinct from ep70-74. No Polymarket.
+ */
+export const EPISODE_75: Episode = {
+  id: 'ep-75',
+  date: '2026-07-29',
+  title: '20260729 禮拜三晚上、今晚不是一個答案、是三個一起來——聯準會今晚出結果（我方禮拜四凌晨、升息機率一夜從兩成跳到三成六）、Microsoft 跟 Meta 同一晚盤後開獎（AI 燒的錢有沒有變成生意、接著 Google 那條線）。昨天東京大殺 -3.95% 收 62,364（Micron、AMD 各 -8%、費半連四天跌）、今天反彈約 1%——但反彈不等於沒事。三個答案同一夜落地、而且會互相加乘：錢變貴、剛好撞上 AI 賭注鬆動、那不是兩件壞事、是同一件壞事打兩次。A＋B 一起來、講「你沒辦法替三個答案同時站好位置」',
+  description: '禮拜三晚上、東京。昨天東京股市大殺 3.95%、收 62,364——比預估的還慘；做記憶體的 Micron、做晶片的 AMD 各跌了 8%、那籃半導體已經連四天跌。今天反彈了大約 1%。師傅的老婆看新聞看到頭暈：「昨天說大跌、今天說反彈、到底是好是壞？」而今晚真正的重點是——不是一個答案，是三個一起來。聯準會今晚出結果（我們這邊禮拜四凌晨三點）、而且等的這幾天它自己變兇了：升息的機率、從兩成跳到了三成六。同一個晚上、美國收盤後、Microsoft 跟 Meta 兩家一起開獎——接著上禮拜 Google 那條線，看它們燒在 AI 上的錢、到底有沒有變成生意。三個大答案、幾乎同一夜落地。B 昨天一個人來講聯準會、今天把 a 也拉來了，因為今晚聯準會不是一個人的事：這三件事是連在一起的——如果錢變貴（聯準會轉硬）、剛好撞上 AI 賭注被質疑（大公司財報不好看），那不是兩件壞事、是同一件壞事打你兩次。而你沒辦法替三個還沒出來的答案、同時站好位置。所以今晚不是選邊、是承認自己站不好——把部位放小、把手洗乾淨、然後去睡。師傅今天照樣煮一頓穩穩的飯：不管那三個答案明天怎樣、你們都得吃飯。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上、東京、還是悶。昨天這裡很難看——東京股市大殺 3.95%、收在 62,364、比前一天大家預估的還慘；做記憶體的 Micron、做晶片的 AMD、各跌了 8%、那一籃半導體股票、已經連續第四天在跌。今天、反彈了大約 1%。可是「反彈」這兩個字、今晚要小心。因為今晚真正的重點、不是一個答案、是三個一起來。第一、聯準會今晚出結果——我們這邊、禮拜四凌晨三點；而且大家等的這幾天、它自己變兇了：升息的機率、從兩成、跳到了三成六。第二跟第三、同一個晚上、美國收盤之後、Microsoft 跟 Meta、兩家一起開獎——接著上禮拜 Google 那條線、看它們砸在 AI 上的錢、到底有沒有變成生意。三個大答案、幾乎同一夜落地。昨天 b 一個人來、跟師傅講聯準會；今天她把 a 也拉來了——因為今晚、聯準會不再是一個人的事了。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: '日經 225（7/28 收 62,364.92、-3.95%；今天 7/29 盤中反彈約 +1%）', price: 62364.92, change: -3.95 },
+          { symbol: 'Nasdaq（7/28 收、晶片拖累）', price: 24876.91, change: -0.22 },
+          { symbol: 'Dow（7/28 收、+537 點、老經濟收紅）', price: 52747.32, change: 1.03 },
+          { symbol: 'Micron（7/28 -8%、連四天殺、AI 記憶體）', price: -8.0, change: -8.0 },
+          { symbol: 'Coca-Cola（7/28 +5%、老牌消費財報優＋上修、避風港）', price: 5.0, change: 5.0 },
+        ],
+        volatility: 22,
+        vix: 21.0,
+        rsi: 36.0,
+        beta: 1.2,
+        priceHistory: [66116, 64700, 63800, 63100, 62800, 62365, 62900, 63000],
+        volumeHistory: [1200, 1500, 1800, 2100, 2400, 2900, 2200, 1600],
+        sectors: [
+          { label: 'Micron 7/28 -8%（AI 記憶體、連四天殺、對「這麼多錢賺不賺得回來」最敏感）', value: 800, color: '#dd3333' },
+          { label: 'AMD 7/28 -8%（晶片股同步、領跌）', value: 800, color: '#dd3333' },
+          { label: 'Coca-Cola 7/28 +5%（老牌消費、財報優＋上修全年——賣的還是「貴的 AI」、不是全部）', value: 500, color: '#22cc55' },
+          { label: '日經 7/28 -3.95% 收 62,364.92（比預估還慘、今天 7/29 只反彈約 1%——反彈 ≠ 沒事）', value: 395, color: '#dd3333' },
+          { label: '半導體 ETF（SMH）7/28 逾 -3%（連四天下跌、對 AI 投報率的懷疑還在擴散）', value: 300, color: '#dd3333' },
+          { label: 'Dow 7/28 +1.03% 收 52,747（+537 點、老經濟收紅、油價回落——又是「賣貴的、其餘還好」）', value: 103, color: '#22cc55' },
+          { label: '聯準會今晚出結果（我方 7/30 凌晨、Warsh 主持）：不動 64%／升息 36%——昨天還 79／21、等的這幾天它自己偏鷹了', value: 0, color: '#888888' },
+          { label: 'Microsoft／Meta 今晚盤後開獎（我方 7/30 一早）：接 Google 那條線、看 AI 燒的錢有沒有變成生意（MSFT 看 Azure）', value: 0, color: '#888888' },
+        ],
+        headline: '禮拜三 21:00 JST：今晚不是一個答案、是三個一起來——聯準會今晚出結果（我方 7/30 凌晨、Warsh 主持、不動 64%／升息 36%、昨天還 79／21、一夜偏鷹）＋Microsoft／Meta 今晚盤後開獎（接 Google 那條線、AI 燒的錢有沒有變成生意、MSFT 看 Azure），三個大答案同一夜落地且互相關聯（錢變貴撞上 AI 賭注鬆動＝同一件壞事打兩次）/ 昨天東京 -3.95% 收 62,364.92（比預估慘、Micron／AMD 各 -8%、費半連四天跌）、今天只反彈約 1%——反彈 ≠ 沒事 / 美股「賣貴的 AI、其餘還好」：Dow +1.03%（Coca-Cola +5%）、Nasdaq -0.22%',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい、今天兩個一起。b、妳昨天才一個人來、今天把 a 也帶來了。先冰的。我先問一個把我老婆搞到頭暈的問題——她昨天看新聞說股市大跌、今天看又說反彈，她問我：「到底是好是壞？昨天壞、今天好、那是不是沒事了？」我答不出來。反彈了、是不是就過去了？' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安。你太太這個問題、其實是今晚最需要先講清楚的——因為它會害死很多人。答案是：反彈、不等於沒事。「一天反彈」跟「落底了」、在當下、長得一模一樣。你只有事後、才會知道剛剛那個是「真的止跌」、還是只是「跌累了喘一口、等一下繼續」。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '一模一樣？那怎麼分？總有辦法看出來吧。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、當下沒辦法、真的沒辦法、誰跟你說有辦法、你就要小心他。我給你一個你店裡的例子——有個客人、上禮拜在你這吃到一道你失手的菜、臭著臉走了。昨天他又來了一次。你會不會就說「他原諒我了、沒事了」？' },
+
+    { type: 'dialogue', character: 'chef', text: '……不會。他來一次、我不敢說什麼。搞不好他只是剛好經過、或是還在觀察。要他連續來個三四次、還開始跟我聊天、我才敢說他真的回來了。來一次、我只會更小心、不會鬆懈。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你對客人那麼有耐性、對這個「反彈」、也用同一個標準就對了。今天漲 1%、就是那個「回來吃第二次」的客人——它是一個訊號、但它什麼都還沒證明。真正糟糕的、是那種看到反彈就大喊「沒事了、進場」的人——他把「回來一次」當成「原諒了」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── the three-answers night: correlated risk ──
+    { type: 'dialogue', character: 'chef', text: '好。那今晚到底在等什麼？b 妳昨天不是講過聯準會了嗎、今天怎麼還在等？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、昨天我講的是聯準會「一個」。今天我要講一個更麻煩的事——今晚它不是一個人來。今晚幾乎同一個時間、有三個大答案要落地：聯準會今晚出結果、我們這邊禮拜四凌晨；然後美國收盤後、Microsoft、Meta 兩家一起開獎。三個、同一夜。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我補後面那兩個、因為那條線是我一直在追的。Microsoft、Meta、就是接著上禮拜 Google 那條——你還記得 Google 雲端生意漲 82%、需求好到爆、股票卻跌、因為它燒太兇。今晚換這兩家上場、同一個考題：你砸在 AI 上的那些錢、開始變成生意了沒。Microsoft 我會盯它一個叫 Azure 的雲端業務——那就是它的「客人簽的長約」有沒有真的在兌現。' },
+
+    { type: 'dialogue', character: 'chef', text: '三個答案同一個晚上……那不就是我最怕的那種日子嗎——同一個晚上、颱風來、冷氣壞、大廚臨時請假。每一個單獨、我都還扛得住；三個一起來、我就完了。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個比喻、正好講到今晚最關鍵、也最少人搞懂的一件事——這三個答案、不是各自獨立的。它們會「互相加乘」。你想：颱風來、店裡沒客人、這時候大廚又請假、你本來想說沒客人剛好不缺人；可是停電了、冰箱的東西開始壞、你正需要人手處理、大廚偏偏不在。它們串在一起、一個會讓另一個更慘。' },
+
+    { type: 'dialogue', character: 'chef', text: '所以今晚那三個、也會這樣互相加乘？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、會、而且方式很精準。假設今晚聯準會轉硬、讓大家覺得「錢以後會更貴」；同一個晚上、Microsoft 或 Meta 財報又讓大家覺得「AI 這錢燒得有點虛」。這兩件事、不是兩件壞事——是同一件壞事、打你兩次。因為 AI 這種生意、賭的就是「借很便宜的錢、燒很多年、以後大賺」。錢變貴、剛好戳中它最痛的地方。所以如果這兩個一起來、傷害不是一加一、是一乘一、放大的。' },
+
+    { type: 'dialogue', character: 'chef', text: '一乘一、不是一加一……這個我懂了。就像我最怕的不是「魚不新鮮」、也不是「客人挑嘴」、是這兩個「同一天」——平常客人不挑、魚差一點還混得過去；偏偏那天來的是最挑的老客人、魚又剛好差——那一次、可能就永遠失去他了。單獨都還好、湊在一起才要命。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「最挑的客人碰上最差的魚、同一天」、就是我們這行講的「風險是會結伴來的」。壞事很少一個一個排隊來、它們喜歡揪團。而今晚、就是三件大事被排在同一個晚上——這是行事曆的巧合、但傷害是真的。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── you can't position for all of them: the honest move is small ──
+    { type: 'dialogue', character: 'chef', text: '那你們怎麼辦？三個都猜不準、又同一晚。總要做點什麼吧？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這就是今晚最難、也最反直覺的地方——正確答案、常常是「做得更少」。你想、如果只有一個答案要出來、我還可以賭一把；但今晚有三個、而且它們會互相加乘、我根本沒辦法找到一個部位、是「三個答案不管怎麼組合、我都站得好」的。既然我站不好，最誠實的做法、不是硬挑一邊、是承認我站不好、然後把部位放小、放到就算三個全錯、我也只是擦傷。' },
+
+    { type: 'dialogue', character: 'chef', text: '可是「做更少」、聽起來好像很消極、很沒用。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這正是外行跟內行最大的差別。外行覺得「大事要來、我一定要有個大動作」；內行知道「有時候最厲害的動作、就是不動」。我這一個多月、在你這張桌子上摔了好幾次、學到的就是這個——我以前總覺得每件事我都要有個看法、要押、要證明我看得準。現在我知道、承認「這個我看不準、所以我少放一點」、比硬掰一個看法、成熟太多了。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我今天在 desk 上、還特別看了我們自己做的一個東西——我們會統計客戶打電話進來、講了多少「驚慌」的字眼、我們私下叫它「散戶情緒指數」。今天這個指數、跳得很高——一堆人打來、不是問「我該賣嗎」，是問「我現在該賭哪一邊」。師傅、當一堆人在一個他們猜不準的晚上、急著想「賭哪一邊」的時候、那本身就是一個訊號：大家把「緊張」當成「必須行動」了。而這兩個、是不一樣的。' },
+
+    { type: 'dialogue', character: 'chef', text: '把緊張當成必須行動……這個我年輕的時候超常犯。生意不好的晚上、我坐不住、就會亂改菜單、亂發傳單、亂打折——後來才知道、那些亂動、十次有九次讓事情更糟。我師父那時候只跟我說一句：「你現在動、是因為店需要、還是因為你自己坐不住？」' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你師父那句「是店需要、還是你自己坐不住」——我今晚要把它抄在我明天早上會看到的地方。因為今晚看盤看到凌晨的人、十個有九個、是「自己坐不住」、不是「真的需要動」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── waiting isn't free: the odds moved ──
+    { type: 'dialogue', character: 'chef', text: '對了、b 妳剛剛說、升息的機率從兩成跳到三成六。這是什麼意思？昨天到今天、又沒真的發生什麼、怎麼機率自己變了？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這個問得好、而且它戳破一個迷思——很多人以為「等」是免費的、以為站在旁邊不動、最安全。但你看：昨天大家還覺得升息大概兩成機會、今天變成快三成六。等的這幾天、那件你在等的事、自己變兇了。等、不一定是免費的——你在等的東西、可能一邊等、一邊對你越來越不利。' },
+
+    { type: 'dialogue', character: 'chef', text: '那這樣不是跟妳剛剛講的「做更少」矛盾嗎？既然等也有代價、那不是應該早點動？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這一刀問得非常準、我要很小心地回答。不矛盾、但很細——「做更少」不是「什麼都不管、閉眼睛等」。是這樣：如果我根本猜不準、那硬押的代價，比等的代價還高、所以我選擇小小地等。但「等」不代表我不看——我一邊等、一邊盯著那個機率有沒有變、變了我就調整我那一小份。我不是把頭埋進沙子，我是「保持很小、但保持醒著」。師傅，怕的不是等，是「一邊重押、一邊還睡得很死」。' },
+
+    { type: 'dialogue', character: 'chef', text: '保持很小、但保持醒著……好。這跟颱風夜我不塞滿冰箱、但我整晚會爬起來看幾次雨勢、是一樣的。我沒有賭它不來、我也沒有慌到整晚不睡——我留很小的貨、然後醒著看。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這句「留很小的貨、然後醒著看」、把 b 講了半天的東西、一句收掉了。我們這行有一堆很貴的詞在講這件事、講到最後、就是你這句。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── A's thread: what MSFT/Meta actually has to prove ──
+    { type: 'dialogue', character: 'chef', text: 'a、那今晚 Microsoft、Meta、到底要證明什麼、大家才會鬆一口氣？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、要證明一件很簡單、但很難的事：他們燒的錢、正在「回來」了。上禮拜 Google 的問題不是需求不好——需求好得不得了；問題是它一邊賺、一邊燒得更兇、上一季自己的現金還變成負的。所以今晚大家要看的、不是 Microsoft 賺多少、是它那個雲端生意 Azure、成長有沒有「加速」、而且它燒的錢有沒有「開始收斂」。一個在加速、一個在收斂——這兩個同時發生、大家才會相信「這錢燒得值得」。' },
+
+    { type: 'dialogue', character: 'chef', text: '所以又是那個開二店的老問題——生意要好、而且開二店的錢要開始賺回來、不能只是一直往裡面倒。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、就是這個、你三個禮拜前就會了。而今晚特別緊張、是因為它跟聯準會撞在一起。如果聯準會今晚讓錢變得更貴、那市場對「還在拼命燒錢的公司」、耐性就更低——這時候 Microsoft 或 Meta 只要露出一點「還要燒更多」的口風、可能就會被打得比平常更重。同樣一份財報、在錢便宜的晚上、跟在錢變貴的晚上、市場的反應會差很多。這就是我剛剛講的「加乘」。' },
+
+    { type: 'dialogue', character: 'chef', text: '所以今晚不是「財報好不好」單獨一件事、是「財報好不好」碰上「錢貴不貴」——兩個一起決定。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你把今晚整個講完了。而這也是為什麼、我今天不讓自己、也不讓我那個老客戶、在今晚之前重押任何一邊——因為你要賭、就等於同時賭對「聯準會的口氣」加「兩家財報」加「市場當下的心情」、三個都對。那不叫投資、那叫買樂透。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — the diner as the constant beneath the noise ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '好、不管你們今晚等的那三個答案是什麼、有一件事我很確定——你們都得吃飯。所以我今天沒搞什麼花樣、就做穩的：鱚魚天ぷら、炸得酥、灑點鹽就好；甘鯛做若狹燒、皮烤到脆；万願寺辣椒烤一烤、淋柴魚；焼きなす剝皮、冰鎮、加薑；冷酒。這些菜、明天股票是漲是跌、都一樣好吃。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這句「明天漲是跌都一樣好吃」——其實是今晚最穩的一句話。我們整晚在講那些會變的東西、聯準會、財報、機率；你這桌菜、是那個不會變的。人有時候需要一個不會隨著螢幕上下跳的東西、來提醒自己：不是全世界都在那三個答案裡。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我今晚回去、其實什麼都不用做——我白天就把該做的都做完了，部位很小、手很乾淨。所以我可以坐在這裡、好好吃這條鱚魚。這才是「做更少」真正的好處：不是我少賺，是今晚全世界的人盯著螢幕盯到凌晨三點、我可以睡覺。我先生今天還笑我，說我這是「大事之夜、提早收工」。我跟他說，這是我十幾年才學會的收工。' },
+
+    { type: 'dialogue', character: 'chef', text: 'b、妳先生講得對、但妳更對。我開店三十年、學會最重要的一件事、也是「什麼時候該收工」。年輕的時候我以為厲害的廚師是最後一個離開廚房的；後來才知道、厲害的是那個知道「今天到這裡就好、剩下的明天再說」的人。硬撐到凌晨、菜不會變好、只會把自己弄垮。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、那我今晚也學妳們——回去不看盤了。反正我看到凌晨三點、聯準會該怎麼講還是怎麼講，Microsoft 該燒多少還是燒多少，我瞪著螢幕、一塊錢都改變不了。不如睡飽一點，明天早上答案都出來了，我用清醒的腦袋、好好看一遍，再決定那一小份要不要動。' },
+
+    { type: 'dialogue', character: 'chef', text: '這就對了。鱚魚趁熱、甘鯛那個脆皮別放涼了。今晚這頓、就當是暴風雨前，大家一起好好吃頓安穩的飯。冷酒斟上——敬「保持很小、但保持醒著」，敬那些今晚急也沒用、明天一早自然會有答案的事。三個答案再大，也大不過你們現在要不要多添一碗飯。慢慢吃。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 10 點半、東京。今天的故事是「今晚不是一個答案、是三個一起來」。昨天東京大殺 -3.95% 收 62,364.92（比預估慘、Micron／AMD 各 -8%、費半連四天跌）、今天只反彈約 1%——而「反彈 ≠ 沒事」是全集第一課：一天反彈跟真的落底、在當下長得一模一樣、只有事後才知道（師傅:「客人上禮拜吃到我失手的菜臭臉走、昨天又來一次、我不敢說他原諒我了——要連來三四次、開始跟我聊天、我才敢說他真的回來了」）。今晚三個大答案幾乎同一夜落地：聯準會今晚出結果（我方 7/30 凌晨、Warsh 主持、不動 64%／升息 36%、昨天還 79／21——「等」的這幾天它自己偏鷹了）＋Microsoft／Meta 盤後開獎（接 Google 那條線、看 AI 燒的錢有沒有變成生意、MSFT 看 Azure 有沒有「加速」而燒錢有沒有「收斂」）。核心是「加乘」——三個答案不是各自獨立、是相關的：錢變貴（聯準會轉硬）剛好撞上 AI 賭注被質疑（財報虛），那不是兩件壞事、是同一件壞事打兩次、因為 AI 賭的就是「借便宜的錢、燒很多年、以後大賺」、錢變貴正戳它最痛（師傅:「我最怕的不是魚不新鮮、也不是客人挑嘴、是這兩個同一天——最挑的老客人碰上最差的魚、那一次可能就永遠失去他」；B:「風險是會結伴來的、壞事喜歡揪團」）。因為站不好三個答案、正確解常是「做得更少」——不是硬挑一邊、是承認站不好、把部位放小到三個全錯也只是擦傷（A:「外行覺得大事要來一定要有大動作、內行知道有時候最厲害的動作就是不動」；B 的「散戶情緒指數」今天跳高、一堆人問的不是『該賣嗎』是『該賭哪一邊』——把緊張當成必須行動；師父:「你現在動、是因為店需要、還是你自己坐不住」）。但「等」不是免費的、也不是閉眼睛——升息機率一夜從兩成到三成六，所以是「保持很小、但保持醒著」（師傅:「颱風夜我不塞滿冰箱、但整晚會爬起來看幾次雨勢；沒賭它不來、也沒慌到不睡」；怕的是「一邊重押、一邊還睡得很死」）。A 的線：Microsoft／Meta 今晚要證明燒的錢正在「回來」——Azure 加速＋燒錢收斂同時發生、大家才信值得；而它撞上聯準會——同一份財報在錢便宜與錢變貴的晚上、市場反應差很多（B:「你要賭、就等於同時賭對聯準會的口氣＋兩家財報＋市場當下心情、三個都對——那不叫投資、叫買樂透」）。收尾把食堂寫成噪音底下的那個常數——師傅做一頓outcome-independent 的穩飯（鱚天ぷら、甘鯛若狹燒、万願寺、焼きなす、冷酒）：「不管明天漲是跌、都一樣好吃」（A:「人需要一個不會隨螢幕上下跳的東西、提醒自己不是全世界都在那三個答案裡」）；B 白天做完該做的、部位小、手乾淨、所以今晚能睡、先生笑她「大事之夜提早收工」、她說這是十幾年才學會的收工；師傅:「年輕時以為厲害的廚師是最後一個離開廚房的、後來才知道厲害的是知道『今天到這裡就好』的人——硬撐到凌晨菜不會變好、只會把自己弄垮」；A 也決定回去不看盤、「瞪著螢幕一塊錢都改變不了、不如睡飽、明天用清醒的腦袋看一遍、再決定那一小份要不要動」。敬「保持很小、但保持醒著」——三個答案再大、也大不過現在要不要多添一碗飯。',
+      duration: 6000,
+    },
+  ],
+};
