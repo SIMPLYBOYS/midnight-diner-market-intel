@@ -1,0 +1,210 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-30 (Sat JST):
+ * - DATA NOTE: Saturday = markets closed. Framed as a WEEKEND WAIT episode
+ *   (ep50 set up the 60-hour binary; this is the first of those 60 hours).
+ *   Numbers come from verified Friday 5/29 closes (US + Asia carry).
+ * - Weekend deal status (the spine of tonight's story):
+ *   - VP JD Vance said talks making "good progress" and negotiators reached
+ *     agreement on a 60-day ceasefire extension MoU.
+ *   - Both Trump and the mediators indicated the deal COULD BE ANNOUNCED
+ *     SUNDAY (5/31), though it has not been finalized and could still
+ *     fall apart.
+ *   - STILL awaiting both Trump's AND Iran new Supreme Leader Mojtaba
+ *     Khamenei's approval — ep50's "two pens" still unsigned.
+ *   - THE LIVE FLAG: Khamenei's latest WRITTEN MESSAGE says Iran will
+ *     NEVER give up the issue of control over the Strait of Hormuz; the
+ *     IRGC is seeking to consolidate control over Hormuz traffic; US
+ *     forces are trying to prevent that. This directly contradicts
+ *     Trump's stated terms ("Hormuz must immediately open" with no
+ *     tolls/restrictions). Either there's bridging diplomatic ambiguity
+ *     (Iran retains formal sovereignty but operational free passage), or
+ *     the two positions can't both be true. (Euronews 5/29, WaPo 5/26)
+ * - Wall Street closed Fri 5/29 at FRESH RECORDS:
+ *   - S&P 500 +0.22% to 7,580.06 — 7th straight gain, 9th straight winning
+ *     week (longest streak since 2023). Three major indexes at fresh
+ *     closing records.
+ *   - Dell +32.8% on earnings blow-out (tech leadership continues from
+ *     Snowflake +36.5% earlier in the week).
+ *   - Crude prices slipped (no clean dated 5/29 close at episode time —
+ *     referenced qualitatively only).
+ *   (CNBC 5/29, WaPo 5/29)
+ * - Asia Friday 5/29 close (carry-in from ep50): Kospi 8,476.15 +3.0%
+ *   (record), Nikkei 66,329.5 +2.53% (new high), Topix 3,957.17 +1.41%
+ *   (all-time high).
+ * - POLYMARKET (spotlight justified — fresh new LOW): "Will the Iranian
+ *   regime fall by June 30?" 2.2% (0.022), vol ~$45.5M, range now
+ *   2.05%-5%. Lowest reading since the bet opened. Even with Khamenei's
+ *   "never give up Hormuz" written message, the smart-money bet keeps
+ *   trending DOWN — read: market treats Khamenei's words as bargaining-
+ *   table rhetoric for domestic audience, expects the deal to bridge it.
+ *   Data from public/polymarket/latest.json (collectedAt 2026-05-30T01:13Z).
+ * - sectors[].value = |%change|x100 per theme, desc; mixes Fri US (Dell,
+ *   S&P) and Fri Asia (Kospi, Nikkei, Topix) closes for a week-end view.
+ *   Dell +32.8% → 3280 is the dominant bar (it IS the story for US tech).
+ * - Continuity: ep50 (Fri) Customer B solo set up the binary ("60 小時、
+ *   兩支筆") + 週末風控 (trim, buy cheap insurance, VIX 14 makes hedges
+ *   cheap, 「最便宜的保險在最不需要的時候買」). Tonight CUSTOMER A —
+ *   alternation 47A 48B 49A 50B 51A — A's macro/diplomatic-parsing voice
+ *   fits the Khamenei-message-vs-Trump-terms tension + Polymarket-as-
+ *   tiebreaker. A revisits his ep49 "七分信、三分留" — does he move the
+ *   ratio? A persona: male analyst, no over/under betting, no 「我老闆/
+ *   我同事」. Chef's wife followed the saga all week — Sat she sees the
+ *   Vance "good progress" news, asks "是不是要成了".
+ */
+export const EPISODE_51: Episode = {
+  id: 'ep-51',
+  date: '2026-05-30',
+  title: '20260530 禮拜六晚上、deal 在等簽——Vance 說「good progress」、Sunday 可能宣布、但 Khamenei 親筆寫「Hormuz 永不放棄控制權」與 Trump 條件衝突；Polymarket 政權垮台又摜新低 2.2%、Friday Wall Street S&P 連 9 週漲（2023 以來最長）、Dell 財報炸裂 +32.8%',
+  description: '禮拜六晚上、Tokyo 21:00、市場休息、60 小時的等待過了一半。週末第一手消息今天上來——美國副總統 Vance 出來說「good progress」、雙方談判代表已經在 60 天停火延期備忘錄上達成協議；Trump 跟調人都暗示明天（禮拜天）可能正式宣布。但 ep50 b 講的「兩支筆」、今天兩支都還沒落——Trump 等、Khamenei 也等。而且、今天有個讓 desk 提高警覺的細節：伊朗新領導 Mojtaba Khamenei 親筆寫的訊息裡、講「伊斯蘭共和國對於 Hormuz 海峽的控制權問題、永遠不會放棄」、IRGC 還在強化對海峽交通的管理。這跟 Trump 開的條件「Hormuz 立刻、無條件開、沒有通行費、沒有任何限制」——白話對白話、是衝突的。要嘛靠外交模糊（伊朗保留形式主權、實質讓船自由過）橋過去、要嘛根本對不上、deal 卡在這條。市場的「賭盤投票」很清楚——Polymarket「伊朗政權 6/30 前垮台」又摜到新低 2.2%（範圍底部 2.05%）——錢仍然押「Khamenei 那段是嘴上場面話、實際會橋過去」。Friday Wall Street 收新高、S&P 500 +0.22% 到 7,580.06、九週連漲、2023 以來最長；Dell 財報炸裂 +32.8%、AI 接力 Snowflake；Friday Asia 也創新高（Kospi 8,476、Nikkei 66,329、Topix 3,957 歷史新高）。今晚 customer-a 來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜六晚上 9 點、東京。市場休息、店裡比平日清靜——但 ep50 customer-b 講的「60 小時、兩支筆」、今天剛過一半。週末第一手消息中午上來：美國副總統 Vance 出來說 deal 有「good progress」、雙方談判代表已經在 60 天停火延期的備忘錄上達成協議；Trump 跟中間調人都暗示、明天禮拜天可能正式宣布。但 b 說的兩支筆、現在還都沒落——Trump 在等、伊朗的 Khamenei 也在等。而且今天有一個很關鍵的細節讓 desk 提高警覺——伊朗新領導 Mojtaba Khamenei 親筆寫的訊息裡、講「伊斯蘭共和國對 Hormuz 海峽的控制權問題、永遠不會放棄」、IRGC 還在強化對海峽交通的管理。這跟 Trump 開的條件「Hormuz 立刻、無條件開、沒有通行費、沒有任何限制」、白話對白話、是衝突的。要嘛兩邊靠外交模糊（伊朗保留形式主權、實質讓船自由過）橋過去、要嘛根本對不上、deal 就會卡在這條。最有意思的是「賭盤的投票」——牆上那個 Polymarket、「伊朗政權 6 月底前垮台」、又摜到新低 2.2%、範圍底部 2.05%——拿真錢下注的人仍然押「Khamenei 寫的那段是嘴上場面話、實際會橋過去」。Friday Wall Street 收新高、S&P 500 +0.22% 到 7,580.06、九週連漲、是 2023 年以來最長的連勝週期；Dell 財報炸裂 +32.8%、把 AI 那條從 Snowflake 接力過去；Friday Asia 三大指數也創高（Kospi 8,476、Nikkei 66,329、Topix 3,957 歷史新高）。今晚 customer-a 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'S&P 500（5/29 Fri 收、紀錄、九週連漲）', price: 7580.06, change: 0.22 },
+          { symbol: 'Dell（5/29 Fri、財報炸裂）', price: 0, change: 32.8 },
+          { symbol: 'Kospi（5/29 Fri 收、紀錄）', price: 8476.15, change: 3.0 },
+          { symbol: 'Nikkei 225（5/29 Fri 收、新高）', price: 66329.5, change: 2.53 },
+          { symbol: 'Topix（5/29 Fri、歷史新高）', price: 3957.17, change: 1.41 },
+        ],
+        volatility: 15,
+        vix: 13.6,
+        rsi: 67.2,
+        beta: 1.02,
+        priceHistory: [7400, 7460, 7510, 7530, 7548, 7563, 7572, 7580],
+        volumeHistory: [560, 540, 510, 490, 470, 460, 450, 440],
+        sectors: [
+          { label: 'Dell +32.8%（5/29 Fri 財報炸裂、AI 接力 Snowflake、Wall Street 領漲）', value: 3280, color: '#22cc55' },
+          { label: 'Kospi +3.0%（5/29 Fri 收 8,476 紀錄、deal 「good progress」 加分）', value: 300, color: '#22cc55' },
+          { label: 'Nikkei +2.53%（5/29 Fri 收 66,329 新高、油下＋ AI 連動）', value: 253, color: '#22cc55' },
+          { label: 'Topix +1.41%（5/29 Fri 收 3,957 歷史新高、寬度也創、健康訊號）', value: 141, color: '#22cc55' },
+          { label: 'S&P 500 +0.22%（5/29 Fri 收 7,580.06 紀錄、九週連漲、2023 以來最長）', value: 22, color: '#22cc55' },
+        ],
+        headline: '禮拜六 21:00 JST、市場休息、60 小時過了一半：Vance 說 deal「good progress」、Sunday 可能宣布、但兩支筆未落、Khamenei 親筆「Hormuz 永不放棄控制權」與 Trump 條件衝突 / Polymarket 政權垮台摜新低 2.2% / Fri Wall Street S&P 7,580 record 9 週連漲 2023 以來最長 / Dell +32.8% / Fri Asia 三大創新高',
+      },
+    },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-30T01:13:32Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.022,
+            volume: 45508581,
+            liquidity: 322110,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1779501607, p: 0.0435 }, { t: 1779534006, p: 0.0455 }, { t: 1779566408, p: 0.0315 },
+              { t: 1779598806, p: 0.0315 }, { t: 1779631206, p: 0.0235 }, { t: 1779663607, p: 0.0315 },
+              { t: 1779696006, p: 0.0255 }, { t: 1779728410, p: 0.0245 }, { t: 1779760806, p: 0.0285 },
+              { t: 1779793205, p: 0.0265 }, { t: 1779825606, p: 0.027 }, { t: 1779858005, p: 0.0255 },
+              { t: 1779890407, p: 0.0255 }, { t: 1779922807, p: 0.0275 }, { t: 1779955210, p: 0.0275 },
+              { t: 1779987612, p: 0.0265 }, { t: 1780020008, p: 0.0245 }, { t: 1780052406, p: 0.0225 },
+              { t: 1780088407, p: 0.0235 }, { t: 1780103523, p: 0.022 },
+            ],
+          },
+        ],
+      },
+      duration: 5000,
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。禮拜六、難得你在週末出現——一定是 deal 有進度。我老婆今天中午看新聞、看到 Vance 在講「good progress」、興奮跟我說「明天就要簽了吧」；下午看到一條「Khamenei 寫信說 Hormuz 永不放棄控制權」、又問我「那不是還是衝突嗎」。她一個下午轉了兩個彎、跑來問我「到底是要成還是不成」。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安。你太太這兩個問題、剛好是今天 desk 整個下午吵的兩件事、我來分一下。Vance 講「good progress」是真的、雙方代表也真的在那份 60 天 MoU 上達成協議了、明天有可能宣布——這是「進度條」這一面。但 Khamenei 那封親筆寫的訊息更值得看——「對 Hormuz 海峽的控制權問題、永遠不會放棄」——這跟 Trump 開的「Hormuz 立刻、無條件開、沒有通行費」、白紙黑字對不起來。所以「要成還是不成」、答案是「要看這條怎麼橋」。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '一個說永不放棄、一個說立刻無條件開——這聽起來不就是衝突嗎？要怎麼橋？我做生意三十年、跟供應商談合約、這種「要的東西不一樣」就是談不成。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、外交跟做生意有個關鍵的差別——外交可以「形式上各贏、實質上各退」。最常見的橋法、叫「主權留你、通行給我」。具體拆——Khamenei 那句「對 Hormuz 的控制權永不放棄」、講的是「主權」、就是地圖上這片水是伊朗的，這條他要回去跟國內人交代、絕對不能丟。Trump 那句「Hormuz 立刻無條件開」、講的是「通行」、就是「我的船能不能過」，這條他要跟美國人交代。所以雙方可以在文字上同時擁有——伊朗保留「我家門前的水」、美國拿到「我家船能自由通過」。兩個人都沒輸、都贏一個自己最在意的東西。' },
+
+    { type: 'dialogue', character: 'chef', text: '主權留你、通行給我——這個我居然懂！我們店門口那條巷子、租約上寫「路面屬於房東」、但「我可以擺看板、可以放盆栽、可以放椅子」——房東保留所有權的面子、我拿到使用的實。十年下來相安無事。原來國家也這套？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「擺看板放盆栽」的例子、是我聽過 sovereignty vs operational rights 最白話的中文版、明天我要寫進筆記。國際法上這個概念叫「innocent passage」——主權國家保留水域主權、但讓無害的商船自由通過。是過去四十年很多海峽爭議的標準解法。如果伊朗跟美國能用這個橋——伊朗對國內喊「我們守住了 Hormuz」、Trump 對美國喊「我們打開了 Hormuz」——兩邊都贏、deal 才能簽。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket: the tiebreaker ──
+    { type: 'dialogue', character: 'chef', text: '可是我們這些聽新聞的、不知道他們桌底下到底怎麼橋的——有沒有什麼東西可以看、判斷他們到底會不會橋成？我牆上那個賭盤、今天又往下了，是不是在講什麼？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你眼睛真利、那個就是今天最強的訊號——「伊朗政權 6 月底前垮台」、摜到新低 2.2%、範圍底部已經到 2.05%。你想——這禮拜什麼事都發生過了：美國真的射飛彈、Khamenei 親筆寫「永不放棄 Hormuz」、IRGC 喊強化海峽控制——任何一條都可能讓「垮台」的機率往上跳。結果這條賭盤反而越走越低。意思很清楚——拿真錢押的人、把 Khamenei 那段「永不放棄」讀成「對國內喊話」、不是「對美國攤牌」。他們相信明天會橋過去、會宣布。' },
+
+    { type: 'dialogue', character: 'chef', text: '把 Khamenei 那段讀成對自己人說的——這個邏輯太細了、但我直覺認同。我們做店長的也是、有時候要對員工喊「客人不能再加菜了、不然出菜會慢」、其實後場備料還有、我講狠話只是要員工別亂答應。客人聽到也別當真、知道是給內部人聽的。原來國家領導也常常「對外講給內部聽」？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「對外講給內部聽」、是政治語言學三個禮拜的課、你一句講完。專業講法叫「intended audience」——一段話真正要打到誰。Khamenei 寫的那封信、表面對 Trump、實際是對伊朗強硬派、跟對 IRGC 的：我有守住面子、你們不要鬧。市場 desk 上比我們資深的人讀政治文本三十年了、他們判讀這封信、結論就是 Polymarket 上這 2.2%——「對方在做檯面準備工作、不是要翻桌」。如果真的要翻桌、那個數字會跳到 10% 以上、而且是急跳。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Revisit ep49's 七分信三分留 ──
+    { type: 'dialogue', character: 'chef', text: '你禮拜四晚上跟我講「七分信、三分留」、那今天 Vance「good progress」加上賭盤新低、你的比例會變嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你記性真的好——這也是我今晚最想跟你聊的。我重新算過——七分信變八分信、三分留變二分留。多的那一分信、來自三件事：Vance 親口出來說「good progress」、不是 anonymous source 透露；雙方代表簽了那份 MoU 文本；Polymarket 押垮台的賭盤摜到新低。少的那一分留、不是因為風險消失、是因為「最壞情境」的可能性確實在縮——禮拜四那時候、我還在擔心「會不會根本不簽」；今天看下來、「簽」的機率高很多、剩下的爭論只是「條文怎麼寫」、不是「要不要簽」。' },
+
+    { type: 'dialogue', character: 'chef', text: '七變八、三變二——這個調整聽起來保守、但好——你沒因為氣氛樂觀就全押。我每次客人多的那一週、最容易高估下一週的客流、結果禮拜一被打回原形。所以你那「二分留」是什麼？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、二分留是兩件事。第一、就算明天簽了、條文細節公布出來、市場可能會在裡面挑刺——比如說、「Hormuz 通行」是「立刻」還是「分階段」？「制裁解除」是「全部」還是「部分」？簽是大事、但細節決定後面 60 天會不會順。第二、Khamenei 的中長期態度——這次簽了不代表伊朗內部鴿派穩了、IRGC 也許下個月又會搞一艘佈雷船、然後我們又回到「relief for performance 拿棍子敲偷懶工人」那個故事。所以二分留、是留給「簽完之後、執行階段的雜訊」——不是留給「會不會簽」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Wall Street records: separate story but worth flagging ──
+    { type: 'dialogue', character: 'chef', text: '對了——你說 Friday Wall Street S&P 創 record、九週連漲是 2023 以來最長。九週都漲、聽起來不太正常吧？我們店連 9 週都滿座、我老婆會擔心「下禮拜會不會掉」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你太太這個直覺、跟我們做風險的人想的一模一樣。九週連漲確實罕見——上次出現是 2023 年下半年、那之後緊接著一個小回。但九週連漲背後的故事不只是「氣氛好」、還有「實在的東西」——Dell 禮拜五財報 +32.8%、營收大爆、不是炒題材、是真的賺到錢；之前 Snowflake +36.5% 也一樣。AI 那條的訂單在實實在在進來。所以「九週」這個數字本身是一個 cautionary signal、但細看每一週漲的理由、其實大部分都有財報、有訂單、有實質支撐——不是純氣氛。' },
+
+    { type: 'dialogue', character: 'chef', text: '不是純氣氛、是有訂單——這個差別重要。我做生意三十年、最怕的就是「生意好但沒原因」、那種突然好其實最危險、隨時掉回去；「生意好有道理」、譬如新菜推出、有口碑、有 repeat 客、那種 sustainable。AI 是有道理的那種？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、AI 是有道理的那種、而且道理還很硬。Dell 賣的是 AI 伺服器、Snowflake 賣的是 AI 用的資料平台、Nvidia 賣的是核心晶片——三家代表「賣鏟子給淘金客」的三層、每一層的訂單都在加速。風險在那群「淘金的還沒淘到」的 AI 新創、那邊未來會有爆雷——但賣鏟子這層、現在看起來還很健康。九週連漲、八週是賣鏷的、那是有道理；九週是空喊、那才該怕。我們現在還算前者。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Saturday, A alone, before Sunday signing ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜六晚上、明天可能歷史性的一天、我就做點實在的——壽喜燒一人份小鍋、和牛、蔥、香菇、豆腐、最後下烏龍麵收尾、配半合溫酒。明天你要早起看新聞？太太會不會擔心你週末又被工作綁住？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、壽喜燒一人份、就這套——和牛多放幾片、烏龍麵留最後。明天美國時間是禮拜六晚上、Tokyo 是禮拜天上午、所以「會不會宣布」我大概早上 10 點知道結果。太太已經習慣了——她今天還說「明天你要看新聞就看吧、但下午陪我去看朋友」。我有跟她說好——不管 deal 簽不簽、下午 3 點以後我手機關機。' },
+
+    { type: 'dialogue', character: 'chef', text: '不管 deal 簽不簽、下午 3 點關機——這個紀律、跟你上禮拜講的「七分信三分留」一樣、是有界線的判斷。我師父說過「店是工具、家才是目的」——你現在這樣，已經比你爸那輩進步了。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、b 上禮拜五也轉達她爸那句「客戶要你追高，你最該保護他，不是討好他」——我跟 b 雖然 desk 不一樣、結論都同一個。我們這代金融人、跟父母那輩最大的差別、可能就是學會「該關手機的時候要關」。市場永遠在、Hormuz 永遠在那、AI 永遠會漲會跌——但跟太太答應的事、跟自己身體答應的事、一次違背就會累積。我爸退休後跟我說過、他最後悔的不是少賺哪幾筆、是「太多週末沒看到我長大」。' },
+
+    { type: 'dialogue', character: 'chef', text: '太多週末沒看到孩子長大——這句重得驚人。我跟我老婆沒孩子、但她退休那天說過類似的——她說「我這輩子最大的好處、是嫁給一個自己當老闆的人、上班時間自己訂」、她最不後悔的事是 30 年總機生涯每天 6 點半下班、沒拖到 7 點半。錢可以少賺一點、但 30 年的 6 點半，是真的回家了。壽喜燒在小鍋上滾了、和牛先涮兩片給你嚐嚐、烏龍麵留到最後。明天的事明天再說。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜六晚上 10 點半、東京。今晚的故事是「60 小時的中場、Vance 進度 + Khamenei 寫信、明天可能歷史性一天」。Vance 親口說 deal「good progress」、雙方代表已經在那份 60 天 MoU 上達成協議、明天禮拜天可能正式宣布。但兩支筆都還沒落——Trump 等、Khamenei 也等。Khamenei 親筆寫「Hormuz 控制權永不放棄」、跟 Trump「立刻無條件開」白紙黑字衝突；橋法是 customer-a 講的「主權留你、通行給我」（國際法上叫 innocent passage）——伊朗對國內喊「守住了」、Trump 對美國喊「打開了」、兩邊都贏一個最在意的東西。最強的訊號是 Polymarket——「伊朗政權 6/30 前垮台」摜到新低 2.2%、範圍底部 2.05%、拿真錢押的人讀 Khamenei 那段是「對國內喊話、不是對美國攤牌」、相信明天會橋過去（intended audience 解讀、像店長對員工喊狠話、其實是說給後場聽的）。A 把他禮拜四「七分信三分留」、今天調成「八分信二分留」——多的一分信來自 Vance、MoU、賭盤新低；少的一分留不是風險消失、是「最壞情境」（根本不簽）的可能性縮、剩下的二分留給「簽完之後條文細節 + IRGC 中長期會不會又佈雷」。Wall Street 收 record、S&P 500 7,580.06 九週連漲（2023 以來最長）、Dell +32.8% 財報炸裂——A 提醒：九週連漲後面是「賣鏷的」八週、不是純氣氛、有道理；風險在那群「淘金的還沒淘到」的 AI 新創。Friday Asia 三大也創高（Kospi 8,476、Nikkei 66,329、Topix 3,957 歷史新高）。Customer A 明天早 10 點看新聞、不管簽不簽、下午 3 點手機關機陪太太——師傅老婆「30 年總機 6 點半下班、沒拖到 7 點半、是真的回家了」呼應 b 爸「太多週末沒看到孩子長大」——這代金融人跟父母輩最大的差別、就是學會「該關手機的時候關」。壽喜燒和牛配烏龍麵收尾、半合溫酒。明天 Tokyo 上午 10 點見真章。',
+      duration: 6000,
+    },
+  ],
+};

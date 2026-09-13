@@ -1,0 +1,182 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-06-03 (Wed JST):
+ * - Asia bounced from yesterday's drop — Japan back to a new record:
+ *   - Nikkei 225 +0.91% (NEW record); Topix +0.93%.
+ *   - ASX 200 +0.32%.
+ *   - KOSPI CLOSED (Korean holiday).
+ *   - Hang Seng futures 25,853 vs prior close 26,038.32 → implied
+ *     ~-0.71% — HK today broke yesterday's "decoupled from Iran"
+ *     narrative and tracked the Iran-side risk down. (ep54 B's
+ *     "multi-track analysis" gets a wrinkle: tracks correlate
+ *     sometimes.)
+ *   Nikkei level derived from yesterday's ~66,051 × 1.0091 ≈ 66,652
+ *   (approximate).
+ *   (CNBC Asia 6/3)
+ * - THE BOMBSHELL: Sec. State RUBIO said Tuesday that Iran has mined
+ *   "LARGE SEGMENTS" of the Strait of Hormuz. This is a categorically
+ *   different signal from yesterday's Trump "I don't care" rhetoric —
+ *   it's a CONCRETE FACT, and it directly contradicts the deal's
+ *   performance terms (Iran was supposed to CLEAR mines within 30
+ *   days, not lay new ones). This is the cleanest "signal upgrade" of
+ *   the week, contrasting with ep54 B's "noise upgrade" framing of
+ *   Trump's words. (CNBC 6/3 via Rubio remarks; Hormuz draft terms
+ *   from Axios 5/24 / CNN 5/24)
+ * - Oil reaction was muted: WTI Jun +1.16% to $94.92 (small bounce);
+ *   Brent ~$96. Yesterday WTI had surged 5.5% in the previous session
+ *   (US Tuesday on Rubio's comments). Net: oil is back above $94 but
+ *   not panicked — market reads "concrete violation" as enforcement
+ *   theatre / selective compliance, not "deal is dead."
+ *   (CNBC 6/3, Trading Economics WTI 6/2-3)
+ * - USD/JPY ~159.45 (Tue close carryover; no clean fresh 6/3 print at
+ *   episode time). The 60% June BoJ-hike pricing held at ~56% after
+ *   ep54's Himino cold water, no further fresh move on that front today.
+ * - POLYMARKET regime-fall 0.025 (2.5%), a small tick up from yesterday's
+ *   2.05%, but the range still compresses (1.45%-3.1%). Even with a
+ *   concrete "Iran mining Hormuz" fact, smart money only nudged ~+0.5pp.
+ *   Reading: "we noted it, deal is being stress-tested, but no fundamental
+ *   re-rating yet." NOT used as a polymarket-odds action block today —
+ *   ep54 used it yesterday; back-to-back is too much. Cited in narration.
+ * - sectors[].value = |%change|x100 per theme, desc; all 6/3 sourced.
+ * - Continuity: ep54 (Tue) Customer B solo — laid out the "noise vs
+ *   signal" frame and concluded Trump's "I don't care" was noise
+ *   upgrade (4 indicators voted noise). Today's test: Rubio's mining
+ *   fact is qualitatively different (concrete, not rhetoric) — does it
+ *   force B's frame to break? Tonight CUSTOMER A (alternation 51A 52B
+ *   53A 54B 55A) — A's analyst voice fits "is this signal upgrade
+ *   forcing my 八分信二分留 framework to revise"; he refines the
+ *   framework rather than overhauls. A persona: male analyst, late
+ *   30s, no over/under betting, no 「我老闆/我同事」. Chef's wife
+ *   callback: she saw "伊朗在 Hormuz 佈水雷" headline ("這個聽起來
+ *   嚴重"). Warsh first FOMC still 6/16-17.
+ */
+export const EPISODE_55: Episode = {
+  id: 'ep-55',
+  date: '2026-06-03',
+  title: '20260603 禮拜三晚上、Asia 彈回但中港背道、Nikkei 又創新高+0.91%、Topix +0.93%、Korea 休市；真正大事是 Rubio 公開講「伊朗在 Hormuz 大範圍佈雷」——這是 concrete fact、ep54「噪音 vs 訊號」框架被測試；但 Polymarket 只微彈 2.05%→2.5%、油 WTI +1.16% $94.92、市場讀「執行秀、不是 deal 死」',
+  description: '禮拜三晚上、Tokyo 21:00。昨天那波跌、今天彈回一半、Nikkei +0.91% 再度新高、Topix +0.93%、ASX +0.32%。韓國今天休市（地方假日）。中港今天反方向——Hang Seng 期貨 25,853、相對昨日收 26,038 等於 -0.71%、ep54 b 講的「跟伊朗解耦」、今天斷掉。今天最重要的新發展、不是地緣 rhetoric、是 Rubio 國務卿親口講：「伊朗在 Hormuz 大範圍佈水雷」（large segments）。這是個 concrete fact、不是嘴上講的 rhetoric——而且直接違反那份 MoU 草案、伊朗本來該在 30 天內「清雷」、結果是「再佈」。理論上、這比 Trump 的「I don\'t care」嚴重一個等級。但市場反應很冷靜——油只小漲（WTI Jun +1.16% 到 $94.92、Brent ~$96）；Polymarket「伊朗政權垮台」從昨天 2.05% 微彈到 2.5%、上限 3.1% 還是壓著。市場讀法：「concrete 是 concrete、但這是執行秀、不是 deal 死亡」。今晚 customer-a 來、他要修他的「八分信二分留」嗎、還是維持？',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 9 點、東京。昨天那波跌、今天彈回一半、Nikkei +0.91% 再度創新高、Topix +0.93%、ASX +0.32%。韓國今天休市、跳出畫面。但中港今天反方向——Hang Seng 期貨 25,853、相對昨日收 26,038 隱含 -0.71%。ep54 customer-b 講的「中港跟伊朗解耦」、今天斷掉、HK 跟著伊朗線下走。今天最重要的新發展不是嘴上的 rhetoric、是國務卿 Rubio 親口講出來的一個 concrete fact——「伊朗在 Hormuz 大範圍佈水雷」、原文 large segments。這直接違反那份 60 天 MoU 草案——伊朗本來該在 30 天內清掉水雷、結果是「再佈」。理論上、這比昨天 Trump「I don\'t care」嚴重一個等級——昨天是 rhetoric、今天是 fact。但市場的反應、出乎意料地冷靜——油只小漲、WTI Jun +1.16% 到 $94.92、Brent 在 $96 附近；牆上那個 Polymarket「伊朗政權 6 月底前垮台」、從昨天 2.05% 微彈到 2.5%、上限 3.1% 也還是壓著、區間沒打開。錢的腳讀今天這條新聞的方式很清楚：「concrete 是 concrete、但這是執行秀、不是 deal 死」。今晚 customer-a 來、a 要修他的「八分信二分留」嗎、還是維持？',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Nikkei 225（6/3 收、再度新高）', price: 66652.0, change: 0.91 },
+          { symbol: 'Topix（6/3、跟漲）', price: 0, change: 0.93 },
+          { symbol: 'WTI 油（6/3、Rubio mining 後）', price: 94.92, change: 1.16 },
+          { symbol: 'ASX 200（6/3）', price: 0, change: 0.32 },
+          { symbol: 'Hang Seng 期貨（6/3、跟跌）', price: 25853.0, change: -0.71 },
+        ],
+        volatility: 18,
+        vix: 15.0,
+        rsi: 58.4,
+        beta: 1.02,
+        priceHistory: [65500, 65900, 65964, 66329, 66934, 66400, 66051, 66652],
+        volumeHistory: [720, 700, 660, 720, 700, 740, 820, 760],
+        sectors: [
+          { label: 'WTI 油 +1.16%（$94.92、Rubio「Iran mining large segments」、戰爭溢價輕回）', value: 116, color: '#22cc55' },
+          { label: 'Topix +0.93%（跟漲、寬度配合、不只大盤股）', value: 93, color: '#22cc55' },
+          { label: 'Nikkei +0.91%（再度創新高、油彈但市場讀「執行秀不是 deal 死」）', value: 91, color: '#22cc55' },
+          { label: 'Hang Seng 期貨 -0.71%（25,853 vs 昨日 26,038、ep54 解耦今天斷、HK 跟伊朗線跌）', value: 71, color: '#cc4422' },
+          { label: 'ASX 200 +0.32%（澳洲微紅、能源股扛一些）', value: 32, color: '#22cc55' },
+        ],
+        headline: '禮拜三 21:00 JST、Asia 收盤：Rubio 公開「伊朗在 Hormuz 大範圍佈雷」（large segments）concrete fact 違反 MoU / Nikkei +0.91% 再度新高 Topix +0.93% / WTI +1.16% $94.92 / HSI 期貨 -0.71% 解耦斷 / Polymarket 政權垮台 2.05→2.5% 區間仍壓 1.45-3.1% / 韓國休市',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。我老婆今天午餐時看新聞、看到「伊朗在 Hormuz 大範圍佈水雷」、嘆了一口氣跟我說「這個聽起來嚴重、之前是嘴上講、現在是真的做了」。然後下午她又看到 Nikkei 又創新高、跟我說「咦、做這麼嚴重的事、市場怎麼還漲」。她今天又被新聞跟市場的反差搞糊塗。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安、你太太今天問到這禮拜最重要的一題——「嘴上講」跟「真的做」、市場為什麼反應沒有預期的大。我們桌上從昨天晚上 Rubio 那句話出來、就在討論這個。先講為什麼這條跟昨天 Trump「I don\'t care」不同——昨天是 rhetoric、本來就被市場 routine 化、所以 b 講的「噪音升級」對。今天 Rubio 的「Iran mining large segments」是 concrete fact——直接違反 deal 的 performance term、伊朗本來該清雷、結果是再佈。這應該是「訊號升級」、不是「噪音升級」。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '訊號升級、不是噪音升級——那市場該大跌才對啊。可是 Nikkei 又創新高、Polymarket 才小彈、油也只動 1%。是市場錯了嗎？還是這條新聞被打折了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你問到關鍵——是哪邊在打折。我給你三個可能的解釋、desk 桌上今天討論的就是這三個：第一、市場讀「Rubio 是用『佈雷』當談判槓桿、放大伊朗的不守規矩、好讓美國有理由保留 Hormuz 封鎖」——也就是這條新聞「不是新事實、是新包裝」。第二、市場其實還在等實證——「真的有照片、有衛星圖、有第三方確認嗎？」現在只有美方說、沒有 independent verification、所以折扣。第三、市場讀「就算伊朗真在佈雷、deal 結構本身就是設計來『邊談邊吵架』的——relief for performance、不 perform 就罰、但繼續談」、所以 concrete violation 不等於 deal 死。三個原因疊加、今天市場才能維持冷靜。' },
+
+    { type: 'dialogue', character: 'chef', text: '三個折扣疊加——這個比「市場錯了」這種懶答案專業太多。我們街上有時候、別家店傳出「他偷工減料」、客人剛開始很驚、後來想「會不會是同行抹黑」、再後來「就算真的偷、他生意還是好、表示客人不在意」、過幾天就忘了。市場做的、跟客人對謠言的折扣、是同一套？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「客人對謠言層層打折」的觀察、是我們 desk 一整個下午的討論可以濃縮的版本。市場做的就是「分層 discount」——第一層、消息來源是否中立；第二層、有沒有可驗證的證據；第三層、就算真、會不會改變結構；第四層、就算改變、市場是否已 price in 一部分。每一層各打 70-80%、四層下來、剩 30-40%。所以一條看起來嚇人的新聞、進到價格只剩三分之一的影響。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket: still compressed despite concrete fact ──
+    { type: 'dialogue', character: 'chef', text: '牆上那個 Polymarket、從昨天 2.05% 彈到今天 2.5%、上限還是 3.1% 壓著、區間沒打開——這個是不是表示拿真錢的人、也用了你說的「層層打折」？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、就是這個——Polymarket 是「最濃縮的層層打折產品」。它 +0.5pp 是「我們注意到了、上調一點點」、但上限沒打開、表示「最壞情境」的可能性沒擴大。如果這條新聞是 true signal、不是 concrete fact 被打折、上限會跳到 5% 以上、區間 reopens。今天上限還壓在 3.1%、跟一週前 6.5% 比、收斂幅度沒鬆。所以結論——拿真錢的人、跟我們桌上做研究的、結論一致：「concrete 是 concrete、但 noise vs signal 的分類、還是落在 noise」。b 昨天那個 framework 沒崩。' },
+
+    { type: 'dialogue', character: 'chef', text: 'B 的 framework 沒崩——這對我是個驚喜、她昨天的 framework 我覺得很猛、能撐過今天這條 concrete 新聞、表示有真功夫。那你的「八分信二分留」呢、今天動嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我自己今天重新算過——維持八分信、二分留、framework 不動。但「二分留」裡面、加了一個新項目：「mining/clearing 的執行進度」。原本二分留是「Hormuz 簽不簽 + 條文細節 + BOJ 升息節奏」、今天再加上一個「就算簽了、伊朗到底有沒有照講的清雷、還是會 selective 守 rule」。所以二分留變成四項——不是擴大留、是「同樣的二分、分散到更多面向」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── HK breaking decoupling ──
+    { type: 'dialogue', character: 'chef', text: 'ep54 b 昨天還在講「中港跟伊朗解耦」、結果今天 Hang Seng 期貨 -0.7%、跟亞太其他三個方向反過來。「解耦」的故事這麼快就斷了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、好觀察——這也是今天 desk 注意到的事。b 昨天說「中港跟伊朗解耦」是當時的觀察，但解耦這種事很少持久——「multi-track」不代表「永遠分開」，比較準的講法是「兩條軌道大部分時候平行、偶爾交叉」。今天交叉了，因為 Rubio 的 Hormuz 新聞、跟 HK 重要的航運股、能源股直接相關（CNOOC、中國遠洋這類）、這幾檔權值股拉低 HSI、整個指數就跟著昨天解耦的方向反過來。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩條軌道平行、偶爾交叉——這個我做生意能 relate。我們店跟蔬菜商、海鮮商、是兩條獨立軌道、平常沒關係。但有一年颱風、蔬菜跟海鮮一起漲、那一個月我們就「兩條同時繃緊」——平常分開、極端時刻交叉。中港跟伊朗就是這樣？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「颱風時兩條供應商一起繃緊」、是 multi-track 分析最重要的「相關性會隨情境變」這個概念的中文版。專業上叫「correlation regime change」——平常是低相關、極端時刻變高相關。今天 Rubio 那句話、把「中港」這條跟「中東」這條的相關度、從低調到中。如果明天 Rubio 加碼說「中國的船在 Hormuz 被炸」、那相關度會跳到高、HSI 跟 Nikkei 會一起跌。所以「解耦」要看「在哪個情境裡」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Wife callback: signal vs noise ──
+    { type: 'dialogue', character: 'chef', text: '我老婆今天那句「真的做了」、其實她的直覺是對的、對吧？做了就是做了、跟嘴上不一樣。但市場用「三個折扣」去解讀、結果反應不大。她的直覺跟市場的反應、誰才對？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你太太的直覺百分百是對的、市場的反應也百分百是對的——它們在回答不同的問題。你太太回答的是「這個行為的嚴重度」、答案：嚴重、做了就是做了。市場回答的是「這個行為對價格的衝擊」、答案：經過層層折扣、影響不大。兩個問題、兩個答案、都對。我這行學的「market is sometimes right, market is sometimes wrong, but market is always real」——市場的反應就是真實的、不是評論。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩個問題不同、答案都對——這個分別細膩、我老婆會點頭。她以前在公司當總機、聽過太多「客戶罵總機」的情況——她說「客戶要罵的不一定是我做錯什麼、而是他那天有股氣要出」。所以「罵的內容」跟「罵的意圖」、要分開讀。市場也這樣？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你太太這個「罵內容 vs 罵意圖」、跟我們講的「price action vs underlying truth」是同一回事——市場每天用 price 表達的、不一定是 truth、是「考慮所有人此刻的看法之後、加權平均出來的位置」。她當總機 30 年練的、跟我們做這行的、本質一樣——讀懂訊息背後的真實。明天我要寫進晨會。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Wednesday, A alone ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜三、市場彈回、你可能 desk 沒昨天忙——但腦袋應該很累、解釋四層折扣給客戶不簡單。我做點不費神的：烤鱈魚、揚出豆腐、紅味噌湯、白飯、香物，配溫酒半合。太太家裡在等你嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、烤鱈魚跟揚出豆腐、太對了、今天 desk 從早討論 Rubio 那句話到晚、嘴比腦累。太太今晚去同事家吃飯、我自由、可以坐到十點。今天 desk 還有一件事我想跟你分享——我們新人下午做了一份「Rubio mining 對五種資產的衝擊模擬」、結論是「全部低於市場單日標準差」——意思是「這條新聞的價格影響、在統計上是噪音水準」。新人很驚訝、跟我說「a 哥、那為什麼新聞還報這麼大？」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我跟他講「新聞的工作是放大、市場的工作是吸收——兩個功能完全相反、但缺一不可」。如果沒新聞、市場不知道有這條 fact 要打折；如果沒市場、新聞會把所有事都當成天塌。兩個系統互相校準。他半懂、但他至少知道「下次別只看新聞標題決定倉位」。這就是我今天的工作——把新人從「新聞 = 真實」拉到「市場 = 加權真實」。' },
+
+    { type: 'dialogue', character: 'chef', text: '新聞放大、市場吸收——這個 framework 太好。我這店裡也是、隔壁店倒了、客人來吃飯都會跟我聊「聽說他們不賺錢」、把這條當大事；我這邊就是默默看「我自己的客流有沒有變」——前者是 amplifier、後者是 filter。少了 amplifier、我不知道隔壁倒了；少了 filter、我會跟著恐慌、把自己生意搞砸。烤鱈魚馬上來、味噌湯今天紅味噌、濃一點、配你今天解釋了一整天。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「amplifier + filter 缺一不可」這句、明天我要刻在 desk 牆上。新人最容易犯的就是只有 amplifier 沒有 filter——看一條新聞就想 all in 或 all out。資深的人、是慢慢學會在腦袋裡裝 filter——同樣的新聞、結論可能完全不一樣。市場是公開的、但每個人腦袋裡的 filter 是私有的、那才是 alpha 的來源。' },
+
+    { type: 'dialogue', character: 'chef', text: 'Filter 是私有的——這句深。我老婆也說過、她當總機 30 年累積最多的不是電話技巧、是「分得出哪個客戶的事該往上轉、哪個自己擋掉就好」——那也是 filter、別人學不到的。鱈魚烤好、皮酥、豆腐揚得脆、味噌湯豆腐花滑滑的、明天再戰。今晚這頓、慢慢吃。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 10 點半、東京。今天的故事是「Rubio mining bombshell vs 市場層層折扣——concrete fact 進到價格只剩三分之一」。昨天 Trump「I don\'t care」是 rhetoric / 噪音升級、今天 Rubio「Iran mining large segments」是 concrete fact / 應該是訊號升級——但市場反應冷靜：Nikkei +0.91% 再度新高、Topix +0.93%、油 WTI +1.16% $94.92、Polymarket 政權垮台只從 2.05% 微彈到 2.5%、區間 1.45%-3.1% 上限沒打開（最壞情境的可能性沒擴大）。原因 a 拆三層：第一、新聞來源是否中立（Rubio 是美方、不是 IAEA）；第二、有沒有 independent verification（沒衛星圖、沒第三方）；第三、就算真、deal 結構本來就是 relief-for-performance 設計來「邊談邊吵」、concrete violation 不等於 deal 死。四層各打 70-80% 折扣、剩 30-40%、所以價格影響只剩三分之一（師傅:「客人對謠言層層打折」）。中港今天反向、Hang Seng 期貨 -0.71%、ep54 b 的「解耦」斷掉——「multi-track 不代表永遠分開、是大部分時候平行偶爾交叉」、correlation regime change（師傅:「颱風時蔬菜跟海鮮一起繃緊」）。A 維持「八分信二分留」framework 不動、但二分留增列「Iran mining/clearing 執行進度」——同樣二分、分散到更多面向。師傅老婆「真的做了 vs 市場反應」直覺對、市場反應也對——「兩個問題、兩個答案、都對」、市場每天用 price 表達的是「考慮所有人看法後加權平均的位置」（師傅老婆當總機 30 年「罵內容 vs 罵意圖」）。a 的新人下午做模擬、結論「Rubio mining 衝擊全部低於市場單日標準差」、a 教新人「新聞放大、市場吸收、兩個系統互相校準、缺一不可」（師傅:「隔壁倒了、amplifier 讓我知道、filter 擋住我跟著恐慌」）；資深的人腦袋裡有「私有 filter」、那才是 alpha 的來源（師傅老婆當總機「分得出哪個轉、哪個自己擋」）。烤鱈魚配揚出豆腐、紅味噌湯、明天再戰。',
+      duration: 6000,
+    },
+  ],
+};

@@ -1,0 +1,395 @@
+import type { Episode } from '../../engine/types';
+
+export const EPISODE_14: Episode = {
+  id: 'ep-14',
+  date: '2026-04-22',
+  title: '20260422 Ceasefire Unwind',
+  description: 'Wednesday — Trump extends the Iran ceasefire, calling Tehran "seriously fractured." Oil edges lower, Nikkei hits a record, and the weekend-war premium starts to bleed out. But United slashes its 2026 forecast on fuel costs, airlines are quietly cutting flights, and Tim Cook steps down after 15 years — John Ternus inherits Apple\'s AI gap. SpaceX drops a $60B option on Cursor, or $10B just for the work. Warsh emerges from a rough Senate hearing with his Fed "regime-change" plan intact. The war got priced out. The bill did not.',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '週三深夜。週日那場把 Dow futures 砸掉 400 點的戰爭，現在被關進一張紙上的停火協議。油價退下、Nikkei 開出歷史新高——但油還在 $98、United 已經砍了 2026 forecast、Tim Cook 交棒、SpaceX 在 Cursor 上寫了一張 $60B 的 option。停火不等於清算。',
+      duration: 4500,
+    },
+
+    // ── Opening: ceasefire reprice, but not a full reversal ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'SPY', price: 528.20, change: 0.7 },
+          { symbol: 'QQQ', price: 446.80, change: 0.8 },
+          { symbol: 'WTI', price: 98.40, change: -5.6 },
+          { symbol: 'VIX', price: 27.30, change: -15.7 },
+        ],
+        volatility: 36,
+        vix: 27.3,
+        rsi: 48.0,
+        beta: 1.18,
+        priceHistory: [522, 523, 524, 526, 527, 528, 528, 528],
+        volumeHistory: [88, 92, 96, 92, 86, 82, 78, 76],
+        sectors: [
+          { label: 'Travel', value: 880, color: '#22cc55' },
+          { label: 'Tech', value: 1380, color: '#22cc55' },
+          { label: 'Energy', value: 1280, color: '#ee4444' },
+          { label: 'Defense', value: 1120, color: '#ee4444' },
+          { label: 'Gold', value: 1180, color: '#ee4444' },
+        ],
+        headline: '停火延長 — WTI 退到 $98、VIX 從 32 掉回 27，Nikkei 開出歷史新高',
+      },
+    },
+
+    // Chef prep
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 400 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    // Customer A enters with the ceasefire news
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。週一來的時候你臉上寫著戰爭，今天怎麼像鬆了半口氣。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '川普延長了停火——而且講了一句很耐人尋味的話：「伊朗政府 seriously fractured」。Vance 本來要去巴基斯坦談，被暫停。市場聽出兩件事：一、這週不會打。二、對方已經沒有談判對手了。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '油價呢？週一還在 $104。' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'WTI 退到 $98.40、-5.6%。但請注意——不是回到戰前的 $92。市場只拿回一半的風險溢價。「fragile ceasefire」這個詞昨天上了 CNBC 頭版，意思是：便宜，但不能睡。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '比較有趣的是 Nikkei。停火消息一出，日本股市直接開出歷史新高——但亞洲其他市場 broadly lower。意思是「有人在買日本」，但「沒人願意全面樂觀」。' },
+
+    { type: 'emote', character: 'customer-a', emote: 'surprise', duration: 700 },
+
+    { type: 'dialogue', character: 'chef', text: '那 UBS 那張「停火贏家」清單呢？' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'UBS 做了一套分數——把 Iran 戰爭對個股的衝擊量化，然後列出「如果停火」誰會跳。主要是旅遊、郵輪、航空、消費。今天這幾檔都在漲——但你等下會聽到，航空股的故事比較複雜。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    // ── Ceasefire rotation: travel/cruise up, energy/defense down ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'CCL', price: 18.40, change: 4.2 },
+          { symbol: 'MAR', price: 268.20, change: 2.8 },
+          { symbol: 'XLE', price: 88.60, change: -4.1 },
+          { symbol: 'LMT', price: 548.40, change: -2.6 },
+        ],
+        volatility: 34,
+        vix: 27.3,
+        rsi: 54.0,
+        beta: 1.08,
+        priceHistory: [16, 17, 17, 18, 18, 18, 18, 18],
+        volumeHistory: [58, 68, 78, 82, 78, 72, 68, 66],
+        sectors: [
+          { label: 'Cruise', value: 880, color: '#22cc55' },
+          { label: 'Hotels', value: 780, color: '#22cc55' },
+          { label: 'Energy', value: 1280, color: '#ee4444' },
+          { label: 'Defense', value: 1120, color: '#ee4444' },
+        ],
+        headline: '停火贏家 — 郵輪、飯店、消費回來；能源、國防、黃金反向吐回',
+      },
+    },
+
+    { type: 'wait', duration: 300 },
+
+    // Customer B enters with Apple / Cook angle
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。你今天晚來了。' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'Cook 的告別郵件我讀了兩遍才放下。十五年、$4 trillion、從 Jobs 手上接過公司、做到現在。今天 Apple 官宣——John Ternus 接任。硬體背景、iPad 時代的工程領軍。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '華爾街的反應很冷靜——盤前 AAPL 只跌 0.6%。真正的信號是同一天 Johny Srouji 被升到 hardware boss，管所有 silicon。Apple 在告訴市場：我們要把 chip 全部自己做——iPhone、Mac、未來的 AI 晶片。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '這是一個很聰明的訊號編排。Cook 走、Ternus 上、Srouji 升——三個動作一次做完，等於在說「Apple 的下半場是 custom silicon」。Ternus 面對的第一題是 AI gap——MarketWatch 寫得直接，叫他「fix Apple\'s glaring AI gap」。' },
+
+    { type: 'camera', effect: 'flash', duration: 200 },
+
+    // ── Apple transition ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'AAPL', price: 212.40, change: -0.6 },
+          { symbol: 'MSFT', price: 438.60, change: 0.9 },
+          { symbol: 'GOOGL', price: 172.20, change: 1.2 },
+          { symbol: 'NVDA', price: 148.80, change: 1.4 },
+        ],
+        volatility: 32,
+        vix: 27.3,
+        rsi: 52.0,
+        beta: 1.14,
+        priceHistory: [214, 213, 213, 212, 212, 212, 212, 212],
+        volumeHistory: [72, 82, 92, 96, 88, 82, 76, 72],
+        sectors: [
+          { label: 'Silicon', value: 1380, color: '#22cc55' },
+          { label: 'Cloud', value: 1280, color: '#22cc55' },
+          { label: 'AI-Chips', value: 1480, color: '#22cc55' },
+          { label: 'Consumer-Tech', value: 980, color: '#cc8844' },
+        ],
+        headline: 'Cook 交棒 Ternus、Srouji 升任 silicon 老大 — Apple 押注「全晶片自研」的下半場',
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-b', text: '還有一個角度——Cook 是 global supply chain 的大師，Ternus 是 hardware engineering 的專家。這個換人，其實暗示「後川普時代 Apple 要靠硬體利潤率、不再靠全球化紅利」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '對比一下——同一天 SpaceX 宣布對 Cursor 有 $60B 的 option、或直接付 $10B「for our work together」。一個是 trillion-dollar 傳奇在退場，一個是新 AI 巨頭在搶座位。' },
+
+    { type: 'wait', duration: 300 },
+
+    // ── SpaceX + Cursor: the $60B option ──
+    { type: 'dialogue', character: 'chef', text: 'SpaceX 為什麼要買寫 IDE 的公司？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '官方理由是 coding tools。但讀細節——TechCrunch 直接點出：「Neither Cursor nor xAI has proprietary models that can match Anthropic and OpenAI」。翻譯：這是一對弱點互補。Cursor 沒模型、xAI 沒產品。兩邊抱團取暖。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '結構更離譜。SpaceX 可以「年底前用 $60B 買下 Cursor」——或者「付 $10B 當作 work together 的費用」。等於租約 + 買方選擇權。你每個月讀這種條款都覺得私募市場在發瘋。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '週一我們說 Cursor 在談 $50B。三天後 SpaceX 把 option 寫到 $60B。private 市場的估值膨脹比 public 更快——但 public 市場現在沒心情配合。這個 gap 會變成 2026 下半年最大的故事。' },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'TSLA', price: 264.80, change: -1.3 },
+          { symbol: 'AMZN', price: 220.40, change: 0.8 },
+          { symbol: 'AI-PRIV', price: 60.00, change: 20.0 },
+          { symbol: 'META', price: 572.60, change: 0.4 },
+        ],
+        volatility: 34,
+        vix: 27.3,
+        rsi: 58.0,
+        beta: 1.22,
+        priceHistory: [50, 52, 55, 55, 58, 60, 60, 60],
+        volumeHistory: [62, 68, 78, 84, 88, 84, 78, 74],
+        sectors: [
+          { label: 'AI-Private', value: 1580, color: '#22cc55' },
+          { label: 'AI-Public', value: 1280, color: '#cc8844' },
+          { label: 'Mega-Cap', value: 1380, color: '#22cc55' },
+          { label: 'EV', value: 980, color: '#ee4444' },
+        ],
+        headline: 'SpaceX → Cursor $60B option — 私募 AI 估值再跳一階，公開市場壓不下',
+      },
+    },
+
+    { type: 'wait', duration: 300 },
+
+    // ── Airlines: the ceasefire fallout that markets may be missing ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '剛才你說航空股故事複雜——怎麼說？' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'United Airlines 今天砍了 2026 全年展望——同一份財報，Q1 earnings 還 beat 預期。意思是「過去很好、未來很差」。原因？fuel cost surge——戰爭退了，但油價退得不夠快，航線經濟學已經壞掉。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'MarketWatch 那篇寫得最狠——標題叫「Airlines cut flights as fuel costs surge — economic fallout from the Iran war that markets may be missing」。市場在買「停火贏家」的同時，有一條現金流已經被戰爭吃掉了。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '這才是這週最危險的 setup——停火讓市場以為可以買回去，但實體經濟的 damage 已經在 Q1 財報裡——航空、物流、重卡、郵輪補給。下一波財報季會看到更多這種「beat now, guide down」。' },
+
+    { type: 'emote', character: 'customer-b', emote: 'surprise', duration: 700 },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'UAL', price: 48.20, change: -3.8 },
+          { symbol: 'DAL', price: 42.40, change: -2.6 },
+          { symbol: 'AAL', price: 12.80, change: -3.2 },
+          { symbol: 'LUV', price: 28.40, change: -1.4 },
+        ],
+        volatility: 38,
+        vix: 27.3,
+        rsi: 38.0,
+        beta: 1.28,
+        priceHistory: [52, 51, 50, 49, 49, 48, 48, 48],
+        volumeHistory: [58, 68, 82, 92, 96, 88, 82, 76],
+        sectors: [
+          { label: 'Airlines', value: 980, color: '#ee4444' },
+          { label: 'Logistics', value: 880, color: '#ee4444' },
+          { label: 'Cruise', value: 880, color: '#22cc55' },
+        ],
+        headline: 'United 砍 2026 forecast — 停火的帳單，航空公司先替全市場付了',
+      },
+    },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Warsh / Fed regime-change ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'Fed 的新人呢？聽說 Warsh 昨天上國會了。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'CNBC 分析標題講得最白——「Warsh emerges from a difficult hearing with his Fed regime-change plan intact」。意思是：他被問很多財務問題，很少被問到「他到底要怎麼改 Fed」。結果他該解釋的都沒解釋，但提名走完了。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '他本人金句兩句——「Fed must stay in its lane」、對通膨「firm commitment」，只有一次提到 labor market。翻譯：「我是鷹」、「我不管失業率」。這跟 Powell 的 dual mandate 平衡語氣完全不同。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '市場讀到這個訊號——短期利率預期往上移。這就是為什麼 10Y 這兩天雖然戰爭降溫，yield 也只退了一點點。停火 + 鷹派 Fed 提名 = yield 下不來。' },
+
+    { type: 'camera', effect: 'shake', duration: 250, intensity: 1 },
+
+    { type: 'wait', duration: 300 },
+
+    // ── Polymarket: how prediction markets priced the ceasefire ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '那賠率市場怎麼看這個停火？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '比新聞乾淨得多。三個合約——Iran 政權 4/30 前倒、6/30 前倒、Fed 四月會議降 50bp。三個一起看，停火到底有多少被 price in，答案很直接。' },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-04-22T03:22:01Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-april-30',
+            question: 'Will the Iranian regime fall by April 30?',
+            yesProbability: 0.0085,
+            volume: 38056995,
+            endDate: '2026-04-30T00:00:00Z',
+            history: [
+              { t: 1776708049, p: 0.0105 }, { t: 1776715243, p: 0.0095 }, { t: 1776722449, p: 0.0110 }, { t: 1776726057, p: 0.0105 },
+              { t: 1776729657, p: 0.0095 }, { t: 1776733250, p: 0.0105 }, { t: 1776736853, p: 0.0105 }, { t: 1776740450, p: 0.0125 },
+              { t: 1776744042, p: 0.0120 }, { t: 1776747658, p: 0.0135 }, { t: 1776754848, p: 0.0115 }, { t: 1776758406, p: 0.0115 },
+              { t: 1776762059, p: 0.0110 }, { t: 1776765619, p: 0.0105 }, { t: 1776769250, p: 0.0105 }, { t: 1776772856, p: 0.0095 },
+              { t: 1776780019, p: 0.0125 }, { t: 1776783654, p: 0.0105 }, { t: 1776787252, p: 0.0135 }, { t: 1776790810, p: 0.0145 },
+              { t: 1776794430, p: 0.0135 }, { t: 1776798028, p: 0.0125 }, { t: 1776801600, p: 0.0145 }, { t: 1776808815, p: 0.0095 },
+              { t: 1776812442, p: 0.0095 }, { t: 1776816005, p: 0.0085 }, { t: 1776819605, p: 0.0085 }, { t: 1776823203, p: 0.0085 },
+              { t: 1776826804, p: 0.0085 }, { t: 1776828064, p: 0.0085 },
+            ],
+          },
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.0850,
+            volume: 32921006,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1776506459, p: 0.0650 }, { t: 1776510014, p: 0.0650 }, { t: 1776524435, p: 0.0650 }, { t: 1776535212, p: 0.0650 },
+              { t: 1776560458, p: 0.0850 }, { t: 1776574855, p: 0.0750 }, { t: 1776582050, p: 0.0750 }, { t: 1776614422, p: 0.0850 },
+              { t: 1776672004, p: 0.0850 }, { t: 1776679200, p: 0.0850 }, { t: 1776690014, p: 0.0850 }, { t: 1776711604, p: 0.0750 },
+              { t: 1776718835, p: 0.0650 }, { t: 1776726003, p: 0.0750 }, { t: 1776744058, p: 0.0850 }, { t: 1776751220, p: 0.0850 },
+              { t: 1776758431, p: 0.0750 }, { t: 1776765644, p: 0.0750 }, { t: 1776780045, p: 0.0850 }, { t: 1776790836, p: 0.0850 },
+              { t: 1776798054, p: 0.0850 }, { t: 1776801627, p: 0.0850 }, { t: 1776805237, p: 0.0850 }, { t: 1776808855, p: 0.0850 },
+              { t: 1776812446, p: 0.0850 }, { t: 1776816017, p: 0.0850 }, { t: 1776819608, p: 0.0850 }, { t: 1776823214, p: 0.0850 },
+              { t: 1776826808, p: 0.0850 }, { t: 1776828006, p: 0.0850 },
+            ],
+          },
+          {
+            slug: 'will-the-fed-decrease-interest-rates-by-50-bps-after-the-april-2026-meeting',
+            question: 'Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?',
+            yesProbability: 0.0015,
+            volume: 44722870,
+            endDate: '2026-04-29T00:00:00Z',
+            history: [
+              { t: 1776499254, p: 0.0015 }, { t: 1776502859, p: 0.0015 }, { t: 1776506456, p: 0.0015 }, { t: 1776510008, p: 0.0015 },
+              { t: 1776524425, p: 0.0015 }, { t: 1776531657, p: 0.0015 }, { t: 1776560455, p: 0.0015 }, { t: 1776564059, p: 0.0015 },
+              { t: 1776574852, p: 0.0015 }, { t: 1776582047, p: 0.0015 }, { t: 1776614417, p: 0.0015 }, { t: 1776657658, p: 0.0015 },
+              { t: 1776690008, p: 0.0015 }, { t: 1776718825, p: 0.0015 }, { t: 1776744055, p: 0.0015 }, { t: 1776751208, p: 0.0015 },
+              { t: 1776758426, p: 0.0015 }, { t: 1776765639, p: 0.0015 }, { t: 1776780039, p: 0.0015 }, { t: 1776790831, p: 0.0015 },
+              { t: 1776798049, p: 0.0015 }, { t: 1776801622, p: 0.0015 }, { t: 1776805228, p: 0.0015 }, { t: 1776808847, p: 0.0015 },
+              { t: 1776812445, p: 0.0015 }, { t: 1776816015, p: 0.0015 }, { t: 1776819607, p: 0.0015 }, { t: 1776823210, p: 0.0015 },
+              { t: 1776826807, p: 0.0015 }, { t: 1776828065, p: 0.0015 },
+            ],
+          },
+        ],
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-b', text: '4/30 這檔從週一的 1.15% 掉到今天的 0.85%——停火確實砍掉了短期尾端。但只掉 30 bp，不是一刀砍半——市場在說「我信停火，但我不信它撐到月底」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '真正有訊息的是 6/30 這檔——從週一的 9.5% 掉到 8.5%，只退一階。意思是「停火緩和了這週，但夏天前的 regime risk 還在」。這個數字很堅定——不亂跳、但也不退。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '最殘酷還是 Fed -50bp 那檔——0.15%。停火都救不了它。因為 Warsh 的鷹派訊號 + 航空漲價 + 油還在 $98——降息的彈藥被三件事一起鎖死。Powell 下週還在位，但他的空間沒了。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Tariff refund politics ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: '關稅退款這週還有什麼發展？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '政治戲劇——川普今天公開說「I\'ll remember companies that don\'t seek tariff refunds」。翻譯：你如果不申請退款，我會記住你。對不起最高法院、對不起退款機制、但對申請的公司也是一種壓力。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'Walmart、Target、Best Buy 都在清單上。billions of refunds。但企業會掂量——領了退款、以後關稅回來，帳會不會算到你頭上？這個決定現在變成政治判斷，不是財務判斷。' },
+
+    { type: 'wait', duration: 300 },
+
+    // ── Tech color: Meta keystrokes, Anthropic Mythos, Images 2.0 ──
+    { type: 'dialogue', character: 'customer-a', text: '科技圈還有三條小新聞值得記——一個好、一個怪、一個恐怖。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '好的是 OpenAI 出 ChatGPT Images 2.0，文字生成能力明顯跳級——這就是週一我們提到「12-month window」被壓縮的另一個證據。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '怪的是 Meta——內部工具在錄員工的 keystroke 跟 mouse 移動，拿去訓練 AI 模型。合法、可怕、很誠實。員工隱私跟模型訓練的界線，現在每一家公司都在重劃。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '恐怖的是——據 TechCrunch 報導，有未經授權的組織取得了 Anthropic 內部的 cyber tool「Mythos」。Anthropic 還在調查，說沒有證據系統被滲透——但一個 frontier lab 的 internal tool 被外洩的消息本身，就是對整個 AI infra 安全的警告。' },
+
+    { type: 'emote', character: 'customer-a', emote: 'surprise', duration: 600 },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Wednesday wrap ──
+    { type: 'dialogue', character: 'chef', text: '今天的關鍵詞？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '"Ceasefire unwind"——戰爭被關進紙上，油價退、VIX 退、travel 回來。但「unwind 不等於 reset」。Q1 財報已經被燒到、airlines 已經 guide down、private 市場在加速膨脹。市場賺回一半的位置，但帳還沒還完。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我加一個——「transition Wednesday」。Cook 走、Warsh 上、SpaceX 押 Cursor——三個方向都在換人。這個禮拜不會有大結論，但會有大拐點。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '本週剩下的劇本——明天 BoJ、GOOGL 財報、週五關稅 90 天豁免到期。明天晚上要看 GOOGL 的 cloud 成長——那是 AMZN 被 Goldman 批評後整個 mega-cap cloud 敘事的壓力測試。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '但也別忘了——當市場因為停火而 relief 的時候，就是最容易忽略「第二波 surprise」的時候。航空那條故事，就是典型的「隱性帳單」。下一條藏在哪，沒人知道。' },
+
+    // ── Night wrap ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'SPY', price: 528.20, change: 0.7 },
+          { symbol: 'QQQ', price: 446.80, change: 0.8 },
+          { symbol: 'WTI', price: 98.40, change: -5.6 },
+          { symbol: 'VIX', price: 27.30, change: -15.7 },
+        ],
+        volatility: 34,
+        vix: 27.3,
+        rsi: 50.0,
+        beta: 1.14,
+        priceHistory: [522, 523, 524, 526, 527, 528, 528, 528],
+        volumeHistory: [88, 92, 90, 86, 82, 78, 74, 72],
+        sectors: [
+          { label: 'Travel', value: 880, color: '#22cc55' },
+          { label: 'Tech', value: 1380, color: '#22cc55' },
+          { label: 'Energy', value: 1180, color: '#ee4444' },
+          { label: 'Airlines', value: 980, color: '#ee4444' },
+          { label: 'Silicon', value: 1280, color: '#22cc55' },
+        ],
+        headline: '週三收盤 — SPY 站回 528、WTI $98、VIX 27 — 戰爭被 priced out，但帳單還在路上',
+      },
+    },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚要不要一碗熱的？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '要。停火是一種放鬆，但放鬆的時候最容易吃虧。現金位留著、別因為「看起來便宜」就追買。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '看 VIX。如果這週能站穩 25 以下，且 SPY 站穩 525，technical 上就真的修復了。在那之前，還是半倉的心態。' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '週三深夜的食堂，一碗熱拉麵、一杯麥茶。窗外風是暖的——阿曼灣的船還漂著、Cook 收著桌上最後一份備忘錄、Ternus 在 Cupertino 打開第一份 briefing、Warsh 在華盛頓翻著下一場聽證會的 talking points、Musk 在 Austin 把 $60B 的 option 寫進公司律師的檔案。戰爭的價格被市場吐回去了一半，另一半，還留在 United 的 guidance、留在 airlines 砍掉的航班、留在沒人願意接的 bond yield 裡。停火只是換個姿勢活著。',
+      duration: 5200,
+    },
+  ],
+};
