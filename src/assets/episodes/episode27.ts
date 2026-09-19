@@ -1,0 +1,237 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-06:
+ * - Tue 5/5 US close (after-hours of ep26): S&P 500 7,259.22 (+0.81%, record),
+ *   Dow 49,298.25 (+356pts, +0.73%), Nasdaq Comp 25,326.13 (+1.03%, record).
+ *   Russell 2000 also new record. (TheStreet live blog 5/5)
+ * - Tue 5/5 oil settle: Brent $109.87 (-3.99%), WTI $102.27 (-3.9%) — reverses
+ *   most of Mon's spike. (Trading Economics, CNBC)
+ * - Tue 5/5 ISM Services PMI (April): 53.6 vs 53.7 consensus, prior March 54.0
+ *   — 22nd consecutive month in expansion. Sub-indices: Business Activity 55.9
+ *   (+2.0 pts), New Orders 53.5 (-7.1 pts), Employment 48.0 (-) back into
+ *   contraction, Prices flat above 70 (high oil pass-through). (PRNewswire ISM
+ *   release 5/5, investingLive, AdvisorPerspectives)
+ * - Tue 5/5 after-close AMD Q1 2026: Revenue $10.3B (+38% YoY) vs $9.84B est;
+ *   non-GAAP EPS $1.37 vs $1.27 est; Data Center $5.8B (+57% YoY) vs $5.56B est;
+ *   net income $1.4B (+95%); Q2 guide $11.2B ±$300M (+46% YoY, +9% QoQ).
+ *   Stock +15% AH. (CNBC 5/5, Stocktitan, Yahoo Finance, Seeking Alpha)
+ * - Tue 5/5 evening: Trump announces Project Freedom paused — cites "Great
+ *   Progress" toward "a Complete and Final Agreement" with Iran; pause "for a
+ *   short period of time." UAE confirmed Mon ballistic+cruise+drone strike
+ *   from Iran (3 injured); Fujairah refinery fire continued through Tue.
+ *   (CNBC 5/5, Al Jazeera 5/5, ABC live blog 5/5)
+ * - Wed 5/6 Tokyo reopen (after Golden Week 4-day stretch including 子供の日):
+ *   N225 last traded Fri 5/1 at 59,513.00 (+0.38%); CME Nikkei futures gapped
+ *   ~+1,200 yen vs prior settle ahead of cash open. Hard cash-close not yet in
+ *   wire data at 22:00 JST 5/6 — narration treats this as "still in motion"
+ *   rather than citing a specific number. (BBN, FXEmpire, JPX)
+ * - Wed 5/6 Korea: KOSPI +6.45% to record 7,384.56; intraday +6.9% to 7,417.54;
+ *   eighth buy-side sidecar of the year triggered. Samsung Electronics 005930
+ *   +15.05% to ₩267,500 — first Korean stock to break $1T market cap. SK Hynix
+ *   also surged on AI/HBM tailwind. (KSAT/AP, Seoul Economic Daily, MarketScreener,
+ *   The Asia Business Daily, Korea Herald)
+ * - Wed 5/6 Taiwan: TAIEX Tue 5/5 closed 40,769.29 (+0.16% day after first-ever
+ *   40k close). Wed reaction tracking AMD/AI tailwind. (TaiwanNews 5/5)
+ * - Apr NFP releases Fri 5/8: consensus +60K (some shops +49K), unemployment
+ *   4.3% (unchanged), prior March +178K. (FinancialJuice NFP Prep 5/4,
+ *   ThinkCapital week-ahead)
+ * - Powell term ends Fri 5/15 (9 days); Warsh full Senate vote week of 5/11.
+ * - Polymarket "Will the Iranian regime fall by June 30?": yesProbability 0.055
+ *   for the entire 24-hour stretch covering Mon UAE strike, Tue Trump pause,
+ *   Wed AI rally — held flat. Volume $36.42M (was $36.35M Tue), liquidity $1.12M.
+ *   168 history points in latest.json, collectedAt 2026-05-06T01:02:43Z.
+ *   Last 25 history points used verbatim below. (public/polymarket/latest.json)
+ */
+export const EPISODE_27: Episode = {
+  id: 'ep-27',
+  date: '2026-05-06',
+  title: '20260506 三個小考、市場全過了',
+  description: '禮拜三、Tokyo 黃金週後第一天開盤、紐約那邊昨晚 Trump 突然把 Project Freedom「暫停」、講「跟伊朗的協議快好了」。油從 114 收到 110、S&P 跟 Nasdaq 同一天再創新高、AMD 凌晨繳出 103 億的單季營收、Data Center 58 億 +57%。今天上午 KOSPI 一口氣從 6,937 跳到 7,384、+6.45%、Samsung 漲 15%、一天突破一兆美金市值。賭盤上「6/30 前伊朗政府會不會倒」這條合約、整個過程紋風不動、五點五。三個小考、全部過了——但賭盤的看法、24 小時前後一模一樣。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 10 點、東京黃金週放完、TSE 今天重新開盤、街上的人比昨天多一倍、便利商店的店員今天從早上六點站到現在。昨晚紐約那邊事情翻了個彎——Trump 在凌晨突然講「Project Freedom 暫停一下、跟伊朗的協議快好了」、油從 114 一路收到 110、S&P 500 收 7,259、又是新高、Nasdaq 收 25,326、也是新高、Dow 跳了 356 點。再往後幾個小時、AMD 凌晨五點繳出單季 103 億美金的成績單、Data Center 一塊就佔了 58 億、年增 57%、盤後跳 15%。今天上午 9 點、韓國 KOSPI 從昨天的 6,937 一口氣跳到 7,384、+6.45%、Samsung 一天漲 15%、變成韓國第一檔市值破一兆美金的公司。昨晚兩位走的時候、一個說「Brent 如果一個禮拜內回到 108 就是虛驚一場」——一個晚上、油就回去了。今晚的食堂有點奇怪——三個昨天還在擔心的事、今天全部過關了、但櫃台後面的師傅還在看那條一直沒動的線。',
+      duration: 5400,
+    },
+
+    // ── Real Wed market state — Tue US close + Wed Asia gap-up ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'S&P 500 收盤', price: 7259.22, change: 0.81 },
+          { symbol: 'Nasdaq 收盤', price: 25326.13, change: 1.03 },
+          { symbol: 'Brent 油價', price: 109.87, change: -3.99 },
+          { symbol: 'KOSPI 收盤', price: 7384.56, change: 6.45 },
+        ],
+        volatility: 22,
+        vix: 17.4,
+        rsi: 58.2,
+        beta: 1.05,
+        priceHistory: [7200, 7212, 7228, 7240, 7244, 7252, 7256, 7259],
+        volumeHistory: [128, 118, 102, 96, 88, 84, 80, 78],
+        // sectors[].value = |%change| × 100 (basis points) of the headline asset for each theme.
+        // ISM print (53.6 level, not an asset move) dropped — belongs in dialogue.
+        sectors: [
+          { label: 'Samsung 005930 +15.05%（破一兆美金市值、第一檔韓股）', value: 1505, color: '#22cc55' },
+          { label: 'AMD 盤後 +15%（Q1 營收 103 億 +38%、DC +57%）', value: 1500, color: '#44aaee' },
+          { label: 'Brent -3.99% 收 $109.87（Trump 暫停 Project Freedom）', value: 399, color: '#22cc55' },
+        ],
+        headline: 'Trump 暫停 Project Freedom：油 -4% 收 110，S&P／Nasdaq 同創新高，AMD 盤後 +15%、KOSPI +6.45% 破七千',
+      },
+    },
+
+    // Chef alone — Wednesday, post-holiday opening, busy night
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 600 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    // Customer A enters first — caught by the overnight reversal
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天黃金週放完、第一天開盤、巷口進貨車比平常早來半小時、我老婆說「終於可以開冰箱不被小孩搶柏餅」。昨晚兩位走的時候講了一堆要看的數字、今天臉色看起來比昨天好。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我今天連續兩天都被打臉。前天我跟你講「Brent 不會跳」、結果禮拜一一晚上跳 5%；昨晚我跟你講「下一步看 ISM 跟 AMD」、結果半夜 Trump 一句話、油自己跌回來、跌到比禮拜一還低。我昨晚走的時候 Brent 114、今天早上看到 109.87、看到那個 87、我盯著螢幕看了五分鐘、確認自己沒看錯小數點。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: 'Trump 講了什麼？我老婆早上看新聞、跟我說「那個美國總統突然說不打了」、我以為她講錯。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '沒有講錯。他禮拜二下午發了一條短訊息、講大致是「我們跟伊朗的最終協議快談好了、Project Freedom 先暫停一段時間、看看能不能簽」。一句話。沒有時間表、沒有條件、沒有數字。但市場聽完——油立刻 -4%、S&P 跟 Nasdaq 一起創新高、收 7,259、25,326、Dow 跳 356 點。一句話換 1.5 個百分點。' },
+
+    { type: 'dialogue', character: 'chef', text: '哦——所以他禮拜天說要派船、禮拜一真的派、禮拜二中午被打、禮拜二下午就講「不打了」？這四天用得有點省。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個總結比 CNN 還準。我們桌上昨晚開到凌晨四點、討論的就是這個——禮拜天宣布、禮拜一動手、禮拜二被反擊、禮拜二晚上喊停。四天打完。我們組長講一句話我記住了——「美國這次想要的是新聞、不是戰爭」。打不打贏不重要、有沒有上推特上頭條才是 KPI。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── ISM print — what "53.6 with employment 48" actually means ──
+    { type: 'dialogue', character: 'chef', text: '那昨晚講的那個 ISM 服務業、出來怎麼樣？我記得你們講「低於 52 就是軟」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '53.6、比預期 53.7 低 0.1、比上個月 54 低 0.4。表面上這是「還在擴張」的第 22 個月、市場第一秒看了就放心。但翻到內頁、有一格我盯著看比較久——就業那一欄、從上個月的 50 出頭、跌到 48、跌進收縮區。換句話講、整個服務業整體還在做生意、但已經有人開始不再多請人。' },
+
+    { type: 'dialogue', character: 'chef', text: '這聽起來像我隔壁那家拉麵店——客人沒少、湯還在熬、但他兒子上禮拜跟我講「老爸今年沒打算再多請一個學徒」。生意沒倒、但他不再放手腳。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '一模一樣。市場語言叫做「擴張的速度開始減速、邊緣的企業先停止擴編」。昨晚連著 ISM 製造業 52.7 跟 ISM 服務業 53.6、加上等下禮拜五的 NFP 4 月預估 6 萬——這三個數字接在一起、在告訴聯準會「你那個降息沒有亂打、的確有需要降」。所以反而是利多。' },
+
+    { type: 'dialogue', character: 'chef', text: '那真奇怪。經濟在軟、但你們在開心。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '不是開心經濟在軟、是開心「軟到剛好」——軟到聯準會敢動、但還沒軟到企業要裁員。中間那條窄縫、市場叫做 soft landing、過去三十年只成功過兩次。但今晚先信、明天再說。' },
+
+    { type: 'wait', duration: 400 },
+
+    // Customer B enters — desk view of AMD + Kospi
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。妳今天看起來比昨天精神好——黃金週放完、家裡那邊也順？' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我先生今天上班、孩子去學校、我桌上凌晨四點 AMD 出來那一刻、我終於可以泡一杯熱的咖啡好好喝。AMD 這份財報、我等了三個禮拜、結果它沒讓我失望。' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'AMD 我們桌上猜營收 98 億、它做出來 103 億——多了 5 億、也就是 +5% 的驚喜。Data Center 我們桌上猜 56 億、做出來 58 億、年增 57%、不是 51%。然後最殺的是它對下一季的指引、Q2 講「我們覺得會做到 112 億」、年增 +46%、上一季 +38%——加速。' },
+
+    { type: 'dialogue', character: 'chef', text: '加速？我以為它已經在跑了。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這就是有意思的地方。AMD 不只是「跑得快」、是「越跑越快」。我們桌上三月看的時候、最樂觀的人賭它 Q2 +35%、它自己講 +46%。AI 那條鏈上、AMD 是 NVIDIA 的二把手、它能跑 +46%、表示 AI 客戶下單的速度沒有要慢下來、表示 NVIDIA 那邊大概率更兇。' },
+
+    { type: 'dialogue', character: 'chef', text: '所以早上 KOSPI 跳 +6.45%、Samsung 一天跳 15%、就是這個原因？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '對。Samsung 是賣 AI 記憶體給 NVIDIA 跟 AMD 的、SK Hynix 是 HBM 三巨頭之一。AMD 凌晨報得這麼好、市場 9 點一開盤、就把這份開心倒進 Samsung 跟 SK Hynix 身上。Samsung 從 232,000 韓元跳到 267,500、+15%、市值第一次破一兆美金、變成韓國第一檔。今天還觸發了今年第八次的買盤熔斷——叫做 sidecar、就是「漲太快、暫停五分鐘大家冷靜一下」。' },
+
+    { type: 'dialogue', character: 'chef', text: '哦——那我看新聞、Samsung 老闆的身價是不是也跟著翻倍了？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '對、Korea Herald 早上有寫一篇「Samsung 老闆持股市值一天翻倍」、應該不是真的翻倍、是賺了一個小數點之後的可觀數字。但意思一樣——一個禮拜前還沒人在意 KOSPI、現在已經有人在喊「下一站一萬」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket — the line that didn't move ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '等等、我有一個問題。前天油跳 5%、大家很慘；昨天 Trump 一句話、油跌回來、大家很開心。但這中間那個賭盤——昨天你們講的那個「伊朗政府會不會倒」——它有沒有跟著動？' },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-06T01:02:43Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.055,
+            volume: 36423127,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1777946407, p: 0.055 }, { t: 1777950009, p: 0.055 }, { t: 1777953609, p: 0.055 },
+              { t: 1777957208, p: 0.055 }, { t: 1777960817, p: 0.055 }, { t: 1777964408, p: 0.055 },
+              { t: 1777968005, p: 0.055 }, { t: 1777971607, p: 0.055 }, { t: 1777975206, p: 0.055 },
+              { t: 1777978806, p: 0.055 }, { t: 1777982410, p: 0.055 }, { t: 1777986007, p: 0.055 },
+              { t: 1777989609, p: 0.055 }, { t: 1777993208, p: 0.055 }, { t: 1777996818, p: 0.055 },
+              { t: 1778000410, p: 0.055 }, { t: 1778004006, p: 0.055 }, { t: 1778007606, p: 0.055 },
+              { t: 1778011207, p: 0.055 }, { t: 1778014806, p: 0.055 }, { t: 1778018419, p: 0.055 },
+              { t: 1778022005, p: 0.055 }, { t: 1778025610, p: 0.055 }, { t: 1778029208, p: 0.055 },
+              { t: 1778029267, p: 0.055 },
+            ],
+          },
+        ],
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你問了今晚最有意思的問題。這條合約、48 小時前我跟你講它在 5.5%；現在我打開、還是 5.5%。中間發生了什麼？UAE 被打、Fujairah 起火、Brent 從 108 跳到 114、Trump 派船、Iran 反擊、Trump 喊停、油跌回 110、S&P 創新高、AMD 爆表、Samsung 跳 15%——一串四十八小時的劇情、一條 6/30 之前伊朗政府會不會倒的下注線、整條紋風不動。' },
+
+    { type: 'dialogue', character: 'chef', text: '哦——所以油在跑、股票在跑、政治新聞在跑、但這條線像我家門口那塊「暫停營業」的牌子、貼了三天還在。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這個比喻太精準了。賭盤跟股市看的是不一樣的東西——股市看「明天會不會比較貴」、賭盤看「兩個月後結局會是什麼」。前面那一陣騷動、賭盤的人覺得不影響結局——他們的判斷是「會吵、會打、會出新聞、但伊朗政府不會在 6/30 之前倒」。今天 Trump 一句話、把油拉下來了、但賭盤的人也沒因此覺得「結局更不會發生」、因為 5.5% 對他們已經是「幾乎不會發生」。再低也低不到哪去。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '這就是賭盤好用的地方——它幫你過濾掉短期噪音。當你看到油跳 5% 嚇到、你打開賭盤看一眼、它沒動、你就知道這個跳是過程、不是結局。當你看到油跌回來、你也別太放心、賭盤同樣沒動、它在說「結局還是一樣未定」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Looking ahead — Friday NFP, Powell handover, Warsh vote ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: '那這個禮拜還剩什麼要看？我老婆問我「這個 AI 是不是要崩了」、我說我問問再回家跟她講。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '禮拜五早上 NFP、4 月就業人數預估 6 萬、上個月是 17.8 萬。如果出來低於 5 萬、加上昨天 ISM 那塊「就業跌回 48」、市場會更確信「聯準會 5 月後半段降息」這個故事。如果出來高於 8 萬、那 AI 跑這麼凶可能會被「降息會更慢」這條故事壓一下。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '然後再過 9 天、5/15、Powell 任期結束、那天他要把那個位子交給下一個人。再過 5 天、5/11 那一週、Warsh 要在參議院全院表決、上次只贏 2 票、這次也是緊的。一個是交班、一個是新人正式上任前的最後一道關。' },
+
+    { type: 'dialogue', character: 'chef', text: '哦——所以這禮拜五、下禮拜一、下禮拜五、三個都是大日子。我老婆昨天問我「為什麼最近你回家都心不在焉」、我終於有藉口跟她講「這個禮拜後面每天都有事」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、有事的不只你。我先生昨天送孩子上學前問我一句「妳那個 desk 是不是這禮拜每天都要視訊」、我說「是」、他就笑說「那柏餅多吃幾塊」。我爸退休前那三十年大概也是這樣過來的——他到現在每天早上六點還在看 Bloomberg、雖然他已經 71 歲、不需要看了。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Tokyo back open, evening order ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚要點什麼？黃金週放完第一天、我妹今天早上又寄了一盒柏餅來、說「冰箱裝不下、你拿給朋友吃」。我給兩位煮一碗清的、加點蛋花、配最後一塊柏餅。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '清湯麵、加蛋、湯多。柏餅給我留一塊、我等下還要回辦公室看 Powell 那邊有沒有放出什麼話來。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '一樣、我先回家陪小孩、明天再來。柏餅整塊給我、回家給孩子們分。我先生今天買了草莓回來、應該配得上柏餅。' },
+
+    { type: 'dialogue', character: 'chef', text: '來、馬上煮。我師父退休的時候、跟我講過一句話我今天突然想起來——他說「店要熬得久、你不能只看今天的客人多不多、要看你還想開幾年」。市場我不懂、但這個道理大概是一樣的——昨天油跳了你別嚇到、今天油跌了你別開心、明天的事明天再說。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 11 點、東京 TSE 黃金週放完第一天的成交量比平常多三成、巷口的拉麵店打烊前在掛明天的食材表。再過 36 個小時、禮拜五早上 9 點半（紐約時間禮拜五早上 8 點半）、美國 4 月就業人數會出來、預估 6 萬、上個月 17.8 萬——這個數字會回頭定義「今天的 AI 慶祝是不是站得住」。再過 9 天 Powell 把那個位子交出去、再過 5 天 Warsh 在參議院第二輪表決——上一輪只贏 2 票。波斯灣那邊、Project Freedom 暫停了、Fujairah 的火還在燒、UAE 的人在清理碎片、油從 114 收到 110。賭盤上「6/30 前伊朗政府會不會倒」這條線、過去 48 小時油翻了兩倍的波動、它從頭到尾沒動過一格、停在 5.5%。今晚的食堂沒有油價跳水、有油價回落、有兩碗清湯加蛋、一塊柏餅留一半、一塊整顆帶回家、一句師父退休前的話、跟一張禮拜五早上會打進每個人手機的就業數字——預定 21:30 JST 上演。',
+      duration: 5800,
+    },
+  ],
+};
