@@ -26,3 +26,18 @@ npm-debug.log*
 # Tiled backup files
 *.tmx~
 *.tsx~
+
+# Debug screenshots
+*.png
+!src/**/*.png
+!docs/**/*.png
+
+# Collected news data (ephemeral)
+data/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+.firecrawl/
+
+# automated episode cron log
+.episode-cron.log

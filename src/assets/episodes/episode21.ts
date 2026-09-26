@@ -1,0 +1,227 @@
+import type { Episode } from '../../engine/types';
+
+export const EPISODE_21: Episode = {
+  id: 'ep-21',
+  date: '2026-04-29',
+  title: '20260429 公司倒了那員工怎麼辦',
+  description: '禮拜三晚上、東京下著小雨。這一天有三件事——美國公布了一個經濟數字、一個央行委員過了任命投票、一家叫 JetBlue 的航空公司宣布破產重整。但走進食堂的人、心情是被「客戶有沒有失業」「家人有沒有買到票」「下個月房貸利息會不會降」決定的。今晚的對話沒有交易桌、沒有行話——就是一群普通人問一群懂一點點的人、生活到底會發生什麼。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 10 點、東京下著小雨。這一天美國發生了三件事——一家叫 JetBlue 的航空公司早上宣布破產、政府公布了一個比預期弱一點的經濟成長數字、然後一個被總統提名進中央銀行的人通過了參議院投票。明天凌晨還有一場央行會議要決定利息。但今晚走進食堂的兩個人、心情不是被這些大標題決定的——是被自己的客戶、自己的朋友、自己每個月要繳的房貸決定的。',
+      duration: 5400,
+    },
+
+    // ── Snapshot focused on JBLU + a couple of broad reads ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'JetBlue', price: 0.30, change: -89.8 },
+          { symbol: 'SPY', price: 537.50, change: 0.6 },
+          { symbol: '失業申請', price: 24800, change: 12.0 },
+          { symbol: 'WTI 油價', price: 95.40, change: -0.1 },
+        ],
+        volatility: 28,
+        vix: 23.6,
+        rsi: 58.0,
+        beta: 1.04,
+        priceHistory: [3.0, 1.2, 0.6, 0.4, 0.35, 0.32, 0.30, 0.30],
+        volumeHistory: [88, 142, 168, 156, 132, 108, 86, 64],
+        sectors: [
+          { label: 'JetBlue 員工 25,000 人', value: 1080, color: '#ee4444' },
+          { label: '已售出機票 150 萬張', value: 720, color: '#cc8844' },
+          { label: '美國股市小漲', value: 480, color: '#22cc55' },
+          { label: '油價平平', value: 380, color: '#888888' },
+        ],
+        headline: 'JetBlue 早上宣布破產重整 — 股價剩三毛美金、25,000 名員工等通知、150 萬張已售出的機票去向未明',
+      },
+    },
+
+    // Chef Wed evening — closing prep, light crowd already gone
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 600 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    // Customer A enters — looks tired
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天看你眼睛紅紅的、這麼晚才來、客戶那邊出狀況？' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '今天有點難。我有個大學同學——之前在 JetBlue 紐約總部做財務的——早上 7 點傳訊息給我、說公司剛在法院遞了破產的文件、整個樓層被叫去開會、不知道下個月還有沒有薪水。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '蛤？JetBlue？那家美國的廉價航空？我去年才搭過、帶我老婆去夏威夷、機票還挺便宜的。怎麼會就這樣倒了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '其實沒有「就這樣倒」、是慢慢倒的。航空公司平常就靠很薄的利潤撐著——機票賣便宜、油又貴、人工成本高。今年初油價一漲、再加上中東打了一個月仗、客人怕飛沒人買票、整個就撐不下去了。今天遞的那種破產、不是直接關門、英文叫做「第十一章」——白話講就是「我先停下來、欠的錢慢慢還、繼續開門營業、看能不能把自己救回來」。' },
+
+    { type: 'dialogue', character: 'chef', text: '那繼續開、員工會不會被裁？我同學當時去 JetBlue 是因為那邊福利還不錯、有醫療保險。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '會裁、但不是馬上、也不是全部。一般這種破產重整、會先砍掉沒賺錢的航線、再砍 10-15% 的人。我同學是財務、財務通常會留——因為破產過程要算很多錢、需要熟悉內部帳的人。但下面的空服員、地勤、那種「飛少了就不需要那麼多人」的位置、就比較危險。' },
+
+    { type: 'emote', character: 'customer-a', emote: 'thinking', duration: 700 },
+
+    { type: 'dialogue', character: 'chef', text: '那我去年買的票呢？我朋友三月的時候才買了暑假帶小孩去佛羅里達的票。錢會不會就泡湯了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '票通常會繼續有效——破產期間飛機還在飛、只是航線可能改、班次可能變。如果他訂的那個航線剛好被砍、航空公司會幫他換到別的航班、或者退錢。退錢的話可能要等幾個月、因為破產法院要排隊處理。但機票本身不會直接「歸零」、那是股票才會。' },
+
+    { type: 'dialogue', character: 'chef', text: '股票會歸零？JetBlue 的股票今天跌成什麼樣了？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '從昨天的 $2.95 跌到 $0.30——大概是九成。明天可能停止交易、過幾個禮拜會從交易所下架。意思是、原本買 JetBlue 股票的人、口袋裡那張紙就變成幾乎沒價值。我看到 Reddit 上有個老先生、退休前買了五千美金的 JetBlue、想說廉價航空有未來、結果今天剩 500 美金。' },
+
+    { type: 'wait', duration: 400 },
+
+    // Customer B enters — also tired
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天大家都很累的樣子。' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: '剛才在公司、我們團隊三個人都被同事打電話來問——他們有人剛買了帶小孩去 Disney World 的家族行程、有人是常客累積飛行里程要換到歐洲的票、有人是供應商、JetBlue 欠他們上個月的錢還沒付。一整個下午都在解釋「破產不等於關門」這六個字。' },
+
+    { type: 'dialogue', character: 'chef', text: '飛行里程那種、會不會也歸零？我妹妹累積了一大堆、本來說要帶她小孩去韓國。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '里程通常還在、但會貶值——意思是同樣的里程、可能換不到原本能換的票了。歷史上美國以前幾家航空破產、最後里程大概只剩原本價值的三到七成。叫她趕快用掉、不要一直存。' },
+
+    { type: 'dialogue', character: 'chef', text: '那欠供應商錢呢？我們食堂如果哪天客人欠帳跑掉、那真的就拿不回來。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '差不多——但比你想的更不公平。破產法院會排隊還錢、銀行排第一、後面才是供應商、最後才是員工的某些福利。我朋友的公司是賣機上小點心給 JetBlue 的、上個月的帳單 40 萬美金、最後可能拿回 10 萬。剩下 30 萬、就當是學費。' },
+
+    { type: 'camera', effect: 'flash', duration: 200 },
+
+    { type: 'dialogue', character: 'chef', text: '那為什麼還有人想接這種快倒的公司？我聽你們上禮拜聊過、有什麼基金搶著借錢給他們。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '那種叫「禿鷹基金」——專門找快倒的公司、用很高的利息借錢給他們撐過破產這段。今天 JetBlue 接的那筆錢、利息 17%——一般房貸 6%、信用卡循環利息 18%、這是接近信用卡那種等級的。但對禿鷹基金來說、JetBlue 撐過去、他們收 17%；JetBlue 真的關門、他們把飛機跟航線當抵押品拿走、變成新的航空公司大股東。怎樣都不太虧。' },
+
+    { type: 'dialogue', character: 'chef', text: '聽起來蠻狠的。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '是狠、但市場就是這樣。沒有他們、JetBlue 今天就直接關門、25,000 個員工明天全部失業。有他們、至少多撐 12 到 18 個月、給時間慢慢調整。某種程度上是必要之惡。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── A brief Polymarket aside — not the centerpiece ──
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-04-29T01:07:16Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-april-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-april-30',
+            question: 'Will the Iranian regime fall by April 30?',
+            yesProbability: 0.0025,
+            volume: 46956649,
+            endDate: '2026-04-30T00:00:00Z',
+            history: [
+              { t: 1777359616, p: 0.0025 }, { t: 1777363204, p: 0.0025 }, { t: 1777366805, p: 0.0025 }, { t: 1777370403, p: 0.0025 },
+              { t: 1777374003, p: 0.0025 }, { t: 1777377603, p: 0.5010 }, { t: 1777381204, p: 0.0025 }, { t: 1777384804, p: 0.0025 },
+              { t: 1777388404, p: 0.0025 }, { t: 1777392003, p: 0.0025 }, { t: 1777395604, p: 0.0025 }, { t: 1777399204, p: 0.0025 },
+              { t: 1777402805, p: 0.0025 }, { t: 1777406418, p: 0.0025 }, { t: 1777410003, p: 0.0025 }, { t: 1777413618, p: 0.0025 },
+              { t: 1777417204, p: 0.0025 }, { t: 1777420803, p: 0.0025 }, { t: 1777424404, p: 0.0025 }, { t: 1777424776, p: 0.0025 },
+            ],
+          },
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.0750,
+            volume: 34435198,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1777359623, p: 0.0750 }, { t: 1777363206, p: 0.0750 }, { t: 1777366814, p: 0.0750 }, { t: 1777370406, p: 0.0750 },
+              { t: 1777374004, p: 0.0750 }, { t: 1777377612, p: 0.5050 }, { t: 1777381206, p: 0.0750 }, { t: 1777384807, p: 0.0750 },
+              { t: 1777388410, p: 0.0750 }, { t: 1777392005, p: 0.0750 }, { t: 1777395606, p: 0.0750 }, { t: 1777399210, p: 0.0750 },
+              { t: 1777402807, p: 0.0750 }, { t: 1777406421, p: 0.0750 }, { t: 1777410009, p: 0.0750 }, { t: 1777413620, p: 0.0750 },
+              { t: 1777417213, p: 0.0750 }, { t: 1777420810, p: 0.0750 }, { t: 1777424406, p: 0.0750 }, { t: 1777424777, p: 0.0750 },
+            ],
+          },
+          {
+            slug: 'will-the-fed-decrease-interest-rates-by-50-bps-after-the-april-2026-meeting',
+            question: 'Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?',
+            yesProbability: 0.0005,
+            volume: 60317022,
+            endDate: '2026-04-29T00:00:00Z',
+            history: [
+              { t: 1777359622, p: 0.0005 }, { t: 1777363206, p: 0.0005 }, { t: 1777366813, p: 0.0005 }, { t: 1777370406, p: 0.0005 },
+              { t: 1777374004, p: 0.0005 }, { t: 1777377610, p: 0.4955 }, { t: 1777381206, p: 0.0005 }, { t: 1777384806, p: 0.0005 },
+              { t: 1777388410, p: 0.0005 }, { t: 1777392005, p: 0.0005 }, { t: 1777395606, p: 0.0005 }, { t: 1777399210, p: 0.0005 },
+              { t: 1777402807, p: 0.0005 }, { t: 1777406420, p: 0.0005 }, { t: 1777410008, p: 0.0005 }, { t: 1777413620, p: 0.0005 },
+              { t: 1777417213, p: 0.0005 }, { t: 1777420810, p: 0.0005 }, { t: 1777424406, p: 0.0005 }, { t: 1777424703, p: 0.0005 },
+            ],
+          },
+        ],
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-b', text: '對了給你看一個有趣的東西——這個叫做「預測網站」、上面有人下注賭各種事情會不會發生。中間那一條凸起來的尖峰、是昨天晚上系統故障一個小時、跟市場無關、純粹是技術問題、跑出來的假數字。今天我同事拿來上課用——「相關的事情才一起動、不相關的事情同時動就是 bug」。' },
+
+    { type: 'dialogue', character: 'chef', text: '哈、原來這種網站也會出包。我以為都很厲害。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '都是人寫的、都會出包。重點是會看的人、知道哪邊是真訊號、哪邊是雜音。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── GDP / cost-of-living angle ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '對了今天美國的那個經濟數字呢？早上看新聞說「比預期差」、可是股票好像反而漲？聽起來怪怪的。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '對、聽起來是怪。但其實邏輯是這樣——經濟成長慢、央行就比較有理由降利息。利息降、企業借錢便宜、股票就漲。所以現在這個情況——「不太好但也沒太壞」、就是股票最喜歡的版本。' },
+
+    { type: 'dialogue', character: 'chef', text: '說起來、我這條街上最近確實客人比上個月少。我開始煮拉麵以來、四月通常是最旺的、櫻花季餘溫、但今年的四月、我桌數平均掉了大概兩成。進貨方面——豬肉漲了 8%、雞蛋漲了 12%、啤酒批發又漲一輪。我自己也在想要不要把湯麵漲 50 円。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '你感受到的、就是那個經濟數字背後的東西。每個人都微微緊一點、你的客人少兩成、隔壁麵包店的生意也少兩成、結果整個城市消費就少一截、這就是 GDP 比預期弱的真實意思。不是抽象的數字、是你今天少了幾桌客人。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── FOMC tonight + closing ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: '那你們說明天凌晨那個央行會議——「降利息」——對我們普通人有什麼差？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '兩面都有。利息降、你的房貸利率慢慢往下、每個月省一點；企業借錢便宜、可能多徵人、就業會好一點。但反面——你存在銀行的錢利息也少、養老退休族那邊收入會減。所以央行在「想刺激經濟」跟「想保護儲蓄者」之間做平衡。' },
+
+    { type: 'dialogue', character: 'chef', text: '我房貸還剩 12 年、每個月差 5,000 円我都很有感。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '美國降息、日本央行不一定跟、所以你這邊的房貸不會立刻動。但日圓會升、進口的東西會便宜一點點——你的豬肉、雞蛋、啤酒、可能下個月進貨價格會稍微緩一點。間接的、會影響到。' },
+
+    { type: 'dialogue', character: 'chef', text: '聽起來不管做什麼工作、最後都是回到「下個月日子好不好過」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '差不多就是這樣。我們桌上每天看的數字、最後落在我朋友的小孩到底能不能搭上去 Disney World 的飛機、你的客人下班會不會走進來吃一碗麵、JetBlue 的空姐六月還有沒有薪水。其他的、都是裝飾。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Wrap: ramen ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚要點什麼？兩位看起來都需要一碗熱的。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '熱拉麵、加蛋、加溏心、湯多。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '一樣、加煎餃。等一下回辦公室盯凌晨那個會議、可能要熬到三點半。' },
+
+    { type: 'dialogue', character: 'chef', text: '來、馬上煮。湯今天熬得久、應該不會讓你們失望。我那個朋友——JetBlue 你那位同學——叫他這禮拜過來吃一頓、湯免費。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我會跟他說。他會很感動。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜三晚上 11 點、雨停了、東京的空氣有點冷。食堂裡兩碗熱拉麵的蒸氣在窗上凝結。明天早上 9 點、JetBlue 的股票會在紐約交易所停牌；中午、150 萬個買了暑假機票的家庭會收到郵件「您的航班可能異動」；下午、央行會宣布利息決定、Powell 會做最後一場記者會。但今晚、有個叫山田的人剛走進食堂吃完麵回家、有個在 JetBlue 工作了八年的紐約財務部副理在家裡跟太太討論小孩的學區、有一群禿鷹基金經理在 Park Avenue 簽完文件回家睡覺。市場是抽象的、但每個數字背後、是一個一個具體的人。湯熬得好、麵下得快、客人吃得飽——這條街、這個晚上、這碗麵、就是經濟。',
+      duration: 5800,
+    },
+  ],
+};

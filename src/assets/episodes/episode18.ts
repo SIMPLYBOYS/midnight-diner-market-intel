@@ -1,0 +1,323 @@
+import type { Episode } from '../../engine/types';
+
+export const EPISODE_18: Episode = {
+  id: 'ep-18',
+  date: '2026-04-26',
+  title: '20260426 Pre-Open Sunday',
+  description: 'Sunday — the day before the print storm. Polymarket\'s 4/30 Iran contract bled another step from Saturday\'s 0.55% down to 0.35% as time crushes it (96 hours to expiry). The 6/30 sister contract ticked the other way — 7.5% back up to 8.5% on thin Asia-time liquidity, more noise than signal. The Fed-50bp ribbon flatlined into 0.05%, fully dead. Globex futures re-open at 6pm ET; OPEC+ stayed silent on Sunday so $95 holds; Apollo\'s term-sheet leaked overnight on Bloomberg with 17% coupon and warrants. Tomorrow: BBY at 8am, JBLU 8-K, Walmart filing supplements. This week: Warsh Tuesday, Q1 GDP Wednesday, Powell\'s last presser Thursday. Sunday is when the morning notes get written.',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '週日下午快進到傍晚。今天是這一週唯一沒有「事件」的一天——但也因此，所有人都把它拿來把昨天的東西寫完。Polymarket 4/30 又退一階、剩 0.35%（離到期只剩 96 小時）；6/30 反過來從 7.5% 回到 8.5%（亞洲時段的薄量噪音）；Fed 4 月降 2 碼那檔已經死了、剩 0.05%。傍晚 6 點美東時間電子盤重開、會給今晚第一個價。OPEC+ 整天沒發聲明、原油 $95 那條地板不動。明天早上 8 點 Best Buy 會表態退款、JBLU 8-K 可能補件、Walmart 那張表格在財政部過了一個週末。這一週的真正開盤、要到明早 9 點半。',
+      duration: 5400,
+    },
+
+    // ── Opening: Sunday afternoon — globex pre-open snapshot ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'ES=F', price: 5322.00, change: 0.07 },
+          { symbol: 'WTI', price: 95.10, change: -0.1 },
+          { symbol: '10Y-fut', price: 4.41, change: -0.01 },
+          { symbol: 'DXY', price: 104.30, change: -0.1 },
+        ],
+        volatility: 20,
+        vix: 25.5,
+        rsi: 51.0,
+        beta: 1.03,
+        priceHistory: [5318, 5318, 5320, 5320, 5321, 5321, 5322, 5322],
+        volumeHistory: [4, 6, 5, 6, 8, 10, 12, 14],
+        sectors: [
+          { label: 'Globex-Idle', value: 380, color: '#888888' },
+          { label: 'Asia-FX', value: 420, color: '#cc8844' },
+          { label: 'Crypto-24/7', value: 720, color: '#22cc55' },
+          { label: 'Polymarket', value: 280, color: '#22cc55' },
+          { label: 'Bond-OTC', value: 180, color: '#cc8844' },
+        ],
+        headline: '週日下午 — 標普期貨在 5322 動兩點、WTI 卡 $95、DXY 微弱、夜盤 6 點才正式開',
+      },
+    },
+
+    // ── Chef Sunday prep — even slower than Saturday ──
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 600 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    // ── Customer A enters first — has been writing morning note all afternoon ──
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。週日來這個時間——morning note 還沒寫完？' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '寫完了、剛剛從辦公室走過來。明早 6 點要寄出給三百個客戶的那種早報——我們桌的每一個人禮拜天下午都要交一版。週六擬稿、週日改、週日傍晚定。今天我交的標題是「壓 Powell 偏鴿、買 K 形分帳的強的那邊」。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: 'Polymarket 那條 4/30 過了一個週末怎麼樣？昨天你們說已經滑到 0.55%。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '又退了一階、現在 0.35%。從週五收盤的 0.85% 算下來、48 小時砍掉六成。但這不是「市場覺得伊朗變穩」、純粹是合約剩 96 小時、時間自己在把它壓扁——白話就是「離到期越近、還沒發生的事情越不可能發生」這個簡單算術繼續走。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '6/30 那檔反而往上跳一階——從 7.5% 回到 8.5%。但這個跳是亞洲早盤五點多、成交量沒上來、整檔合約的胃口（liquidity）只有 51 萬美金（很淺）——一個帳戶買個兩三萬就能推動一階。算噪音、不是訊號。如果週一美國時段這個漲不被吃回去、那才需要重新看。' },
+
+    { type: 'emote', character: 'customer-a', emote: 'thinking', duration: 700 },
+
+    // ── Polymarket — Sunday evening snapshot, real history from latest.json ──
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-04-26T01:05:54Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-april-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-april-30',
+            question: 'Will the Iranian regime fall by April 30?',
+            yesProbability: 0.0035,
+            volume: 41948241,
+            endDate: '2026-04-30T00:00:00Z',
+            history: [
+              { t: 1777064404, p: 0.0055 }, { t: 1777068006, p: 0.0055 }, { t: 1777071604, p: 0.0055 }, { t: 1777075210, p: 0.0055 },
+              { t: 1777078804, p: 0.0055 }, { t: 1777082404, p: 0.0045 }, { t: 1777086005, p: 0.0045 }, { t: 1777089603, p: 0.0045 },
+              { t: 1777093204, p: 0.0045 }, { t: 1777096817, p: 0.0045 }, { t: 1777100407, p: 0.0045 }, { t: 1777104004, p: 0.0035 },
+              { t: 1777107608, p: 0.0035 }, { t: 1777111208, p: 0.0035 }, { t: 1777114806, p: 0.0035 }, { t: 1777118405, p: 0.0035 },
+              { t: 1777122005, p: 0.0035 }, { t: 1777125603, p: 0.0035 }, { t: 1777129204, p: 0.0035 }, { t: 1777132805, p: 0.0035 },
+              { t: 1777136417, p: 0.0035 }, { t: 1777140004, p: 0.0035 }, { t: 1777143604, p: 0.0035 }, { t: 1777147204, p: 0.0035 },
+              { t: 1777150806, p: 0.0035 }, { t: 1777154417, p: 0.0035 }, { t: 1777158004, p: 0.0035 }, { t: 1777161604, p: 0.0035 },
+              { t: 1777165206, p: 0.0035 }, { t: 1777165445, p: 0.0035 },
+            ],
+          },
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.0850,
+            volume: 33875495,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1777064410, p: 0.0750 }, { t: 1777068009, p: 0.0750 }, { t: 1777071607, p: 0.0750 }, { t: 1777075215, p: 0.0750 },
+              { t: 1777078805, p: 0.0750 }, { t: 1777082407, p: 0.0750 }, { t: 1777086009, p: 0.0750 }, { t: 1777089604, p: 0.0750 },
+              { t: 1777093205, p: 0.0750 }, { t: 1777096822, p: 0.0750 }, { t: 1777100408, p: 0.0850 }, { t: 1777104008, p: 0.0850 },
+              { t: 1777107615, p: 0.0850 }, { t: 1777111209, p: 0.0850 }, { t: 1777114807, p: 0.0850 }, { t: 1777118410, p: 0.0850 },
+              { t: 1777122006, p: 0.0850 }, { t: 1777125604, p: 0.0850 }, { t: 1777129209, p: 0.0850 }, { t: 1777132806, p: 0.0850 },
+              { t: 1777136426, p: 0.0850 }, { t: 1777140008, p: 0.0850 }, { t: 1777143605, p: 0.0850 }, { t: 1777147207, p: 0.0850 },
+              { t: 1777150810, p: 0.0850 }, { t: 1777154419, p: 0.0850 }, { t: 1777158005, p: 0.0850 }, { t: 1777161609, p: 0.0850 },
+              { t: 1777165207, p: 0.0850 }, { t: 1777165505, p: 0.0850 },
+            ],
+          },
+          {
+            slug: 'will-the-fed-decrease-interest-rates-by-50-bps-after-the-april-2026-meeting',
+            question: 'Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?',
+            yesProbability: 0.0005,
+            volume: 55665596,
+            endDate: '2026-04-29T00:00:00Z',
+            history: [
+              { t: 1777064409, p: 0.0015 }, { t: 1777068008, p: 0.0015 }, { t: 1777071606, p: 0.0015 }, { t: 1777075215, p: 0.0015 },
+              { t: 1777078805, p: 0.0015 }, { t: 1777082407, p: 0.0015 }, { t: 1777086008, p: 0.0015 }, { t: 1777089604, p: 0.0015 },
+              { t: 1777093205, p: 0.0015 }, { t: 1777096821, p: 0.0015 }, { t: 1777100408, p: 0.0015 }, { t: 1777104008, p: 0.0005 },
+              { t: 1777107614, p: 0.0005 }, { t: 1777111209, p: 0.0005 }, { t: 1777114807, p: 0.0005 }, { t: 1777118410, p: 0.0005 },
+              { t: 1777122006, p: 0.0005 }, { t: 1777125604, p: 0.0005 }, { t: 1777129209, p: 0.0005 }, { t: 1777132806, p: 0.0005 },
+              { t: 1777136424, p: 0.0005 }, { t: 1777140008, p: 0.0005 }, { t: 1777143605, p: 0.0005 }, { t: 1777147207, p: 0.0005 },
+              { t: 1777150810, p: 0.0005 }, { t: 1777154419, p: 0.0005 }, { t: 1777158005, p: 0.0005 }, { t: 1777161609, p: 0.0005 },
+              { t: 1777165207, p: 0.0005 }, { t: 1777165505, p: 0.0005 },
+            ],
+          },
+        ],
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-a', text: 'Fed 那檔才是真正的死訊——昨天還在 0.15% 浮著、今天早上 8 點直接跳到 0.05%、到現在 17 個小時紋風不動。整檔合約一週累積 5500 萬美金、帳裡放了 1000 萬流動性、市場已經把「Fed 4 月直接降 2 碼」這個可能性當作「不會發生」。下週三 Powell 那場、不是看降幾碼、是看他講什麼。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Customer B enters — has been writing the OpenAI/MSFT memo all weekend ──
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。MSFT memo 寫完了？' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: '剛剛交給總經理。週六我說的那個拆帳公式——核心結論寫在第一頁：MSFT 從「OpenAI 的母公司」變成「OpenAI 的房東」。它還收租（雲端用量、API 拆帳），但分不到那塊地未來增值的部分。GS 跟 Morgan Stanley 明早 6 點美東會丟出研報、估值要重切。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我也聽到了——GS 那邊預計把 OpenAI 的隱含估值（從 MSFT 股價反推出來的那個）從 3000 億砍到、等等、不是砍、是「拆」到 4500 億單獨計算。MSFT 自己的本益比反而會從 35 倍縮到 32 倍——因為它從「下個世代 AI 的最大股東」變成「之一」。明早 9 點半開盤、MSFT 可能跌 1-2%、但 NVDA / GOOGL / META 都會吃到漣漪、整個 AI 圈估值會被重新分配。' },
+
+    { type: 'camera', effect: 'flash', duration: 200 },
+
+    // ── Cap-table reset positioning ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'MSFT-fut', price: 441.80, change: -1.4 },
+          { symbol: 'NVDA-fut', price: 1192.00, change: 1.3 },
+          { symbol: 'GOOGL-fut', price: 184.20, change: 0.8 },
+          { symbol: 'META-fut', price: 528.40, change: 0.6 },
+        ],
+        volatility: 28,
+        vix: 25.5,
+        rsi: 56.0,
+        beta: 1.12,
+        priceHistory: [445, 444, 443, 443, 442, 442, 442, 442],
+        volumeHistory: [6, 8, 12, 16, 18, 20, 22, 24],
+        sectors: [
+          { label: 'MSFT-Discount', value: 980, color: '#cc8844' },
+          { label: 'NVDA-Anchor', value: 1380, color: '#22cc55' },
+          { label: 'GOOGL-Cloud', value: 1240, color: '#22cc55' },
+          { label: 'OpenAI-Independent', value: 1480, color: '#22cc55' },
+          { label: 'AI-Cap-Reset', value: 1080, color: '#22cc55' },
+        ],
+        headline: '週日傍晚預演：MSFT 微縮、NVDA / GOOGL / META 接力、AI 圈整盤股權結構重寫——明早 9:30 開盤就會看到',
+      },
+    },
+
+    { type: 'dialogue', character: 'customer-b', text: '我們桌押的是——明早 8 點到 9 點半之間 MSFT 期貨先跌、9:30 開盤後先跌 1.5% 摸 $440、然後一小時內被「值得撿」的這條故事拉回 $443。NVDA 反而會直接漲 1% 開、因為 GPU 使用量沒變、只是分錢的人換了。GOOGL 還在吃週四雲端 38% 的紅利、明天可能再上 1%。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '同意。MSFT 那 1.5% 的跌、是「故事重寫」的成本、不是「公司變差」。Citi 那張內部 note 把它叫做 "narrative reset" ——白話講就是「故事換腳本、價格先扣一層、之後要看演員會不會把新劇本演好」。明早預期跌 1-2%、但週五前可能就會收回七成。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── JBLU / Apollo term sheet leak ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'JBLU 那邊週末又走到哪一步？昨天說 Apollo 在算續命錢的條件。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '凌晨 Bloomberg 漏出來——Apollo 那張條件清單已經傳到 JBLU 董事會。10 億美金的「破產過程中還能繼續營運的緊急貸款」、利率 17%、附帶可換成新公司 18% 股權的選擇權、抵押品是飛機跟航線。重點是裡面有一條「強制重整」——意思是如果 JBLU 接這筆錢、它幾乎就是承諾要走破產法第 11 章了。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '券商 OTC 場外行情（沒有交易所、就是幾家券商之間互相報價）昨天收的時候 JBLU 債券 62 cents、今天亞洲時段被報到 58 cents。違約保險費（CDS）又跳了 60bp、現在到 800bp——白話就是市場已經「把破產當成事實」、剩下只是時間問題。明早 8 點看 8-K 是不是真的補件、就算不補、明天開盤前股價 $4.20 是頂、可能直接跌到 $3.80。' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'SAVE 場外今天又被報到 $1.20——昨天還 $1.40。Frontier 的違約保險費再跳 50bp。這就是 K 形分帳——LCC（廉價航空）這條線整週都在被「先在心裡標壞」。但 ULCC（超廉航）裡面、Allegiant 反而沒事——它的航線重複度低、油價避險做得久、債務結構也乾淨。明早可能會看到 ALGT 跟 JBLU、SAVE 開始分道揚鑣。' },
+
+    { type: 'emote', character: 'customer-b', emote: 'surprise', duration: 700 },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'JBLU-bond', price: 58.00, change: -6.5 },
+          { symbol: 'SAVE-OTC', price: 1.20, change: -14.3 },
+          { symbol: 'ULCC-CDS', price: 800, change: 8.1 },
+          { symbol: 'ALGT-fut', price: 48.20, change: 1.4 },
+        ],
+        volatility: 56,
+        vix: 25.5,
+        rsi: 18.0,
+        beta: 1.74,
+        priceHistory: [62, 61, 60, 59, 59, 58, 58, 58],
+        volumeHistory: [38, 52, 68, 84, 92, 86, 78, 72],
+        sectors: [
+          { label: 'JBLU-Pre-Bankruptcy', value: 280, color: '#ee4444' },
+          { label: 'SAVE-Spiral', value: 180, color: '#ee4444' },
+          { label: 'CDS-Wide', value: 920, color: '#ee4444' },
+          { label: 'ALGT-Survivor', value: 480, color: '#22cc55' },
+          { label: 'Apollo-Term-Sheet', value: 520, color: '#cc8844' },
+        ],
+        headline: 'Apollo 條件清單外流：10 億美金、17% 利率、18% 換股、強制走破產法 — JBLU 債券 58 cents、明早開盤前 $4.20 是頂',
+      },
+    },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Walmart / BBY 8am decision ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: 'Walmart 那張表格在財政部過了週末。明早會收到回信？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '不會。財政部最快週三才會回「我們收到了」這四個字、實質審核 30 天起跳。Walmart 那邊真正的事在別處——明早 8 點美東時間 Best Buy 會表態。如果 BBY 跟 Target 一樣不交、那「不交退款」這條陣線就有三家領頭、大概會有十幾家跟。如果 BBY 跟 Walmart 一樣交、那就剩 Target 一個人站在外面。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'BBY 週末董事會開了一整個週日下午、最後一通電話是凌晨兩點美東。我聽到的版本是 Hubert Joly（前董事長、影響力還在）強烈建議不交——他的論點是「短期幾億退款換長期股權結構乾淨」划算。但現任 CEO 那邊算的帳不一樣、CFO 偏交。八九不離十明早會看到一份「半交半留」的方案——交一部分、保留一部分當槓桿。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '如果真的「半交」、那才是最壞——對市場來講不確定性更高、Walmart / Target / BBY 三條走不同路、零售圈 Q3 整盤會被重切。明早 8:30 沃爾瑪如果有任何補件動作、那也是另一個訊號。' },
+
+    { type: 'wait', duration: 300 },
+
+    // ── Iran / OPEC+ Sunday silence ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'OPEC+ 今天有正式聲明？昨天說沙烏地跟阿聯在電話會。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '一整天沒聲明。Bloomberg 凌晨那則寫得很委婉——「沙烏地希望維持目前的供需紀律」。白話就是「我們不打算放鬆減產、$95 是我們要的價」。那麼明早夜盤開、如果原油不跌反漲、那是兩個訊號重疊：戰爭溢價沒退完 + OPEC+ 在護盤。如果跌一塊到 $94、那是「沒消息就是利空」的解讀。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '伊朗那邊週末也沒新東西。革命衛隊三個區域指揮官的調動沒有後續、BBC 波斯語跟 Iran International 兩邊昨天的話語熱度今天就退了。Polymarket 4/30 從 0.55% 退到 0.35%——三天累積砍 60%、純粹是時間在算。如果週一亞洲時段忽然從 0.35% 又跳回 0.65%、那就要警覺、不是雜訊、是有人提早知道消息。我會在 Discord 設個警報。' },
+
+    { type: 'camera', effect: 'shake', duration: 250, intensity: 1 },
+
+    { type: 'wait', duration: 300 },
+
+    // ── This week's calendar — final pre-print prep ──
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'dialogue', character: 'chef', text: '下禮拜的順序你們桌怎麼擺？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '禮拜二晚上 9 點 Warsh 確認投票、52-48 過關（差點過不去、但會過）、過關當下 10 年期殖利率可能跳 8bp、美元也會跳一下；禮拜三早上 8:30 Q1 GDP 第一版數字、共識 +1.8%、私下傳的版本 +1.4-1.6%、如果真的 +1.4 那 SPY 直接跌 1%；禮拜四下午 2 點 Powell 最後一場、整週的高潮。三件事擺一起、利率曲線會被整條重寫。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我們桌昨天排的三種劇本今天微調——A 機率提到 40%（GDP 偏弱、Powell 偏鴿、Warsh 過關 → SPY 衝 540）；B 維持 35%（達標 + 持平 → SPY 在 530）；C 退到 25%（差 + 鷹 → SPY 跌到 520）。微調原因是今天 Polymarket 的 Fed 50bp 死透、市場現在連「鷹派意外」都不太預期了。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我個人倉位偏 A——標普 540 那邊放了七成、530 那邊兩成、520 那邊一成當保險。如果 Powell 禮拜四講「交棒」這兩個字、A 確認；如果他講「延續」、B；如果他開始講「通膨還沒到目標」、C。三個關鍵字、會決定週五的開盤在哪裡。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Sunday-evening positioning matrix ──
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'SPY-target', price: 540.00, change: 1.8 },
+          { symbol: '10Y-target', price: 4.30, change: -0.12 },
+          { symbol: 'DXY-target', price: 103.50, change: -0.8 },
+          { symbol: 'WTI-floor', price: 95.00, change: 0.0 },
+        ],
+        volatility: 24,
+        vix: 25.5,
+        rsi: 54.0,
+        beta: 1.05,
+        priceHistory: [530, 531, 532, 533, 535, 537, 539, 540],
+        volumeHistory: [80, 88, 96, 108, 124, 140, 156, 168],
+        sectors: [
+          { label: 'A-Dovish-Print', value: 1480, color: '#22cc55' },
+          { label: 'B-Inline', value: 1240, color: '#cc8844' },
+          { label: 'C-Hawk-Tail', value: 720, color: '#ee4444' },
+          { label: 'AI-Cap-Reset', value: 1080, color: '#22cc55' },
+          { label: 'LCC-Casualty', value: 240, color: '#ee4444' },
+        ],
+        headline: '禮拜天傍晚下注：A=40%（SPY 540 / 10Y 4.30 / 弱美元）/ B=35% / C=25% — 三個關鍵字決定週五在哪',
+      },
+    },
+
+    { type: 'wait', duration: 300 },
+
+    // ── 6pm globex open + Monday morning checklist ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '美東 6 點夜盤開、第一個小時要看什麼？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '三個鬧鐘——標普期貨第一個小時的方向、原油是不是動 $95、DXY 開盤跳不跳。任何一條超過 0.5%、整週的劇本就要重新算。如果三條都靜悄悄、那就是市場在「等明早 8 點」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我會盯三件事——明早 6 點 GS / Morgan Stanley 的 MSFT 拆帳研報、8 點 BBY 的退款公告、8:30 JBLU 是不是真的補 8-K。三個事件擠在 90 分鐘裡、整盤的 Q1 結算就在那一段定下來。' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'Polymarket 我會盯 4/30 跟 6/30——如果 4/30 凌晨從 0.35% 跳到 0.55% 以上、那是訊號、不是雜訊（中東早盤、訊息密度低、單一帳戶推不動 0.2%）。如果 6/30 退回 7.5%、那是上午那一階噪音被吃回去——回到正常基線。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Wrap: Sunday closing ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜天傍晚要吃什麼？拉麵還是定食？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '熱拉麵、加蛋、加溏心。等下 6 點要回辦公室盯第一個小時的夜盤、明天早上 5 點起床看研報。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我也拉麵、加蛋、不要加蔥。今晚要把 Apollo 那張條件清單拆成內部 memo、明天早上 7 點要送進晨會。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜天傍晚的食堂、兩碗熱拉麵、麥茶冒著煙、窗外是東京週日的暮色。太平洋那邊——GS 的 AI 研究團隊在曼哈頓辦公室寫明早 6 點要丟出的 MSFT 拆帳研報、Apollo 不良資產組在 Park Avenue 把 JBLU 條件清單列印七份、Best Buy 董事會凌晨剛開完最後一通電話、Walmart 的稅務律師在 Bentonville 收尾 Q3 退款抵稅試算、Powell 在華盛頓 D.C. 練習禮拜四講稿的最後一段。市場關著、但人沒停。Polymarket 那條 0.35% 的線、是這個週末最誠實的指標——時間繼續在替我們減壓。明天早上 8 點到 9:30 的 90 分鐘、會把這個週末所有沒被定價的東西、一次寫進報價單。今晚先把拉麵吃完、夜盤 6 點開、第一個小時就會給答案。',
+      duration: 5800,
+    },
+  ],
+};
