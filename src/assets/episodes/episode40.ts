@@ -1,0 +1,210 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-19 (Tue JST):
+ * - Trump postponed planned Tuesday strike on Iran on Monday 5/18
+ *   after leaders of Qatar, Saudi Arabia and UAE urged delay to let
+ *   "serious negotiations" continue. Trump: Pentagon ready "at a
+ *   moment's notice" for "full, large scale assault" if no
+ *   acceptable deal. Gave a 2-3 day window. Iran submitted response
+ *   to US proposal via Pakistan mediator. This is the pivot beat —
+ *   walks back Sunday's "TIME IS OF THE ESSENCE / won't be anything
+ *   left" Truth Social posts that drove ep39.
+ *   (Fox News 5/18 live, Al Jazeera 5/18 liveblog, Newsweek 5/18)
+ * - Oil Tuesday 5/19 Asia session reversed: Brent July -2.09% to
+ *   $109.76, WTI June -0.75% to $107.84. Risk premium unwinding
+ *   after the strike postponement; both still well above ep37/38's
+ *   $102 baseline so the unwind is partial, not full.
+ *   (CNBC "Oil prices fall as Trump postpones Iran strike" 5/19)
+ * - Asia Tuesday 5/19 broadly higher per CNBC live blog. Japan Q1
+ *   GDP advance reading came in at +2.1% annualized — vs Reuters
+ *   poll consensus 1.7%, prior quarter +1.3%. Material domestic
+ *   tailwind. No precise Nikkei close confirmed in available
+ *   sources; treating as "rally on relief + GDP beat" without
+ *   pinning a specific level.
+ *   (CNBC 5/19 Asia live)
+ * - Tehran Stock Exchange reopened today Tuesday 5/19 — first
+ *   trading day since 2/28 (80-day closure). IRNA confirmed Sunday.
+ *   Pre-existing rule: 3% daily limit up or down per security.
+ *   Trading hours extended 1 hour to allow companies to disclose
+ *   war damage. Bijan Khajehpour (Eurasian Nexus Partners) to Al
+ *   Jazeera 5/18: "serious concerns investors will engage in panic
+ *   selling to generate liquidity". Tehran Times headline "TEDPIX
+ *   loses 102,000 points on Tuesday" — implies a roughly -2.75%
+ *   move (last pre-closure ~3.7M points), near the daily downside
+ *   limit. Rial vs USD: official ~50万 IRR/USD, black-market
+ *   ~110万 IRR/USD per recent Iran International coverage —
+ *   meaning TEDPIX in USD terms is dramatically worse than the
+ *   Rial-denominated print.
+ *   (Tehran Times 5/19, Al Jazeera 5/18, Iran International)
+ * - USD/JPY Tuesday range 158.58-159.07, around 158.95 — once
+ *   again 160 not tested. MoF jawboning continues effective.
+ *   (Tradingeconomics / Wise 5/19)
+ * - US Monday 5/18 close: S&P 500 +0.09%, Dow -0.08%, Nasdaq -0.51%
+ *   (26,090.73). 10y Treasury above 4.6%, at 52-week high. Oil
+ *   surged to $108 intraday before Trump's Monday-evening
+ *   postponement reversed sentiment. Bond market did NOT rally on
+ *   the strike delay — inflation/Warsh-hawkish concerns still in
+ *   yields. Important: the delay helped stocks marginally but
+ *   yields stayed elevated, showing the "war-premium" was already
+ *   only a small slice of why yields are up.
+ *   (TheStreet 5/18, CNBC quotes 5/18, Yahoo Finance 5/18)
+ * - Powell-Warsh: still no clean dated confirmation of formal
+ *   swearing-in. ep39's "Fed traditionally low-key on transitions"
+ *   note holds. Stephen Miran resignation pending.
+ * - sectors[].value methodology unchanged: |%change|×100 of headline
+ *   asset per theme. Today's sectors lead with the reversal beats
+ *   (oil unwind, Trump pivot, Tehran open) rather than equity
+ *   levels (since precise Tuesday closes not confirmed).
+ * - No polymarket block.
+ * - Continuity: ep39 (Mon night) — both customers came; Customer A
+ *   brought his 12-page Warsh briefing draft, Customer B's desk
+ *   stop-loss at 159.80 didn't trigger. Tonight (Tue): Customer A
+ *   only — he wants to debrief the dramatic 24-hour reversal that
+ *   just made half his Sunday-written briefing stale. Customer B
+ *   probably home with husband / kids (Tuesday is normal family
+ *   evening for her per persona). Chef's wife callback: she asked
+ *   "上禮拜天 Trump 講 won't be anything left、今天怎麼又延後了" —
+ *   chef relays.
+ */
+export const EPISODE_40: Episode = {
+  id: 'ep-40',
+  date: '2026-05-19',
+  title: '20260519 禮拜二晚上、Trump 把禮拜二要打的伊朗行動延後（Qatar+Saudi+UAE 三國 lobby）、油反手 Brent -2%、Tehran 證交所今天開盤就 -102,000 點靠近 3% 跌停、Japan Q1 GDP +2.1% 跳贏 1.7% 預期、美 10y 還是賴在 4.6% 不下來',
+  description: '禮拜二晚上、Tokyo 21:00、市場一天大反轉。禮拜天 Trump 三貼文「TIME IS OF THE ESSENCE / won\'t be anything left」、結果禮拜一晚上他自己又上 Truth Social 講「我把原本 today (Tuesday) scheduled 的伊朗攻擊延後」、原因是 Qatar、Saudi、UAE 三國領袖去 lobby、講「serious negotiations are underway」、伊朗也透過巴基斯坦提交回應。他補一句「Pentagon ready at a moment\'s notice for full, large scale assault」、給 2-3 天視窗。亞洲開盤直接 price-out 戰爭機率——Brent -2.09% 到 $109.76、WTI -0.75% 到 $107.84、不過兩個都還在 $107 以上、沒回 $102 那個基準、所以是「部分解除」、不是「全解除」。Asia 普遍漲、Japan Q1 GDP 提前報出 +2.1% 年化、贏 Reuters 共識 1.7%、跟上季 +1.3% 比是跳。Tehran 證交所今天開盤了、78 天沒開、Tehran Times 標題寫「TEDPIX loses 102,000 points on Tuesday」、推算大概 -2.75%、靠近 3% 單日跌停那條線——分析師講對了、第一天就是 liquidity panic。USD/JPY 158.95、區間 158.58-159.07、又一次沒測 160。但債券沒買單——美 10y Monday 收 4.6%+、52 週新高、戰爭風險溢價解除、但 inflation/Warsh-hawkish 的故事沒解、所以殖利率沒下來。Customer A 今晚自己來——他禮拜天熬到半夜寫的 12 頁 Warsh 簡報、24 小時內被 Trump 一條 Truth Social 改寫一半。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜二晚上 9 點、東京。今天市場跑出 24 小時大反轉——禮拜天 Trump 那三貼文（「Clock is Ticking」「won\'t be anything left」「TIME IS OF THE ESSENCE!」）原本看起來是戰爭倒數。結果禮拜一晚上 Trump 自己又在 Truth Social 講「原本 today (Tuesday) scheduled 的伊朗攻擊已經延後」、Qatar、Saudi、UAE 三國領袖去 lobby、講「serious negotiations are underway」、伊朗透過巴基斯坦提交回應。他補一句「Pentagon ready at a moment\'s notice for full, large scale assault」——意思是延後不是取消、給 2-3 天視窗。亞洲市場一開盤就把戰爭機率往下調——Brent -2.09% 到 $109.76、WTI -0.75% 到 $107.84、油從昨天的高點回吐一部分、但都還在 $107 以上、沒回 ep37/38 那個 $102 基準、所以是「部分解除」、不是「全解除」。Asia 普遍漲、Japan Q1 GDP 今天上午公布 +2.1% 年化、贏 Reuters 共識 1.7%、跟上季 +1.3% 比是跳。Tehran 證交所今天開盤了、78 天沒開、Tehran Times 標題寫「TEDPIX loses 102,000 points on Tuesday」——換算大概 -2.75%、靠近單日 3% 跌停那條線、分析師講對了、第一天就是 liquidity panic。USD/JPY 158.95、區間 158.58-159.07、又一次沒測 160。最有意思的是債券沒買單——美 10y 禮拜一收 4.6%+、52 週新高、戰爭風險溢價解除了、但 inflation/Warsh-hawkish 那兩個故事沒解、所以殖利率沒下來。Customer A 今晚自己來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Brent 油（5/19 亞盤）', price: 109.76, change: -2.09 },
+          { symbol: 'WTI 油（5/19 亞盤）', price: 107.84, change: -0.75 },
+          { symbol: 'USD/JPY', price: 158.95, change: 0.08 },
+          { symbol: '美 10y 殖利率', price: 4.6, change: 0.0 },
+          { symbol: 'Japan Q1 GDP（年化）', price: 2.1, change: 0.4 },
+        ],
+        volatility: 24,
+        vix: 19.6,
+        rsi: 41.2,
+        beta: 1.05,
+        priceHistory: [7820, 7775, 7820, 7765, 7780, 7712, 7558, 7610],
+        volumeHistory: [360, 425, 510, 588, 642, 720, 815, 720],
+        sectors: [
+          { label: 'Brent -2.09% 到 $109.76（Trump 延後攻擊、亞盤 price-out 部分戰爭機率）', value: 209, color: '#22cc55' },
+          { label: 'TEDPIX 5/19 重開、Tehran Times 報 -102,000 點 / 約 -2.75%（靠近 3% 單日跌停）', value: 275, color: '#cc4422' },
+          { label: 'Japan Q1 GDP +2.1% 年化（贏共識 1.7%、上季 +1.3%、Tuesday 上午報出）', value: 40, color: '#22cc55' },
+          { label: 'WTI -0.75% 到 $107.84（油跌、但沒回 $102、是部分解除不是全解除）', value: 75, color: '#22cc55' },
+          { label: '美 10y 賴在 4.6% 不下來（戰爭溢價解、但 inflation/Warsh-hawkish 沒解）', value: 0, color: '#cc4422' },
+        ],
+        headline: '禮拜二 21:00 JST、Asia 收盤：Trump 把禮拜二要打的伊朗行動延後（Qatar+Saudi+UAE 三國 lobby）/ Brent -2.09% 破 $110、WTI -0.75% 仍上 $107 / Tehran 證交所今天重開、報 -102,000 點靠近 3% 跌停 / Japan Q1 GDP +2.1% 跳贏 1.7% 預期 / 美 10y 賴在 4.6% 不下',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+
+    // ── Customer A enters ──
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。我老婆今天早上看新聞、跟我說「上禮拜天 Trump 講 won\'t be anything left、結果今天又延後了」——她問我「那個三貼文是不是白寫」、我又答不出來。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安。你太太問的這個、其實是今天我們桌上整個下午在吵的——三貼文不是白寫、但用法跟我以為的不一樣。我禮拜天看到三貼文、寫進我簡報「Trump 升溫、6/16 FOMC 前可能會打」；結果他禮拜一晚上就講「I postponed the attack scheduled for today」——三貼文的功能、原來是「升壓給 Gulf 三國 lobby 的彈藥」、不是真要打。Qatar、Saudi、UAE 三國領袖一聽他要打、立刻打電話、Trump 順勢延後、自己拿了「我聽了盟友意見」的人設、伊朗那邊也透過 Pakistan 提了回應。三貼文是「逼三國 lobby」的工具、不是「打仗的預告」。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '逼盟友來勸——這個我們街上以前有個例子。我們街口那家服飾店、要漲房租、就先去隔壁喊「我要關門」、結果隔壁不想看到那家關、跑去跟房東求情、最後房東打折。Trump 也是這種「先嚇隔壁、讓隔壁去談條件」？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅這個比喻太準了、簡直可以印在我下禮拜的簡報封面。專業講法叫「indirect coercion through allied pressure」——我直接攻擊你成本太高、但我威脅攻擊、讓你的客戶 / 供應商 / 鄰國去勸我、那他們順便也會勸你讓步、就達到目的。Trump 用 Truth Social 公開放話、本質就是「向 Gulf 三國演的」、不是向伊朗。' },
+
+    { type: 'dialogue', character: 'chef', text: '那這個我學到了——下次看 Trump 大聲講什麼、我要先想「他這話是講給誰聽的」、不一定是表面上那個對象。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這就是我們桌上講的「audience analysis」——任何政治發言都要問「primary audience 是誰、secondary audience 是誰」。三貼文的 primary audience 不是伊朗、是 Gulf 三國；secondary audience 是市場、要市場把油的戰爭溢價拉高、給他談判桌上的籌碼。結果今天油跌回來、表示市場已經 figure out 這個玩法、下次三貼文出來、市場反應會比這次小。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Tehran SE first day ──
+    { type: 'dialogue', character: 'chef', text: 'Tehran 那邊今天開盤了——Tehran Times 標題「TEDPIX loses 102,000 points on Tuesday」、102,000 點、聽起來很多。是不是很慘？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、102,000 點看絕對值很多、但要算比例——TEDPIX 戰前最後一筆收盤大概是 3,700,000 點、所以 -102,000 = -2.75%、剛好快碰到單日 3% 跌停那條線。意思是、開盤第一筆就有人砸、然後撐到接近 limit、限制機制保住了名義上沒崩、但底下是怎麼回事不知道、可能整天買盤稀薄、賣盤蓄勢。明天禮拜三是這禮拜 Tehran 第二個交易日（禮拜四五是伊朗週末）、第二天如果再砸 3%、累積就是 -5.4%、SEO 大概會出面講話。' },
+
+    { type: 'dialogue', character: 'chef', text: '單日跌停 3%、所以再壞它也跌不下去——這個我以前以為股市是自由市場、原來政府可以設天花板地板？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、限漲限跌在新興市場很常見——印度孟買有、中國 A 股有（10%）、土耳其有、泰國也有。日本以前沒有、現在用「特別気配」也有類似機制（連續同方向喊單時暫停）。3% 是 Tehran 比較緊的設定、目的是讓「panic 攤平到一週、不要擠在一天頭條」。SEO 是希望明天禮拜三也 -3% 左右、慢慢釋放、不要一天 -10% 上頭條。但有個副作用——買賣盤都會調整策略、賣方會分批掛 limit 砸、買方乾脆不進場、流動性會更稀。' },
+
+    { type: 'dialogue', character: 'chef', text: '流動性更稀——這個跟我們店裡淡季一樣、客人少、進貨也少、整個攤位就空空的、看起來更不熱鬧、更沒人想進來。惡性循環？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、就是「liquidity trap」——市場越冷越沒人進、越沒人進就越冷。Tehran 那邊現在是雙重困境——3% 跌停限制讓賣方賣不掉（要分多天）、但 panic 沒消、新買盤又進不來（因為價格沒打到吸引點）。最後撐市的會是政府的 SVF 主權財富基金、或「半官方」的退休基金、進場買一些撐住場面。但這只能撐 1-2 週、撐太久基金會也被套牢。' },
+
+    { type: 'dialogue', character: 'chef', text: '政府基金進場撐場面——這個我覺得跟我們店裡颱風天請員工繼續來開門差不多。一天兩天可以、撐一個月、員工就會跑掉。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、比喻準到我笑了——員工跑掉就是「政府基金繼續砸錢、但接不到籌碼、最後虧損變政府預算赤字」、完全一樣的邏輯。所以 Tehran 開盤這個事件、市場真正要看的不是「今天 -2.75%」、是「3 個月後 SEO 還在不在撐」、那個才是伊朗金融體系真實壓力測試的答案。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Japan Q1 GDP beat ──
+    { type: 'dialogue', character: 'chef', text: '今天日本 GDP +2.1%、新聞講「跳贏預期」——這個是好事？我以為 GDP 越高越好。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、原則上對、但這個 +2.1% 的內容要拆開看才知道是不是真的好。第一季是 1-3 月——那個時候 Iran 戰爭還沒開（2/28 才開）、所以這個數字反映的是「戰前最後一季」、不是「打仗中也撐住」。第二、+2.1% 年化、最大貢獻是私人消費跟資本支出——消費跟支出今年都被「Q4 提前消費 + Q1 補庫存」拉抬、可能是寅吃卯糧。第三、贏共識 1.7%、差 0.4 個百分點、年化看其實是 0.1 個百分點季增的差距、是統計範圍內。' },
+
+    { type: 'dialogue', character: 'chef', text: '所以新聞講「跳贏」、其實沒這麼跳？這個有點像我們店裡月底結算、看到「比上月多 30 萬」、興奮一下、結果發現是上月有 5 天颱風休、不能直接比。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、完全一樣——base effect 是會騙人的。Q4 上季 +1.3%、Q1 +2.1%、差 +0.8 看起來大、但兩個都遠低於日本長期潛在成長率（大概 +1%）的「上方」、所以根本沒到「過熱」、就是「沒太冷」。市場反應今天 Nikkei 漲、是真的；但這份 GDP 不會改變 BoJ 政策、也不會改變 USD/JPY 那條線、所以 macro 上不是改變遊戲的事件。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Bond market — the only thing that didn't buy it ──
+    { type: 'dialogue', character: 'chef', text: '那美國債券呢？昨天我們講「Warsh 上任、Miran 要走、Trump 補更鷹」——今天 Trump 又延後攻擊、戰爭風險下來、債券應該也跌（殖利率下來）才對？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、好問題、但答案是反的——昨天美 10y 收 4.6%+、52 週新高、今天還沒明顯下來。為什麼？因為戰爭風險只是殖利率近期上漲的「一小塊」、真正的主因是 inflation 跟 Warsh-hawkish。Trump 延後攻擊、戰爭那塊解了、但通膨那塊還在（CPI 跟 PPI 上週都熱）、Warsh 鷹派預期沒變、Miran 要走補更鷹的也沒變。所以 stocks 漲、油跌、yields 不下來——三條線分開反應、各自有各自的邏輯。' },
+
+    { type: 'dialogue', character: 'chef', text: '三條線分開——這個我以前以為「壞消息就是壞消息、所有東西一起跌」、好消息一起漲。原來不是？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這就是我們桌上講的「decomposition」——任何一個資產的當天移動、其實是好幾個「故事」加總起來的。今天油的故事是 1 個（戰爭風險）、減 1；股票的故事是 3 個（戰爭風險減、企業獲利、流動性）、加 2；債券的故事是 4 個（戰爭風險、通膨、Fed 預期、財政赤字）、淨 0。同一天、同一個 Trump 公告、三個資產三個方向。當你能把這個拆開、就比看頭條的人多一層判斷。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — A regroups, Sunday brief now half-stale ──
+    { type: 'dialogue', character: 'chef', text: '你今晚自己一個人來、b 沒陪——是她家裡的事嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、禮拜二她基本上都在家、那是她跟先生講好的「家庭日」、她父親退休前就講過「金融人禮拜二晚上要在家、那是補禮拜一的家庭時間」。我今晚一個人來、其實是要消化一件事——禮拜天熬到半夜寫的 12 頁簡報、今天早上開完會、被頂頭主管要我「Trump 三貼文那段重寫、要加上 indirect coercion 的解讀」、半個簡報變陳舊了。' },
+
+    { type: 'dialogue', character: 'chef', text: '熬夜寫的東西第二天就要改——這個我懂、我以前研發新菜、辛苦試一週、結果上桌客人說「太鹹」、又改回去。下次再學一點點。但你說「半個簡報變陳舊」、那 Warsh 那部分還能用嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、Warsh 那部分還能用——他禮拜五任期開始、有沒有正式宣誓不影響市場、市場已經把他鷹派定價進去了。我重寫的是「Iran 在 6/16 FOMC 前是黑天鵝」那一節、現在要改成「Iran 是 controllable noise」、因為 Trump 願意延、表示他自己也不要在 FOMC 前打。完整邏輯翻一邊、剩下 6 頁可以保留。' },
+
+    { type: 'dialogue', character: 'chef', text: '今晚吃什麼？要不要重一點？昨天 b 點豬肉味噌湯、看起來不錯。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我今晚要清淡一點——我熬了一週、需要休息腸胃。蕎麥麵冷的、配半份玉子燒、漬物兩種、然後一碗赤味噌湯就好。今晚不要肉。' },
+
+    { type: 'dialogue', character: 'chef', text: '冷蕎麥配玉子燒——這個我做。蕎麥麵我下完冰水、麵汁加一點點 wasabi 跟蔥花、玉子燒今天剛做、還溫的。漬物給你白菜跟梅子、不要太鹹。赤味噌湯下豆腐跟海帶、簡單。12 分鐘上桌。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、就這樣。我吃完回家把簡報重寫到 12 點、明天禮拜三、Tehran 第二天、要看 SEO 會不會出來講話、東京 8 點開盤要看美 10y 有沒有真的下來（今天沒下、不代表明天不下）、Boeing 那邊中國有沒有正式公告 200——這禮拜還是滿的。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜二晚上 10 點半、東京。今天市場一天大反轉——Trump 禮拜一晚上把禮拜二的伊朗攻擊延後、Qatar+Saudi+UAE 三國領袖出手 lobby、伊朗透過 Pakistan 提回應、Trump 順勢給「2-3 天視窗」、人設拿了「聽盟友的」。亞洲開盤直接 price-out 戰爭機率——Brent -2.09% 到 $109.76、WTI -0.75% 到 $107.84、油跌但沒回 $102、是部分解除。Tehran 證交所今天開盤、Tehran Times 報 TEDPIX -102,000 點 / 約 -2.75%、靠近 3% 單日跌停、分析師講對了——第一天就是 liquidity panic、買盤稀薄、SEO 接下來幾週要撐場。Japan Q1 GDP +2.1% 年化贏共識 1.7%、是戰前數字、是 base effect、不改 BoJ。USD/JPY 158.95、又一次沒測 160、MoF jawboning 有效。但債券沒買單——美 10y 賴在 4.6%、52 週新高、戰爭那塊解了、但 inflation/Warsh-hawkish 那兩塊沒解、所以殖利率不下來。Customer A 今晚自己來——禮拜二晚上是 b 的家庭日。他禮拜天熬夜寫的 12 頁 Warsh 簡報、今天早上被主管要他重寫「Iran 那一節」——半個簡報變陳舊、是這份工作的本相。冷蕎麥、玉子燒、漬物、赤味噌湯、不要肉、要休息腸胃。明天禮拜三、Tehran 第二天、看 SEO 講不講話；美 10y 看 4.6% 守不守；Boeing 看中國正式公告——這禮拜還是滿的。窗外今晚沒下雨、廣播放古典樂台、店裡 4 桌客人。chef 一邊烤玉子燒、一邊想——今天他學到一個新詞、「audience analysis」——下次他老婆問「Trump 講這個是什麼意思」、他可以反問她「你覺得這話是講給誰聽的」。',
+      duration: 6000,
+    },
+  ],
+};
