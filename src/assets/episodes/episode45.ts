@@ -1,0 +1,210 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-24 (Sun JST):
+ * - DATA NOTE: Sunday = equity markets closed. Framed as a SUNDAY-NIGHT /
+ *   week-ahead episode (same convention as ep31). Oil trades into the
+ *   weekend so its prints are fresh; equities referenced only as last
+ *   week's sourced closes. No invented Sunday equity prints.
+ * - THE weekend story: Trump said Sat 5/23 (Truth Social, after calls with
+ *   Israel + regional allies) that a deal with Iran — including reopening
+ *   the Strait of Hormuz — is "largely negotiated" and "will be announced
+ *   shortly," with NO details. Mediators reportedly close to extending the
+ *   ceasefire by 60 days while a nuclear-program framework is negotiated.
+ *   Pakistan army chief FM Asim Munir met Iranian President Pezeshkian;
+ *   military called the last 24h "encouraging." Proposed deal: gradual
+ *   Hormuz reopening, dilute/transfer Iran's enriched-uranium stockpile,
+ *   US eases port restrictions + potential sanctions relief. Framework =
+ *   a memorandum of understanding (phase 1, ~14 clauses), broader talks
+ *   in 30-60 days.
+ *   (CNBC 5/23, NPR 5/23, CBS live 5/23, The Week 5/23, HoC Library CBP-10637)
+ * - THE CATCH (don't overstate the deal): Iran's Foreign Ministry says
+ *   the NUCLEAR issue is NOT part of the current talks — "our focus is
+ *   ending the war on all fronts, including Lebanon"; sanctions relief is
+ *   their "fixed position, explicitly in the text." Trump cited no nuclear/
+ *   enriched-uranium agreement, though his team has repeatedly called it
+ *   critical. So the hardest piece is punted to the 30-60 day "broader
+ *   talks." This is a ceasefire-extension MoU, not a signed peace.
+ *   (NPR 5/23, Times of Israel 5/23 — "Trump renews bomb threats")
+ * - Oil fell on the deal hope (fresh, weekend-dated): Brent -1.2% to
+ *   $108.60 (after -4% the prior session); WTI -1.2% to $101.06.
+ *   (CNBC 5/21+5/23) NOTE: higher than ep43's WTI ~$98.26 (5/20) — oil
+ *   bounced midweek then eased again on the news; use these latest prints.
+ * - Carryover context (NOT fresh Sun prints): USD/JPY near 160; Japan 10y
+ *   ~2.77% off 30-yr highs; last week S&P +0.4% (8th straight weekly gain).
+ * - POLYMARKET (spotlight, justified by a genuine move): "Will the Iranian
+ *   regime fall by June 30?" dropped to a fresh low 2.9% (0.029), vol
+ *   ~$43.4M — having been glued near 4.5% for weeks (window range now
+ *   2.9-6.5%). The thaw FINALLY moved the bet, downward: smart money
+ *   pricing de-escalation, not collapse. Prior eps' Polymarket beat was
+ *   "it didn't move"; tonight's is "it moved, to a new low" — non-repetitive.
+ *   Data from public/polymarket/latest.json (collectedAt 2026-05-24T01:17Z).
+ * - sectors[].value = |%change|x100 of headline asset per theme, desc.
+ *   Sunday = oil is the only fresh mover; equity bars are last-Fri closes
+ *   carried as context, clearly labelled.
+ * - Continuity: ep44 (Sat) Customer B solo (breadth/rotation, "narrowed
+ *   the gaps"). ep43 (Fri) Customer A solo, said he'd ignore screens all
+ *   weekend. Tonight CUSTOMER A — back from the screen-free weekend, the
+ *   Sat deal news pulled him in, prepping for Monday's Tokyo open. A =
+ *   macro/analyst/historical-parsing voice (perfect for "is 'largely
+ *   negotiated' real?"). The week's arc: ep41 "1hr from striking" →
+ *   ep42 Nvidia euphoria → ep43 deadline stalled → ep44 "gaps narrowed"
+ *   → tonight "largely negotiated" + nuclear punted. Warsh's first FOMC
+ *   is 6/16-17. A does NOT do over/under betting (persona guardrail).
+ *   Chef's wife saw Trump's announcement on TV ("是不是要和平了").
+ */
+export const EPISODE_45: Episode = {
+  id: 'ep-45',
+  date: '2026-05-24',
+  title: '20260524 禮拜天晚上、Trump 說對伊朗的 deal「largely negotiated」要重開 Hormuz、即將宣布——但沒細節、伊朗說核子根本不在這輪、最難那塊往後丟 30-60 天；油聞到味道跌（Brent $108.60 -1.2%）、Polymarket 政權垮台摜到新低 2.9%、明天 Tokyo 開盤要反應',
+  description: '禮拜天晚上、Tokyo 21:00、再過 12 小時開盤。週末出大事——Trump 禮拜六在社群上說、跟伊朗的 deal「largely negotiated」、大致談好了、會重開 Hormuz、「即將宣布」、但一個細節都沒給。居中的巴基斯坦陸軍參謀長 Munir 見了伊朗總統、說過去 24 小時「鼓舞人心」；架構大概是停火再延 60 天、先簽一份 14 條的備忘錄（MoU）、難的部分往後丟 30-60 天再談。但有個關鍵的「但是」——伊朗外交部說「核子不在這一輪」、這輪只談停火、解除制裁是底線；而核子、enriched uranium 那塊、正是 Trump 團隊一直說「最關鍵」的東西。所以這是「先把容易的簽了、最難的留到以後」。市場信了一點——油跌（Brent -1.2% 到 $108.60、前一場已經 -4%；WTI -1.2% 到 $101.06）；最明顯的是 Polymarket「伊朗政權 6/30 前垮台」、本來黏在 4.5% 好幾週、這個週末摜到新低 2.9%。明天開盤要反應這份「大致談好」。今晚 customer-a 來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜天晚上 9 點、東京。再過 12 個小時、Tokyo 開盤。這個週末出大事——Trump 禮拜六在社群上講、跟伊朗的 deal「largely negotiated」、大致談好了、要重開 Hormuz、「即將宣布」、但一個細節都沒給。中間牽線的是巴基斯坦、陸軍參謀長 Munir 見了伊朗總統 Pezeshkian、說過去 24 小時「鼓舞人心」。架構大概長這樣：停火再延 60 天、先簽一份 14 條的備忘錄、最難的部分往後丟 30 到 60 天再談。但這裡有個很關鍵的「但是」——伊朗外交部說「核子不在這一輪談判裡」、這輪只談停火、解除制裁是底線；可是核子、那堆濃縮鈾、正是 Trump 團隊一直說「最關鍵、不解決不算數」的東西。所以說穿了、這是「先把容易的簽了、最難的留到以後」。市場信了幾分——油聞到味道跌了、Brent 跌 1.2% 到 $108.60、前一場已經先 -4%、WTI 跌 1.2% 到 $101.06。最明顯的是牆上那個 Polymarket——「伊朗政權 6 月底前垮台」、本來黏在 4.5% 黏了好幾個禮拜、這個週末一口氣摜到新低 2.9%。明天開盤、Tokyo 要把這份「大致談好」反應進價格。今晚 customer-a 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Brent 油（5/23、deal hope）', price: 108.6, change: -1.2 },
+          { symbol: 'WTI 油（5/23）', price: 101.06, change: -1.2 },
+          { symbol: 'USD/JPY（週末約、carryover）', price: 159.8, change: 0.0 },
+          { symbol: '日本 10y（最近、carryover）', price: 2.77, change: 0.0 },
+          { symbol: 'S&P 500（上週五收、連八週）', price: 6680.0, change: 0.4 },
+        ],
+        volatility: 16,
+        vix: 15.1,
+        rsi: 57.0,
+        beta: 0.99,
+        priceHistory: [114.2, 112.8, 110.0, 106.5, 103.0, 101.0, 109.9, 108.6],
+        volumeHistory: [820, 760, 700, 640, 590, 560, 600, 540],
+        sectors: [
+          { label: 'Brent 油 -1.2%（$108.60、deal「largely negotiated」、前一場已 -4%、戰爭溢價續退）', value: 120, color: '#cc4422' },
+          { label: 'WTI 油 -1.2%（$101.06、和談露曙光、Hormuz 要重開的預期壓油價）', value: 120, color: '#cc4422' },
+          { label: 'S&P 500 +0.4%（上週五收、連八週、2023-12 以來最長、氣氛延續到週末）', value: 40, color: '#22cc55' },
+          { label: 'USD/JPY ~160（週末持平、carryover、下週看 BOJ 與 Hormuz 兩條線）', value: 0, color: '#888888' },
+          { label: '日本 10y 2.77%（carryover、油續跌、進口通膨壓力再鬆一點）', value: 0, color: '#888888' },
+        ],
+        headline: '禮拜天 21:00 JST、再 12 小時開盤：Trump 說伊朗 deal「largely negotiated」要重開 Hormuz、但沒細節、核子被伊朗排除在這輪外、最難那塊丟 30-60 天 / 油信了一點 Brent -1.2% $108.60 / Polymarket 政權垮台摜新低 2.9% / 停火擬延 60 天先簽 14 條 MoU',
+      },
+    },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-24T01:17:04Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.029,
+            volume: 43441528,
+            liquidity: 544900,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1779069606, p: 0.055 }, { t: 1779098408, p: 0.045 }, { t: 1779127209, p: 0.055 },
+              { t: 1779156004, p: 0.055 }, { t: 1779184805, p: 0.045 }, { t: 1779213608, p: 0.045 },
+              { t: 1779242405, p: 0.055 }, { t: 1779271211, p: 0.055 }, { t: 1779300012, p: 0.045 },
+              { t: 1779328805, p: 0.045 }, { t: 1779357606, p: 0.045 }, { t: 1779386412, p: 0.045 },
+              { t: 1779415205, p: 0.045 }, { t: 1779444007, p: 0.045 }, { t: 1779472821, p: 0.0365 },
+              { t: 1779501607, p: 0.0435 }, { t: 1779530405, p: 0.048 }, { t: 1779559209, p: 0.0405 },
+              { t: 1779585304, p: 0.029 },
+            ],
+          },
+        ],
+      },
+      duration: 5000,
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。你禮拜五才說週末什麼盤都不看、今天禮拜天晚上又出現——我就知道、週末出大事了。我老婆下午看電視、Trump 在講「跟伊朗大致談好了」、她轉頭問我「是不是要和平了、油是不是要變便宜」——我又答不出來。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、被你說中、我週末本來真的沒看盤——結果禮拜六中午這條新聞一出來、我就破功了。Trump 說 deal「largely negotiated」、大致談好、要重開 Hormuz、即將宣布。你老婆兩個問題都問得很準：要不要和平——「快了、但還沒」；油會不會便宜——「已經先跌了」。但我得先給你打個預防針：這個「大致談好」、魔鬼藏在「大致」兩個字。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '「大致」兩個字有魔鬼——怎麼說？大致談好、聽起來不是很接近了嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我用你最懂的事打比方——你女兒（假設）要辦婚禮、兩家人「大致談好了」：日子訂了、餐廳訂了、賓客名單也排了。聽起來超接近、對吧？但「大致」漏掉的那一塊、是兩家還在為「聘金多少」吵——而聘金、偏偏是雙方最在意、最容易翻桌的那件事。這個 deal 就是這樣：停火延 60 天、Hormuz 重開、解除一些制裁——這些「容易的」都談好了；但「核子」那塊、伊朗那堆濃縮鈾要不要交出來——伊朗禮拜六直接說「核子不在這一輪談判裡」、Trump 團隊卻一直說「核子不解決，這個 deal 不算數」。最關鍵的聘金，兩家還沒談。' },
+
+    { type: 'dialogue', character: 'chef', text: '聘金還沒談、其他都訂好了——這個我太懂了！我們店裡辦過外燴、客人「菜單、人數、日期」全部敲定、最後為了「要不要附帶清酒、誰出錢」卡了兩個禮拜差點告吹。最小的那筆，往往最難。所以這個 deal，其實還沒真的成？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、可以說「成了一半」。他們的做法很聰明——把談好的部分先簽一份備忘錄、14 條、叫 phase 1；核子那塊談不攏的，寫一句「我們同意之後 30 到 60 天再談」。等於「先把能簽的簽了、把最硬的骨頭留到下一頓」。這在外交上很常見、叫「分階段」——好處是先止血、停火先延 60 天、不要再打；壞處是「最難的還在後面」、隨時可能在第二階段破局。所以今晚的正確心情是：鬆一口氣，但別開香檳。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Why did oil fall if it's only half a deal? ──
+    { type: 'dialogue', character: 'chef', text: '如果只成一半、為什麼油已經先跌了？Brent 跌到 $108、新聞說前一場還先跌了 4%。市場是不是太樂觀、跑太快？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、油跌的邏輯其實很冷靜、不是樂觀過頭。油價最怕的是「Hormuz 封住、油運不出來」——這是供給斷掉的恐懼。現在「Hormuz 要重開」這四個字、就算只是 phase 1、就算核子還沒談、它直接打到油最怕的那個點。對油來說、「核子談不談」沒那麼重要、「海峽開不開」才是命門。海峽要開的預期一出來、戰爭溢價就洩、油就跌。油市場只關心它自己那條命門、不管別的。' },
+
+    { type: 'dialogue', character: 'chef', text: '油只關心海峽、不管核子——所以同一個新聞、不同的人只挑跟自己有關的那塊看？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、完全正確、這正是市場最有趣的地方。同一份「largely negotiated」的新聞——做油的人只看「Hormuz 重開」、所以油跌；做核不擴散、做國防股的人盯「核子被排除在外」、覺得沒解決、所以國防股不一定跌；做日圓的人看「中東風險降、避險需求減」。一份新聞、被切成三塊、各拿各的。你老婆問「是不是要和平」、其實市場沒有一個統一答案、每個角落只回答「對我那一塊，是好是壞」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket: the bet finally moved ──
+    { type: 'dialogue', character: 'chef', text: '牆上那個賭盤——「伊朗政權垮台」、我這幾個禮拜看它都黏在 4.5%、像壞掉一樣不動。今天怎麼掉到 2.9% 了？這個「終於動了」、是不是也在講什麼？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你觀察力越來越像我們桌上的人了。這個盤黏在 4.5% 黏了好幾個禮拜——之前我跟你說過「它不動，本身就是訊號」、意思是「不管新聞多兇，押政權垮的人心裡早有定見」。但這個週末、它第一次「真的動了」、而且是往下、摜到 2.9% 新低。「不動」變成「往下動」——這個轉變很重要：表示拿真錢的人,把週末這份「largely negotiated」當真了一點點——既然要談和、要延停火 60 天，那「政權近期垮台」的機率就更低。錢，跟著緩和的方向走了。' },
+
+    { type: 'dialogue', character: 'chef', text: '黏住不動、跟往下動，是兩種訊號——前者是「沒人改變想法」，後者是「有人改變想法了」。那 2.9% 還是很低啊，這表示其實大家本來就不覺得會垮？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、對、2.9% 跟 4.5% 都很低、本來就沒人押政權會垮。重點不是「高低」、是「方向」——從 4.5% 往 2.9% 走、是一條「越來越相信會緩和」的路徑。但我也提醒你別讀過頭：這個盤只說「政權不會垮」、它沒說「不會再打」。停火延 60 天、核子留到第二階段——萬一第二階段破局、戰爭可以再回來、但「政權」大概還是不會垮。所以正確的讀法是：「打打停停的機率還在，政權崩潰的機率很低。」兩件事。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Week ahead — Monday Tokyo open ──
+    { type: 'dialogue', character: 'chef', text: '那明天開盤——Tokyo 是亞洲第一個開的、它會怎麼反應這份「大致談好」？我感覺好像該漲，但你前面一直在踩煞車。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我猜明天開盤是「先笑一下、再冷靜」。先笑——because 中東緩和、油跌、對日本這種進口能源的國家是大利多，航空、運輸、電力這些「油是成本」的股票會先跳。再冷靜——because 大家很快會問「細節呢？簽了嗎？核子那塊呢？」、發現只是 MoU、就會收手。我們上禮拜學到的教訓還熱——Trump 講過好幾次「will be a deal」都沒兌現、市場這次學乖了、會「漲一下、要證據」。真正的關鍵不是明天、是這 30-60 天裡，那份 MoU 會不會變成白紙黑字。' },
+
+    { type: 'dialogue', character: 'chef', text: '漲一下、要證據——市場變得跟我進貨一樣，供應商說「下批一定好」，我先收一點、剩下的等貨到再付。被騙過就學乖。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這句「被騙過就學乖、貨到再付」，是整個市場現在對 Trump 那些 deal 宣布的標準姿態。專業講法叫「price in 一部分」——把可能成真的部分先反映進去、剩下的等確認。今天油跌、Polymarket 往下、就是「先付的訂金」；明天股市可能小漲，也是訂金。尾款，要等那份 14 條的東西真的簽字、Hormuz 真的有船開始通過，才會付。在那之前，誰全押都太急。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Sunday night, A alone, before the week ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜天晚上、明天要早起看盤、我就不給你弄太重的——茶泡飯打底、配一塊炙烤明太子、玉子燒、香物，清清爽爽。明天開盤要打仗，今晚胃要輕。你週末沒看盤、補回來了嗎？還是一看到新聞就破功，整個週末都在想 Hormuz？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、老實說、禮拜六上午我真的去爬山了、手機關機、那半天是這個月最乾淨的。中午下山一開機，Trump 那條新聞跳出來，就回不去了——但至少爬山那半天，舌頭歸零過。你上禮拜講你師父那句「讓舌頭歸零」，我這週末實踐了一半。茶泡飯加明太子，正好，明天要清醒。' },
+
+    { type: 'dialogue', character: 'chef', text: '歸零半天也是歸零——比完全沒歸零好。我師父說過、休一個整天最好，但要是只能休半天，就把那半天休徹底，別「人在山上、心在海峽」。你中午破功不怪你，新聞是你的工作，跟我聞到湯頭不對會立刻回廚房一樣，戒不掉的。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「人在山上、心在海峽」——你今天這句最戳我。我們這行最難的不是看懂盤，是「該放下的時候放得下」。我爸那輩做到退休都沒學會，週末永遠在看路透。我這半天山，算是進步。明天開盤之後又是一週——Hormuz 簽不簽、Tokyo 怎麼跳、6 月 16 號 Warsh 那場 FOMC，慢慢來。今晚先把這碗茶泡飯吃乾淨。' },
+
+    { type: 'dialogue', character: 'chef', text: '該放下的時候放得下——這個比看懂盤難多了，我開店三十年也還在學。茶泡飯我用熱焙茶澆，明太子炙到邊緣微焦、香氣出來，玉子燒今天偏鹹一點配茶。明天的仗明天打，今晚這碗，慢慢扒。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜天晚上 10 點半、東京。再過 11 個小時，Tokyo 開盤。今晚的故事是「largely negotiated——魔鬼藏在『大致』兩個字」。Trump 禮拜六說跟伊朗的 deal 大致談好、要重開 Hormuz、即將宣布，但沒細節；架構是停火延 60 天、先簽 14 條的 MoU（phase 1），最難的核子那塊——伊朗說「不在這一輪」、Trump 團隊說「最關鍵」——往後丟 30 到 60 天。像婚禮日子餐廳都訂好了、聘金還沒談。市場信了幾分、但只信「跟自己有關的那塊」：做油的只看「Hormuz 要重開」這條命門、所以 Brent -1.2% 到 $108.60（前一場已 -4%）、WTI $101.06；Polymarket「伊朗政權垮台」黏了好幾週的 4.5%、這週末第一次往下動、摜到新低 2.9%——錢跟著緩和的方向走，但它只說「政權不會垮」，沒說「不會再打」。明天開盤大概是「先笑一下、再冷靜」——油跌對進口能源的日本是利多，航空運輸電力先跳；然後大家問「細節呢、簽了嗎」，發現只是 MoU 就收手。市場被「will be a deal」騙過幾次、學乖了，現在是「漲一下、要證據」、先付訂金、尾款等 Hormuz 真的有船通過再付。Customer A 週末爬了半天山、手機關機、舌頭歸零了一半，中午看到新聞就破功——「人在山上、心在海峽」，這行最難的不是看懂盤，是該放下時放得下。今晚茶泡飯配炙烤明太子、清爽收尾，明天那一仗明天打。再 11 小時，開盤見。',
+      duration: 6000,
+    },
+  ],
+};

@@ -1,0 +1,225 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-17 (Sun JST):
+ * - Iran Securities & Exchange Organization announced 5/16 Sat that the
+ *   Tehran Stock Exchange reopens Tuesday 2026-05-19 — first time since
+ *   trading halted at war's start (2026-02-28). Deputy supervisor Hamid
+ *   Yari: suspension was "to protect shareholders' assets, prevent panic-
+ *   driven trading and allow more transparent pricing conditions".
+ *   (Reuters via The Business Standard 5/16, Times of Israel liveblog
+ *   5/16, GuruFocus 5/16, IRNA via Dawn 5/16)
+ * - Israel-Lebanon ceasefire (originally 2026-04-16) was extended on
+ *   2026-05-15 by 45 days after the 3rd round of US-mediated talks in DC
+ *   on 5/14-15. Despite the extension, Israel struck southern Lebanon
+ *   Saturday 5/16 — Tayr Falsayh (Tyre district) killed a woman, her
+ *   son and a paramedic; Haboush killed a husband and wife; 5 other
+ *   villages bombed. 1 Israeli soldier killed in a drone strike.
+ *   Hezbollah condemned the extension talks; Lebanese presidency
+ *   welcomed it as "critical breathing space". Al Jazeera Tyre desk:
+ *   "ceasefire in name only".
+ *   (Al Jazeera 5/16, Wikipedia "2026 Israel-Lebanon ceasefire")
+ * - Iran ceasefire (2026-04-08 Pakistan-brokered): Trump extended
+ *   indefinitely on 4/21; technically still in effect on 5/17, but
+ *   Strait of Hormuz remains closed and Iran is charging tolls >$1M
+ *   per ship to vessels that do cooperate. Trump's "Project Freedom"
+ *   blockade paused 5/6; talks ongoing but Trump rejected Iran's
+ *   counter-proposal 5/11 ("totally unacceptable"). Bloomberg 5/16:
+ *   Trump returns from China with little progress on reopening Hormuz.
+ *   NBC News 5/16-17: some Trump aides say he is now "more seriously
+ *   considering a resumption of major combat operations than he has
+ *   in recent weeks".
+ *   (Bloomberg 5/16, NBC News mid-May, Wikipedia "2026 Iran war
+ *   ceasefire", Al Jazeera 5/16-17)
+ * - Boeing -3.8% to -4% Friday 5/15 after Trump told Fox News that
+ *   China would buy 200 jets — less than half the ~500-plane order
+ *   Reuters had reported was under discussion ahead of the Trump-Xi
+ *   summit. Per Jefferies, the gap between 200 and 500 was what got
+ *   the stock punished, not the 200 itself.
+ *   (Yahoo Finance 5/15, Bloomberg 5/14-15, US News 5/15)
+ * - Friday Treasury close: US 10y +12bp on the week to 4.6%, biggest
+ *   weekly jump since the April 2025 tariff tantrum. Driven by CPI/PPI
+ *   showing energy shock pushing inflation higher + Hormuz-driven oil
+ *   + fears the new Warsh Fed is behind the curve.
+ *   (Bloomberg "US Bonds Cap Worst Weekly Rout in a Year on Inflation
+ *   Fears" 5/15)
+ * - Powell-Warsh handover continues: Warsh confirmed by Senate 5/13
+ *   (54-45, narrowest margin since 1977). Powell's 4-year chair term
+ *   expired 5/15 but per Fed announcement he stays as "Chair Pro
+ *   Tempore" until Warsh sworn in (paperwork still pending Saturday).
+ *   Warsh's first FOMC: 2026-06-16/17. Powell stays as governor.
+ *   (CNN, CNBC, NPR 5/13; Fed announcement covered by Bloomberg 5/15)
+ * - sectors[].value methodology unchanged: |%change|×100 of headline
+ *   asset per theme. Sunday markets closed; same Friday closes as
+ *   ep37 (same trading session). Per ep30/ep24 convention, weekend
+ *   episodes carry the most recent Friday print.
+ * - No polymarket block this episode — keeping themes varied per
+ *   project guidance, and the live narrative is news-heavy enough.
+ * - Continuity: ep37 (Sat night) — Customer A came in alone, wife
+ *   took kids to her family, ate simple (rice, sanma, natto, miso,
+ *   pickles), said he'd get up Sunday 7am to check Iran news.
+ *   Customer B stayed home with husband + kids per Friday promise.
+ *   Tonight (Sun): Customer B comes back, her family time was the
+ *   Saturday slot — Sunday evening she escapes for two hours.
+ *   Customer A does NOT come tonight (it's his "second weekend
+ *   night", he'll be writing his Warsh-pre-FOMC briefing per ep37
+ *   close). Chef's wife callbacks: she's the one who reads news first
+ *   and pings chef with confused questions; this episode she asks
+ *   about "stock market still open even when country打仗".
+ */
+export const EPISODE_38: Episode = {
+  id: 'ep-38',
+  date: '2026-05-17',
+  title: '20260517 禮拜天晚上、Tehran 股市禮拜二要重開（戰爭以來第一次）、Israel-Lebanon 停火延 45 天但禮拜六照炸、Hormuz 還是塞著、Trump 從中國回來幾乎沒談到、明天禮拜一開盤要消化一週的事',
+  description: '禮拜天晚上、Tokyo 21:00、市場明天才開。週末三件事都沒往好的方向走——第一、Tehran 證交所禮拜二（5/19）要重開了、2/28 戰爭開始以來第一次、伊朗 SEO 副主管 Hamid Yari 週六公告、講「為了保護股東資產、避免恐慌交易、讓定價更透明」；第二、Israel-Lebanon 那條停火、其實禮拜五在華盛頓談完已經延長 45 天、不是昨天我們以為的「明天到期」——但延長之後的禮拜六、以色列照樣空襲 Tayr Falsayh、打死一個女人、她兒子跟一個救護員、另一個村子 Haboush 打死一對夫妻、Hezbollah 出來說「停火是空話」；第三、Bloomberg 禮拜六標題寫得很直白：「Trump returns from China with little progress to reopen Hormuz」——Hormuz 還是塞著、伊朗收費沒停、NBC 講白宮幕僚有人傳「Trump 比過去幾週更認真考慮恢復大規模軍事行動」。明天禮拜一、東京 8 點開盤、要一次消化禮拜五美 10y 跳 12bp 到 4.6%、Boeing 砸 4%、油站住 $102、加上週末這三條沒解的線。Customer A 今晚不來（他答應自己要寫 Warsh-FOMC 前置簡報）、Customer B 換成今晚跑出來——她禮拜六的家庭時間用完了、禮拜天 9 點到 11 點、是她跟先生講好的「兩小時透氣」。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜天晚上 9 點、東京。週末走完、結論是——三條線沒一條收得起來。第一、Tehran 證交所禮拜二早上要重開了、2/28 戰爭爆發以來第一次、伊朗 SEO 副主管 Hamid Yari 禮拜六公告、講「為了保護股東資產、避免恐慌交易、讓定價更透明」——但 78 天沒開的市場、第一筆成交價會像什麼、沒人預期得到。第二、Israel-Lebanon 那條停火、其實禮拜五在華盛頓談完已經延長 45 天、不是昨天我們以為的「明天到期」——但延長隔天、以色列照樣空襲南黎巴嫩、Tayr Falsayh 打死三個（一個媽媽、她兒子、一個救護員）、Haboush 打死一對夫妻、Al Jazeera Tyre 採訪的記者一句話「停火、只是名字」。第三、Bloomberg 禮拜六標題寫得很直白——「Trump returns from China with little progress to reopen Hormuz」、Hormuz 還是塞著、伊朗每艘合作船收 100 萬美金以上的費用、NBC 講白宮幕僚有人放話「Trump 比過去幾週更認真考慮恢復大規模軍事行動」。明天禮拜一、Tokyo 8 點開盤、要一次消化禮拜五美 10y 跳 12bp 到 4.6%、Boeing 砸 4%、油 102 不肯回——加上週末這三條沒解的線。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Kospi（5/15 收）', price: 7712.77, change: -3.37 },
+          { symbol: 'Nikkei（5/15 收）', price: 61930.29, change: -1.16 },
+          { symbol: 'WTI 油（5/15 收）', price: 102.49, change: 1.31 },
+          { symbol: 'Boeing（5/15 收）', price: 218.4, change: -3.8 },
+          { symbol: '美 10y 殖利率', price: 4.6, change: 0.12 },
+        ],
+        volatility: 26,
+        vix: 20.4,
+        rsi: 36.8,
+        beta: 1.1,
+        priceHistory: [7820, 7798, 7775, 7820, 7765, 7780, 7712, 7712],
+        volumeHistory: [245, 290, 360, 425, 510, 588, 642, 480],
+        sectors: [
+          { label: 'Tehran 證交所 5/19 重開（停了 78 天、戰爭以來第一次、價格沒人估得到）', value: 78, color: '#cc4422' },
+          { label: 'Boeing 5/15 -3.8%（200 架不到預期 500 架、Jefferies：被砸是落差不是數字）', value: 380, color: '#cc4422' },
+          { label: '美 10y 週 +12bp 到 4.6%（2025-04 關稅以來最大週跳、Warsh 接手第一個信號）', value: 12, color: '#cc4422' },
+          { label: 'Israel 5/16 空襲南黎巴嫩死 5 人（停火延 45 天的隔天、Hezbollah：停火是空話）', value: 500, color: '#cc4422' },
+          { label: 'Hormuz 仍封鎖、伊朗每艘船收 $1M+ 通行費（Trump 從北京回來、進度零）', value: 100, color: '#cc4422' },
+        ],
+        headline: '禮拜天 21:00 JST、市場休息：Tehran 證交所 5/19 重開（戰爭以來第一次）/ Israel-Lebanon 停火延 45 天、但 5/16 照炸 5 人 / Bloomberg：Trump 從北京回來、Hormuz 進度零 / 明天 Tokyo 8 點開盤一次消化',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+
+    // ── Customer B enters — Sunday escape window ──
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。禮拜天晚上你來、表示你先生今晚放你出來。我老婆今天早上看新聞、看到「伊朗股市禮拜二要重開」、轉頭問我「打仗中股票還能開？」——我又答不出來。' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安。我先生今晚守小孩、跟我講好 9 點到 11 點是我的「透氣時段」、11 點以前要回去接班。Tehran 那個事我們 desk 禮拜六下午就在傳——SEO 的副主管 Hamid Yari 禮拜六公告、講禮拜二（5/19）開盤、2/28 停下來、總共 78 個交易日沒開。打仗中為什麼還能開、其實道理跟你太太想的相反——不是「沒事所以開」、是「再不開、機構撐不下去」。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '撐不下去——這個我聽我師父講過。他那家店 2011 年 311 之後關了兩個禮拜、客人都跑掉、但他第三個禮拜硬開、他講「不開、員工沒薪水、廠商不出貨、開了就算客人沒幾個、也是給供應鏈一個訊號『這家還活著』」。Tehran 開盤、也是這個邏輯？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、一模一樣、而且更狠——伊朗那邊大基金、退休基金、銀行、保險公司、78 天沒有 mark-to-market、帳本上的數字根本是假的、誰也不知道自己破產了沒有。再不開、第一波就是金融機構之間互相不敢交易、流動性整個凍住。所以這個開盤、不是給散戶、是給機構之間互相喊「我還在、你也在、我們繼續做」。' },
+
+    { type: 'dialogue', character: 'chef', text: '帳本上的數字是假的——這個比喻可怕。我們店裡盤點、月底一定要做、不做我自己都不知道庫存多少。78 天沒盤點、確實會 panic。但禮拜二一開、價格會怎樣？我想像就是大家搶著賣？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你直覺對一半。會「大家搶著賣」是散戶會這樣；但 SEO 公告講「gradually reopen」、就是分批開、限制單日跌幅、設熔斷、可能還限制做空。這套東西台灣 2008 年用過、A 股 2015 年用過、希臘 2015 年用過——目的是把跌勢攤平到 2-3 週、不是真的「不跌」、是「跌得慢一點、別在一天內全壓在 SEO 公告隔天的新聞標題上」。' },
+
+    { type: 'dialogue', character: 'chef', text: '跌得慢一點、別擠在頭條——這個概念我懂。我們店裡如果要漲價、我也不會一次漲三成、會慢慢來、漲一成、撐一個月、再漲一成、客人就慢慢適應。但是政府這樣做、不就等於騙人？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、嚴格講是「降低訊息衝擊」、不是騙——資訊還是在、只是分批釋出。但對外資來說、這個動作本身就傳遞了訊號——「這個市場不正常、政府要介入、流動性短期內不會回來」。所以 Tehran 開盤、不會吸引到外資、只會讓本地機構互相之間有個交易場所、像我師父講的「給供應鏈一個訊號」、不是要做生意。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Israel-Lebanon ceasefire — extended but bombed anyway ──
+    { type: 'dialogue', character: 'chef', text: '昨天禮拜六、customer-a 來、他講「明天禮拜天停火到期」——結果今天早上我老婆看新聞、跟我說「停火其實禮拜五就已經延 45 天了」、跟昨天講的不一樣。我們資訊落後一天、還是 customer-a 講錯？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、不是 a 講錯、是兩條停火的線你昨天混了——他講的「明天到期」其實是 Israel-Lebanon 那條（4/16 開始、原本一個月）、不是伊朗那條（4/8 開始、Trump 4/21 已經延長 indefinitely 了）。禮拜五美方在華盛頓主持第 3 輪 Israel-Lebanon 談判、結果延長 45 天、5/29 啟動安全對話。但是——延長隔天禮拜六、Israel 還是空襲了南黎巴嫩 Tayr Falsayh、打死一個媽媽跟她兒子跟一個救護員、另一個村子 Haboush 打死一對夫妻、加起來 5 個人。Hezbollah 直接出來說「停火是空話」。' },
+
+    { type: 'dialogue', character: 'chef', text: '延 45 天、隔天還是炸——這個我真的想不通。我們店裡跟房東簽延長合約、隔天他不可能來抬租金。為什麼國家可以這樣？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這套叫「talk-and-strike」、白話就是「邊談邊打」——Israel 在華府談的是 Lebanon 政府、但戰場上打的是 Hezbollah、Israel 的官方說法是「停火只覆蓋政府對政府、不覆蓋我們對 Hezbollah 的反恐行動」。所以紙面上沒違約、實務上 Tyre 那邊記者寫「ceasefire in name only」——一個月以來每天都有打、停火只是「不打首都、不出動 F-35 大編隊」。' },
+
+    { type: 'dialogue', character: 'chef', text: '紙面上沒違約、實務上每天打——這個邏輯我突然懂了、是不是有點像我前一陣子跟外送平台的合約？條文上他們不能加我抽成、但他們可以改「優先曝光規則」、結果我訂單少一半、抽成沒漲、但收入掉了。沒違約、但是真的有差。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這個比喻是我這個月聽到最準的「合約字面 vs 經濟實質」案例。Hezbollah 也是這個感覺、政府跟 Israel 簽了字、字面停火、但他們的人天天死、所以他們抗議的不是「為什麼還打」、是「為什麼政府幫你背書這場字面停火」。明天禮拜一、Lebanon pound 開盤、會跌——這個故事市場還沒 price-in。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Trump back from China — Hormuz unchanged ──
+    { type: 'dialogue', character: 'chef', text: '那 Trump 從北京回來、Hormuz 的事到底有沒有進度？Bloomberg 禮拜六的標題我看到、「little progress」——這個就是「沒進度」對嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是沒進度、但寫成 little progress 是給雙方台階下——美國不能說「我去了一趟北京沒拿到什麼」、北京也不能說「我們什麼都沒答應」。實際上、Hormuz 還是封鎖、伊朗每艘合作的商船收 100 萬美金以上的「通行費」、Trump 講說中國「會去施壓伊朗」、但施壓的具體內容是什麼、北京沒講、伊朗也沒回應。NBC 那邊禮拜六放出消息、講白宮幕僚有人傳「Trump 比過去幾週更認真考慮恢復大規模軍事行動」——這個是壓力測試風向、不一定真的會做、但傳出來市場就要算進去。' },
+
+    { type: 'dialogue', character: 'chef', text: '放消息看市場反應——這個我懂、我們店裡有時候要不要加新菜、我會先在 IG 限動發個照片、看客人留言多不多、再決定要不要正式上。Trump 的「考慮軍事行動」也是這種限動？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是國家級的限動——測試是測試、但成本比你高太多。你限動沒人回、最多新菜不上；Trump 這種測試傳出去、明天油就會漲、債就會跌、Boeing 那種國防股就會反彈、整個資產配置會動一輪。所以明天 Tokyo 8 點開盤、Nikkei 要看的不是 Tehran、不是 Lebanon、是「NBC 那條 leak 有沒有後續、Trump 自己有沒有 truth social」——這兩個會主導開盤前 30 分鐘。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Boeing 200 vs 500 ──
+    { type: 'dialogue', character: 'chef', text: 'Boeing 那邊禮拜五砸了 4%、新聞講「中國買 200 架」——買 200 架不是好事嗎、為什麼砸？我老婆也問我這個、我又答不出來。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、200 架的問題不是 200、是「預期是 500、實際 200」——Reuters 在 Trump 飛去之前放消息講可能 500、市場早就把 500 那個數字 price-in 進 Boeing 股價了。結果 Trump 落地、講 200、市場一算「少了 300」、就要把那 300 架的預期收回來、所以砸 4%。Jefferies 那邊講「被砸的是落差、不是數字」——這句話精準到我們桌上禮拜五全部都引用。' },
+
+    { type: 'dialogue', character: 'chef', text: '落差、不是數字——這個我聽起來像我們店裡那種「客人預訂 10 個位子、結果只來 6 個」、不是 6 個少、是 4 個沒來那個感覺。我會生氣不是因為 6 個太少、是因為我為了那 4 個多準備了食材。Boeing 多準備了 300 架的產能？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅這個比喻太對了——Boeing 那邊內部排程、零件採購、勞動力、其實已經把「中國可能 500 架」這個情境寫進去了。落差出來、那些前期投入要重新算、所以股價是把「為了那 300 架白做的部分」減掉。下禮拜如果中國正式公告 200 架、那就是 confirm 落差、Boeing 可能再跌一輪；如果中國公告 250-300、那就是 partial relief、會反彈。' },
+
+    { type: 'dialogue', character: 'chef', text: '中國還沒正式公告？這個叫什麼、留懸念？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是 customer-a 昨天講的「dual readout asymmetry」的後續——美國放數字、北京不否認也不確認、留給市場去猜。對北京來說、不公告比較好——這樣他們保留選擇、可以下禮拜公告 200、下下禮拜「擴大到 250」、用一個 deal 換兩次新聞。Trump 是一次性把牌全打出來、北京是分批打、節奏完全不一樣。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Bonds / Warsh — Monday's real test ──
+    { type: 'dialogue', character: 'chef', text: '那禮拜一 Tokyo 8 點開盤、你最在意哪一條？Tehran、Hormuz、Boeing、還是債券那邊？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、債券。Tehran 開盤跟我們桌上沒直接關係、Boeing 是單股事件、Hormuz 是慢變數——債券是即時反應的。禮拜五美 10y 一週跳 12bp 到 4.6%、是 2025-04 那次關稅震盪以來最大週跳。意思是、市場已經提前把「Warsh 比 Powell 更鷹、戰爭通膨壓不下去、6/16 那場 FOMC 可能不會降」這三件事壓進殖利率裡。明天禮拜一一開、要看的是「會不會繼續往 4.7% 走」——如果會、那 USD/JPY 就會破 160、所有亞洲新興市場貨幣會被連帶打。' },
+
+    { type: 'dialogue', character: 'chef', text: '4.7%、160——這兩個數字、是不是像我們店裡那種「再漲一塊就要重新印菜單」的關卡？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、完全一樣的概念。4.7% 對美 10y、160 對 USD/JPY、是兩個「心理整數關卡」、跨過去市場會自動 stop-loss、被動加速。跨過去那一刻、不是基本面再壞、是被動倉位被迫平倉、放大跌幅。所以明天我們 desk 早上 7 點就會開 line、看亞洲開盤這兩個有沒有被測試——被測試我們就要動、沒被測試我們就慢慢看。' },
+
+    { type: 'dialogue', character: 'chef', text: '7 點開 line——我以為你們週末才偷偷練功、禮拜一開盤前還要這麼早。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、不一樣——週末是讀資料、寫筆記、想清楚；禮拜一開盤前 1 小時、是執行確認、不是思考。週末想完、禮拜一 7 點 line 上對一次清單、開盤就照著做。如果 7 點才開始想、那就晚了、市場已經跑掉。我老爸退休前最常講一句「金融人的禮拜一、是禮拜天晚上開始的」——所以我現在 9 點來你這吃飯、其實也是在準備。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Sunday evening, husband-time window ──
+    { type: 'dialogue', character: 'chef', text: '11 點要回去接小孩——那你今晚吃什麼？簡單點？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、今晚我跟 customer-a 昨天差不多——白飯、烤魚、味噌湯、漬物。但我加一個——溫日本酒一小壺、半合就好、不要多。明天 7 點要清醒、今晚不能喝多、但禮拜天晚上不喝一杯、我撐不過下禮拜五場 FOMC 倒數。' },
+
+    { type: 'dialogue', character: 'chef', text: '半合溫酒、配漬物跟烤魚——這個量我控制得來。烤魚今天有鯖魚跟竹莢魚、你選一個。味噌湯下豆腐加蔥、漬物我有黃瓜、白菜、跟一點梅子、我各夾一筷給你。半合溫到 45 度、不能再高、高了酒香跑掉。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、烤鯖魚、麻煩你。45 度——你這個溫度感跟你描述市場一樣準。我以前以為溫酒就是「熱一下」、後來我爸跟我講「45 度是 nuru-kan、50 度是 jōkan、55 度是 atsu-kan、配菜不一樣」、那是我第一次知道、傳統工藝跟金融模型一樣、是有刻度的、不是憑感覺。' },
+
+    { type: 'dialogue', character: 'chef', text: '有刻度、不是憑感覺——這句話今晚換你講給我聽。我這禮拜聽你跟 a 兩個輪流講、慢慢學會這個道理。Tehran 為什麼開盤、停火延 45 天為什麼還會炸、Boeing 200 為什麼會被砸——以前我會覺得新聞講什麼是什麼、現在我會問「這個數字是不是落差、不是絕對值」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這禮拜進步比我們 desk 新人快。下禮拜你太太再問你問題、你可以反問她——「你看到的是絕對值、還是跟預期的落差？」她可能會愣一下、那就是你贏了。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜天晚上 10 點半、東京。Customer B 11 點要回家接班守小孩、今晚這頓壓在 9 點到 10 點半、半合溫酒、烤鯖魚、味噌湯、漬物三樣。週末三條線都沒收尾——Tehran 證交所禮拜二要重開（78 天沒開、機構互相喊話用、不是給散戶）、Israel-Lebanon 停火延 45 天但禮拜六打死 5 人（紙面停火、實質照打、Hezbollah 公開否認）、Trump 從北京回來 Hormuz 進度零（Bloomberg「little progress」、NBC 放消息「考慮恢復軍事行動」）。明天禮拜一、Tokyo 8 點開盤要看的是兩個數字——美 10y 會不會往 4.7%、USD/JPY 會不會破 160、兩個都是被動倉位的 stop-loss 線。Customer B 今晚 7 點要開 desk line、所以禮拜天 9 點來吃這頓、其實已經在準備禮拜一了。她爸退休前那句話又被她引一次——「金融人的禮拜一、是禮拜天晚上開始的」。Customer A 今晚沒來、他答應自己要寫 Warsh-FOMC 前置簡報、現在這個時候大概還在桌前畫螢光筆。店裡剩 chef 一個人收拾、廣播換成爵士台、明天禮拜一是新一週的第一個交易日、也是 Warsh 真正坐進那張椅子的可能時點——文件如果禮拜天晚上簽回來、禮拜一就是 Chair Warsh 的第一個開盤。如果還沒簽、就是 Powell Pro Tempore 又一天。',
+      duration: 6000,
+    },
+  ],
+};
