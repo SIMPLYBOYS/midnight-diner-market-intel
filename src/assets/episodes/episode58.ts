@@ -1,0 +1,202 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-06-07 (Sun JST):
+ * - DATA NOTE: Sunday = equity markets closed. Framed as a SUNDAY-NIGHT
+ *   pre-open episode (same convention as ep31/ep45/ep52/ep58). Anchored
+ *   on the verified Friday 6/5 US closes — which were MUCH bigger than
+ *   ep57 implied; correcting and amplifying here.
+ * - FRIDAY 6/5 US CLOSE — biggest tech selloff of the year:
+ *   - Nasdaq -4.18% to 25,709.43 — biggest single-day drop since April
+ *     2025 tariff turmoil.
+ *   - S&P 500 -2.64% to 7,383.74.
+ *   - Dow -1.35% (-695.15 pts) to 50,866.78.
+ *   - Single-stock damage: Marvell -8%, Micron -6.3%, Broadcom -3.8%.
+ *   - Trigger: Broadcom's disappointing AI chip outlook (Wed night)
+ *     cascaded through the semi/memory complex; also Fed rate-hike odds
+ *     rising on strong job data + Iran-war inflation. (CNN, CNBC,
+ *     TheStreet 6/5)
+ * - Brent crude -2% to just above $93 Friday — oil kept easing on
+ *   diplomacy hopes, third straight Friday drop.
+ * - IRAN DEAL WEEKEND: Trump said again the deal "could be announced
+ *   Sunday" — ep56 desk tracker for "Trump 下週" was at 25% Thu; this is
+ *   the SIXTH such promise since 5/23. Tentative MOU on table since
+ *   Thursday; still awaiting Trump's signature. The US is reportedly
+ *   considering redirecting ~$24B of frozen Iranian assets to Gulf
+ *   states for reconstruction — that's a NEW concrete twist (Iran's
+ *   money going to its neighbours, not back to Tehran). (CNBC 6/5,
+ *   Reuters, Al Jazeera)
+ * - POLYMARKET regime-fall hit a FRESH NEW LOW 0.0185 (1.85%) — vol
+ *   ~$49M, range 1.45%-2.95%. Crucially: the bet went DOWN through
+ *   Friday's tech panic AND through Trump's recycled Sunday-promise.
+ *   Smart money is saying "this isn't an Iran-driven crash, it's a
+ *   tech-cycle crash; the deal is still on its slow track." This is
+ *   the strongest real-time validation yet of ep57's "金融層跟地緣
+ *   decouple" thesis. Data from public/polymarket/latest.json
+ *   (collectedAt 2026-06-07T01:23Z).
+ * - sectors[].value = |%change|x100 per theme, desc; single-stock semi
+ *   moves dominate. Spotlight Polymarket separately.
+ * - Continuity: ep57 (Sat) Customer A solo — synthesised the week as
+ *   "stress test 反向證明 framework", graduate-ed his "八分信二分留",
+ *   went to 箱根 with phone handover to his wife Sun PM. Tonight
+ *   CUSTOMER B (alternation 55A 56B 57A 58B). B fits the Sunday-night
+ *   parse — Friday's chip crash, Trump's "Sunday" tracker, the
+ *   Polymarket cross-asset signal, and Monday Tokyo open scenarios. B
+ *   persona: 我先生, kids, retired-finance father. Chef's wife: saw
+ *   Friday's US tech crash on TV ("這次又跌了、是不是 deal 破了?"). A
+ *   does not appear (in 箱根). Warsh first FOMC still 6/16-17 — 9 days
+ *   out, this gets relevant.
+ */
+export const EPISODE_58: Episode = {
+  id: 'ep-58',
+  date: '2026-06-07',
+  title: '20260607 禮拜天晚上、Friday Nasdaq -4.18% 2025-04 tariff 以來最慘日（Broadcom 連鎖 Micron -6.3% Marvell -8%）、但 Polymarket 政權垮台繼續摜新低 1.85%（範圍頂 2.95% 沒打開）——AI 週期跟 Iran 週期確認 decouple；Trump 又喊 deal「可能 Sunday 宣布」連說 6 週、US 還傳出要把伊朗 $24B 凍結資產轉給 Gulf 國重建；明天 Tokyo 開盤要消化',
+  description: '禮拜天晚上、Tokyo 21:00、再過 12 小時開盤。週末出大事——禮拜五美股大崩、Nasdaq -4.18% 收 25,709、是 2025 年 4 月關稅那次以來最大單日跌幅；S&P -2.64% 到 7,383；Dow -1.35%。引爆點：Broadcom 禮拜三晚上對 AI 晶片下季展望失望、波及整個半導體鏈——Marvell -8%、Micron -6.3%、Broadcom 自己 -3.8%。再加上 Fed 升息機率因為強勁就業數據+伊朗戰爭通膨往上推。但這裡有個很關鍵的觀察——牆上那個 Polymarket「伊朗政權 6/30 前垮台」、在美股大崩同時、繼續摜到新低 1.85%、範圍頂 2.95% 沒打開。意思很清楚——禮拜五的崩、是 tech cycle 自己的事、不是 Iran；錢的腳清楚分辨「股市恐慌」跟「地緣風險」是兩件事。ep57 a 講的「金融層跟地緣 decouple」、這個週末得到實時驗證。Iran 那邊 Trump 又出來說 deal「可能 Sunday 宣布」——這是他從 5/23 以來第 6 次說「下週」、desk tracker 25%。但有個新進展、美方傳出要把伊朗 $24B 凍結資產不還給 Tehran、轉給 Gulf 國家做戰爭重建——這個如果真、會是一個對伊朗的羞辱性條款。油也再跌、Brent -2% 到 $93 上方。明天 Tokyo 開盤要消化的不是 Iran、是 AI 週期能不能止血。今晚 customer-b 來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜天晚上 9 點、東京。再過 12 個小時、Tokyo 開盤。週末出了大事、不是 Iran、是 AI——禮拜五美股大崩。Nasdaq -4.18% 收 25,709、是 2025 年 4 月關稅那次以來最大單日跌幅；S&P -2.64% 收 7,383；Dow -1.35%。引爆點：Broadcom 禮拜三晚上對 AI 晶片下季展望失望、波及整個半導體鏈——Marvell -8%、Micron -6.3%、Broadcom 自己 -3.8%、是 ep57 我講的「金融層跟地緣 decouple」、結果一個禮拜後它直接打了我們一個耳光式的驗證——「decouple 是真的、AI 自己跌起來、跟 Iran 沒關係」。但同一個週末、牆上那個 Polymarket「伊朗政權 6 月底前垮台」、繼續摜到新低 1.85%、範圍頂 2.95% 沒打開——錢的腳清楚分辨「股市恐慌」跟「地緣風險」是兩件事。Iran 那邊 Trump 又出來說 deal「可能 Sunday 宣布」——這是他從 5/23 以來第 6 次說「下週/週末/this week」、desk 內部 tracker 25%、市場已經免疫。有個新進展值得記——美方傳出要把伊朗被凍結的 $24B 資產、不還給 Tehran、轉給 Gulf 國家做戰爭重建。這個如果真、對伊朗是個羞辱性條款、可能是這 chunk 卡住簽字的真正原因。油也再跌、Brent -2% 到 $93 上方。明天 Tokyo 開盤要消化的、其實不是 Iran、是 AI 週期能不能止血。今晚 customer-b 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Nasdaq（6/5 Fri 收、2025-04 以來最慘）', price: 25709.43, change: -4.18 },
+          { symbol: 'S&P 500（6/5 Fri 收）', price: 7383.74, change: -2.64 },
+          { symbol: 'Dow（6/5 Fri 收）', price: 50866.78, change: -1.35 },
+          { symbol: 'Brent 油（6/5 Fri、diplomacy 續退溢價）', price: 93.0, change: -2.0 },
+          { symbol: 'USD/JPY（carryover ~159）', price: 159.45, change: 0.0 },
+        ],
+        volatility: 28,
+        vix: 22.6,
+        rsi: 32.0,
+        beta: 1.12,
+        priceHistory: [26500, 26700, 26900, 27000, 26917, 26800, 26500, 25709],
+        volumeHistory: [560, 580, 600, 620, 680, 740, 880, 1050],
+        sectors: [
+          { label: 'Marvell -8%（6/5、晶片鏈最慘、AI memory/storage 一條鏈砍）', value: 800, color: '#cc4422' },
+          { label: 'Micron -6.3%（6/5、記憶體跟 AI 直連、Broadcom outlook 拖累）', value: 630, color: '#cc4422' },
+          { label: 'Nasdaq -4.18%（6/5 收 25,709、2025-04 關稅以來最慘日、AI 領跌）', value: 418, color: '#cc4422' },
+          { label: 'Broadcom -3.8%（6/5、引爆者、Wed 晚 AI 晶片展望失望）', value: 380, color: '#cc4422' },
+          { label: 'S&P 500 -2.64%（6/5 收 7,383、九週連漲紀錄斷、最大週跌）', value: 264, color: '#cc4422' },
+        ],
+        headline: '禮拜天 21:00 JST、再 12 小時開盤：Fri Nasdaq -4.18% 25,709（2025-04 以來最慘）/ Marvell -8% Micron -6.3% Broadcom -3.8% / S&P -2.64% Dow -1.35% / 但 Polymarket 政權垮台繼續摜新低 1.85% 範圍頂 2.95% 沒打開（AI vs Iran decouple 驗證）/ Trump 「Sunday 宣布」第 6 次 desk tracker 25% / 美方傳要把 $24B 凍結資產轉給 Gulf 國重建（伊朗羞辱條款？）/ Brent -2% $93',
+      },
+    },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-06-07T01:23:10Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.0185,
+            volume: 49034223,
+            liquidity: 780618,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1780192806, p: 0.0235 }, { t: 1780225215, p: 0.0225 }, { t: 1780257608, p: 0.0235 },
+              { t: 1780290005, p: 0.0235 }, { t: 1780322407, p: 0.017 }, { t: 1780354807, p: 0.0215 },
+              { t: 1780387204, p: 0.0195 }, { t: 1780419645, p: 0.0255 }, { t: 1780452009, p: 0.0265 },
+              { t: 1780484409, p: 0.0265 }, { t: 1780516804, p: 0.0255 }, { t: 1780549205, p: 0.0245 },
+              { t: 1780581607, p: 0.0245 }, { t: 1780614005, p: 0.0245 }, { t: 1780646416, p: 0.0215 },
+              { t: 1780678804, p: 0.0205 }, { t: 1780711218, p: 0.0235 }, { t: 1780743604, p: 0.0215 },
+              { t: 1780776005, p: 0.0185 }, { t: 1780795324, p: 0.0185 },
+            ],
+          },
+        ],
+      },
+      duration: 5000,
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。我老婆今天看新聞、看到「美股大跌、Nasdaq 跌 4%」、第一句話跟我說「是不是 deal 破了」。我跟她講「a 昨天解釋過、Iran 跟 AI 是兩條軌道」、她想了想、跟我說「那這次美股跌、是 AI 自己的事？」。我說對。她又問「那為什麼亞洲明天會跟著跌？」——這個我又答不出來。' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安。你太太這禮拜的進步太厲害——能分辨「美股跌不一定 deal 破」、這比很多新人都強。她第二個問題「為什麼亞洲明天會跟著跌」、答案是「全球資金鏈」——但這也是我們今晚要拆的重點。先從 a 上禮拜六講的「金融層跟地緣 decouple」開始——禮拜五給了一個完美的實時驗證。Nasdaq -4.18% 是 2025-04 關稅以來最慘日、單日從美股市值蒸發一兆美金；但同一個週末、Polymarket「伊朗政權 6/30 前垮台」繼續摜到新低 1.85%、上限還是 2.95%。同一群錢、看 AI 看 Iran、給出完全相反的訊號。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '完全相反——AI 大崩、Iran 賭盤新低、兩件事同時發生但反方向。a 昨天才講「decouple」、結果禮拜五立刻證明給他看。這個 timing 是不是太完美了？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、a 應該還在箱根、明早他看新聞會嚇一跳——他自己 framework 講完、市場立刻一個 stress test 證實它。這種「framework 預測、市場驗證」的時刻、做 macro 這行十年大概只會遇到三五次。但我必須提醒——驗證了「decouple」、不代表 a 整個 framework 都贏。decouple 只是說「Iran 跟 AI 是兩條軌道」、沒說「AI 那條會跌完還是繼續跌」。今晚我要跟你聊的、就是「明天 Tokyo 開盤該怎麼看」——我們 desk 跑了三個情境。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Monday open scenarios ──
+    { type: 'dialogue', character: 'chef', text: '三個情境——你 desk 每次大事前都會跑這套。這次是？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、跟 ep52 那次「Trump 兩支筆」的設定一樣、但對象換 AI 鏈：第一情境、機率 40%——明天開盤亞洲半導體鏈大跌 3-5%、但 Iran-sensitive 股票（航空、油、防禦）反向漲、整體 Nikkei -2% 左右、但成分裡分裂；第二、40%——亞洲跌一下、但下午聰明錢進場接 AI 那批跌過頭的、收盤縮減半 -1%；第三、20%——亞洲根本不跟、認為「禮拜五美股是 US 自己的事、Asia 早就 priced in 半導體週期見頂」、開盤平盤甚至 +1%。' },
+
+    { type: 'dialogue', character: 'chef', text: '40-40-20——這次不是哪個情境最可能、是「兩種跌法+一種不跌」的並列。你 desk 押哪個？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我們 desk 倉位「按 40-40-20 比例分散」、不押單一情境。但個人觀察、我覺得情境二（下午聰明錢進場）最可能——理由是「禮拜五跌得太集中、太情緒化」。Marvell -8%、Micron -6.3% 這種一日跌幅、通常是 forced selling（停損+ETF 連動賣壓）、不是 fundamental valuation re-rate。週末沉澱、機構會看「跌成這樣的話估值合不合理」、發現「跌過頭」就接。但情境一也很可能，所以不會 all in。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket new low: validating "Iran 不是這次的事" ──
+    { type: 'dialogue', character: 'chef', text: 'Polymarket 新低 1.85%——這個數字在「股市大崩」的同時跌出新低、我覺得有點不可思議。新聞報股票跌都報那麼大、賭盤反而走相反方向。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這就是我說「同一群錢、看 AI 看 Iran、給出相反訊號」的具體呈現。新聞報導跟著 Nasdaq -4% 走、給人「世界要崩了」的感覺——但 Polymarket 上的人腦袋很清楚地把「股市恐慌」跟「地緣失控」分開：他們看 Nasdaq -4% 想的不是「Iran 怎麼樣」、是「AI 估值消化、跟政權倒台無關」。所以同一個週末、股市賭盤該崩崩、政權賭盤該降降——兩條軌道、兩種反應、各按各自的邏輯。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩條軌道、兩種反應——這個畫面太清楚了。我們街上也有、譬如疫情期間餐廳生意全崩、但有家便當店生意爆好——「主軌道」跟「副軌道」對同一個事件、反應方向不一樣是常態。Iran 跟 AI、本質就是兩個產業、兩個 driver、兩種訊號？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是這個。專業講法叫「sector-specific signal flow」——不同產業的訊號流分開走。新人最容易犯的錯就是「把宏觀大事件當成 systemic（整個系統）、其實是 sectoral（單一產業）」。今天的 Nasdaq -4% 是 sectoral（半導體+AI），不是 systemic（整個經濟危機）。Polymarket 不動是 systemic 沒問題的 evidence。這個區別、做久就懂、新人聽十次還會問「是不是要全部 risk off？」' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── The $24B Gulf reconstruction twist ──
+    { type: 'dialogue', character: 'chef', text: '今天還有一條我覺得有趣——美方傳出要把伊朗 $24B 凍結資產不還給 Tehran、轉給 Gulf 國家做戰爭重建。這個如果真、是不是很大的事？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、這條如果是真的、是非常大的事——這是「面子問題」的高峰版本。伊朗本來最在意的就是「我們被凍的錢拿回來」、現在美國說「錢還是還、但不是還給你、是還給沙烏地、卡達、UAE 做你打他們造成的損失」。這對伊朗領導層、是雙重羞辱——一、錢沒回；二、被當成「對鄰居加害者」。如果這條真的進 deal、Khamenei 簽下去要對國內鷹派交代會非常難。所以這可能就是「為什麼沒簽」的真正原因——不是 Hormuz、不是核子、是這 $24B 的去向。' },
+
+    { type: 'dialogue', character: 'chef', text: '錢不是還、是賠——這個聽起來就是「賠款」、跟戰敗一樣。怪不得伊朗會卡。但市場好像沒太多反應這條？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、市場沒大反應是因為——一、這還只是「傳出來」、不是公開條款；二、就算真、它解釋了「為什麼這禮拜沒簽」、但不改變「最終會簽」的方向；三、市場已經學會、Iran 的 talk 跟 walk 要分開——這條是 talk，walk 看 Polymarket 1.85% 新低、確認「最壞情境機率還在降」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Sunday, B alone, before Monday ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜天晚上、明天要早起看開盤、我就不給你弄太重——茶泡飯打底、配明太子、玉子燒、香物，配熱玄米茶。明天 6:30 上 desk？週末有沒有好好休？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、茶泡飯加明太子、太對了、明天 6:30 desk、得清醒。週末——禮拜六下午我陪小孩去外婆家、禮拜天上午看新聞、下午躺床看書、傍晚煮飯。週末有一半是我的、一半留給工作——比 a 那種「全部關手機去箱根」差一點、但符合我家現況。我先生今晚把週末故事接過去陪小孩睡、我可以坐到九點半。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '今天我想跟你聊一個 desk 上的小發現——我們有個自己跑的「散戶情緒指數」、就是計算客戶來電中「驚慌」字眼出現的頻率。今天傍晚我們接了 80 通電話、有 60 通含「崩盤、完了、賣光」這類字眼——歷史上單日紀錄。對比 Polymarket 同時往下走、形成完美的「散戶恐慌 vs smart money 鎮定」對照組。我們有時候用這個 ratio 當逆向訊號——散戶越慌、smart money 越淡定、通常表示週一是進場日不是出場日。' },
+
+    { type: 'dialogue', character: 'chef', text: '散戶慌、smart money 淡——這個就是 a 上禮拜講的「新聞放大、市場吸收」的具體量化版。我們店裡也有類似的訊號——客人吵的越大聲說「這道菜怎麼了」、有時候就是「沒怎麼了、他今天心情不好」；越多人同時吵、越可能是「大環境問題」（譬如冷氣壞了讓人煩）、不是菜本身。聲音多 ≠ 真的有事。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「聲音多 ≠ 真的有事」、是我聽過 social-noise vs signal 最白話的版本、明天我要傳給組裡新人。a 不在、但他的「framework graduate」這禮拜不只他自己 graduate、我們整個 desk 都跟著 graduate 了一輪——三層 escalation 經住、Friday tech 崩沒拖到 Iran 賭盤、散戶慌叫 smart money 鎮定。三個獨立驗證、把「decouple」這個 thesis 從理論變成可下注的東西。' },
+
+    { type: 'dialogue', character: 'chef', text: '從理論變成可下注的東西——這個動詞用得好。我做飯也是、一道新菜從「我覺得 OK」到「敢推給熟客」、要經過自己反覆試、朋友試吃、家人挑剔——三層通過才放 menu。你們的 thesis 通過三層驗證才能下重注、跟我這套幾乎一樣。茶泡飯馬上來、明太子炙到邊緣微焦、玄米茶熱熱的、明天 6:30 還早。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜天晚上 10 點半、東京。再 11 個小時、Tokyo 開盤。今晚的故事是「Friday 美股大崩、但 Polymarket 摜新低、AI 跟 Iran decouple 從理論變成可下注的東西」。Nasdaq -4.18% 收 25,709 是 2025-04 關稅以來最慘日（一兆美金市值蒸發）、Marvell -8% Micron -6.3% Broadcom -3.8% S&P -2.64% 收 7,383 Dow -1.35%、引爆點 Broadcom 禮拜三晚 AI 晶片展望失望加 Fed 升息機率升。但同一個週末 Polymarket「伊朗政權 6/30 前垮台」繼續摜到新低 1.85% 上限還是 2.95%——「同一群錢、看 AI 看 Iran、給出相反訊號」、ep57 a 講的「金融層跟地緣 decouple」完美實時驗證。新人最容易犯的錯：把 sectoral（單一產業）當成 systemic（整個系統）——Nasdaq -4% 是半導體+AI sectoral、不是 systemic（Polymarket 不動是 systemic 沒事的 evidence）。Trump 又喊「Sunday 宣布」第 6 次、desk tracker 還 25%、市場已免疫。新進展：美方傳要把伊朗 $24B 凍結資產轉給 Gulf 國重建——「錢還、但不是還給你、是還給你打過的鄰居」雙重羞辱、可能是「為什麼沒簽」的真正原因（不是 Hormuz 不是核子、是 $24B 去向）。Brent -2% $93。明天 Tokyo 開盤 B desk 三情境 40-40-20（亞洲半導體鏈跌+Iran-sensitive 反向漲整體 -2% / 跌一下下午聰明錢進場縮 -1% / 根本不跟認為 priced in）、B 押情境二最可能（禮拜五跌過頭、forced selling 非 fundamental）但分散倉位不 all in。B desk「散戶情緒指數」今天 80 通電話 60 通含「崩盤」歷史單日新高、對比 Polymarket 同時往下、形成「散戶恐慌 vs smart money 鎮定」對照組——「散戶越慌 smart money 越淡通常週一是進場日」（師傅:「聲音多 ≠ 真的有事、客人越多人同時吵越可能是大環境問題不是菜本身」）。整個 desk 這禮拜跟著 a 一起 graduate——三層 escalation 經住、Friday tech 崩沒拖到 Iran 賭盤、散戶慌 smart money 鎮定、三個獨立驗證、把 decouple 從理論變成可下注的東西（師傅:「新菜經自己試、朋友試吃、家人挑剔、三層通過才放 menu」）。茶泡飯加炙烤明太子收一週、明早 6:30 desk 見。',
+      duration: 6000,
+    },
+  ],
+};

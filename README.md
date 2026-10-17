@@ -1,133 +1,113 @@
-# 深夜食堂 × 市場情報 (Midnight Diner × Market Intel)
+# Midnight Diner x Market Intel
 
-> 像素風深夜食堂場景，結合市場情報視覺化的互動式 Demo 專案。
+> A pixel-art late-night diner scene combined with real-time market data visualization — an interactive demo project.
 
-## 專案概述
+![Screenshot](docs/screenshot.png)
 
-以「預編劇本 + 像素場景回放」策略，打造一個像素風格的深夜食堂互動場景。食堂中的角色會進行對話、點餐、做菜，同時場景內嵌入市場情報視覺元件（如 CRT 電視風格的賠率看板），將資料敘事融入遊戲化的體驗中。
+## Overview
 
-本專案設計為求職 Demo，目標在 4 週內於 MacBook Pro 2016（Intel i7 / 16GB）上完成可展示版本。架構上預留 LLM 接口，未來可無縫切換至本地或雲端 AI 推理。
+An interactive pixel-art experience where characters in a cozy late-night diner discuss market events while a live dashboard reacts in real time. The scene is driven by JSON episode scripts, with the architecture designed to seamlessly swap in an LLM API for dynamic content generation.
 
-## 核心策略
+Built as a portfolio demo to showcase full-stack interactive storytelling, game engine integration, and data visualization skills.
+
+## Live Demo
+
+**[Play it here](https://SIMPLYBOYS.github.io/midnight-diner-market-intel/)**
+
+## Features
+
+- **Pixel Diner Scene** — Hand-crafted 32x32 tile interior with warm late-night lighting and ambient CRT glow
+- **Character System** — Sprite sheet animations for walking, sitting, cooking, and emoting
+- **Timeline Engine** — JSON-driven episode playback with pause, resume, and restart controls
+- **Dialogue System** — Comic-style speech bubbles with typewriter effect
+- **Market Intelligence Dashboard** — Live-updating charts, ticker strip, volatility donut, sector flow bars, and breaking news headlines synced to the story
+- **CRT Visual Effects** — Scanlines, vignette, and data-flash animations on the dashboard
+- **Audio System** — BGM with crossfade transitions and auto-triggered SFX via Howler.js
+- **Episode Selector** — Switch between episodes from the top nav; each has its own BGM and market narrative
+- **Playback Controls** — Pause/resume/restart, progress bar, and mute toggle
+
+## Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Frontend | React + TypeScript |
+| Game Engine | Phaser 3 |
+| Build Tool | Vite |
+| Audio | Howler.js |
+| Map Editor | Tiled Map Editor |
+| Deployment | GitHub Pages |
+
+## Architecture
 
 ```
-先用 JSON 劇本驅動像素場景，展示完整視覺 + 架構設計能力
++------------------------------------------+
+|            React UI Layer                |
+|  (TopNav / Dashboard / PlaybackBar)      |
++------------------------------------------+
+|          TimelinePlayer Engine            |
+|   (play / pause / resume / dispatch)     |
++--------------+---------------------------+
+|  DataSource  |                           |
+|  +--------+  |       Phaser 3 Scene      |
+|  |  JSON  |  |  (pixel scene / sprites / |
+|  | episodes|  |   lighting / dialogue)   |
+|  +--------+  |                           |
+|  +--------+  |                           |
+|  |LLM API |  |                           |
+|  |(future) |  |                           |
+|  +--------+  |                           |
++--------------+---------------------------+
 ```
 
-- 無需本地 LLM，以 JSON 劇本驅動場景回放
-- 架構預留 DataSource 抽象層，可銜接 Ollama API 或雲端 API
-- 面試現場雲端 API 測試成本約 NT$41
+The **TimelinePlayer** is the core engine that reads JSON episode scripts and drives the scene. The **DataSource** abstraction layer allows swapping JSON scripts for an LLM API without changing game logic.
 
-## 技術棧
+## Getting Started
 
-| 類別 | 技術 |
-|------|------|
-| 前端框架 | React + TypeScript |
-| 遊戲引擎 | Phaser 3 |
-| 建置工具 | Vite |
-| 音效處理 | Howler.js |
-| 地圖編輯 | Tiled Map Editor |
-| 部署平台 | GitHub Pages |
+```bash
+# Prerequisites: Node.js 22+
+nvm use  # reads .nvmrc
 
-## 架構設計
+# Install dependencies
+npm install
 
-```
-┌─────────────────────────────────────────┐
-│              React UI Layer             │
-│  (HUD / 報告面板 / 播放控制 / 進度條)    │
-├─────────────────────────────────────────┤
-│           TimelinePlayer 引擎           │
-│      (播放 / 暫停 / 快轉 / 劇本解析)     │
-├──────────────┬──────────────────────────┤
-│  DataSource  │                          │
-│  ┌────────┐  │      Phaser 3 Scene      │
-│  │  JSON  │  │  (像素場景 / 角色動畫 /   │
-│  │ 劇本檔 │  │   燈光效果 / 對話泡泡)    │
-│  └────────┘  │                          │
-│  ┌────────┐  │                          │
-│  │ LLM API│  │                          │
-│  │(預留)  │  │                          │
-│  └────────┘  │                          │
-└──────────────┴──────────────────────────┘
+# Start dev server
+npm run dev
+
+# Type check
+npm run typecheck
+
+# Build for production
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
 ```
 
-**TimelinePlayer** 是核心引擎，目前讀取 JSON 劇本驅動場景播放。透過切換 DataSource 即可銜接 Ollama API 或雲端 API，實現動態內容生成。
+## Episodes
 
-## 功能特色
+| Episode | Title | Description |
+|---------|-------|-------------|
+| EP-01 | First Customer | A quiet evening — the first customer arrives with market gossip about NVDA crashing |
+| EP-02 | Earnings Whisper | Two regulars debate an AAPL earnings surprise while the chef serves late-night ramen |
 
-- **像素食堂場景**：32×24 tiles 地圖，暖黃色深夜燈光效果
-- **角色系統**：sprite sheets 動畫，支援走動、坐下、做菜等動作
-- **劇本回放引擎**：支援播放 / 暫停 / 快轉，完整演繹入場 → 對話 → 做菜 → 打烊流程
-- **對話系統**：對話泡泡搭配打字機效果
-- **市場情報 UI**：
-  - 底部 HUD 資訊列，展示話題標籤
-  - 場景內 CRT 電視風格賠率看板
-  - 模擬結束後完整報告面板
-- **播放控制**：進度條與播控元件
+Each episode includes synchronized market data events that update the dashboard in real time as the story unfolds.
 
-## 四週開發計畫
+## Project Structure
 
-### Week 1：像素場景搭建
-
-- 專案初始化與資料夾結構
-- 使用 Tiled 製作 32×24 tiles 食堂地圖
-- 載入角色 sprite sheets 與走動動畫
-- 實裝燈光效果（暖黃色深夜感）
-
-**產出**：可執行的食堂場景，角色能走動並坐下
-
-### Week 2：劇本系統 + 對話
-
-- 定義 Episode TypeScript 型別結構
-- 實作 TimelinePlayer 引擎（支援播放 / 暫停 / 快轉）
-- 製作對話泡泡與打字機效果
-- 廚師做菜動畫與端菜流程
-
-**產出**：完整一集播放，入場 → 對話 → 做菜 → 打烊
-
-### Week 3：市場情報 UI
-
-- 底部資訊列（HUD）展示話題標籤
-- 場景內 CRT 電視風格賠率看板
-- 模擬結束後的完整報告面板
-- 播放控制與進度條
-
-**產出**：整合市場情報視覺元件
-
-### Week 4：打磨 + 部署
-
-- 音效與 BGM 整合
-- 開發 3 集不同主題劇本
-- GitHub Pages 部署
-- 撰寫完整文件與面試話術
-
-**產出**：可展示的完整版本
-
-## 素材預算
-
-| 項目 | 預估費用 |
-|------|----------|
-| 日系角色 sprites | 免費 / 授權確認 |
-| 室內家具 tileset | ~$10 USD |
-| 像素編輯器 | $19.99 或免費替代品 |
-| 音效素材 | 免費（freesound.org、kenney.nl） |
-| **合計** | **約 NT$1,000 ~ 1,500** |
-
-## 里程碑
-
-每週末檢查點：
-
-1. **Week 1** — 場景可執行
-2. **Week 2** — 劇本可播放
-3. **Week 3** — UI 元件完整
-4. **Week 4** — 可展示版本上線
-
-## 延伸路線
-
-- 接入免費 LLM API，實現動態劇本生成
-- 購置 Mac Mini M4 Pro 進行本地推理
-- 每日自動模擬報告推送
+```
+src/
+  assets/         # Sprites, tilemaps, audio, episode scripts
+  audio/          # AudioManager (Howler.js singleton)
+  characters/     # Character class and sprite management
+  components/     # React components (GameCanvas, overlays)
+  datasource/     # DataSource abstraction (JSON / LLM)
+  dialogue/       # Dialogue bubble system
+  engine/         # TimelinePlayer, EventBus, types
+  navigation/     # Pathfinding, walkable grid, locations
+  scenes/         # Phaser scenes (Boot, Diner)
+  ui/             # React UI (TopNav, MarketDashboard, PlaybackBar)
+```
 
 ## License
 
-MIT
+[MIT](LICENSE)

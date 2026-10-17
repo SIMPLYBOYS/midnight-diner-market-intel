@@ -1,0 +1,197 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-06-18 (Thu JST):
+ * - THE FOMC RESOLVED (decision + Warsh presser were Wed 6/17). ep65's
+ *   three-item scorecard came in HAWKISH on ALL THREE:
+ *   ① DOT PLOT: median 2026 rate projection rose to 3.8% (UP from 3.4%
+ *      in March); 9 of 18 participants now pencil in at least ONE HIKE
+ *      for 2026 — a dramatic hawkish shift from prior cut/hold lean.
+ *   ② EASING BIAS: statement STRIPPED it out — removed references to
+ *      "additional rate adjustments", adopting a purely data-dependent
+ *      neutral stance.
+ *   ③ PRESSER TONE: Warsh leaned hawkish — i.e. sided with the DATA, not
+ *      the White House (which wanted cuts). Independence test: passed as
+ *      "the data's man." Bonus: Warsh announced task forces to overhaul
+ *      major Fed operations (a "new sheriff" institutional signal).
+ *   Rate itself HELD at 3.50-3.75% (4th consecutive hold) — the
+ *   non-event, exactly as priced (98.3%).
+ *   (TradingKey, Yahoo Finance, CNBC Fed live 6/17)
+ * - MARKET REACTION validated ep65's thesis ("利率不用看、看措辭"): the
+ *   rate didn't move, the WORDS did, and the words moved the market.
+ *   All three US indices closed LOWER on the hawkish surprise:
+ *   - Nasdaq -1.34% to 26,021.66 (tech hit most — valuations lean on
+ *     cheap money)
+ *   - Dow -0.98% to 51,492.55
+ *   - S&P 500 -1.21% (source level field is a typo "74,201"; use % only)
+ *   Treasury yields climbed: 2-year +~11bp to 4.153% (the real hawkish
+ *   tell), 10-year +4bp to 4.469%. (TradingKey/Yahoo 6/17)
+ * - FORWARD READ: hawkish Fed = "higher for longer" = pressure on
+ *   expensive assets, esp. AI/tech (priced on cheap-money assumptions) →
+ *   why Nasdaq fell most. B's reentry batch 2 was GATED on this FOMC
+ *   (ep60/61): the dip she waited for arrived, BUT its CAUSE (higher-for-
+ *   longer) means the dip may have further to go — "buy the dip" vs "the
+ *   dip isn't done" is tonight's real decision.
+ * - CHEF-RELEVANCE TWIST (payoff of ep65/66): yesterday's BOJ hike
+ *   strengthened the yen (→ cheaper imports for chef); today's hawkish
+ *   Fed strengthens the DOLLAR (→ weaker yen → costlier imports). The
+ *   two central banks pull chef's yen OPPOSITE ways in one week; the NET
+ *   is what hits his invoice, not either one alone.
+ * - IRAN background: Polymarket regime-fall 0.4% (dead; ~12d to 6/30
+ *   expiry). The Fri 6/19 Switzerland US-Iran signing (ep66 flicker) is
+ *   still pending — one-line background note, NOT the focus.
+ * - sectors[].value = |%change|x100 per theme, desc; sourced US index
+ *   moves + 2yr-yield bp lead; dot-plot context grey.
+ * - Continuity & CAST: ep66 B solo. Tonight A+B TOGETHER — a marquee
+ *   night (Warsh's first FOMC, building since Powell's 5/15 handover);
+ *   last pairing was ep62 (6/11), 5 episodes ago, within the "occasional"
+ *   cadence the user asked for. Written as INDEPENDENT regulars per the
+ *   personas CONTINUITY DEBT note: A = 我們桌上 (owns the scorecard
+ *   payoff he gave in ep65), B = 我們 desk (owns the batch-2 decision
+ *   gated on this FOMC); they compare independent views, NO joint
+ *   review / shared desk. A: humble about being right (ep63 motif), no
+ *   over/under betting. B: 我先生, kids, dad-quote. Chef's wife: calm,
+ *   asks the import-cost question. Fri Switzerland signing = the live
+ *   tail.
+ */
+export const EPISODE_67: Episode = {
+  id: 'ep-67',
+  date: '2026-06-18',
+  title: '20260618 禮拜四晚上、FOMC 隔天驗收——Warsh 計分卡三項全中鷹派（點陣圖中位數 3.4%→3.8%、18 人 9 人畫升息／聲明拿掉寬鬆偏向／記者會選數據不選白宮）；利率第四度不動是非事件、但措辭把三大指數打下來（Nasdaq -1.34% Dow -0.98% S&P -1.21%、2 年期殖利率 +11bp）——ep65「利率不用看看措辭」完美兌現；兩家央行一週內把師傅的日圓往反方向拉（BOJ 升息日圓強進口便宜 vs Fed 鷹美元強日圓弱進口貴、淨值才算數）；B 的 reentry 第二批掛這場、跌到了但「跌的理由」讓這個 dip 可能還沒到底',
+  description: '禮拜四晚上、Tokyo 21:00。昨天 Warsh 上任後第一場 FOMC 決議跟記者會出爐了——ep65 a 給師傅的那張計分卡、三個欄位、全中鷹派。第一欄點陣圖：官員集體預測的 2026 利率中位數、從三月的 3.4% 升到 3.8%、18 個官員裡有 9 個畫了至少一次升息——這是大轉鷹。第二欄措辭：聲明把「寬鬆偏向」那句拿掉了、改成純粹看數據的中性。第三欄記者會：Warsh 偏鷹、等於選了數據、沒選白宮——白宮想要降息、他第一次就頂回去、獨立性過關。利率本身第四度不動、是非事件、跟猜的一樣。但這就是 ep65 那堂課的精華——利率沒動、措辭動了、然後措辭把市場打下來：三大指數全收黑、Nasdaq -1.34%、Dow -0.98%、S&P -1.21%、2 年期公債殖利率跳 11 個基點。今晚 a 跟 b 都來——a 來收他自己給的計分卡、b 來面對她那個掛在這場 FOMC 的第二批 reentry：跌到了、是她等的 dip、但「跌的理由」是鷹派 higher-for-longer、這個 dip 可能還沒到底。兩家央行一週內、把師傅的日圓往兩個反方向拉。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 9 點、東京。昨天 Warsh 上任後第一場 FOMC、決議跟他第一次記者會都出爐了——ep65 a 給師傅的那張計分卡、三個欄位、全中鷹派。第一欄、點陣圖：Fed 官員集體預測的 2026 年利率中位數、從三月的 3.4%、升到 3.8%、而且 18 個官員裡、有 9 個畫了「今年至少還要升一次」——三月還偏向降息或不動、這次大轉鷹。第二欄、措辭：聲明稿把「寬鬆偏向」那句話拿掉了、改成「純粹看數據」的中性。第三欄、記者會：Warsh 整場偏鷹、等於公開選了數據、沒選白宮——白宮一直想要降息、他第一次面對鏡頭就頂了回去、獨立性的考試、過了。他還順手宣布要成立幾個工作小組、檢討 Fed 的運作——新官上任、不只調利率、還要改制度。利率本身、第四度按兵不動、維持 3.50 到 3.75、是非事件、跟所有人猜的一樣。但這正是 ep65 那堂課的精華——利率沒動、措辭動了、然後措辭把市場打下來：美國三大指數昨晚全部收黑、Nasdaq -1.34%、Dow -0.98%、S&P -1.21%、2 年期公債殖利率跳了 11 個基點到 4.15%。今晚 a 跟 b 都來——marquee 的晚上。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Nasdaq（6/17、鷹派打最重）', price: 26021.66, change: -1.34 },
+          { symbol: 'S&P 500（6/17）', price: 0, change: -1.21 },
+          { symbol: 'Dow（6/17）', price: 51492.55, change: -0.98 },
+          { symbol: '美 2 年期殖利率（+11bp、鷹派真訊號）', price: 4.153, change: 0.11 },
+          { symbol: '美 10 年期殖利率（+4bp）', price: 4.469, change: 0.04 },
+        ],
+        volatility: 20,
+        vix: 17.8,
+        rsi: 41.0,
+        beta: 1.06,
+        priceHistory: [26917, 26800, 26500, 26200, 26021, 26021, 26021, 26021],
+        volumeHistory: [760, 820, 900, 1050, 1180, 1320, 1400, 1480],
+        sectors: [
+          { label: 'Nasdaq -1.34%（科技打最重、估值靠便宜的錢撐、higher-for-longer 直擊）', value: 134, color: '#cc4422' },
+          { label: 'S&P 500 -1.21%（鷹派 shock、三大指數全收黑、措辭把市場打下來）', value: 121, color: '#cc4422' },
+          { label: 'Dow -0.98%（傳產相對抗跌、但也跟著收黑）', value: 98, color: '#cc4422' },
+          { label: '美 2 年期 +11bp 到 4.15%（鷹派真訊號、利率沒動殖利率跳、ep65 看措辭兌現）', value: 11, color: '#cc4422' },
+          { label: '點陣圖中位數 3.4%→3.8%（18 人 9 人畫升息、寬鬆偏向拿掉、Warsh 選數據不選白宮）', value: 0, color: '#888888' },
+        ],
+        headline: '禮拜四 21:00 JST、FOMC 隔天：Warsh 計分卡三項全中鷹派（點陣圖中位數 3.4%→3.8% 18 人 9 人畫升息／聲明拿掉寬鬆偏向／記者會選數據不選白宮、獨立性過關）/ 利率第四度不動是非事件、但措辭把三大指數打黑 Nasdaq -1.34% Dow -0.98% S&P -1.21% 2 年期 +11bp（ep65 利率不用看看措辭兌現）/ B 第二批掛這場 dip 到了但 higher-for-longer 可能沒到底 / 週五美伊瑞士簽署待觀察',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    // ── A and B both arrive — marquee FOMC-resolution night ──
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい——兩位今晚都來、我就知道那場美國央行的會、一定有得講。a、我照你上次教的、用你那張計分卡看了新聞——點陣圖、措辭、記者會。但說真的、我只看懂了「股票跌了」、其他三個欄位我對不上。你來幫我對答案。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安——我今晚來、就是要跟你對這張答案、而且結果很乾淨：三個欄位、全中、而且全是鷹。第一欄點陣圖、官員集體預測的利率中位數、從三月的 3.4% 升到 3.8%、18 個人裡 9 個畫了「今年還要升」——這是大轉鷹。第二欄、那個「寬鬆偏向」的詞、Warsh 真的拿掉了。第三欄、記者會他整場偏鷹。三個欄位、同一個方向。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '三個全中、全是鷹——那你不是很厲害？上次就跟我說要看這三個、結果真的就是這三個。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、不、又來了——這不是我厲害、是那張計分卡本來就是市場共識的看法、我只是把它整理給你。真正值得講的、不是「我猜中要看哪三個」、是「這三個欄位、為什麼能把市場打下來」。你看——利率本身一動都沒動、第四次按兵不動。如果市場只看利率、昨晚應該風平浪靜。結果三大指數全黑、Nasdaq 跌 1.34%、2 年期殖利率跳 11 個基點。利率沒動、是「措辭」把市場打下來的。這就完美證明了上次跟你講的那句——「利率不用看、看措辭」。昨晚是這句話最乾淨的一次示範。' },
+
+    { type: 'dialogue', character: 'chef', text: '利率沒動、是措辭把市場打下來——這個我昨天還半信半疑、今天看到股票真的跌、就完全信了。但我不懂、Warsh 只是「說話比較硬」、又沒真的升息、為什麼大家要因為他「說的話」就賣股票？話又不是錢。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我接這個——因為「話」會改變大家對「未來的錢」的預期。Warsh 等於在說「降息這條路、我關了、而且我覺得今年可能還要升」。股票的價格、很多是建立在「未來錢會變便宜」這個假設上的——尤其科技股、它們貴、是因為大家賭「以後利率會降、便宜的錢會去追它們」。現在 Warsh 把這個假設打掉了、說「錢不會變便宜、可能還變貴」——那些靠這個假設撐起來的高價、就要重新算。所以 Nasdaq 跌最多、1.34%、因為它最依賴「便宜的錢」這個故事。' },
+
+    { type: 'dialogue', character: 'chef', text: '靠「以後錢會變便宜」撐起來的高價、被一句話打掉——這個我懂。就像我們街上有家店、店面租金一直靠「房東說以後會降租」的口頭承諾撐著、敢擴張、敢裝潢；哪天房東改口「不但不降、還要漲」、那家店的整盤算計就垮了。Warsh 就是那個改口的房東？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「靠房東口頭降租撐著的店」、是 higher-for-longer 對成長股衝擊最好的中文版。完全是這樣——市場上最貴、最靠「未來便宜的錢」的那些資產、對 Warsh 改口最敏感。而且這裡有一層更值得敬佩的——Warsh 是 Trump 任命的、白宮一直公開要他降息、他第一次開會就頂回去、選了數據、沒選恩人。一個被任命的人、第一件事就讓任命他的人失望、這需要骨氣。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Warsh disappointing the White House: integrity ──
+    { type: 'dialogue', character: 'chef', text: '讓任命他的人失望、需要骨氣——這個我特別有感。我們做餐飲的、也常遇到。熟客、老朋友介紹來的、點了一道我覺得今天食材不夠好的菜、我該不該老實跟他說「這個今天我不推薦」？說了、掃他興、可能得罪介紹人；不說、端出去、砸我自己招牌。Warsh 就是選了「老實說」、得罪了介紹他的人？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個比喻、是今晚最精準的——Warsh 就是那個跟熟客說「今天這道我不推薦」的廚師。白宮是介紹他來的人、想要他端出「降息」這道菜討好大家；他看了數據——通膨還在 4.2%、就業還很強——覺得「這道菜今天不能端」、就老實頂了回去。短期他得罪了白宮、市場也跌了；但長期、他保住了一個央行最值錢的東西——可信度。市場相信他講的是真話、不是政治話。一個你相信他會說真話的央行行長、比一個討好你的、值錢一百倍。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我補 b 這個——而且市場昨晚的下跌、某種程度是「健康的下跌」。如果 Warsh 為了討好白宮、明明數據偏鷹卻硬講鴿、市場短期會漲、但那是建立在謊言上的漲、遲早更慘地崩。他選擇講真話、市場短期痛、但這個痛是「擠掉了不該有的樂觀」、是把價格拉回到誠實的位置。我寧可要一個讓我短期痛的真話、不要一個讓我短期爽的謊話。這跟你端菜、是同一個道理——誠實的難吃、好過虛假的好吃。' },
+
+    { type: 'dialogue', character: 'chef', text: '誠實的難吃好過虛假的好吃——這句我要刻在廚房牆上。我寧可客人嫌我今天魚不夠好、誠實跟他講、也不要騙他端出去、讓他回家拉肚子、再也不來。短期的得罪、換長期的信任。原來中央銀行行長、跟開餐廳、守的是同一條線。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── B's batch 2 decision: the dip arrived but ──
+    { type: 'dialogue', character: 'chef', text: 'b、那你那個分批買回的第二批、不就是掛在這場會嗎？現在股票真的跌了、是你等的便宜貨——你今天買了嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你記得真清楚——是、第二批就掛在這場 FOMC。但今天我面對的、是一個比「買或不買」更難的問題。我等的「dip」確實來了、股票跌了；但問題是——「它為什麼跌」。如果是因為一個會過去的壞消息跌、那我買；但今天是因為「higher-for-longer」跌、是一個「結構性的、會持續壓著的理由」跌。這種跌、跟之前不一樣——不是一次撞擊、是一個會一直壓在頭上的新重量。所以「dip 到了」、不代表「dip 到底了」。我今天只買了原定第二批的一半。' },
+
+    { type: 'dialogue', character: 'chef', text: '只買一半——為什麼是一半？不是說好第二批就第二批嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、因為計畫遇到新資訊、要調整、但不是推翻。原本的計畫是「FOMC 後買第二批」、那是在「不知道 FOMC 鷹不鷹」的時候訂的。現在知道了——很鷹、而且是會持續的鷹。這是一個新事實。對著新事實、我把第二批拆成兩半：一半現在買、因為「跌了、有些便宜是真的」；另一半留著、因為「higher-for-longer 可能讓它更便宜」。這叫「在計畫跟新資訊之間找平衡」——不死守原計畫、也不因為一個新消息就全部推翻。守紀律、不是守教條。' },
+
+    { type: 'dialogue', character: 'customer-a', text: 'b 這個「守紀律不是守教條」、是我今晚最想記下來的一句。死守原計畫、是把紀律變成教條——市場明明告訴你環境變了、你還照舊;另一個極端、是一有新消息就全部翻盤、那是根本沒紀律。b 拆一半、是兩者之間——計畫給她骨架、新資訊讓她微調。我自己的 framework 今天也微調了——higher-for-longer 確認、我把「留」的那部分、從二分半、加回到三分。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── chef-relevance: two central banks fight over his yen ──
+    { type: 'dialogue', character: 'chef', text: '那我問一個自私的問題——昨天 b 跟我說、日本升息、日圓變強、我進貨會變便宜。今天美國這個 Warsh 鷹派、又會怎麼影響我？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這個問題問得太好了、因為答案剛好是昨天的反方向——你要有心理準備。昨天 BOJ 升息、讓日圓變強、對你是好消息、進口變便宜。今天 Fed 鷹派、會讓「美元」變強——美元一強、日圓相對就變弱、那對你、就是壞消息、進口又變貴。所以這一個禮拜、兩家央行、一個讓日圓變強、一個讓日圓變弱、把你的日圓往兩個反方向拉。' },
+
+    { type: 'dialogue', character: 'chef', text: '一個拉強、一個拉弱——那我到底是賺還是賠？我下個月的進貨、是便宜還是貴？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、答案是「看淨值」——兩股力量相減、剩下的那個方向、才是你真正會感受到的。今天看起來、Fed 的鷹派力道、比 BOJ 的升息稍微強一點、所以日圓這兩天小貶了一點——意思是昨天我跟你說的「進貨變便宜」、被今天 Fed 這條抵銷掉了一部分。但這不是壞事——你學到了一個更重要的東西：不要看單一一條新聞就決定你的成本、要看「所有力量加起來的淨值」。央行不是只有一家、影響你日圓的、是全世界的央行在拔河。' },
+
+    { type: 'dialogue', character: 'chef', text: '全世界的央行在幫我的日圓拔河、我看的是繩子最後往哪邊移——這個畫面太清楚了。我以前以為「日圓貶」「日圓升」是一件單純的事、原來背後是好幾家央行在兩邊拉。那我學到的就是——別為單一一條新聞高興或難過、等繩子停下來、看它在哪、再算我的成本。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「等繩子停下來再算成本」——這就是我們做匯率的人、整天在做的事。沒有一條新聞能單獨決定方向、永遠是「所有力量的合力」。你今天從「為什麼東京煮麵的要管央行」、進化到「我要看全世界央行的合力」——這個進步、比我們桌上很多新人都快。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Thursday, A+B, marquee night winding down ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚兩位都在、又講了這麼一大課、我做點豐盛的對著吃：牛肉壽喜燒小鍋兩人份、和牛、蔥、菇、豆腐、最後下烏龍麵；再一鍋蛤蜊清湯、配冷酒。a 收了計分卡、b 做了半批的決定、兩個都該好好吃一頓。今晚能坐多久？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、壽喜燒對著吃、太好了。太太今晚回娘家、我不趕、可以坐到十點。今晚其實是個小小的里程碑——從 Powell 五月中交棒、我們追 Warsh 追了一個多月、到底他是 Trump 的人還是數據的人、今天終於有答案了。答案是數據的人。市場短期痛、但我反而鬆一口氣——這個世界還有一個地方、講真話比討好重要。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我也是、蛤蜊清湯給我多一點。我今晚的心情很特別——不是因為買了半批、是因為「我守住了紀律、又沒變成教條」。這幾個禮拜、a 一直在講「準備好接任何結果」、今天我算是真的做到一次——鷹派來了、我沒慌、按原計畫的一半執行、留一半應變。我爸常說「這行做到老、不是因為每次都對、是因為每次都還在桌上」——今天我又在桌上多坐了一天。' },
+
+    { type: 'dialogue', character: 'chef', text: '每次都還在桌上——你爸這句、跟我師父講的「開店三十年的本事、不是哪道菜驚天動地、是三十年都還沒關門」一樣。活得久、本身就是最高的本事。a 收了計分卡、b 守了紀律、你們今天都「還在桌上」。和牛我片薄、壽喜燒的蛋打成糖心、烏龍麵留最後吸湯、蛤蜊湯今天特別鮮。週五那個瑞士簽署、後天再說——今晚先慶祝你們都還在桌上。慢慢吃。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「活得久本身就是最高的本事」——這句我跟 b 一起收下了。週五美伊在瑞士那場簽署、我們會看、但還是那句、簽名出現再說。今晚不想它——壽喜燒先涮兩片和牛、慶祝這場追了一個多月的 FOMC、總算落幕。下一關、下一關再說。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 10 點半、東京。今天的故事是「Warsh 計分卡三項全中鷹派、利率沒動但措辭把市場打下來、講真話比討好重要」。ep65 a 給師傅的三欄計分卡——①點陣圖中位數 3.4%→3.8%、18 人 9 人畫升息（大轉鷹）；②聲明拿掉「寬鬆偏向」轉純數據中性；③記者會 Warsh 偏鷹、選了數據沒選白宮、獨立性過關（還宣布工作小組要改 Fed 制度、新官上任）——全中、同一個方向。利率第四度不動是非事件、但措辭把三大指數打黑：Nasdaq -1.34%（科技最重、估值靠便宜的錢撐）、Dow -0.98%、S&P -1.21%、2 年期殖利率 +11bp 到 4.15%——ep65「利率不用看看措辭」最乾淨的一次兌現。為什麼一句話能賣股票——because「話」改變大家對「未來的錢」的預期、Warsh 把「降息這條路」關了、靠「以後錢會變便宜」撐起來的高價要重算（師傅:「靠房東口頭降租撐著敢擴張的店、房東改口要漲就垮了」）。Warsh 是 Trump 任命卻第一次就頂回白宮的降息要求、選數據、需要骨氣（師傅:「熟客點了今天食材不夠好的菜、老實說『我不推薦』、得罪介紹人但保住招牌」——誠實的難吃好過虛假的好吃、a:「我寧可短期痛的真話、不要短期爽的謊話」、健康的下跌擠掉不該有的樂觀）。B 的 reentry 第二批掛這場——dip 到了、但「跌的理由」是 higher-for-longer 結構性壓力、「dip 到了不代表 dip 到底」、她只買了原定的一半（守紀律不是守教條、計畫給骨架新資訊讓微調、a 也把 framework 的「留」從二分半加回三分）。chef-relevance 反轉：昨天 BOJ 升息日圓強→進口便宜、今天 Fed 鷹美元強→日圓弱→進口貴、兩家央行一週內把師傅的日圓往反方向拉、「看淨值、全世界央行在幫你的日圓拔河、等繩子停下來再算成本」。A+B 同台 marquee 夜——追了一個多月的 Warsh 終於有答案（數據的人）、B 爸:「這行做到老不是每次都對、是每次都還在桌上」（師傅師父:「開店三十年的本事不是哪道菜驚天動地、是三十年都還沒關門、活得久本身就是最高的本事」）。壽喜燒慶祝兩個都還在桌上。週五瑞士簽署後天再說、簽名出現再說。',
+      duration: 6000,
+    },
+  ],
+};
