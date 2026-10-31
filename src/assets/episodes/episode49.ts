@@ -1,0 +1,188 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-28 (Thu JST):
+ * - Asia ALL red today (the relief rally paused):
+ *   - Nikkei -0.76%; Topix -0.71%.
+ *   - Kospi -0.29%; Kosdaq -0.25%.
+ *   - ASX 200 -0.75%.
+ *   Nikkei level DERIVED from Wed close ~65,964 (ep48) × 0.9924 ≈ 65,463
+ *   (approximate). Kospi level not derived (Wed +4.84% was an OPEN print,
+ *   close unverified) — % only.
+ *   (CNBC Asia 5/28)
+ * - THE DEAL FRAYED AT THE EDGES — two big new wrinkles:
+ *   1) Iran's leadership disputed Trump's characterisation: state media
+ *      said the waterway (Hormuz) "will remain under Iran's control" —
+ *      i.e. EXACTLY refusing the white-paper "unrestricted-passage
+ *      guarantee" that Rubio flagged as one of the two unresolved
+ *      sticking points and ep48 (Customer B) called the deal's main
+ *      dish. Semi-official agencies said disputes over "one or two"
+ *      issues are jeopardising the deal.
+ *   2) Iranian state TV LEAKED an "unofficial draft" of an interim
+ *      deal — White House dismissed it as "a complete fabrication."
+ *      So both sides are PR-warring over what the deal even says.
+ *   (CNBC Asia 5/28, NPR 5/25, Al Jazeera 5/24)
+ * - Iran's IRGC claimed it had targeted a US airbase (location
+ *   undisclosed). The US has not confirmed damage or retaliated beyond
+ *   standard posture; reads like IRGC posturing for domestic audience.
+ *   (CNBC Asia 5/28)
+ * - But — there IS a real "show" event ep47/ep48 had been waiting for:
+ *   on Tuesday TWO non-Iranian supertankers CROSSED Hormuz, the FIRST
+ *   movement in a week — ~4 million barrels of unrestricted crude
+ *   exited the chokepoint. Small but real: the path is opening even
+ *   as the rhetoric tightens. (TradingEconomics/CNBC 5/28)
+ * - Oil: Brent FELL >4.5% Wed to below $95 after Iran state TV said
+ *   Iran is committed to restoring Hormuz shipping to pre-war levels
+ *   within a month; then Brent ROSE 2.13% to $96.30 on Thu, on the
+ *   IRGC strike claim + Iran disputing the deal. WTI no clean Thu
+ *   print at episode time. (TradingEconomics Brent 5/28, CNBC 5/27)
+ * - BOJ Gov. Ueda warned earlier this week about rising inflationary
+ *   pressure from higher oil prices — relevant if oil bounces.
+ * - Rubio Mon: "give diplomacy every chance to succeed before we
+ *   explore the alternatives." (CNBC)
+ * - USD/JPY: no clean 5/28 print — last-known ~160 zone carried only.
+ * - NO polymarket block: used ep48 yesterday; today only ticked
+ *   2.65%→2.8% (still near low) — not worth back-to-back use.
+ * - sectors[].value = |%change|x100 per theme, desc; all 5/28 sourced.
+ * - Continuity: ep48 (Wed) Customer B solo said Hormuz unrestricted-
+ *   passage guarantee IS the deal's main dish that Iran is holding
+ *   back. Today Iran literally said Hormuz "remains under our control"
+ *   — B was right, the main dish was refused. ep47/48 "wait for a ship
+ *   to actually cross Hormuz" — finally happened (2 supertankers Tue).
+ *   Tonight CUSTOMER A (alternation 43A 44B 45A 46B 47A 48B 49A); A's
+ *   macro/analyst voice fits "both sides PR-warring over what the deal
+ *   even says + IRGC posturing + the tangible-but-small ship event."
+ *   A persona: male, late 30s, analyst, JetBlue friend, no over/under
+ *   betting. Chef's wife callback: she watched the news, oscillated
+ *   "要不要買 / 還好沒追 / 又跌了" — chef relays the disorientation.
+ *   Warsh first FOMC still 6/16-17.
+ */
+export const EPISODE_49: Episode = {
+  id: 'ep-49',
+  date: '2026-05-28',
+  title: '20260528 禮拜四晚上、deal 開始長毛邊——伊朗說 Hormuz「還是我們的」（昨晚 b 預言的「主菜」被退）、IRGC 嗆「打了美軍基地」、白宮罵伊朗官媒洩的草案「整個是假消息」、Asia 全紅；但有件真的：禮拜二有 2 艘非伊朗超油輪過了 Hormuz、一週來第一次、約 400 萬桶；油彈 Brent +2.13% 到 $96.30',
+  description: '禮拜四晚上、Tokyo 21:00。前兩天那種「市場創新高、deal 即將成」的興奮、今天有點冷下來——亞洲全部小跌、Nikkei -0.76%、Topix -0.71%、Kospi -0.29%、ASX -0.75%。原因不是一件、是三件同時冒出來：第一、伊朗高層直接打 Trump 臉、官媒講「Hormuz 還是在伊朗的控制下」——這正是昨晚 customer-b 指出的「整桌的主菜」、伊朗不肯白紙黑字保證、現在乾脆說「不保證」；第二、伊朗官媒洩了一份「臨時 deal 草案」、白宮回嗆「整個是假消息」——兩邊連 deal 寫了什麼都對不上、PR 戰打起來；第三、IRGC 跳出來說「我們打了一個美軍基地」、沒講哪裡、美國也沒證實傷亡、看起來是給自己人看的姿態。但今天還是有一件真的「show」——禮拜二有 2 艘非伊朗的超油輪過了 Hormuz、是這一週來第一次、大概 400 萬桶。Brent 昨天先跌 >4.5% 到 $95 以下、今天反彈 +2.13% 到 $96.30。BOJ 行長植田這禮拜還提醒「油價如果再彈、通膨壓力上來」。今晚 customer-a 來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 9 點、東京。前兩天那種「市場創新高、deal 即將成」的興奮、今天有點冷下來——亞洲全部小跌、Nikkei -0.76%、Topix -0.71%、Kospi -0.29%、ASX -0.75%。不是大跌、是「先停下來看清楚」的那種跌。原因有三件，今天一起冒出來：第一、伊朗高層直接打 Trump 臉、官媒講「Hormuz 還是在我們伊朗的控制下」——這句話、剛好是昨晚 customer-b 指出來的「整桌主菜」、伊朗一直不肯白紙黑字保證自由通行、今天乾脆說「不保證、這是我們的」。第二、伊朗官媒洩了一份「臨時 deal 草案」、寫了一堆條件、白宮立刻出來回嗆「整個是假消息」、根本沒這份東西——兩邊連 deal 寫了什麼都對不上、PR 戰打起來。第三、伊朗革命衛隊（IRGC）跳出來說「我們打了一個美軍基地」、沒講哪裡、美國也沒證實有傷亡、看起來是給自己人看的姿態。三件事疊在一起、市場稍微冷靜一下。但今天還是有一件真的「show」——禮拜二有 2 艘非伊朗的超油輪過了 Hormuz、是這一週來第一次、大約 400 萬桶的原油通過。海峽不是完全死的、有一條縫開著。油的反應是來回——Brent 昨天因為伊朗官媒說「一個月內把 Hormuz 恢復到戰前水準」、先跌超過 4.5% 到 $95 以下；今天因為 IRGC 那聲嗆、又彈 +2.13% 到 $96.30。BOJ 行長植田這禮拜也補了一句、提醒「油價如果再彈、通膨壓力會上來」。今晚 customer-a 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Nikkei 225（5/28 收）', price: 65464.0, change: -0.76 },
+          { symbol: 'Topix（5/28）', price: 0, change: -0.71 },
+          { symbol: 'ASX 200（5/28）', price: 0, change: -0.75 },
+          { symbol: 'Brent 油（5/28、IRGC 嗆完反彈）', price: 96.3, change: 2.13 },
+          { symbol: 'Kospi（5/28、小跌）', price: 0, change: -0.29 },
+        ],
+        volatility: 20,
+        vix: 16.4,
+        rsi: 58.6,
+        beta: 1.04,
+        priceHistory: [64996, 65300, 65500, 65700, 65900, 65964, 65700, 65464],
+        volumeHistory: [560, 640, 720, 780, 720, 700, 660, 620],
+        sectors: [
+          { label: 'Brent 油 +2.13%（$96.30、IRGC 嗆「打了美軍基地」、油反彈、昨天先跌 >4.5%）', value: 213, color: '#22cc55' },
+          { label: 'Nikkei -0.76%（高檔小回、伊朗 Hormuz「還是我們的」、deal 主菜被退、市場停下來看）', value: 76, color: '#cc4422' },
+          { label: 'ASX 200 -0.75%（澳洲也跌、亞太普遍給昨天的興奮打點折扣）', value: 75, color: '#cc4422' },
+          { label: 'Topix -0.71%（寬度也回吐、不只權值股、內需也跟著小跌）', value: 71, color: '#cc4422' },
+          { label: 'Kospi -0.29%（昨天衝太多、今天小回、相對最抗跌）', value: 29, color: '#cc4422' },
+        ],
+        headline: '禮拜四 21:00 JST：Asia 全紅、deal 開始長毛邊 / 伊朗：Hormuz「還是我們的」（拒簽 b 預言的「主菜」）/ 官媒洩草案、白宮嗆「整個是假消息」/ IRGC 嗆打了美軍基地（美未證實傷亡）/ 但 Tue 真有 2 艘超油輪過 Hormuz 4M 桶、一週首次 / Brent 反彈 $96.30 +2.13%',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。我老婆這個禮拜被新聞搞到精神錯亂——禮拜一說「要不要買」、禮拜二「還好沒追」、禮拜三「早知道就買了」、今天又問「怎麼又跌了、是不是要打仗了」。她現在已經放棄了、跟我說「以後新聞我聽你解釋就好」。今天到底是怎麼回事、亞洲全紅。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安、你太太這四天的情緒走勢、其實就是大多數散戶這個禮拜的真實寫照、被新聞牽著鼻子跑、最後累到放棄。她現在這個「累到放棄、找個信得過的人聽解釋」、反而是進步、是擋掉雜訊的開始。今天亞洲全紅、不是恐慌、是「先停下來看清楚」——三件壞消息今天一起冒、市場決定先把昨天的興奮打點折扣、不是要轉空。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '哪三件？我從昨天 b 那邊聽到、最大的釘子是 Hormuz 那塊伊朗不肯白紙黑字保證——今天有進展嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、最關鍵的就是 b 昨天講的那條——而且今天有進展、但是反方向的進展。伊朗官媒今天直接講出來「Hormuz 還是在伊朗的控制下」。等於 b 昨天說「這道主菜伊朗留作最後一張牌」、今天伊朗親口說「不只是留、我就不放這張牌」。一週前 Trump 說 deal「就快成了、Hormuz 要重開」、現在伊朗說「Hormuz 還是我們的」、兩邊講的根本是兩件事。所以你直覺對——這就是今天市場退一步的第一個原因。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩邊講的根本是兩件事——這個我做生意也遇過。我跟一家鰻魚商談獨家供應、我以為談好了「整年只賣給我」、結果他跟同行說「跟他簽的不是獨家、只是優先」。同一個會議、兩個版本、最後吵翻。國家也這樣？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、國家版只是把場面拉大、本質一模一樣。這在外交叫「dual narrative」——同一份文件、雙方各自講對自己人有利的版本、給國內人看。Trump 要對美國選民說「我們贏了、Hormuz 要為美國敞開」；伊朗領導要對自己人說「我們沒輸、Hormuz 還是我們的」。兩邊都要「面子」、所以對外講的版本互相矛盾、但檯面下還可以繼續談。麻煩的是、市場聽到兩個版本、不知道該信哪個——所以就先打折扣等。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── The "complete fabrication" PR war ──
+    { type: 'dialogue', character: 'chef', text: '聽說今天還有一個——伊朗官媒洩了一份草案、白宮罵「整個是假消息」？這個我看不懂、deal 是有沒有？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這就是 dual narrative 升級版、變成「dual leak」——兩邊各自洩自己想讓人看的版本。伊朗官媒今天洩了一份「臨時 deal 草案」、列了好幾條好像很具體、白宮立刻跳出來說「complete fabrication」、整個是假的、根本沒這份東西。怎麼解讀？兩種可能——一、伊朗在試探美國底線、放出一個對自己有利的版本，看美國敢不敢公開反對；二、伊朗在給自己人吃定心丸、就算 deal 沒成、至少國內看到「我們爭取到這些」。白宮嗆回去、是不想被這個版本綁住。所以結論是：真實的 deal、就在「伊朗版」跟「白宮版」中間、兩邊都還在拉。' },
+
+    { type: 'dialogue', character: 'chef', text: '在兩個版本中間、兩邊都在拉——這個畫面很傳神。那 IRGC 那個嗆聲「打了美軍基地」呢？這聽起來更可怕。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這個比較虛、不要被嚇到。重點不在他講什麼、在「美國的反應」。第一、IRGC 沒講打哪、第二、美國沒承認有任何傷亡、第三、美國也沒去報復。三個「沒」、加在一起、意思就是「這聲嗆有沒有真的發生、不重要——重要的是 IRGC 需要對自己人喊一聲狠話」。跟你店裡有時候、客人在店外大聲講話、嗆兩句、進來還是點同一碗麵——他需要的是被同伴看見、不是真的要砸店。如果這聲嗆是真的有打到美軍、美國早就有大動作、不會今天市場只小跌。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── The real "show": ships through Hormuz ──
+    { type: 'dialogue', character: 'chef', text: '那今天有什麼是「真的好」的？聽起來全部是嘴上吵、檯面下還在拉、IRGC 又在嗆——這個禮拜不是 deal 就快成了嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、有、而且我覺得這個比所有嘴上講的都重要——禮拜二、Hormuz 真的有 2 艘非伊朗的超油輪過去了、大概 400 萬桶原油、是這一整週的第一次。聽起來不多、但這是「show」、不是「tell」——前面這個禮拜我們都在等的「第一艘真的通過的船」、來了。只是來得很少、像試水溫。海峽不是完全死的、有一條縫開著、而且這條縫、是在 Trump 才喊「largely negotiated」之後出現的。所以盡管嘴上吵、檯面下的通行確實開始鬆。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩艘船、400 萬桶——這個聽起來像我們店試新菜、先做給三個熟客吃、不上正式 menu。先看反應、沒問題下禮拜再放上去。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「先給熟客試、沒問題再放 menu」的比喻、跟我們講的「soft opening」一模一樣——伊朗放兩艘過、看美國反應、看市場反應、看自己國內有沒有人跳腳、都 OK 的話、下禮拜可能放 10 艘、再下禮拜 50 艘。從現在這個「2 艘、4 百萬桶」、要到「正常時期、一天 1700 萬桶」、還要爬一段樓梯。所以正確的講法是：海峽開始開、但離全開還很遠；而且 IRGC 那聲嗆，提醒我們它隨時可以再關上。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Oil's confused back-and-forth ──
+    { type: 'dialogue', character: 'chef', text: '油這幾天像我老婆一樣神經錯亂——昨天跌、今天又彈。Brent 從 $95 跌回去、再彈到 $96，到底在反應什麼？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、油這幾天是「被新聞甩來甩去」、不是真的方向變了。昨天伊朗官媒講「一個月內 Hormuz 恢復戰前水準」、油就跌、因為市場讀到「快全開、供給回來」；今天 IRGC 嗆「打美軍基地」、油就彈、因為市場讀到「等等、可能又要打」。同一週、同樣的兩邊人物、丟出兩種訊號、油被甩來甩去。但你拉遠看——兩個禮拜前 Brent 還在 $114、現在 $96、跌了快 20%。短期甩動、不改大趨勢；大趨勢是戰爭溢價在退。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩個禮拜前 $114、現在 $96——這個比喻我懂、像我店裡颱風季魚價、颱風一來跳、颱風走又跌、每天看會以為很亂、把整季拉開看、其實有條線在往下走。把日子拉長、雜訊變小。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「把日子拉長、雜訊變小」——這跟我們講的「拉長時間軸過濾雜訊」是完全一樣的話、但你講得更好。今天油彈、不代表 deal 破、不代表又要大漲；它只是 IRGC 那聲嗆帶來的回聲。BOJ 行長植田這禮拜還補了一句——「油價如果再彈、通膨壓力上來」、這個是他真的擔心的事。所以對日本來說、Brent 從 $114 跌到 $96 是一份大禮；但如果 IRGC 那種嗆聲多幾次、油彈回 $100 以上、植田就要重新算 BOJ 的劇本了。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Thursday, A alone ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜四、市場小跌、嘴上吵一整天、你大概也累——我做點清爽下飯的：鹽烤秋刀、海苔卷、味噌湯、香物、白飯、配一小杯冷酒。秋刀今天進得肥。太太這幾天在家吧？今晚能坐多久？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、秋刀好、就這套。太太在家、晚餐我跟她吃過、今天來你這續一頓、把腦袋切換一下、明天還要早。今天 desk 沒太瘋、市場小跌大家反而比較冷靜、客戶問的問題也比較有水準、不是「追不追」、是「這份 deal 你信幾分」。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我自己今天的答案是——七分信、三分留——七分信、是因為兩艘船真的過了、Polymarket 押垮台的還是很低、Petraeus、Rubio 講話都還在「diplomacy」這個框；三分留、是因為 Hormuz 主菜伊朗今天明擺著不肯簽、IRGC 還在嗆、PR 戰雙方都在打。七分跟三分加起來不是十分、是「方向對、但留一手」。我們桌上的倉位、就照這個比例調。' },
+
+    { type: 'dialogue', character: 'chef', text: '七分信、三分留——這個剛好。我進貨也都這樣、跟一個新供應商、就算前兩批都漂亮，我也不會把整個月份押他、留三成給原本的舊家。供應商穩定一年我才完全切過去。新交情，永遠留個三分。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、「新交情永遠留三分」——這就是我們做風險管理的全部、用一個進貨的故事講完。今晚的故事用一句話收尾就好：deal 開始長毛邊、但沒破；兩艘船過去了、是個希望、但很小；伊朗在嗆、但沒真的開戰。明天 Camp David 那邊有沒有後續，再看。秋刀魚一上桌，我就閉嘴吃飯了。' },
+
+    { type: 'dialogue', character: 'chef', text: '一上桌就閉嘴——我師父最高興的時刻就是看客人這樣。秋刀皮烤到酥、肉還有油、海苔卷下面墊一點七味、味噌湯今天加了滑菇。冷酒先給你倒、白飯給你裝滿。明天的事明天看、今晚把這頓吃乾淨。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 10 點半、東京。今天的故事是「deal 開始長毛邊、但沒破」。前兩天那種「市場創新高、deal 就快成」的興奮、今天冷了下來——Asia 全紅但小：Nikkei -0.76%、Topix -0.71%、ASX -0.75%、Kospi -0.29%——不是恐慌、是「先停下來看清楚」。三件壞消息一起冒：一、伊朗高層親口說 Hormuz「還是我們的」——正是 customer-b 昨晚指出的「整桌主菜」、伊朗今天明擺著不肯簽（dual narrative：對國內各講各的勝利）；二、伊朗官媒洩了一份「臨時 deal 草案」、白宮回嗆「complete fabrication」——dual leak、真實的 deal 在兩個版本中間；三、IRGC 嗆「打了美軍基地」、沒講哪、美國沒證實傷亡、也沒報復——三個「沒」加起來＝對國內喊話的姿態、不是實打。但今天還是有一件真的「show」——禮拜二有 2 艘非伊朗超油輪過了 Hormuz、約 400 萬桶、一週來第一次。海峽不是完全死的、有條縫、像 soft opening、先給熟客試菜、看反應再決定要不要放 menu。Brent 兩天甩來甩去——昨天 -4.5% 跌破 $95、今天 +2.13% 彈到 $96.30——但拉遠看，兩週前 $114、現在 $96，跌了快 20%，大趨勢是戰爭溢價在退；植田補一句「油再彈通膨會上來」、提醒下行不見得是免費的。Customer A 今晚的總結最乾淨——「七分信、三分留」：兩艘船真的過了、賭垮台的還是很低、外交框還在，是七分信；Hormuz 主菜伊朗不肯簽、IRGC 還在嗆、PR 戰打著，是三分留。對應師傅的「新供應商永遠留三分」——做風險管理的全部，一個進貨故事講完。秋刀魚配冷酒、新交情留三分、舊交情才能托整月。明天 Camp David 後續再看；今晚先把這頓吃乾淨。',
+      duration: 6000,
+    },
+  ],
+};
