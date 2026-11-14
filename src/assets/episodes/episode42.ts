@@ -1,0 +1,229 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-21 (Thu JST):
+ * - Big risk-ON reversal, driver is AI/Nvidia NOT Iran peace. Nvidia
+ *   posted blockbuster earnings overnight (NY Wed); Asia ripped Thursday
+ *   on AI momentum, unrelated to the prior week's war-driven selling.
+ *   Nikkei +3.06% (SoftBank +~20%; Japan April exports +14.8% YoY,
+ *   fastest since Jan, semiconductor surge). Kospi +6.00%, Kosdaq
+ *   +5.55% (Samsung +6%+ after a 47,000-worker strike was averted via
+ *   a wage breakthrough). (CNBC Asia markets live 5/21)
+ *   Levels from ep41 prior closes x today's %: Nikkei ~60,017 ->
+ *   ~61,853; Kospi ~7,234 -> ~7,668; Kosdaq ~1,087 -> ~1,147.
+ * - USD/JPY ~159.05, virtually unchanged, pausing a 7-day streak; still
+ *   under 160 (intervention zone). US-rates-driven. Japan Q1 GDP +2.1%
+ *   annualized keeps BOJ near-term-hike speculation alive. No clean Thu
+ *   close; treat 159 as pinned. (FXStreet/OCBC 5/20)
+ * - US 10y ~4.6% (April CPI 3-yr high, PPI highest since Dec 2022). NO
+ *   confirmed clean break of 4.7% on 5/21 — B's ep41 line didn't break.
+ * - Iran talks now PAKISTAN-mediated; Iran wants to permanently end war
+ *   on all fronts incl Lebanon + shipping security. Deal contours:
+ *   enrichment moratorium vs sanctions lifted + frozen funds released +
+ *   Hormuz transit limits eased. US CENTCOM turned around 58 vessels;
+ *   both sides still restrict shipping. Background, not market driver.
+ *   (Wikipedia 2026 Iran war ceasefire, HoC Library CBP-10637, Axios 5/6)
+ * - Tehran SE CLOSED Thu (Iranian weekend Thu-Fri) — line paused.
+ * - POLYMARKET reintroduced (tool 2-3x/week per guidance). "Will the
+ *   Iranian regime fall by June 30?" 4.5% (0.045), vol ~$41.4M; over
+ *   5/14-5/21 ranged 4.5-6.5%, now at LOW end — through the loudest war
+ *   week the regime-collapse bet drifted DOWN. Data from
+ *   public/polymarket/latest.json (collectedAt 2026-05-21T01:17:17Z).
+ * - sectors[].value = |%change|x100 of headline asset per theme, desc.
+ * - Continuity: ep41 (Wed) B set the watch (10y 4.7% then USD/JPY 159).
+ *   Tonight 10y didn't cleanly break, USD/JPY under 160, move came from
+ *   AI. BOTH customers tonight; A = equity/AI voice, B = rates/FX voice.
+ *   Chef's wife callback flips to "today no peace yet markets soared".
+ *   B's spouse term is the wife-of form.
+ */
+export const EPISODE_42: Episode = {
+  id: 'ep-42',
+  date: '2026-05-21',
+  title: '20260521 禮拜四晚上、打了一整週的仗、今天全亞洲大漲（Kospi +6.00%、Nikkei +3.06%）、但主角不是和平、是 Nvidia——SoftBank +20%、Samsung 罷工喊停 +6%、Polymarket「伊朗政權垮台」反而掉到 4.5%',
+  description: '禮拜四晚上、Tokyo 21:00、市場今天大漲、但理由跟伊朗一點關係都沒有。昨晚 NY 盤 Nvidia 財報大爆發、AI 那條重新點火、今天亞洲整片紅——Nikkei +3.06%（SoftBank 一檔噴 20%）、Kospi +6.00%、Kosdaq +5.55%（Samsung 4 萬 7 千人的罷工昨天談成、Samsung +6%）。日本 4 月出口 +14.8%、自 1 月以來最快、半導體出貨撐起來的。打了一整週的仗、今天漲的原因卻是一份美國科技公司財報——最大聲的新聞不一定是推動的那隻手。Polymarket「伊朗政權 6/30 前垮台」更妙——吵了一整週、它反而從 6.5% 掉到 4.5%、停在低點。債券那邊、美 10y 還賴在 4.6%、b 在 ep41 設的 4.7% 今天沒收破；USD/JPY 卡 159、連七天漲勢暫停、沒碰 160。伊朗談判改巴基斯坦居中、CENTCOM 攔回 58 艘商船、Tehran 今天放假。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 9 點、東京。今天市場大漲、但說出來你可能會愣一下——漲的原因跟伊朗、跟戰爭、跟和平、一點關係都沒有。昨天晚上 NY 盤、Nvidia 財報大爆發、AI 那條線重新點火、今天亞洲整片紅——Nikkei +3.06%、裡面 SoftBank 一檔噴了快 20%；Kospi +6.00%、Kosdaq +5.55%、Samsung 那場 4 萬 7 千人的罷工昨天談成、薪資破局解除、Samsung 一檔 +6%。日本 4 月出口 +14.8%、自 1 月以來最快、是半導體出貨撐起來的。你看——打了一整週的仗、今天漲的真正原因、卻是一份美國科技公司的財報。這就是市場最反直覺的地方：最大聲的新聞、不一定是推動的那隻手。那個 Polymarket「伊朗政權 6 月 30 號前會不會垮台」的賭盤更妙——吵了一整週、它沒往上、反而從 6.5% 掉到 4.5%、停在這一週的低點。新聞最吵的時候、押政權真的會垮的人、反而最少。債券那邊、美 10y 還賴在 4.6% 附近、customer-b 上禮拜三設的 4.7% 那條線、今天沒收破；USD/JPY 卡在 159、連七天的漲勢今天暫停、還是沒碰 160。伊朗談判改由巴基斯坦居中、CENTCOM 已經攔回 58 艘商船、Tehran 今天放假。今晚兩位常客都來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Kospi（5/21 收）', price: 7668.0, change: 6.0 },
+          { symbol: 'Kosdaq（5/21 收）', price: 1147.5, change: 5.55 },
+          { symbol: 'Nikkei（5/21 收）', price: 61853.0, change: 3.06 },
+          { symbol: 'USD/JPY', price: 159.05, change: 0.0 },
+          { symbol: '美 10y 殖利率', price: 4.6, change: -0.02 },
+        ],
+        volatility: 21,
+        vix: 17.4,
+        rsi: 58.2,
+        beta: 1.06,
+        priceHistory: [7712, 7558, 7610, 7272, 7234, 7400, 7560, 7668],
+        volumeHistory: [642, 720, 815, 760, 690, 740, 820, 910],
+        sectors: [
+          { label: 'Kospi +6.00%（Samsung 4.7 萬人罷工喊停 +6%、AI 連動全面 risk-on）', value: 600, color: '#22cc55' },
+          { label: 'Kosdaq +5.55%（小型股全面翻紅、跟著大盤一起噴）', value: 555, color: '#22cc55' },
+          { label: 'Nikkei +3.06%（SoftBank +20%、4 月出口 +14.8% 自 1 月最快、半導體領）', value: 306, color: '#22cc55' },
+          { label: 'USD/JPY 159.05（連七天漲勢暫停、還是沒碰 160、財務省干預線在頭上）', value: 5, color: '#888888' },
+          { label: '美 10y ~4.6%（b 設的 4.7% 今天沒收破、通膨故事還在但今天讓位給 AI）', value: 2, color: '#22cc55' },
+        ],
+        headline: '禮拜四 21:00 JST、Asia 收盤大漲：主角是 Nvidia 不是和平 / Kospi +6.00% Nikkei +3.06% Kosdaq +5.55% / SoftBank +20% Samsung +6% / 日本 4 月出口 +14.8% / USD/JPY 159 連七天漲勢暫停 / 10y 4.6% 沒破 4.7% / Polymarket 伊朗政權垮台掉到 4.5%',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天我老婆問了一個跟以前相反的問題——以前她問「新聞天天打仗、股票怎麼反方向跌」、今天她問「今天又沒和平、為什麼股票大漲」。我一樣答不出來、只好說「等 a 來問他」。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、晚安。你老婆這個問題、今天我們桌上從早上開盤就在講——答案是「今天漲、跟伊朗一點關係都沒有」。昨天晚上美國一家做 AI 晶片的公司、叫 Nvidia、財報大爆發、賺的比大家想的多很多。這一份財報、把全世界做半導體、做 AI 的公司全部拉上去——日本 SoftBank 一檔噴 20%、韓國 Samsung、台灣那些晶片廠、全部跟著紅。伊朗的事、今天市場直接放一邊。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '一家公司的成績單、可以把整片市場拉上去？這個我有點難想像。就像我們街上一家拉麵店上了電視爆紅、結果整條街的店都客滿？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個比喻幾乎完全對、只差一點。Nvidia 不只是「上電視爆紅的那家店」——它是「賣麵粉給整條街的那家店」。它做的晶片、是全世界 AI 的原料。它財報好、代表「大家跟它買原料買很兇」、就證明整條街的 AI 生意都旺。所以不是它一家紅、是它證明了「整個產業的需求是真的」——這個比一家店爆紅、力量大太多了。' },
+
+    { type: 'dialogue', character: 'chef', text: '賣麵粉的生意好、代表整條街都在做麵——這個我秒懂。我進貨的製麵所如果跟我說「這個月訂單爆量」、我就知道不是只有我一家忙、是整區的麵店都忙。原來看一家「上游」、可以看出一整片。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這句「看上游、看出一整片」、就是我們分析師整天在做的事、你一句話講完。Nvidia 就是 AI 這條街的製麵所、它的訂單量、是整個 AI 產業的體溫計。今天它告訴市場「體溫很燙」、所以從東京到首爾、做這條街生意的全部跳起來。Kospi 一天 +6%、是好幾年沒見過的單日漲幅。' },
+
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: 'Kospi +6%、你說好幾年沒見過——那韓國今天是不是還有別的好事？不會只靠一家美國公司吧？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你問得準、韓國今天是「雙喜」。除了 AI 那條、Samsung 那邊本來有一場大罷工、4 萬 7 千個工人要停工、談薪水談不攏——昨天突然談成了、罷工取消。對 Samsung 來說、罷工取消等於「工廠不會停、訂單照出」、股票一口氣 +6%。一邊是 Nvidia 把需求點起來、一邊是 Samsung 把供給的疑慮解除、兩個好消息撞在同一天、所以 Kospi 才會跳這麼兇。' },
+
+    { type: 'dialogue', character: 'chef', text: '罷工取消也算好消息——這個我懂。我們店如果洗碗的、跑堂的吵著要走、我每天都提心吊膽；哪天他們說「不走了、留下來」、我那天煮麵手都比較穩。工人留下來、老闆才敢接單。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、就是這個——「不確定」本身就是成本。罷工沒發生、不是賺了什麼、是「少了一個會出事的可能」。市場最討厭不確定、一個大威脅消失、它就用大漲來慶祝。今天 Samsung +6%、有一半是慶祝「最壞的沒發生」、不是「最好的發生了」。' },
+
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '你剛說伊朗今天被放一邊——可是新聞還是一直在播伊朗、戰爭、海峽。那些押注的盤、現在到底怎麼看伊朗？' },
+
+    {
+      type: 'polymarket-odds',
+      data: {
+        asOf: '2026-05-21T01:17:17Z',
+        highlightSlug: 'will-the-iranian-regime-fall-by-june-30',
+        markets: [
+          {
+            slug: 'will-the-iranian-regime-fall-by-june-30',
+            question: 'Will the Iranian regime fall by June 30?',
+            yesProbability: 0.045,
+            volume: 41402281,
+            liquidity: 593139,
+            endDate: '2026-06-30T00:00:00Z',
+            history: [
+              { t: 1778724022, p: 0.045 }, { t: 1778752811, p: 0.045 }, { t: 1778781619, p: 0.045 },
+              { t: 1778810408, p: 0.045 }, { t: 1778839210, p: 0.045 }, { t: 1778871609, p: 0.045 },
+              { t: 1778900423, p: 0.045 }, { t: 1778929224, p: 0.045 }, { t: 1778958007, p: 0.045 },
+              { t: 1778986810, p: 0.045 }, { t: 1779015613, p: 0.045 }, { t: 1779044408, p: 0.045 },
+              { t: 1779073210, p: 0.045 }, { t: 1779102006, p: 0.045 }, { t: 1779130810, p: 0.055 },
+              { t: 1779159609, p: 0.055 }, { t: 1779188409, p: 0.045 }, { t: 1779217220, p: 0.045 },
+              { t: 1779246008, p: 0.055 }, { t: 1779274808, p: 0.055 }, { t: 1779303607, p: 0.045 },
+            ],
+          },
+        ],
+      },
+      duration: 5000,
+    },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這個盤就是答案——「伊朗政權會不會在 6 月 30 號前垮台」、押「會」的、現在只有 4.5%。你看這一整週、新聞天天「Trump 離下令攻擊剩一小時」、吵得要死、結果這條線從 6.5% 一路掉到 4.5%、停在低點。意思是——真正拿錢出來賭的人、越吵越不相信政權會垮。' },
+
+    { type: 'dialogue', character: 'chef', text: '越吵、押的人越少？這個跟我想的相反。新聞那麼兇、不是應該越多人覺得快垮了嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、這就是「嘴巴」跟「錢包」的差別。新聞兇、是因為兇的標題有人看、媒體愛播；但這個盤上面、是真的拿 4 千多萬美金在賭的人——他們的結論是「Trump 喊得兇、是談判姿態、不是真要讓政權垮」。每次 Trump 喊一句狠話、這些人不但不加碼、反而覺得「喊這麼大聲、表示其實要談、不是要打到底」、所以押垮台的反而減少。錢包比嘴巴冷靜。' },
+
+    { type: 'dialogue', character: 'chef', text: '錢包比嘴巴冷靜——這句我要記下來。我們店裡也有、客人嘴上喊「這家要倒了啦、難吃」、結果月底一看、他來最多次。嘴巴一套、腳一套。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你這個「嘴巴一套、腳一套」、是我聽過最好的市場心理學註解。我們看這種賭盤、就是專門看「腳」——不聽大家說什麼、看大家把錢放哪裡。今天最大聲的新聞是伊朗、但錢的腳、走去了 AI。所以今天該漲的是 AI、不是看伊朗新聞猜方向。' },
+
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。你上禮拜三講的那條 4.7%、今天有收破嗎？我記了一整週、每天等你來公布。' },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅你比我們 desk 的提醒系統還準。今天沒收破——美 10y 賴在 4.6% 附近、盤中上去一點又被買回來。但我得先潑一盆冷水：今天大家都在慶祝 AI、我們做債券、做匯率的這桌、心情沒那麼好。為什麼——因為通膨那個問題、今天沒有消失、只是被 Nvidia 的好消息蓋住了一天。' },
+
+    { type: 'dialogue', character: 'chef', text: '被蓋住一天——所以問題還在、只是今天大家不看它？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是這樣。今天股票漲、是因為「未來 AI 會賺很多錢」這個故事；但債券殖利率高、是因為「現在通膨壓不下去、Fed 不會降息」這個現實。一個講未來、一個講現在。今天市場選擇看未來、把現在的帳單塞抽屜。問題是——抽屜裡的帳單、6 月 16 號 Warsh 那場 FOMC 還是要打開。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '我接 b 這個——其實今天我們桌上也有人講同一句話的另一個版本：今天這種漲法、叫「跟明天借的」。AI 的好消息是真的、但一天漲 6% 是把未來好幾個月的樂觀、一次用掉。明天如果債券殖利率再往上頂、今天買最高的人、會是最痛的。' },
+
+    { type: 'dialogue', character: 'chef', text: '跟明天借——這個我太懂了。我們店生意好的那天、我會想「今天客人是不是把這禮拜要來的次數、一次用完了」、結果常常隔兩天就冷清。漲太兇、有時候反而要怕。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「客人一次用完」的直覺、就是我們最怕的「需求前置」。今天 Kospi +6%、爽是爽、但我們 desk 反而開始買保險——因為這種大漲日、隔天常常回吐一半。我今天的單、不是追漲、是「趁大家開心、買一點保險」。最熱鬧的時候買保險、最便宜。' },
+
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '日圓今天呢？還是卡在 159、沒碰 160？我每天看那個數字、像在看一鍋快滾沒滾的水。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「快滾沒滾的水」形容得太好——159.05、連七天的漲勢今天剛好暫停、還是沒碰 160。但今天有個新變化、對日圓反而是好事——日本經濟成長數字比預期好、市場開始猜「日本央行下個月可能就升息」。日本自己升息、日圓就會比較強、就不會一直往 160 貶。所以今天日圓沒貶、有一部分是這個期待撐著、不全是政府嚇唬。' },
+
+    { type: 'dialogue', character: 'chef', text: '日本自己升息、日圓就強——這個邏輯我繞一下…就像我們店如果自己漲價、東西就比較值錢？利息高、錢就比較值錢？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個類比方向完全對。利息就是「擺著錢的租金」——日本利息高、把日圓擺在日本就有比較好的租金、大家就想拿日圓、日圓就強。過去日本利息幾乎是零、所以大家把錢搬去美國賺 4 趴多、日圓才一直弱。今天市場猜日本要把租金調高、搬走的錢可能搬一點回來——這就是日圓今天沒繼續貶的底氣之一。' },
+
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '伊朗那邊今天市場不看、但新聞我還是有瞄到——說現在改成巴基斯坦在中間談？之前不是卡達、沙烏地那些？怎麼又換人？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、中間人換來換去、其實是好事的訊號。之前 Gulf 三國是「勸架兼保人」、現在多一個巴基斯坦居中傳話——巴基斯坦的好處是它跟伊朗同樣是穆斯林國家、講話伊朗比較聽得進去。伊朗透過巴基斯坦把回覆送出去、要求「整個戰爭要全面結束、包括黎巴嫩那條線、還要保證商船安全」。重點是——雙方還在傳紙條、表示沒翻桌。傳紙條雖然慢、但比互丟石頭好。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '我補一個今天的現實數字——美軍那邊 CENTCOM 講、到現在已經攔回 58 艘要進出伊朗港口的商船。意思是、嘴巴上在談和平、海面上船還是過不去。談判桌跟海峽、是兩個平行世界——這也是為什麼今天油沒因為「和平有進展」而大跌、因為海上實際還是塞著。' },
+
+    { type: 'dialogue', character: 'chef', text: '嘴上談和、海上塞船——這個畫面好衝突。就像兩個人桌上握手言和、桌子底下腳還在踢。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、外交十次有九次就是「桌上握手、桌下踢腳」。今天市場聰明的地方、就是它知道這件事——所以它沒去賭「和平」、也沒去賭「開戰」、直接跳過伊朗、去抱今天唯一確定的好消息：AI 財報。確定的東西、市場才敢重押；伊朗那種桌上桌下兩套的、市場學乖了、不押。' },
+
+    { type: 'wait', duration: 400 },
+
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '今晚難得兩位一起來、又是大漲的日子、我做點熱鬧的——鐵板牛舌配蔥鹽、炸雞翅、烤飯糰、再一鍋關東煮分著吃。a 你今天賺了、b 你買了保險、兩個心情不一樣、但我這桌菜一視同仁。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、今天我們桌上是賺的、但我不敢太得意——剛 b 講「跟明天借」那句、我記在心裡。牛舌跟炸雞翅給我來、烤飯糰兩個。今天賺的、當作請 b 那杯酒、慶祝她那條 4.7% 線雖然沒破、但守了一整週還是準的——沒破、也是一種對。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、關東煮給我多一點蘿蔔跟蛋、炸雞翅分我一支就好。a 要請酒我收下——但今天這杯我喝慢一點、明天一早 desk 要看美債開盤、我得留點清醒。我先生今天帶小孩去看牙醫、晚一點才回、我難得不趕、可以坐到九點半。' },
+
+    { type: 'dialogue', character: 'chef', text: '一個賺錢請客、一個喝慢留清醒——你們兩個今天剛好是市場的兩面：a 是「今天的開心」、b 是「明天的擔心」。我老婆說過一句、開店開到第十年她才懂——「生意最好的那天晚上、最該檢查冰箱還剩多少」。今天你們大漲、b 在看冰箱、a 在吃牛舌、其實都對。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、你太太那句「生意最好那天檢查冰箱」、是今晚的結論。我明天把它寫在我簡報第一頁。今天 Kospi +6%、就是該檢查冰箱的那天。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我也借這句。明天 Tehran 還在放假、伊朗線停一天；但美債不休、Nvidia 帶起來的這波 AI 樂觀、明天會被債券殖利率測試一次——10y 還是那條線、4.7% 沒破不代表不會破。今天大家忙著開心、我忙著看冰箱。後天的事後天再說、今晚這鍋關東煮、我要慢慢吃完。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 10 點半、東京。今天的故事是「最大聲的新聞、不是推動的那隻手」——打了一整週的伊朗戰爭、今天全亞洲卻因為一份 Nvidia 財報大漲：Kospi +6.00%、Kosdaq +5.55%、Nikkei +3.06%（SoftBank +20%）、日本 4 月出口 +14.8% 自 1 月最快、Samsung 4 萬 7 千人罷工喊停再 +6%。市場直接跳過伊朗、去抱今天唯一確定的好消息：AI。那個 Polymarket「伊朗政權 6/30 前垮台」更說明一切——新聞最吵的一週、它反而從 6.5% 掉到 4.5%、停在低點：嘴巴喊得兇、錢包卻越來越不信會垮。但 customer-b 提醒了另一面——通膨沒消失、只是被蓋住一天、美 10y 還賴在 4.6%、她設的 4.7% 今天沒收破但守了一整週、6/16 Warsh 那場 FOMC 抽屜裡的帳單還是要打開；今天這種大漲、是「跟明天借的」。USD/JPY 159.05、連七天漲勢暫停、沒碰 160、日本 Q1 GDP 好、市場開始猜 BOJ 下個月升息、日圓有了一點不貶的底氣。伊朗談判改巴基斯坦居中傳紙條（沒翻桌）、但海上 CENTCOM 已攔回 58 艘商船（桌上握手、桌下踢腳）。Customer A 今天賺錢請客、Customer B 喝慢留清醒看冰箱——一個是今天的開心、一個是明天的擔心。師傅老婆那句收尾：「生意最好的那天晚上、最該檢查冰箱還剩多少。」明天 Tehran 放假、伊朗線停一天、但美債不休——AI 的樂觀、明天要被殖利率測一次。鐵板牛舌還在滋滋響、關東煮在小鍋裡滾著、店裡今晚兩桌都坐滿。',
+      duration: 6000,
+    },
+  ],
+};
