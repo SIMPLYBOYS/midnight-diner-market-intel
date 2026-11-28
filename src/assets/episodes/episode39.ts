@@ -1,0 +1,227 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-05-18 (Mon JST):
+ * - Trump Truth Social posts Sunday 5/17 directed at Iran: "the Clock
+ *   is Ticking", "won't be anything left" if action not taken soon,
+ *   "TIME IS OF THE ESSENCE!" — read by markets as the strongest
+ *   escalation rhetoric since Operation Epic Fury concluded 5/5.
+ *   (CNBC Asia-Pacific live 5/18)
+ * - Asia Monday 5/18 closes (per CNBC live blog):
+ *   - Nikkei 225: -0.2% (mild — exporters absorbed but defense/insurance
+ *     supported)
+ *   - Topix: +0.1% (broader index slightly green — clear sector rotation
+ *     under the headline)
+ *   - Kospi: down more than 2% (extending Friday's -3.37% — tech-heavy
+ *     index hit hardest by Trump rhetoric)
+ *   - S&P/ASX 200: -0.76%
+ *   - Hang Seng futures: 25,733 vs Friday close 25,962.73 (-0.88% in
+ *     futures; cash opening soft)
+ *   (CNBC 5/18)
+ * - Oil Monday Asia session: Brent July +1.34% to $110.72, WTI June
+ *   +1.75% to $107.26 — directly responding to Trump Truth Social
+ *   posts. WTI now well above ep37/ep38 baseline of $102.49.
+ *   (CNBC 5/18)
+ * - USD/JPY Monday: ~158.83 — did NOT break 160 today; range $158.26
+ *   to $159.54. ep38 thesis "watch 160" — answer is, not yet.
+ *   (Wise / Tradingeconomics quote 5/18 00:30 UTC)
+ * - US 10y last print Friday 5/15 was 4.595% per Reuters / CNBC (a
+ *   touch under ep37's "4.6%" rounding). US bond market closed
+ *   Monday morning Tokyo time — Monday US session is what we'll see
+ *   in tomorrow's data.
+ *   (Reuters via CNBC 5/15)
+ * - Powell-Warsh handover: per multiple confirmations (CNBC, PBS,
+ *   Fortune 5/13-14) Warsh's term begins when Powell's expires 5/15.
+ *   Fed Governor Stephen Miran announced he will resign after Warsh
+ *   is sworn in — opens another Fed seat for Trump. Whether the
+ *   formal swearing-in happened Friday, weekend, or today is not
+ *   clearly reported; the Saturday "Chair Pro Tempore" wrinkle from
+ *   ep37 may have resolved over the weekend, but no clean dated
+ *   confirmation. Treat as "transitional, leave the door open".
+ *   (Fortune 5/14, CNBC 5/13, PBS 5/13)
+ * - Tehran SE reopening tomorrow Tuesday 5/19 still on track — no
+ *   announcement of postponement; Hamid Yari's Saturday public
+ *   commitment stands. Iran International earlier coverage warns
+ *   reopening could trigger "fresh crisis".
+ *   (Iran International, Times of Israel liveblog 5/16)
+ * - Hormuz remains closed; 1,500 ships and crews trapped in Gulf
+ *   per Commons Library briefing. Iran charging $1M+ per cooperating
+ *   vessel.
+ *   (House of Commons Library CBP-10636, 2026 Strait of Hormuz
+ *   crisis Wikipedia)
+ * - sectors[].value methodology unchanged: |%change|×100 of headline
+ *   asset per theme. Monday Asia closes used — first real prints
+ *   since ep37/ep38 (which used Friday closes).
+ * - No polymarket block this episode (themes varied).
+ * - Continuity: ep38 (Sun night) — Customer B came alone, escape
+ *   window 9-11pm, said her desk would open line at 7am Monday
+ *   watching the 4.7%/160 "stop-loss" levels. Customer A stayed
+ *   home Sunday to write his Warsh-pre-FOMC briefing. Both showing
+ *   up tonight (Mon evening Tokyo) is natural — first market day
+ *   wrap after a heavy weekend; both want to compare notes. Chef's
+ *   wife reads news first and asks confused questions; tonight she
+ *   asked "Trump 講 won't be anything left、那是什麼意思".
+ */
+export const EPISODE_39: Episode = {
+  id: 'ep-39',
+  date: '2026-05-18',
+  title: '20260518 禮拜一晚上、Trump 禮拜天 Truth Social「TIME IS OF THE ESSENCE」「won\'t be anything left」、Kospi 連跌兩天 -2%+、Brent 破 $110、USD/JPY 沒破 160、明天 Tehran 證交所要重開',
+  description: '禮拜一晚上、Tokyo 21:00、市場剛收完一天。早上 7 點 customer-b 的 desk 開 line、看的兩個門檻 (USD/JPY 160、美 10y 4.7%) 今天都沒被測試——但 Trump 禮拜天晚上在 Truth Social 連發「the Clock is Ticking」「won\'t be anything left」「TIME IS OF THE ESSENCE!」、口氣是 5/5 Operation Epic Fury 結束以來最硬的一次、亞洲開盤 oil 直接跳——Brent +1.34% 到 $110.72、WTI +1.75% 到 $107.26、超過 ep37/38 那個 $102 基準一截。股市分裂：Nikkei -0.2%（防衛保險撐住）、Topix +0.1%（旋轉、不是普跌）、Kospi 連跌兩天 -2%+、ASX -0.76%、Hang Seng 軟開。USD/JPY 158.83、區間 158.26-159.54、160 沒被測。明天禮拜二（5/19）Tehran 證交所要重開、2/28 戰爭以來第一次、Hamid Yari 禮拜六公告沒撤、Iran International 講「重開可能觸發新一輪危機」。Powell-Warsh 交接——禮拜五 Powell 任期到、Fed governor Stephen Miran 宣布等 Warsh 宣誓後辭職、Trump 又多一張 Fed 牌、但 Warsh 到底哪天正式宣誓、公開報導沒講清楚、ep37 那個「Chair Pro Tempore」是否週末解決也沒乾淨答案。Customer A 跟 customer-b 今晚都來——第一次禮拜一晚上對筆記、a 帶他週日寫的 Warsh-FOMC 簡報、b 帶她 desk 早盤的 log。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜一晚上 9 點、東京。市場剛收完今天——一句話總結、Trump 禮拜天晚上的 Truth Social 主導了整個亞洲開盤。三貼文連發、最硬一句是「won\'t be anything left」、針對伊朗、口氣是 5/5 Operation Epic Fury 結束以來最重的一次。亞洲反應：油直接跳、Brent 破 $110.72、WTI 破 $107.26、超過 ep37 那個 $102 基準一截。股市分裂——Nikkei -0.2%（防衛、保險撐住）、Topix +0.1%（旋轉、不是普跌）、Kospi 連跌兩天 -2%+（科技重壓）、ASX -0.76%、Hang Seng 軟開。Customer B 上禮拜天講的兩個門檻——USD/JPY 160、美 10y 4.7%——今天都沒被測試、USD/JPY 在 158.83、區間 158.26 到 159.54、剛好被 159 卡住。明天禮拜二、Tehran 證交所要重開、78 天沒開的市場、第一筆成交價會是這個禮拜最受看的「實況考試」。Powell-Warsh 那邊——Stephen Miran 宣布等 Warsh 宣誓後辭職、Trump 又多一張 Fed 牌；但 Warsh 到底哪天宣誓、公開報導沒講乾淨、ep37 那個「Pro Tempore」週末有沒有處理掉、也沒清楚答案。今晚店裡兩個常客都來了。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Nikkei（5/18 收）', price: 61806.43, change: -0.2 },
+          { symbol: 'Topix（5/18 收）', price: 4358.2, change: 0.1 },
+          { symbol: 'Kospi（5/18 收）', price: 7558.3, change: -2.0 },
+          { symbol: 'Brent 油（5/18 亞盤）', price: 110.72, change: 1.34 },
+          { symbol: 'WTI 油（5/18 亞盤）', price: 107.26, change: 1.75 },
+          { symbol: 'USD/JPY', price: 158.83, change: 0.21 },
+        ],
+        volatility: 28,
+        vix: 21.6,
+        rsi: 34.2,
+        beta: 1.12,
+        priceHistory: [7820, 7798, 7775, 7820, 7765, 7780, 7712, 7558],
+        volumeHistory: [290, 360, 425, 510, 588, 642, 720, 815],
+        sectors: [
+          { label: 'Kospi 5/18 -2.0%（連跌兩天、5/15+5/18 累計 -5.3%、科技重壓）', value: 200, color: '#cc4422' },
+          { label: 'WTI +1.75% 到 $107.26（Trump「won\'t be anything left」、亞盤直接 price-in）', value: 175, color: '#22cc55' },
+          { label: 'Brent +1.34% 到 $110.72（破 $110、Hormuz + 升溫雙引擎）', value: 134, color: '#22cc55' },
+          { label: 'Topix +0.1%（防衛保險撐住、Nikkei -0.2%、是旋轉不是普跌）', value: 10, color: '#22cc55' },
+          { label: 'USD/JPY 158.83（區間 158.26-159.54、被 159 卡住、160 今天沒測）', value: 21, color: '#cc4422' },
+        ],
+        headline: '禮拜一 21:00 JST、Asia 收盤：Trump Truth Social「TIME IS OF THE ESSENCE」「won\'t be anything left」/ Brent +1.34% 破 $110、WTI +1.75% 破 $107 / Kospi 連跌兩天 -2%+ / Nikkei -0.2%、Topix +0.1% 旋轉 / USD/JPY 158.83、160 沒測 / 明天 Tehran 證交所重開',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+
+    // ── Customer B enters first (her desk closes 6pm, she swings by) ──
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。禮拜一你今天怎麼有時間？我以為禮拜一晚上你都要趕回家。我老婆早上看新聞、看到 Trump 寫「won\'t be anything left」、轉頭問我「那是什麼意思、是真的要打、還是嚇嚇人」——我又答不出來。' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安。今天我先生輪到接小孩、我有時間。Trump 那三句、是我們 desk 早上 7 點 line 上第一個討論的——「the Clock is Ticking」「won\'t be anything left」「TIME IS OF THE ESSENCE!」、三句連發、不是隨手發、是排序的。第一句是壓力、第二句是後果、第三句是時程。我們把它歸類成「ultimatum-style posting」、5/5 戰爭那波結束以後、第一次出現這種編排。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: '排序的——我以為他就是想到什麼打什麼。原來 Truth Social 還有編排？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、Trump 自己未必有編排、但他幕僚會幫他編、或者至少幫他過。三句一組、語氣遞進、是談判桌上的標準寫法。對我們市場的人來說、看到這種編排出現、就知道「不是發洩、是要嚇對方上桌」。實質會不會打、不重要、重要的是市場必須假設「可能會」——所以油就要漲。今天 Brent 跳到 110.72、WTI 跳到 107.26、就是市場把「可能打」的機率調高、不是真的打了。' },
+
+    { type: 'dialogue', character: 'chef', text: '把可能性調高就要漲——這個我會聯想到颱風要來、我會多進兩天蔬菜。颱風還沒到、價格已經先漲。市場也是這樣？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是颱風尚未登陸但先漲的邏輯——我們叫 risk premium、白話是「不確定費」。1% 的機率打、油的權重也要動 1%。Trump 三貼文之後、我們桌上把 next-week 戰爭機率從 15% 拉到 25%、就足以解釋今天 Brent 那 1.34% 的跳。完全可以量化、不是憑感覺。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Customer A enters — second arrival ──
+    { type: 'enter', character: 'customer-a', toTile: 'entrance' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。a、你昨天沒來、我跟 b 還在猜你是不是在家寫簡報。' },
+
+    { type: 'move', character: 'customer-a', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-a' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、b、晚安。昨天確實在家寫——Warsh 上任前 5 週展望、我們桌上要交 12 頁、我寫到禮拜天晚上 11 點。剛剛走進來看到 b 已經在跟你討論 Trump 三貼文——我也看到了、我從 oil 那邊接著講——今天最有意思的不是 oil 漲、是「Nikkei -0.2% 但 Topix +0.1%」這個分裂。' },
+
+    { type: 'dialogue', character: 'chef', text: 'Nikkei 跟 Topix 不是都日本嗎？怎麼會反方向？這個我以為一定是同方向、就像我們店裡的湯頭跟蓋飯、好賣的時候一起好。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、Nikkei 225 是大型權值股、出口導向的多、像 Toyota、Sony、Tokyo Electron；Topix 是廣義 1000 多檔、傳統行業比重高、防衛、保險、銀行、能源都在裡面。今天 Trump 喊話、出口股被砸（Toyota 怕美國關稅再喊一次）、但防衛股（三菱重工、川崎重工）跟石油股（INPEX、Idemitsu）漲。所以大型出口拖下 Nikkei、廣義能源國防撐起 Topix——0.3 個百分點的分裂、是「sector rotation」的指紋。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'a 講的這個今天我們 desk 也注意到——更精準是「risk-on-defense / risk-off-export」、跟單純「risk-off 全部跌」不一樣。所以對台股、Hang Seng 的解讀也要分——半導體會被砸、海運跟能源會撐。' },
+
+    { type: 'dialogue', character: 'chef', text: '同樣是日本、但不同產業、結果相反——這個跟我們街上不一樣。我們街上麵店倒一家、其他三家分到客人、是替代關係。你們講的這個、是同一間店的不同菜、有的好賣有的不好賣？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、好的類比、但更準的是這樣——日本經濟是一艘大船、Nikkei 225 是船頭看到的浪、Topix 是船身感受到的水流。同一艘船、船頭可能向左偏（出口受打）、船身可能向右轉（能源國防受抬）、是船在做迴轉、不是反向。投資人看 Nikkei 一個數字、會以為日本跌；看 Topix 一個數字、會以為日本沒事。其實兩個都對、只是看的位置不同。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── USDJPY 160 not tested ──
+    { type: 'dialogue', character: 'chef', text: 'b 昨天講 USD/JPY 160 是停損線、那今天呢？有破嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、今天最高到 159.54、收在 158.83、160 沒測。原因有兩個——第一、日本財務省禮拜五就放消息「準備介入」、雖然沒動手、但口頭威嚇有效、159 上面有人在賣美金；第二、Trump 三貼文出來、避險買美金的買盤、被「日本要介入」的賣盤抵銷掉、所以卡在 159 區間。我們 desk 早上把 stop 從 160.00 移到 159.80、結果今天沒觸發、好處是沒被止損、壞處是部位還掛在那、明天還要再看。' },
+
+    { type: 'dialogue', character: 'chef', text: '口頭威嚇就有效——這個是我們街上的老警察、不用真的開單、走過去說一聲、違停的車就會自己離開。財務省今天沒做的事、其實已經做了一半。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅這個比喻、b 你聽到沒、就是 jawboning 的最白話版本——中央銀行不必動手、只要讓市場相信「我可能會動手」、就達到目的。BoJ 跟 MoF 這 20 年練得最好、特別是 USD/JPY 158-160 區間、機構都記得 2025-04 那次介入的傷、158 以上就會自己降速。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Tehran reopening tomorrow ──
+    { type: 'dialogue', character: 'chef', text: '明天禮拜二、Tehran 證交所要開了——昨天 b 講會分批開、限跌幅。你們明天會看嗎？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、會看、但不是因為要交易（伊朗市場我們沒法進）、是因為「第一筆成交價」會告訴我們三件事——第一、伊朗金融機構自己對戰爭損失的估值多少；第二、本地散戶的恐慌程度（如果有的話）；第三、SEO 介入的力度（如果第一筆價格太難看、政府會不會立刻熔斷）。三件加起來、是觀察伊朗內部信心的「市場版民調」。' },
+
+    { type: 'dialogue', character: 'customer-b', text: 'a 講的這個、我們 desk 也排了人盯、用 Iran International 的英文滾動報導。要注意——TEDPIX 是 Rial 計價、Rial 已經貶值 70% 以上、所以指數可能名義上漲（因為計價貨幣爛了）、但實際以美金看是崩的。明天看數字、要看「Rial-adjusted」跟「USD-equivalent」兩個版本、不能只看頭條數字。' },
+
+    { type: 'dialogue', character: 'chef', text: '計價貨幣爛、指數會自動漲——這個我聽過、辛巴威那個億元鈔票就是這樣。原來伊朗也是？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、不到辛巴威那種規模、但同樣方向。伊朗 Rial 黑市對美金大概 110 萬 vs 官方 50 萬左右（依不同時點）、所以 TEDPIX 即使大漲、換成美金看可能是腰斬的。明天要看的真正信號、是「Rial 美金黑市報價」跟「TEDPIX」兩個一起看、單看任何一個都會誤判。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Warsh handover status, Miran resigning ──
+    { type: 'dialogue', character: 'chef', text: 'Warsh 那邊——他到底有沒有正式上任？昨天我們講「文件還沒簽回」、今天的新聞怎麼說？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、誠實講、今天的公開報導沒有一條乾淨寫「Warsh 今天宣誓」或「Warsh 還沒宣誓」——大家都假設他從週末某時點開始就是 chair、但 Fed 也沒發新聞稿說「歡迎 chair Warsh」、Powell 也沒發聲明說「我交班了」。這種「悄悄交班」其實也是 Fed 的傳統、不喜歡儀式感、避免市場過度解讀。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、補充 a——Fortune 禮拜四（5/14）那條新聞是、Fed governor Stephen Miran 已經公開講「等 Warsh 宣誓後我就辭職」、目的是讓 Trump 多空一張 Fed 椅子可以提名。Miran 是溫和派、他走、Trump 補的人可能更鷹、所以「Warsh 上任」這個事件、實質效果不只是 chair 換人、是 board 結構整體往鷹靠。市場今天還沒 price 這條、可能還在等 Miran 真的提辭呈。' },
+
+    { type: 'dialogue', character: 'chef', text: 'Miran 走、Trump 補一個更鷹的——這個是不是像我們店裡換廚師、新師傅口味更重、客人會慢慢流失？' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、比喻準到 b 都笑了——口味更重的「鷹」、對債券持有人就是壞客人、會慢慢流走（殖利率上升）；對美元就是好客人、會聚過來（美金強）。所以 Miran 辭職這條消息一旦正式公告、會看到——美 10y 再往上、USD index 再上、新興市場資金繼續流出。今天還沒發、市場還沒動、明天禮拜二如果他真的提出辭呈、那就是另一個亞洲開盤要小心的點。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — what to eat, Monday is heavy ──
+    { type: 'dialogue', character: 'chef', text: '今晚兩個一起來、要不要點同樣的？還是各吃各的？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、我先選——禮拜一晚上重一點：豬肉味噌湯、白飯、烤鯖魚（昨天那條太好吃了）、漬物、再加一份煮物、蘿蔔跟蒟蒻燉到入味那個。今晚不喝酒、明天 7 點還是要 line。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我跟 b 重複——加烤秋刀魚就好、其他一樣。我這禮拜寫簡報寫到失眠、需要一頓有力的。然後一杯熱茶、不要咖啡。' },
+
+    { type: 'dialogue', character: 'chef', text: '兩位重一點、好——豬肉味噌湯下豆腐跟青蔥、煮物用昆布柴魚、漬物三種（黃瓜、白菜、梅子）。鯖魚跟秋刀魚我並排烤、火候不一樣、鯖魚厚一點要再翻一次。15 分鐘上桌。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、邊等邊問你一個——你今天有沒有注意到、店裡客人比上禮拜少了？' },
+
+    { type: 'dialogue', character: 'chef', text: '有、今天少三組客人、平常禮拜一七、八桌、今天五桌。我以為是天氣、晚上下雨。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、天氣可能有影響、但更可能是——油價漲、東京人通勤成本上升、禮拜一晚上就是直接回家、不出來吃。今天 Brent 跳到 110、東京家庭油費直接 +1.3%、累積一週就是有感的。你店裡這個客流數字、其實是宏觀數據的「微觀對應」、比 PMI 還快。' },
+
+    { type: 'dialogue', character: 'chef', text: 'b 講這個我突然覺得——我店裡那本帳本、其實也是一個指標、只是我從來沒這樣想過。客流跟訂單數、月底我自己算、但沒有對應到外面任何東西。' },
+
+    { type: 'dialogue', character: 'customer-a', text: '師傅、我們有個術語叫「nowcast」——用即時的微觀數據去推宏觀指標。你店裡的客流、跟東京千葉那邊計程車的空車率、跟新宿一帶酒吧的營業時間延長/縮短、是同一類數據。差別只是你的是手寫帳、他們的是即時上傳。哪天你願意把你 5 年帳本整理出來、其實是有研究價值的。' },
+
+    { type: 'dialogue', character: 'chef', text: '5 年帳本——我自己看都覺得亂、誰會想看。但你這樣講、我下次盤點的時候多想一句「今天這個數字跟上週差多少、為什麼」、可能會多看出點東西。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜一晚上 10 點半、東京。今晚兩個常客同時來、a 帶他週日寫的 12 頁 Warsh 簡報、b 帶她早上 7 點 desk line 的筆記。今天市場結論——Trump 禮拜天那三貼文（「Clock is Ticking」「won\'t be anything left」「TIME IS OF THE ESSENCE!」）是 5/5 戰爭結束以來最重的口頭升溫、Brent 直接破 $110、WTI 破 $107。股市分裂——Nikkei -0.2%、Topix +0.1%、是 sector rotation、不是普跌；Kospi 連跌兩天 -2%+、是科技重壓。USD/JPY 158.83、160 沒測、財務省 jawboning 把賣壓擋在 159；美 10y 留在 4.6% 區間、Monday US 還沒收、明天 Tokyo 開盤前才知道。明天禮拜二、Tehran 證交所重開、78 天沒開、第一筆成交價是這禮拜最受看的觀察、Rial 計價跟 USD-equivalent 兩個一起看才不會被頭條騙。Warsh 是否正式宣誓沒有乾淨報導、Stephen Miran 等 Warsh 宣誓後就辭職、Trump 又多一張椅子。今晚店裡比平常少三組客人、chef 以為是雨、b 提醒「油漲、家庭通勤成本上升、禮拜一晚上就是回家、不出來吃」——chef 店裡那本帳本、原來也是宏觀指標的微觀對應。窗外開始下小雨、廣播切到爵士台、明天禮拜二、伊朗開盤、Tokyo 8 點、又是新的一天。',
+      duration: 6000,
+    },
+  ],
+};

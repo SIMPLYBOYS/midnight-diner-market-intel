@@ -1,0 +1,183 @@
+import type { Episode } from '../../engine/types';
+
+/**
+ * Sources verified 2026-06-04 (Thu JST):
+ * - Asia broadly pulled back from Wednesday's record (Nikkei closed
+ *   Wed +2.50% to 68,402.13 per CNBC — note ep55 used an intraday
+ *   +0.91% read; the Wed close was bigger. Not retroactively
+ *   editing ep55; today's narrative uses the correct close as the
+ *   pullback anchor):
+ *   - Nikkei 225 -1.74% (after Wed record).
+ *   - Topix -1.09%.
+ *   - Kospi -1.25% (reopened after holiday).
+ *   - KOSDAQ +3.83% — small-cap catch-up after Korea's holiday close,
+ *     same kind of large-cap-vs-small-cap divergence as ep53 but in
+ *     reverse direction.
+ *   - Hang Seng -0.84%.
+ *   Nikkei level derived from Wed close 68,402.13 × 0.9826 ≈ 67,212
+ *   (approximate). (CNBC Asia 6/4)
+ * - THE REAL ESCALATION (categorical jump from ep55's "mining"):
+ *   - Iran struck Kuwait International Airport early Wednesday.
+ *   - US Central Command defeated multiple Iranian ballistic missiles
+ *     + drones the day before.
+ *   - US launched "self-defense strikes" on Qeshm Island in the
+ *     Persian Gulf in response to "attempted attacks" by Tehran.
+ *   These are MILITARY exchanges, not posturing. ep54 B's "noise vs
+ *   signal" + ep55 A's "concrete fact discount" framework get tested
+ *   again: even kinetic action only nudged markets ~1-2% and the
+ *   regime-fall bet held flat. Reading: "managed escalation within a
+ *   negotiation framework", not deal collapse. (CNBC Asia 6/4)
+ * - Oil continues elevated — third straight gain into Wed: WTI ~$95.46
+ *   (+1.81%) Wed, Brent toward $98. War premium back in. (CNBC, Trading
+ *   Economics 6/3)
+ * - Trump update: he "edited" the draft on enriched uranium + Hormuz
+ *   clauses; said an MoU "could be reached within the next week" — old
+ *   "largely negotiated" rhetoric on a new date stamp; still not signed.
+ *   (CBS, CNBC 6/4)
+ * - USD/JPY ~159.45 carryover from ep54 (no clean fresh 6/4 print).
+ * - POLYMARKET regime-fall 0.025 (2.5%) — basically unchanged from
+ *   yesterday despite the Kuwait Airport hit + US strikes. Range still
+ *   1.45-3.1%. This is the strongest "managed escalation" tell: real
+ *   missiles flying, smart money doesn't move the bet. Cited in
+ *   narration; NOT used as a polymarket-odds action (ep55 already
+ *   skipped it; including a flat chart adds little).
+ * - sectors[].value = |%change|x100 per theme, desc; all 6/4 sourced
+ *   (Kosdaq leads with its own catch-up reverse direction).
+ * - Continuity: ep55 (Wed) Customer A solo — kept "八分信二分留",
+ *   added "Iran mining/clearing execution" to 二分留; explained Rubio
+ *   mining via four-layer discount. Tonight Iran kinetic-escalated
+ *   (Kuwait Airport), making A's "二分留" even more prescient. Tonight
+ *   CUSTOMER B (alternation 53A 54B 55A 56B). B persona: 我先生, kids,
+ *   retired-finance father. Chef's wife callback: she saw "伊朗打 Kuwait
+ *   機場" headline ("這個聽起來更嚴重") + "Nikkei 跌". A does NOT
+ *   appear. Warsh first FOMC still 6/16-17.
+ */
+export const EPISODE_56: Episode = {
+  id: 'ep-56',
+  date: '2026-06-04',
+  title: '20260604 禮拜四晚上、Asia 全面回吐（Nikkei -1.74% Kospi -1.25% Topix -1.09% HSI -0.84%）、Kosdaq +3.83% 韓國休假後 catch-up；真正升級從 mining 變 kinetic——伊朗禮拜三打 Kuwait 機場、美對 Qeshm Island 反擊；但 Polymarket 政權垮台還是 2.5% 沒動、範圍 1.45-3.1% 沒打開、「managed escalation 不是 deal 崩」',
+  description: '禮拜四晚上、Tokyo 21:00。昨天 Nikkei 收 +2.50% 到 68,402 創紀錄、今天回吐 -1.74%。Asia 全面跌——Topix -1.09%、Kospi 休完假回來 -1.25%、Hang Seng -0.84%。但 Kosdaq 反方向 +3.83%——韓國放完假、小型股 catch-up。今天真的升級了——從 ep55 的「Rubio 講伊朗在 Hormuz 佈雷」這種 concrete fact、變成 kinetic action：伊朗禮拜三早上打 Kuwait 國際機場、美軍 CENTCOM 攔下多枚飛彈跟無人機、美方對 Qeshm Island 反擊「self-defense」。這已經是真實的軍事交火、不是嘴上講、不是水下佈雷、是飛彈在天上飛、機場跟島嶼被打。理論上 ep54 b 的「噪音 vs 訊號」、ep55 a 的「concrete fact 四層折扣」、都該被這條打穿。但牆上那個 Polymarket「伊朗政權 6 月底前垮台」、今天還是 2.5%、範圍 1.45-3.1% 也沒打開。即使打到 Kuwait 機場、即使美軍真的反擊、賭盤紋風不動。市場讀法升級到一個新框架——「managed escalation」、有計算的升級、雙方都還在 deal 框內出招、不是 deal 崩。油續彈、WTI 約 $95.46 連三天、Brent 接近 $98。Trump 今天「edited」濃縮鈾跟 Hormuz 條款、說 MoU「下週可能完成」——「下週」這個詞、市場已經連聽五個禮拜。今晚 customer-b 來。',
+  actions: [
+    { type: 'bgm', track: 'chill-lofi', command: 'play' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 9 點、東京。昨天 Nikkei 收 +2.50% 到 68,402 創紀錄、今天回吐 -1.74%。Asia 全面跌——Topix -1.09%、Kospi 休完假回來 -1.25%、Hang Seng -0.84%。但 Kosdaq 反方向跳 +3.83%、韓國放完假、小型股 catch-up。今天真的升級了——從 ep55 那條「Rubio 講伊朗在 Hormuz 佈雷」這種 concrete fact、變成真正的 kinetic action：伊朗禮拜三早上打了 Kuwait 國際機場、美軍 CENTCOM 攔下多枚飛彈跟無人機、美方對 Qeshm Island 反擊「self-defense」。這已經是真實的軍事交火、不是嘴上講、不是水下佈雷、是飛彈在天上飛、機場跟島嶼被打。理論上 ep54 b 的「噪音 vs 訊號」框架、ep55 a 的「concrete fact 四層折扣」、都該被這條軍事行動打穿。但牆上那個 Polymarket「伊朗政權 6 月底前垮台」、今天還是 2.5%、範圍 1.45-3.1% 也沒打開。即使打到 Kuwait 機場、即使美軍真的反擊、賭盤紋風不動。市場讀法升級到一個新框架——「managed escalation」、有計算的升級、雙方都還在 deal 框內出招、不是 deal 崩。油續彈、WTI 約 $95.46 連三天、Brent 接近 $98、戰爭溢價回流。Trump 今天「edited」濃縮鈾跟 Hormuz 條款、說 MoU「下週可能完成」——「下週」這個詞、市場已經連聽五個禮拜。今晚 customer-b 來。',
+      duration: 6000,
+    },
+
+    {
+      type: 'market-data',
+      data: {
+        tickers: [
+          { symbol: 'Kosdaq（6/4、休假後 catch-up）', price: 0, change: 3.83 },
+          { symbol: 'Nikkei 225（6/4 收、回吐記錄高）', price: 67212.0, change: -1.74 },
+          { symbol: 'Kospi（6/4、休假後反向）', price: 0, change: -1.25 },
+          { symbol: 'Topix（6/4、寬度也跌）', price: 0, change: -1.09 },
+          { symbol: 'Hang Seng（6/4、跟跌）', price: 0, change: -0.84 },
+        ],
+        volatility: 21,
+        vix: 16.8,
+        rsi: 48.0,
+        beta: 1.05,
+        priceHistory: [65500, 65900, 65964, 66329, 66934, 66400, 66051, 67212],
+        volumeHistory: [720, 700, 660, 720, 700, 740, 820, 860],
+        sectors: [
+          { label: 'Kosdaq +3.83%（韓國休完假、小型股 catch-up、跟 Kospi 反方向）', value: 383, color: '#22cc55' },
+          { label: 'Nikkei -1.74%（昨天 +2.50% 到 68,402 紀錄今天回吐、Kuwait 機場被打+油彈）', value: 174, color: '#cc4422' },
+          { label: 'Kospi -1.25%（休完假開盤直接跌、跟昨天解耦反向也斷）', value: 125, color: '#cc4422' },
+          { label: 'Topix -1.09%（寬度也跌、不只大型股回吐）', value: 109, color: '#cc4422' },
+          { label: 'Hang Seng -0.84%（HK 也跟跌、ep54「跟伊朗解耦」連續兩天斷）', value: 84, color: '#cc4422' },
+        ],
+        headline: '禮拜四 21:00 JST、Asia 收盤：真升級從 mining 變 kinetic（伊朗打 Kuwait 機場、美對 Qeshm Island 反擊）/ Nikkei -1.74% 回吐記錄高 / Kospi -1.25% Topix -1.09% HSI -0.84% / Kosdaq +3.83% 反向 catch-up / 但 Polymarket 政權垮台 2.5% 紋風不動範圍 1.45-3.1% 沒打開（managed escalation）/ 油續彈 WTI $95.46 連三天 Brent ~$98',
+      },
+    },
+
+    { type: 'enter', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'prep-area' },
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'enter', character: 'customer-b', toTile: 'entrance' },
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: 'いらっしゃい。今天我老婆完全跟不上節奏——早上她看到「伊朗打 Kuwait 機場」、立刻跟我說「這個更嚴重、機場耶」；中午她看到「美軍反擊 Qeshm Island」、又說「兩邊在打了」；下午她看到 Nikkei 跌 -1.74%、跟我說「你看市場終於認真了」。然後傍晚我跟她講「Polymarket 那條垮台機率還是 2.5%、沒動」、她整個傻眼說「飛彈都在飛了、賭盤竟然不在乎？這群人腦袋有問題吧」。' },
+
+    { type: 'move', character: 'customer-b', toTile: 'random-stool' },
+    { type: 'sit', character: 'customer-b' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、晚安、你太太今天直覺的旅程、其實就是這禮拜整個市場升級理解的縮影——從「飛彈很嚴重」→「兩邊在打」→「市場終於認真」→「賭盤怎麼還不動」、四步走完了我們桌上一整個下午的辯論。最後那一步「賭盤怎麼還不動」、才是真正的關鍵。我們有一個新詞要用了——「managed escalation」、有計算的升級。' },
+
+    { type: 'move', character: 'chef', toTile: 'stove' },
+    { type: 'wait', duration: 400 },
+
+    { type: 'dialogue', character: 'chef', text: 'Managed escalation、有計算的升級——這個跟 ep54 你講的「噪音升級」差在哪？ep55 a 講「concrete fact 訊號升級」、今天又升一級、變什麼？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、今天的事、用 ep54、ep55 那兩個框架解釋會很彆扭——這是一個第三個 layer 的概念。「噪音升級」是嘴上加重；「訊號升級」是 concrete fact 出現；今天是 kinetic action 但雙方都在 deal 框內出招——這叫「managed」、不是「unmanaged」。差別在「目標是什麼」：unmanaged 升級的目標是「把對方打到投降」；managed 升級的目標是「在桌上贏更好的條件」。伊朗打 Kuwait 機場、是「對國內鷹派交代+對美方加價」；美軍反擊 Qeshm、是「給伊朗紅線提醒+對國內保守派交代」。雙方都不想 deal 崩、只想在簽字之前最後一輪墊高自己的籌碼。' },
+
+    { type: 'dialogue', character: 'chef', text: '雙方都不想 deal 崩、只想簽字前墊高籌碼——這個我經歷過。我們店跟一個房東續約那次、簽約前一週、房東突然出現抱怨「你們客人吵到三樓」、我也回他「外面 LED 招牌我不裝是給你面子」——兩邊都在嗆、但其實都已經內定要續、嗆只是讓對方在租金、押金上讓一步。一週後簽了、租金降了一點、招牌我也裝了。國家也這套？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「續約前一週互嗆然後讓一步」、是 managed escalation 的完美中文版、我明天 desk 晨會要講。國際關係上專業的講法叫「coercive bargaining」——強制性議價——但你那「續約前一週」太貼地、新人聽得懂。今天 Kuwait 機場跟 Qeshm Island、本質就是「續約前一週嗆」、不是「我們要分手」。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Polymarket flat = strongest signal ──
+    { type: 'dialogue', character: 'chef', text: '那 Polymarket 那條今天紋風不動、2.5% 沒移、範圍也沒打開——這個是「賭盤已經內化了 managed escalation 這個概念」？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、就是這個——而且這個訊號的強度、超過 ep54 我講的「不動本身是訊號」。當時是文字升級不動、今天是飛彈升級不動。賭盤的腦子已經跟我們同步——它知道「飛彈飛、機場被打」這些都是 managed 範圍內的動作、不是 unmanaged 失控。如果是 unmanaged、賭盤會跳到 5-10%、範圍會打開到 15%。今天還壓在 3.1% 上限、就是賭盤在告訴你「相信我、這還沒走出框」。' },
+
+    { type: 'dialogue', character: 'chef', text: '飛彈在飛、賭盤不動——這個 silence 是 vote。我們街上有時候、客人聽到隔壁店傳出一個誇張的消息（譬如食安問題）、會看其他常客的臉色——如果熟客都繼續吃、那他也安心；如果熟客都皺眉、那他會猶豫。Polymarket 就是那群「熟客的臉色」？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「看熟客的臉色」、是我們行話「smart money signal」最好的中文翻譯。新聞是「大聲的陌生客」、市場分析師是「店裡的服務員」、Polymarket 是「熟客的臉色」——三個訊息源、不同 weight、不同 reliability。新人最容易被「大聲的陌生客」帶走、做久了會學會優先看「熟客的臉色」。今天 Kuwait 機場很大聲、但熟客還在吃、所以我們 desk 沒翻倉、就根據 a 昨天那個「八分信二分留」、二分留再加一個「kinetic exchanges」項目而已。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Kosdaq +3.83% divergence ──
+    { type: 'dialogue', character: 'chef', text: '今天 Kosdaq +3.83% 跟其他全跌反方向——這個跟 ep53 那次反過來、之前是大型股漲小型股跌、今天大型股跌小型股漲。為什麼這次反過來？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、原因很簡單但很巧——韓國昨天放假、整個禮拜三市場關著、今天才開。所以「禮拜三那波升級」、韓國當天沒反應、今天一次反映兩天份。但反映方式分裂——大型股（Samsung、SK Hynix 那批）跟著國際指數跌、小型股（內需、消費為主）反而 catch-up 之前錯過的紅。這跟 ep53 那次「Samsung 一檔抬出來、小型股獨砸」是相反方向、但結構一樣——「同個國家、兩種股票、相反方向」。' },
+
+    { type: 'dialogue', character: 'chef', text: '同國家、兩種股票、相反方向——這個在我們店裡也有。同個外面下雨的日子、外送單會爆增、內用客流會掉——同一個天氣、兩種營業面、相反方向。問題是「總和」——是賺還是賠？今天 Kospi -1.25% + Kosdaq +3.83%、整體韓國是怎麼算？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、加權的話、Kospi 市值大很多、整體韓國今天還是負的、大概 -0.8% 等量。但結構訊息不一樣——你「外送爆增、內用掉」、總額相同的話、表示「需求沒消失、只是換通路」、體質是健康的；今天韓國 Kospi 跌 Kosdaq 漲、表示「外國資金跑出大型股、本地資金接小型股」、體質也健康——錢沒離開韓國、只是換口袋。如果兩個都跌、那就是「錢真的跑了」、要警覺。所以「分裂」有時候是好消息——確認資金沒走、只是換陣地。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Trump "next week" déjà vu ──
+    { type: 'dialogue', character: 'chef', text: 'Trump 今天又說「MoU 下週可能完成」、聽起來跟兩個禮拜前「largely negotiated」一模一樣的語氣。市場還會被這套騙嗎？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、「下週」這個詞、Trump 從 5/23 那天說 deal「largely negotiated」開始、到今天 6/4、已經連說五個禮拜。我們桌上有個半開玩笑的內部 tracker——「Trump 下週機率」、一開始 70% 我們相信、現在跌到 25%。但今天他「edited 濃縮鈾跟 Hormuz 條款」這條、加分——「edit」表示他在動筆、不是只在嘴上。所以「下週」當 narrative 看不可信、但「edit」當 action 看是真進度。同一個人、同一天、講兩件事、要分開讀。' },
+
+    { type: 'dialogue', character: 'chef', text: '同一個人同一天講兩件事要分開讀——這個跟我跟員工溝通有像。員工抱怨「想離職」、可能只是發牢騷、不真；但同一個人去問「公司退休金怎麼算」、那是 action、要當真。話跟動作要分開讀。Trump 也這樣？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、你這個「員工抱怨 vs 問退休金、要分開讀」、跟我們講的「talk vs walk」是完全同一個概念。Trump 的「下週」是 talk、「edit 草案」是 walk。talk 已經 routine 化、可以打折；walk 是新的、要計入 framework。所以今天淨剩下來的真進展、不是他嘴上的「下週」、是 desk 上有人真的在改文字。' },
+
+    { type: 'wait', duration: 400 },
+
+    // ── Closing — Thursday, B alone ──
+    { type: 'move', character: 'chef', toTile: 'counter-center' },
+    { type: 'dialogue', character: 'chef', text: '禮拜四、市場跌、新聞滿天飛、你 desk 大概一整天在勸客戶別慌——我做點暖的安撫一下：豬肉味噌湯、烤鯖魚、玉子燒、納豆、白飯，配溫酒一合。你先生跟小孩今晚怎樣？能坐多久？' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、豬肉味噌湯加鯖魚、太好了、今天從早到收都在「翻譯飛彈新聞」給客戶聽——「不是要打仗、是 managed escalation」、講了 30 通電話、嘴乾。我先生今晚送小孩去妹妹家過夜、我們倆難得兩個人吃飯、九點半要在他面前出現、所以可以坐到九點十分。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '今天我想跟你聊一個 desk 上發生的小故事——下午 3 點半、有個跟我們合作 15 年的老客戶、他本來這禮拜一說要「全 all in 韓國 AI」、今天打來說「我要全砍、 Kuwait 機場太可怕」。我花 20 分鐘跟他解釋 managed escalation、Polymarket 不動、四層折扣——他最後嘆口氣說「妳這 20 分鐘比我這 15 年讀的所有新聞還清楚」、決定維持倉位。掛電話我突然意識到——我們這工作真正的價值不是預測未來、是幫客戶「在恐慌時不做傻事」。' },
+
+    { type: 'dialogue', character: 'chef', text: '幫客戶在恐慌時不做傻事——這個跟我們做飯人開店三十年最常做的事一模一樣。客人吃完抱怨「我覺得湯有點淡」、有些是真的、有些是他今天心情不好、有些是聽到隔壁桌講太多話的耳邊風。我學會的不是「煮更鹹的湯」、是「分得出他要什麼」——有時候給他熱毛巾、有時候端杯熱水、有時候真的調味。對的服務、不是滿足表面要求、是看穿背後的真實。' },
+
+    { type: 'dialogue', character: 'customer-b', text: '師傅、「看穿背後的真實」——這句太精準。我那位 15 年的老客戶下午要的、根本不是賣股票、是「請告訴我這個世界沒有失控」。我那 20 分鐘給的、其實是這個確認。豬肉味噌湯一上、我就準備閉嘴吃飯——今天解釋得太多、現在該換我被湯安撫了。' },
+
+    { type: 'dialogue', character: 'chef', text: '今天輪你被安撫——我給你裝最深的那碗、豬肉切厚一點、味噌調濃一點。鯖魚烤酥、玉子燒今天甜一點、配納豆爽口。九點十分送你走、別讓你先生等。今晚這頓、好好被安撫一下。' },
+
+    { type: 'sfx', sound: 'chimes' },
+
+    { type: 'wait', duration: 500 },
+    { type: 'move', character: 'chef', toTile: 'stove' },
+
+    {
+      type: 'narration',
+      text: '禮拜四晚上 10 點半、東京。今天的故事是「真升級從 mining 變 kinetic、市場讀法升級到第三層 managed escalation」。Asia 全跌、Nikkei -1.74% 回吐昨天 +2.50% 創的記錄 68,402、Kospi -1.25% 休完假回來反向、Topix -1.09%、HSI -0.84%。Kosdaq +3.83% 反方向——韓國休假後小型股 catch-up、「同國家兩種股票相反方向」（師傅:「下雨日外送漲內用跌、總額同表示需求沒消失」）。今天真升級——伊朗禮拜三早上打 Kuwait 國際機場、美軍 CENTCOM 攔下飛彈+無人機、美對 Qeshm Island 反擊。理論上 ep54 b 的「噪音 vs 訊號」、ep55 a 的「concrete fact 四層折扣」應該被打穿。但 Polymarket 政權垮台 2.5% 紋風不動、範圍 1.45-3.1% 還壓著——「飛彈升級不動」比 ep54 的「文字升級不動」訊號更強。市場讀法升級到第三層「managed escalation」——有計算的升級、雙方都在 deal 框內出招、目標是「桌上贏更好條件」不是「打到投降」。專業 coercive bargaining，師傅「續約前一週互嗆然後讓一步、嗆只是讓對方在租金讓一步」。Polymarket 不動 = smart money silence vote = 熟客的臉色（師傅:「新聞大聲陌生客、分析師服務員、Polymarket 熟客臉色、三種訊號 weight 不同」）。Trump 今天「下週可能 MoU 完成」——這個詞連說五週、desk 內部 tracker「Trump 下週機率」從 70% 跌到 25%；但他「edited 濃縮鈾＋Hormuz 條款」是真進度——「talk vs walk」分開讀（師傅「員工抱怨 vs 問退休金」）。油續彈 WTI $95.46 連三天 Brent 接近 $98。Customer B 今天勸客戶不慌、講 30 通電話講到嘴乾——下午一個 15 年老客戶要全砍韓國 AI、B 花 20 分鐘解釋 managed escalation+四層折扣+Polymarket 不動、客戶最後維持倉位、B 意識到「我們這工作真正的價值不是預測未來、是幫客戶在恐慌時不做傻事」（師傅:「客人說湯淡、學會的不是煮更鹹、是分得出他要什麼、看穿背後的真實」）。豬肉味噌湯加厚切肉、烤鯖魚、玉子燒甜一點、納豆爽口——「今天輪你被安撫」。九點十分送 B 走、回家不讓先生等。明天再戰。',
+      duration: 6000,
+    },
+  ],
+};
